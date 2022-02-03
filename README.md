@@ -9,7 +9,7 @@ An online E-store system built in Java 8=>11 and **\_ _replace with other platfo
 - Alex Hetrick
 - Alex Martinez
 - Kara Kolodinsky
-- MEMBER4
+- Jonathan Campbell
 
 ## Prerequisites
 
