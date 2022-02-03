@@ -7,7 +7,7 @@ An online E-store system built in Java 8=>11 and **\_ _replace with other platfo
 ## Team
 
 - Alex Hetrick
-- MEMBER2
+- Alex Martinez
 - MEMBER3
 - MEMBER4
 
