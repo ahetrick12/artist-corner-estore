@@ -138,8 +138,18 @@ public class ItemController {
      */
     @PutMapping("")
     public ResponseEntity<Item> updateItem(@RequestBody Item item) {
-        return new ResponseEntity<Item>(HttpStatus.OK);
-        // alex
+        LOG.info("PUT /items " + item);
+        try {
+            Item updatedItem = itemDao.updateItem(item);
+            if (updatedItem != null)
+                return new ResponseEntity<Item>(updatedItem, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
