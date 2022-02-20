@@ -100,7 +100,7 @@ public class ItemController {
      */
     @PostMapping("")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
-        LOG.info("POST /items " + item);
+        LOG.info("POST /items/ " + item);
         try {
             Item created_item = itemDao.createItem(item);
             if (created_item != null){

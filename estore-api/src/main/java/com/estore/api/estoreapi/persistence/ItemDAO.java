@@ -7,6 +7,7 @@ import com.estore.api.estoreapi.model.Item;
  * defines the interface for Item object persistence.
  * 
  * @author kara kolodinsky of team 8
+ * @author code heavily based on heroes-api by SWEN Faculty
  */
 public interface ItemDAO {
     /**
