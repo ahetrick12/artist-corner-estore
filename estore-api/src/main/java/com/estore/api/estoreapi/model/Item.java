@@ -18,22 +18,25 @@ public class Item {
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("stock") private int stock;
+    @JsonProperty("price") private float price;
 
     /**
      * create an item with the given id, name, and stock.
      * @param id the id of the item
      * @param name the name of the item
      * @param name the stock of the item.
+     * @param price the price of the item.
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Item(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("stock") int stock) {
+    public Item(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("stock") int stock,  @JsonProperty("price") float price) {
         this.id = id;
         this.name = name;
         this.stock = stock;
+        this.price = price;
     }
 
     /**
@@ -54,6 +57,11 @@ public class Item {
      */
     public String getName() {return name;}
 
+    /**
+     * retrieves the price of the item
+     * @return the price of the item
+     */
+    public float getPrice() {return price;}
      /**
      * retrieves the stock of the item
      * @return the stock of the item
@@ -71,6 +79,6 @@ public class Item {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,name);
+        return String.format(STRING_FORMAT,id,name,stock,price);
     }
 }

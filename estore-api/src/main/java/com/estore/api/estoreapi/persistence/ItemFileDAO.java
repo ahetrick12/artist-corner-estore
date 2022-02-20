@@ -41,7 +41,7 @@ public class ItemFileDAO implements ItemDAO {
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public ItemFileDAO(@Value("${items.file}") String filename,ObjectMapper objectMapper) throws IOException {
+    public ItemFileDAO(@Value("${estore.file}") String filename,ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();  // load the items from the file
@@ -175,7 +175,7 @@ public class ItemFileDAO implements ItemDAO {
         synchronized(items) {
             // we create a new item object because the id field is immutable
             // and we need to assign the next unique id
-            Item newItem = new Item(nextId(),item.getName(), item.getStock());
+            Item newItem = new Item(nextId(),item.getName(), item.getStock(), item.getPrice());
             items.put(newItem.getId(),newItem);
             save(); // may throw an IOException
             return newItem;
