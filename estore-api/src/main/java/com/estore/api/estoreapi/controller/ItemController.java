@@ -55,8 +55,18 @@ public class ItemController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Item> getItem(@PathVariable int id) {
-        return new ResponseEntity<Item>(HttpStatus.OK);
-        // jonathan
+        LOG.info("GET /items/" + id);
+        try {
+            Item item = itemDao.getItem(id);
+            if (item != null)
+                return new ResponseEntity<Item>(item, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -163,7 +173,17 @@ public class ItemController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Item> deleteItem(@PathVariable int id) {
-        return new ResponseEntity<Item>(HttpStatus.OK);
-        // jonathan
+        LOG.info("DELETE /items/" + id);
+        try {
+            if(itemDao.deleteItem(id)) {
+                return new ResponseEntity<Hero>(HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
