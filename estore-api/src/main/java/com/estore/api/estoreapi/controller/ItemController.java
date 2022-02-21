@@ -85,8 +85,18 @@ public class ItemController {
      */
     @GetMapping("/")
     public ResponseEntity<Item[]> searchItems(@RequestParam String name) {
-        return new ResponseEntity<Item[]>(HttpStatus.OK);
-        // danny
+        LOG.info("POST /items/?name= " + name);
+        try {
+            Item[] items = itemDao.findItems(name);
+            if (items != null)
+                return new ResponseEntity<Item[]>(items, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -128,8 +138,18 @@ public class ItemController {
      */
     @PutMapping("")
     public ResponseEntity<Item> updateItem(@RequestBody Item item) {
-        return new ResponseEntity<Item>(HttpStatus.OK);
-        // alex
+        LOG.info("PUT /items " + item);
+        try {
+            Item updatedItem = itemDao.updateItem(item);
+            if (updatedItem != null)
+                return new ResponseEntity<Item>(updatedItem, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**

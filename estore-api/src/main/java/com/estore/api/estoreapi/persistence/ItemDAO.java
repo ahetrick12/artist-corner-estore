@@ -78,4 +78,7 @@ public interface ItemDAO {
      * @throws IOException if underlying storage cannot be accessed
      */
     boolean deleteItem(int id) throws IOException;
+
+
+    boolean nameExists(String name) throws IOException;
 }
