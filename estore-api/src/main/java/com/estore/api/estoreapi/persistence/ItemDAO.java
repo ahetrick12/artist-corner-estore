@@ -79,6 +79,16 @@ public interface ItemDAO {
      */
     boolean deleteItem(int id) throws IOException;
 
+    /**
+     * checks if an {@linkplain Item item}'s name matches any of the {@linkplain Item item} names in the current inventory.
+     * 
+     * @param name the name of the {@link Item item}
+     * 
+     * @return true if the {@link Item item}'s name already exists in the current inventory
+     * false if it is not found.
+     * 
+     * @throws IOException if underlying storage cannot be accessed
+     */
 
     boolean nameExists(String name) throws IOException;
 }
