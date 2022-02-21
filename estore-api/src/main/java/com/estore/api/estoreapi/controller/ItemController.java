@@ -85,7 +85,7 @@ public class ItemController {
      */
     @GetMapping("/")
     public ResponseEntity<Item[]> searchItems(@RequestParam String name) {
-        LOG.info("POST /items/?name= " + name);
+        LOG.info("GET /items/?name= " + name);
         try {
             Item[] items = itemDao.findItems(name);
             if (items != null)
