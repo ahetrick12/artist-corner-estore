@@ -176,7 +176,7 @@ public class ItemController {
         LOG.info("DELETE /items/" + id);
         try {
             if(itemDao.deleteItem(id)) {
-                return new ResponseEntity<Hero>(HttpStatus.OK);
+                return new ResponseEntity<Item>(HttpStatus.OK);
             }
             else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
