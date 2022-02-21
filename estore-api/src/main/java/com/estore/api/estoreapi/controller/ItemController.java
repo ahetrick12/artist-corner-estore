@@ -78,7 +78,18 @@ public class ItemController {
      */
     @GetMapping("")
     public ResponseEntity<Item[]> getItems() {
-        return new ResponseEntity<Item[]>(HttpStatus.OK);
+        LOG.info("GET /items");
+        try{
+            Item[] items = itemDao.getItems();
+            if (items != null)
+                return new ResponseEntity<Item[]>(items, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         // martinez
     }
 
