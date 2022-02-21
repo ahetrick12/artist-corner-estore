@@ -175,10 +175,16 @@ public class ItemFileDAO implements ItemDAO {
         synchronized(items) {
             // we create a new item object because the id field is immutable
             // and we need to assign the next unique id
-            Item newItem = new Item(nextId(),item.getName(), item.getStock(), item.getPrice());
-            items.put(newItem.getId(),newItem);
-            save(); // may throw an IOException
-            return newItem;
+            if (nameExists(item.getName())== false){
+                Item newItem = new Item(nextId(),item.getName(), item.getStock(), item.getPrice());
+                items.put(newItem.getId(),newItem);
+                save(); // may throw an IOException
+                return newItem;
+            }
+            else {
+                return null;
+            }
+            
         }
     }
 
@@ -197,7 +203,7 @@ public class ItemFileDAO implements ItemDAO {
         }
     }
 
-    /**
+   /**
     ** {@inheritDoc}
      */
     @Override
@@ -211,4 +217,19 @@ public class ItemFileDAO implements ItemDAO {
                 return false;
         }
     }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public boolean nameExists(String name) throws IOException {
+    synchronized(items) {
+        for (Item stock_item: items.values()){
+            if (stock_item.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+}
 }
