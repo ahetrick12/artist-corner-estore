@@ -1,11 +1,13 @@
 <div id="titl">Products</div>
 
 <ul class="items">
+    <app-search-bar></app-search-bar>
+
     <li *ngFor="let item of items">
       <img src="../../assets/images/tat.jpg" class="storeimg">
-        <div >{{item.name}}</div> 
+        <div >{{item.name}}</div>
         <div>${{item.price}}</div>
-     
-      
+
+
     </li>
   </ul>
