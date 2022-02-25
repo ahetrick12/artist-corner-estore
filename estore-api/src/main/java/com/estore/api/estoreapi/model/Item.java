@@ -24,7 +24,7 @@ public class Item {
      * create an item with the given id, name, and stock.
      * @param id the id of the item
      * @param name the name of the item
-     * @param name the stock of the item.
+     * @param stock the stock of the item.
      * @param price the price of the item.
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization

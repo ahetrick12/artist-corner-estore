@@ -1,0 +1,46 @@
+nav{
+    display:block;
+    line-height: 80px;
+    height: 80px;
+    background-color: #000;
+    font-weight: bold;
+}
+nav div{
+    width:90%;
+    margin:0 auto;
+}
+nav #desktop-links{
+    float:right;
+    margin:0;
+    padding:0;
+    font-size: 15px;
+    padding-right: 20px;
+}
+nav #desktop-links li{
+    display: inline-block;
+    list-style-type: none;
+    margin-left: 10px;
+}
+nav a{
+    color:#fff;
+    text-decoration: none;
+}
+nav a:hover{
+    display: inline-block;
+    cursor:pointer;
+    color:red;
+    text-decoration: none;
+}
+nav img {
+    height: 25px;
+}
+
+#mentit{
+    margin-left: 30px;
+    
+    font-size: 30px;
+}
+
+#banim {
+    width: 100%;
+}
