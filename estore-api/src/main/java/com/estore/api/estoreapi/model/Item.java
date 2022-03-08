@@ -81,4 +81,8 @@ public class Item {
     public String toString() {
         return String.format(STRING_FORMAT,id,name,stock,price);
     }
+
+    public void setPrice(float expected_price) {
+        this.price = price;
+    }
 }
