@@ -24,8 +24,7 @@ public class Cart {
         }
         else{
             cart.add(new CartItem(item, 1));
-        }
-        
+        }   
     }
 
     public List<Item> getCartItems(){
@@ -47,5 +46,6 @@ public class Cart {
     public int getIndex(Item item){
         List<Item> items = getCartItems();
         return items.indexOf(item);
+}
 }
 
