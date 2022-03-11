@@ -128,6 +128,8 @@ public class ItemController {
      * @return ResponseEntity with created {@link Item item} object and HTTP status of CREATED<br>
      * ResponseEntity with HTTP status of CONFLICT if {@link Item item} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * @author Kara Kolodinsky
      */
     @PostMapping("")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
