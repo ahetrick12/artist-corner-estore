@@ -75,6 +75,8 @@ public class ItemController {
      * @return ResponseEntity with array of {@link Item item} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * @author Alex Martinez
      */
     @GetMapping("")
     public ResponseEntity<Item[]> getItems() {
@@ -90,7 +92,6 @@ public class ItemController {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        // martinez
     }
 
     /**
