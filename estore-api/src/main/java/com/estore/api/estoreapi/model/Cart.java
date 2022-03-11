@@ -18,15 +18,34 @@ public class Cart {
     public  List<CartItem> getCart(){ return cart;}
 
     public void addToCart(Item item){
-        //this is kinda super time intensive depending on cart size. O(N)
-        // feel free to use dictionaries/whatever to make it less so, but
-        // right now i'm just making sure it works. kk
-        for (int i = 0; i<cart.size() ;i++){
-            if (cart.get(i).getItem() == item){
-                cart.get(i).incrementQuantity();
-            }
+        if (getCartItems().contains(item)){
+            int index = getIndex(item);
+            cart.get(index).incrementQuantity();
+        }
+        else{
+            cart.add(new CartItem(item, 1));
         }
         
     }
+
+    public List<Item> getCartItems(){
+        List<Item> cart_items = new ArrayList<Item>();
+        for (int i= 0; i<cart.size() ;i++){
+            cart_items.add(cart.get(i).getItem());
+        }
+        return cart_items;
+    }
+
+    public int getCartSize(){
+        int size = 0;
+        for (int i= 0; i<cart.size() ;i++){
+            size += cart.get(i).getQuantity();
+        }
+        return size;
+    }
+
+    public int getIndex(Item item){
+        List<Item> items = getCartItems();
+        return items.indexOf(item);
 }
 
