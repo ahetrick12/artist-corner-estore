@@ -1,46 +1,62 @@
-nav{
-    display:block;
-    line-height: 80px;
-    height: 80px;
-    background-color: #000;
-    font-weight: bold;
+nav {
+  display: block;
+  line-height: 80px;
+  height: 80px;
+  background-color: #000;
+  font-weight: bold;
 }
-nav div{
-    width:90%;
-    margin:0 auto;
+nav div {
+  width: 90%;
+  margin: 0 auto;
 }
-nav #desktop-links{
-    float:right;
-    margin:0;
-    padding:0;
-    font-size: 15px;
-    padding-right: 20px;
+nav #desktop-links {
+  float: right;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  padding-right: 20px;
 }
-nav #desktop-links li{
-    display: inline-block;
-    list-style-type: none;
-    margin-left: 10px;
+nav #desktop-links li {
+  display: inline-block;
+  list-style-type: none;
+  margin-left: 10px;
 }
-nav a{
-    color:#fff;
-    text-decoration: none;
+nav a {
+  color: #fff;
+  text-decoration: none;
 }
-nav a:hover{
-    display: inline-block;
-    cursor:pointer;
-    color:red;
-    text-decoration: none;
+nav a:hover {
+  display: inline-block;
+  cursor: pointer;
+  color: red;
+  text-decoration: none;
 }
 nav img {
-    height: 25px;
+  height: 25px;
 }
 
-#mentit{
-    margin-left: 30px;
-    
-    font-size: 30px;
+#mentit {
+  margin-left: 30px;
+  font-size: 30px;
 }
 
 #banim {
-    width: 100%;
+  width: 100%;
+}
+
+#login {
+  float: right;
+  margin-right: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 20px;
+  padding: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+  text-decoration: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(63, 128, 128);
 }
