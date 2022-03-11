@@ -52,6 +52,8 @@ public class ItemController {
      * @return ResponseEntity with {@link Item item} object and HTTP status of OK if found
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * @author Jonathan Campbell
      */
     @GetMapping("/{id}")
     public ResponseEntity<Item> getItem(@PathVariable int id) {
@@ -181,6 +183,8 @@ public class ItemController {
      * @return ResponseEntity HTTP status of OK if deleted<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * @author Jonathan Campbell
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Item> deleteItem(@PathVariable int id) {
