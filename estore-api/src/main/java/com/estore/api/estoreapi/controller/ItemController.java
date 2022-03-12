@@ -104,6 +104,7 @@ public class ItemController {
      * HTTP status of OK
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * 
+     * @author Daniel Kench
      */
     @GetMapping("/")
     public ResponseEntity<Item[]> searchItems(@RequestParam String name) {
