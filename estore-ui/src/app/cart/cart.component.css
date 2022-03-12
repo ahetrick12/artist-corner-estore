@@ -1,0 +1,35 @@
+#titl{
+    text-align: center;
+    margin-block: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+ul{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 50px;
+    padding:0;
+}
+li{
+    display: inline-block;
+    list-style-type: none;
+    width: 19%;
+    margin-left: 1%;
+    height: 200px;
+    background-color: lightslategray;
+    margin-bottom: 30px;
+}
+li span{
+    text-align: center;
+}
+.storeimg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70px;
+    margin-top: 15px;
+}
+.items div{
+    text-align: center;
+    margin-top: 30px;
+}

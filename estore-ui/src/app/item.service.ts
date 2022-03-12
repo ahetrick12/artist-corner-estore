@@ -5,6 +5,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Item } from './item';
+import { Cart } from './cart';
+import { CartItem } from './cartitem'
 //import { MessageService } from './message.service';
 
 
@@ -12,6 +14,7 @@ import { Item } from './item';
 export class ItemService {
 
   private itemsUrl = 'http://localhost:8080/items';
+  private cartUrl = 'http://localhost:8080/cart';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,6 +30,14 @@ export class ItemService {
       .pipe(
         tap(_ => this.log('fetched items')),
         catchError(this.handleError<Item[]>('getItems', []))
+      );
+  }
+
+  getCart(): Observable<CartItem[]> {
+    return this.http.get<CartItem[]>(this.cartUrl)
+      .pipe(
+        tap(_ => this.log('fetched cart')),
+        catchError(this.handleError<CartItem[]>('getCart', []))
       );
   }
 

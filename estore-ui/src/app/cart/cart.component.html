@@ -1,0 +1,23 @@
+<div id="titl">Cart</div>
+<div>
+    <table id="bar">
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Remove</th>
+            <th>Total</th>
+          </tr>
+
+          <tr class="items">
+            <tr *ngFor="let cartitem of cart">
+              <img src="../../assets/images/tat.jpg" class="storeimg">
+                <th>{{cartitem.item.name}}</th> 
+                <th>${{cartitem.item.price}}</th>
+                <th><label>${{cartitem.quantity}}</label></th>
+                <th></th>
+                <th>${{cartitem.quantity}}*{{cartitem.item.price}}</th>
+            </tr>
+
+    </table>
+</div>
