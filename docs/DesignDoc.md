@@ -9,7 +9,7 @@ geometry: margin=1in
 > and appear in the generated PDF in italics._
 
 ## Team Information
-* Team name: TEAMNAME
+* Team name: TEAM 8
 * Team members
   * Alex Hetrick
   * Alex Martinez
@@ -19,18 +19,16 @@ geometry: margin=1in
 
 ## Executive Summary
 
-This is a summary of the project.
-
 ### Purpose
-> _Provide a very brief statement about the project and the most
-> important user group and user goals._
+Our program is an e-store targeted towards fans of a tattoo artist who sells their designs on products. 
+Customers are able to buy those products, learn information via the announcements feature, and chat with the artist in private. 
 
 ### Glossary and Acronyms
-> _Provide a table of terms and acronyms._
 
 | Term | Definition |
 |------|------------|
 | SPA | Single Page |
+| DAO | Data access object |
 
 
 ## Requirements
