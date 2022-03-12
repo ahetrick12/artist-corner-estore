@@ -103,8 +103,8 @@ public class UserController {
      * 
      */
     @GetMapping("/")
-    public ResponseEntity<User> searchUsers(@RequestParam String username) {
-        LOG.info("GET /users/?name= " + username);
+    public ResponseEntity<User> findUser(@RequestParam String username) {
+        LOG.info("GET /users/?username=" + username);
         try {
             User user = userDAO.findUser(username);
             if (user != null)

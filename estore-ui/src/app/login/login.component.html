@@ -9,9 +9,14 @@
   <body>
     <h1>Login</h1>
     <ul>
-      <li><input placeholder="Username" [(ngModel)]="login.username" /></li>
-      <li><input placeholder="Password" [(ngModel)]="login.password" /></li>
+      <li>
+        <input placeholder="Username" [(ngModel)]="currentUser.username" />
+      </li>
+      <li>
+        <input placeholder="Password" [(ngModel)]="currentUser.password" />
+      </li>
     </ul>
+
     <button (click)="onLogin()">Login</button>
     <button (click)="onCreateAccount()">Create Account</button>
   </body>
