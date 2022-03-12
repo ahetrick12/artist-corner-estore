@@ -57,9 +57,7 @@ This section describes the application domain.
 
 ![Domain Model](domain-model.png)
 
-> _Provide a high-level overview of the domain for this application. You
-> can discuss the more important domain entities and their relationship
-> to each other._
+The customer can browse an inventory of products on the website, and add the ones they like to the shopping cart. If logged in, this shopping cart will persist between sessions. The user can then checkout and purchase the items in the cart. If the owner is logged in, they are able to update the inventory and also post store-wide annoucenements, which the customers can see. The customers also have the option to contact the owner to request custom paintings, and the  customer and owner will be able to communicate about that though an in-site messaging service.
 
 
 ## Architecture and Design
