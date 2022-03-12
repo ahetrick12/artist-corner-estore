@@ -1,8 +1,7 @@
 package com.estore.api.estoreapi.model;
-import com.estore.api.estoreapi.*;
+import java.util.logging.Logger;
 
-import com.estore.api.estoreapi.model.Item;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * represents a CartItem entity.
  *
@@ -11,8 +10,10 @@ import com.estore.api.estoreapi.model.Item;
 public class CartItem {
     private int quantity;
     private Item item;
+    static final String STRING_FORMAT = "CartItem [item=%s, quantity=%s]";
 
-    public CartItem(Item item, int quantity){
+
+    public CartItem(@JsonProperty("Item") Item item, @JsonProperty("quantity") int quantity){
         this.item = item;
         this.quantity = quantity;
     }
@@ -30,5 +31,14 @@ public class CartItem {
             return true;
         } else return false;
 
+    }
+
+    
+      /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return String.format(STRING_FORMAT,item.toString(), quantity);
     }
 }
