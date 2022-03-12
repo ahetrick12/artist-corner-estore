@@ -42,8 +42,8 @@ export class UserService {
     };
   }
 
-  /** Log a ItemService message with the MessageService */
+  /** Log a UserService message with the MessageService */
   private log(message: string) {
-    console.log(`ItemService: ${message}`);
+    console.log(`UserService: ${message}`);
   }
 }

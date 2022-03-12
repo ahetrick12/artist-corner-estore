@@ -13,10 +13,6 @@ export class LoginComponent implements OnInit {
     username: '',
     password: '',
   };
-  expectedUser: User = {
-    username: '',
-    password: '',
-  };
 
   constructor(private userService: UserService) {}
 
@@ -31,34 +27,22 @@ export class LoginComponent implements OnInit {
       let successful: boolean = true;
       let expectedUser: User = user;
 
-      if (this.expectedUser == null) {
-        this.expectedUser = {
-          username: '',
-          password: '',
-        };
+      if (
+        expectedUser == null ||
+        expectedUser.password != this.currentUser.password
+      ) {
         successful = false;
       }
 
-      if (this.expectedUser.password != this.currentUser.password) {
-        successful = false;
-      }
-
-      this.loginStateAlert(successful, expectedUser);
+      this.loginStateAlert(successful);
     });
   }
 
-  loginStateAlert(successful: boolean, expectedUser: User): void {
+  loginStateAlert(successful: boolean): void {
     alert(
-      'Got: U - ' +
-        this.currentUser.username +
-        ' P - ' +
-        this.currentUser.password +
-        '\nExpected: U - ' +
-        (expectedUser != null ? this.expectedUser.username : '') +
-        ' P - ' +
-        (expectedUser != null ? this.expectedUser.password : '') +
-        '\n' +
-        (successful ? 'MATCH!!!' : 'NO MATCH')
+      successful
+        ? 'Successfully logged in!'
+        : 'Invalid username or password, please try again.'
     );
   }
 
