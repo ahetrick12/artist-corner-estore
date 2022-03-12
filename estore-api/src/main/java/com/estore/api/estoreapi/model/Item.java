@@ -13,7 +13,7 @@ public class Item {
     private static final Logger LOG = Logger.getLogger(Item.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "Item [id=%d, name=%s, stock=%s]";
+    static final String STRING_FORMAT = "Item [id=%d, name=%s, stock=%s, price=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
@@ -80,5 +80,9 @@ public class Item {
     @Override
     public String toString() {
         return String.format(STRING_FORMAT,id,name,stock,price);
+    }
+
+    public void setPrice(float expected_price) {
+        this.price = price;
     }
 }
