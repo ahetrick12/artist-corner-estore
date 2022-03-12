@@ -156,6 +156,8 @@ public class ItemController {
      * @return ResponseEntity with updated {@link Item item} object and HTTP status of OK if updated
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * @author Alex Hetrick
      */
     @PutMapping("")
     public ResponseEntity<Item> updateItem(@RequestBody Item item) {
