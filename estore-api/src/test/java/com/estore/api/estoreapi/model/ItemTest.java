@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
- * The unit test suite for the Hero class
+ * The unit test suite for the Item class
  * 
- * @author SWEN Faculty
+ * @author Kara Kolodinsky of Team 8
  */
 @Tag("Model-tier")
 public class ItemTest {
@@ -26,8 +26,8 @@ public class ItemTest {
         // Analyze
         assertEquals(expected_id,item.getId());
         assertEquals(expected_name,item.getName());
-        assertEquals(expected_name,item.getStock());
-        assertEquals(expected_name,item.getPrice());
+        assertEquals(expected_stock,item.getStock());
+        assertEquals(expected_price,item.getPrice());
     }
 
     @Test
@@ -87,13 +87,13 @@ public class ItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
-        String expected_string = String.format(Item.STRING_FORMAT,id,name);
+        String expected_string = String.format(Item.STRING_FORMAT,id,name,stock,price);
         Item item = new Item(id,name,stock,price);
 
         // Invoke
         String actual_string = item.toString();
 
-        // Analyze
+        // Analyze`
         assertEquals(expected_string,actual_string);
     }
 }

@@ -71,6 +71,20 @@ public class ItemFileDAOTest {
 
     @Test
     public void testCreateItem() {
+        // Setup
+        Item item = new Item(102,"Mask", 20, (float)5.99);
+
+        // Invoke
+        Item result = assertDoesNotThrow(() -> itemFileDAO.createItem(item),
+                                "Unexpected exception thrown");
+
+        // Analyze
+        assertNotNull(result);
+        Item actual = itemFileDAO.getItem(item.getId());
+        assertEquals(actual.getId(),item.getId());
+        assertEquals(actual.getName(),item.getName());
+        assertEquals(actual.getStock(),item.getStock());
+        assertEquals(actual.getPrice(),item.getPrice());
     }
 
     @Test

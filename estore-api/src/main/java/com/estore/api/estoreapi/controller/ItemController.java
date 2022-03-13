@@ -141,7 +141,7 @@ public class ItemController {
         try {
             Item created_item = itemDao.createItem(item);
             if (created_item != null){
-                return new ResponseEntity<Item>(created_item,HttpStatus.OK);
+                return new ResponseEntity<Item>(created_item,HttpStatus.CREATED);
             }
             else {
                 return new ResponseEntity<Item>(HttpStatus.CONFLICT);
