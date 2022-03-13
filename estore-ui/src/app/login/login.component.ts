@@ -29,6 +29,10 @@ export class LoginComponent implements OnInit {
     return this.userService.findUser(username);
   }
 
+  createUser(user: User): Observable<User> {
+    return this.userService.createUser(user);
+  }
+
   onLogin(): void {
     this.findUser(this.currentUser.username).subscribe((user) => {
       let successful: boolean = true;
@@ -43,17 +47,7 @@ export class LoginComponent implements OnInit {
 
       // Conditional logic for valid and invalid logins
       if (successful) {
-        alert('Successfully logged in!');
-
-        console.log(
-          'USER: ' +
-            this.currentUser.username +
-            ' : ' +
-            this.currentUser.password
-        );
-
-        this.authService.updateLoginState(this.currentUser);
-        this.route.navigate(['']);
+        this.authSuccess('Successfully logged in!');
       } else {
         alert('Invalid username or password, please try again.');
       }
@@ -61,11 +55,29 @@ export class LoginComponent implements OnInit {
   }
 
   onCreateAccount(): void {
-    alert(
-      'Creating Account... '
-    ); /* + this.login.username + ' ' + this.login.password
+    this.createUser(this.currentUser).subscribe((user) => {
+      let successful: boolean = true;
+
+      if (user == null) {
+        successful = false;
+      }
+
+      if (successful) {
+        this.authSuccess('Successfully created account!');
+      } else {
+        alert('Username has already been taken, please try again.');
+      }
+    });
+  }
+
+  authSuccess(message: string): void {
+    alert(message);
+
+    console.log(
+      'USER: ' + this.currentUser.username + ' : ' + this.currentUser.password
     );
-    this.login.username = '';
-    this.login.password = '';*/
+
+    this.authService.updateLoginState(this.currentUser);
+    this.route.navigate(['']);
   }
 }

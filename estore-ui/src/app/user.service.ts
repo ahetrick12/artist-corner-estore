@@ -22,6 +22,13 @@ export class UserService {
     );
   }
 
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(this.usersUrl, user).pipe(
+      tap((_) => this.log('created user')),
+      catchError(this.handleError<User>('findUser'))
+    );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
