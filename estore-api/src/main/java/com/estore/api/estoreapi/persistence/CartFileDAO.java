@@ -27,12 +27,11 @@ import com.estore.api.estoreapi.model.CartItem;
  */
 @Component
 public class CartFileDAO implements CartDAO {
-    private static final Logger LOG = Logger.getLogger(ItemFileDAO.class.getName());
+    private static final Logger LOG = Logger.getLogger(CartFileDAO.class.getName());
     Map<Item,CartItem> cart;   // Provides a local cache of the item objects
     private ObjectMapper objectMapper;  // Provides conversion between Item
                                         // objects and JSON text format written
                                         // to the file
-    private static int nextId;  // The next Id to assign to a new item
     private String filename;    // Filename to read from and write to
 
     /**
@@ -126,7 +125,7 @@ public class CartFileDAO implements CartDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Item[] getCart() {
+    public CartItem[] getCart() {
         synchronized(cart) {
             return getCart();
         }

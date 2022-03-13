@@ -1,6 +1,8 @@
 package com.estore.api.estoreapi.persistence;
 
 import java.io.IOException;
+
+import com.estore.api.estoreapi.model.CartItem;
 import com.estore.api.estoreapi.model.Item;
 
 /**
@@ -17,7 +19,7 @@ public interface CartDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Item[] getCart() throws IOException;
+    CartItem[] getCart() throws IOException;
 
     /**
      * finds all {@linkplain Item item} whose name contains the given text.
@@ -28,7 +30,7 @@ public interface CartDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    public void addCartItem(Item item) throws IOException;
+    public CartItem addCartItem(Item item) throws IOException;
 
     /**
      * retrieves an {@linkplain Item item} with the given id.
@@ -41,4 +43,6 @@ public interface CartDAO {
      * @throws IOException if an issue with underlying storage
      */
     public boolean deleteCartItem(Item item) throws IOException;
+
+    public CartItem updateItem(CartItem item) throws IOException;
 }

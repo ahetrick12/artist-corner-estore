@@ -54,12 +54,12 @@ public class CartController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("")
-    public ResponseEntity<Item[]> getItems() {
+    public ResponseEntity<CartItem[]> getItems() {
         LOG.info("GET /cart");
         try{
-            Item[] items = CartDao.getCart();
+            CartItem[] items = CartDao.getCart();
             if (items != null)
-                return new ResponseEntity<Item[]>(items, HttpStatus.OK);
+                return new ResponseEntity<CartItem[]>(items, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

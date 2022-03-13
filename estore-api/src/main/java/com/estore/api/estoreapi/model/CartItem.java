@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author kara kolodinsky of team 8
  */
 public class CartItem {
-    private int quantity;
-    private Item item;
+    @JsonProperty("quantity") private int quantity;
+    @JsonProperty("Item") private Item item;
     static final String STRING_FORMAT = "CartItem [item=%s, quantity=%s]";
 
 
-    public CartItem(@JsonProperty("Item") Item item, @JsonProperty("quantity") int quantity){
+    public CartItem(@JsonProperty("item") Item item, @JsonProperty("quantity") int quantity){
         this.item = item;
         this.quantity = quantity;
     }

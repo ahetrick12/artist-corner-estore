@@ -29,7 +29,7 @@ li span{
     height: 70px;
     margin-top: 15px;
 }
-.items div{
+.items{
     text-align: center;
-    margin-top: 30px;
+    margin:auto;
 }
