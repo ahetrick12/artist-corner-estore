@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AuthService } from './auth.service';
 
@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Artist E-Store';
   isLoggedIn: boolean = false;
 
@@ -15,5 +15,7 @@ export class AppComponent implements OnInit {
     this.authService.getAuthStateObs().subscribe((x) => (this.isLoggedIn = x));
   }
 
-  ngOnInit(): void {}
+  logout(): void {
+    this.authService.updateLoginState(undefined);
+  }
 }

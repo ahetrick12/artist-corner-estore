@@ -1,6 +1,7 @@
 <nav>
   <a id="mentit" routerLink="/homepage">{{ title }}</a>
-  <a *ngIf="!isLoggedIn" id="login" routerLink="/login">Login</a>
+  <a *ngIf="!isLoggedIn" class="auth-button green" routerLink="/login">Login</a>
+  <a *ngIf="isLoggedIn" class="auth-button red" (click)="logout()">Logout</a>
   <ul id="desktop-links">
     <li><a routerLink="/store">Store</a></li>
     <li><a>About</a></li>
