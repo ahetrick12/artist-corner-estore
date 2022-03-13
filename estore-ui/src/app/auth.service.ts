@@ -7,19 +7,22 @@ import { User } from './user';
 })
 export class AuthService {
   loggedInUser?: User;
+  val: boolean = false;
   private loginState = new Subject<boolean>();
   private loginStateObs = this.loginState.asObservable();
 
   constructor() {}
 
-  updateLoginState(user: User): void {
+  updateLoginState(user: User | undefined): void {
     this.loggedInUser = user;
-    this.loginState.next(this.loggedInUser != null ? true : false);
-    console.log('UPDATE: ' + this.loginState);
+    this.val = this.loggedInUser != undefined ? true : false;
+    this.loginState.next(this.val);
+
+    console.log('UPDATE AUTH: ' + this.val);
   }
 
   getAuthStateObs(): Observable<boolean> {
-    console.log('GET: ' + this.loginState);
+    console.log('GET AUTH: ' + this.val);
     return this.loginStateObs;
   }
 

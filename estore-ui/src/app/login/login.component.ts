@@ -45,6 +45,13 @@ export class LoginComponent implements OnInit {
       if (successful) {
         alert('Successfully logged in!');
 
+        console.log(
+          'USER: ' +
+            this.currentUser.username +
+            ' : ' +
+            this.currentUser.password
+        );
+
         this.authService.updateLoginState(this.currentUser);
         this.route.navigate(['']);
       } else {
