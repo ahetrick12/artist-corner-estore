@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +17,11 @@ export class LoginComponent implements OnInit {
     password: '',
   };
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -34,16 +41,16 @@ export class LoginComponent implements OnInit {
         successful = false;
       }
 
-      this.loginStateAlert(successful);
-    });
-  }
+      // Conditional logic for valid and invalid logins
+      if (successful) {
+        alert('Successfully logged in!');
 
-  loginStateAlert(successful: boolean): void {
-    alert(
-      successful
-        ? 'Successfully logged in!'
-        : 'Invalid username or password, please try again.'
-    );
+        this.authService.updateLoginState(this.currentUser);
+        this.route.navigate(['']);
+      } else {
+        alert('Invalid username or password, please try again.');
+      }
+    });
   }
 
   onCreateAccount(): void {
