@@ -1,7 +1,20 @@
 <nav>
   <a id="mentit" routerLink="/homepage">{{ title }}</a>
   <a *ngIf="!isLoggedIn" class="auth-button green" routerLink="/login">Login</a>
-  <a *ngIf="isLoggedIn" class="auth-button red" (click)="logout()">Logout</a>
+  <a
+    *ngIf="isLoggedIn"
+    class="avatar"
+    (click)="toggleAccountDropdown()"
+    (clickOutside)="setAccountDropdown(false)"
+  >
+    <img #avatar src="../../assets/images/avatar.jpg "
+  /></a>
+  <ul #dropdown *ngIf="accountDropdownToggle" class="account-dropdown">
+    <li class="badge"><a>Account Details</a></li>
+    <li class="badge"><a>Cart??</a></li>
+    <li class="badge"><a>Anything else that might go here</a></li>
+    <li class="badge red"><a (click)="logout()">Logout</a></li>
+  </ul>
   <ul id="desktop-links">
     <li><a routerLink="/store">Store</a></li>
     <li><a>About</a></li>

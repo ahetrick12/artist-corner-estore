@@ -23,7 +23,6 @@ nav a {
   text-decoration: none;
 }
 nav a:hover {
-  display: inline-block;
   cursor: pointer;
   color: rgb(202, 202, 202);
   text-decoration: none;
@@ -60,6 +59,47 @@ nav img {
   background-color: rgb(63, 128, 128);
 }
 
+.avatar img {
+  float: right;
+  border-radius: 50%;
+  height: 50px;
+  margin-top: 15px;
+  margin-right: 25px;
+  margin-left: 10px;
+}
+
+.account-dropdown {
+  position: absolute;
+  right: 10px;
+  top: 70px;
+  width: 200px;
+  line-height: 20px;
+  color: white !important;
+  background-color: rgb(202, 202, 202);
+  list-style-type: none;
+  margin: 0px;
+  padding: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 5px;
+}
+
+.account-dropdown .badge {
+  right: 0px;
+  width: 180px;
+  display: inline-block;
+  font-size: small;
+  word-wrap: break-word;
+  color: white;
+  background-color: #2f2f2f;
+  text-align: center;
+  border-radius: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .red {
-  background-color: rgb(127, 68, 41);
+  background-color: rgb(148, 44, 13) !important;
 }
