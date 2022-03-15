@@ -122,12 +122,36 @@ public class ItemControllerTest {
     }
 
     @Test
-    public void testSearchItems() throws IOException { 
-       
+    public void testSearchItems() throws IOException {
+        // Setup
+        String searchString = "Print";
+        Item[] items = new Item[2];
+        items[0] = new Item(99, "Paper Print", 10, 99.99);
+        items[1] = new Item(100, "Canvas Print", 10, 199.99);
+        // When findItems is called with the search string, return the two
+        /// items above
+        when(mockItemDAO.findItems(searchString)).thenReturn(items);
+
+        // Invoke
+        ResponseEntity<Item[]> response = itemController.searchItems(searchString);
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(items,response.getBody());
     }
 
     @Test
-    public void testSearchItemsHandleException() throws IOException { 
+    public void testSearchItemsHandleException() throws IOException {
+        // Setup
+        String searchString = "an";
+        // When createHero is called on the Mock Hero DAO, throw an IOException
+        doThrow(new IOException()).when(mockItemDAO).findItems(searchString);
+
+        // Invoke
+        ResponseEntity<Item[]> response = itemController.searchItems(searchString);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
     @Test
