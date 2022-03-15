@@ -23,11 +23,7 @@ li span{
     text-align: center;
 }
 .storeimg{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 70px;
-    margin-top: 15px;
+    width: 200 px;
 }
 .items{
     text-align: center;
