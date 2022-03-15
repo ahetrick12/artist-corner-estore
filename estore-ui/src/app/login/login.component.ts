@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
       if (successful) {
         this.authSuccess('Successfully created account!');
       } else {
-        alert('Username has already been taken, please try again.');
+        alert('Invalid or already taken credentials, please try again.');
       }
     });
   }
