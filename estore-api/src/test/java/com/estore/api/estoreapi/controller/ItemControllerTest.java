@@ -101,15 +101,49 @@ public class ItemControllerTest {
 
     @Test
     public void testUpdateItem() throws IOException { 
+        // Setup
+        Item item = new Item(99, "Sticker", 20, (float)1.99);
+        // when updateHero is called, return true simulating successful
+        // update and save
+        when(mockItemDAO.updateItem(item)).thenReturn(item);
+        ResponseEntity<Item> response = itemController.updateItem(item);
+        item.setName("Bolt");
+
+        // Invoke
+        response = itemController.updateItem(item);
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(item,response.getBody());
     }
 
     @Test
     public void testUpdateItemFailed() throws IOException {
+        // Setup
+        Item item = new Item(99, "Sticker", 20, (float)1.99);
+        // when updateHero is called, return true simulating successful
+        // update and save
+        when(mockItemDAO.updateItem(item)).thenReturn(null);
 
+        // Invoke
+        ResponseEntity<Item> response = itemController.updateItem(item);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
     @Test
     public void testUpdateItemHandleException() throws IOException { 
+        // Setup
+        Item item = new Item(99, "Sticker", 20, (float)1.99);
+        // When updateHero is called on the Mock Hero DAO, throw an IOException
+        doThrow(new IOException()).when(mockItemDAO).updateItem(item);
+
+        // Invoke
+        ResponseEntity<Item> response = itemController.updateItem(item);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
     @Test

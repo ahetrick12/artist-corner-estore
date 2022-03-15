@@ -89,6 +89,17 @@ public class ItemFileDAOTest {
 
     @Test
     public void testUpdateItem() {
+        // Setup
+        Item item = new Item(99,"Sticker", 20, (float)1.99);
+
+        // Invoke
+        Item result = assertDoesNotThrow(() -> itemFileDAO.updateItem(item),
+                                "Unexpected exception thrown");
+
+        // Analyze
+        assertNotNull(result);
+        Item actual = itemFileDAO.getItem(item.getId());
+        assertEquals(actual, item);
     }
 
     @Test
@@ -105,6 +116,15 @@ public class ItemFileDAOTest {
 
     @Test
     public void testUpdateItemNotFound() {
+        // Setup
+        Item item = new Item(98, "Shirt", 20, (float)8.99);
+
+        // Invoke
+        Item result = assertDoesNotThrow(() -> itemFileDAO.updateItem(item),
+                                                "Unexpected exception thrown");
+
+        // Analyze
+        assertNull(result);
     }
 
     @Test
