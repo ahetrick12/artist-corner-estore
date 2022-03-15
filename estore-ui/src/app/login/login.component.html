@@ -8,18 +8,28 @@
   </head>
   <body>
     <h1>Login</h1>
-    <ul>
-      <li>
-        <input placeholder="Username" [(ngModel)]="currentUser.username" />
-      </li>
-      <li>
-        <input placeholder="Password" [(ngModel)]="currentUser.password" />
-      </li>
-    </ul>
+    <form action="onLogin()">
+      <ul>
+        <li>
+          <input
+            placeholder="Username"
+            [(ngModel)]="currentUser.username"
+            name="username"
+          />
+        </li>
+        <li>
+          <input
+            placeholder="Password"
+            [(ngModel)]="currentUser.password"
+            name="password"
+          />
+        </li>
+      </ul>
 
-    <button id="login" (click)="onLogin()">Login</button>
-    <button id="create-account" (click)="onCreateAccount()">
-      Create Account
-    </button>
+      <button id="login" (click)="onLogin()" type="submit">Login</button>
+      <button id="create-account" (click)="onCreateAccount()">
+        Create Account
+      </button>
+    </form>
   </body>
 </html>
