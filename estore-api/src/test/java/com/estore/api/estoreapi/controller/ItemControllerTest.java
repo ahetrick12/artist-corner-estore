@@ -160,8 +160,8 @@ public class ItemControllerTest {
         // Setup
         String searchString = "Print";
         Item[] items = new Item[2];
-        items[0] = new Item(99, "Paper Print", 10, 99.99);
-        items[1] = new Item(100, "Canvas Print", 10, 199.99);
+        items[0] = new Item(99, "Paper Print", 10, (float)99.99);
+        items[1] = new Item(100, "Canvas Print", 10, (float)199.99);
         // When findItems is called with the search string, return the two
         /// items above
         when(mockItemDAO.findItems(searchString)).thenReturn(items);
