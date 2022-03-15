@@ -38,11 +38,18 @@ export class CartItemService {
   }
 
   deleteCartItem(item: Item): Observable<CartItem> {
-    const url = `${this.cartUrl}/${item}`;
+    const url = `${this.cartUrl}/${item.name}`;
   
     return this.http.delete<CartItem>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted cartItem=${item}`)),
       catchError(this.handleError<CartItem>('deleteCartItem'))
+    );
+  }
+
+  addCartItem(item: Item): Observable<CartItem> {
+    return this.http.post<CartItem>(this.cartUrl, item).pipe(
+      tap((_) => this.log('added item to cart')),
+      catchError(this.handleError<CartItem>('addItem'))
     );
   }
 

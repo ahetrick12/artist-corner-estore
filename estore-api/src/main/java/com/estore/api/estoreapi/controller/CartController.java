@@ -104,7 +104,7 @@ public class CartController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<CartItem> deleteItem(@PathVariable Item item) {
-        LOG.info("DELETE /cart/" + item.toString());
+        LOG.info("DELETE /cart/" + item.getName());
         try {
             if(CartDao.deleteCartItem(item)) {
                 return new ResponseEntity<CartItem>(HttpStatus.OK);

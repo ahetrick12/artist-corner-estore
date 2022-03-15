@@ -27,6 +27,18 @@ export class CartComponent implements OnInit {
     this.CartitemService.deleteCartItem(item.item).subscribe();
   }
 
-
-
+  findsum(): number{   
+    var total = 0;
+      for(let j=0;j<this.cart.length;j++){   
+         total+= this.cart[j].item.price * this.cart[j].quantity; 
+      }  
+      return total;
+}
+save(item: CartItem): void {
+  if (this.cart) {
+    this.CartitemService.updateCartItem(item)
+      .subscribe(() => location.reload()
+      );
+  }
+}
 }

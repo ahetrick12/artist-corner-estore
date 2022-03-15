@@ -1,3 +1,6 @@
+body{
+    font-family: 'Fredoka', sans-serif;
+}
 #titl{
     text-align: center;
     margin-block: 20px;
@@ -33,12 +36,10 @@ li span{
 #center{
     text-align: center;
     margin:auto;
-    border: 5px black solid;
 
 }
 tr{
-    padding: 20px;
-    border: 2px black solid;
+    border-top: 2px black solid;
 }
 th{
     border-bottom: 2px black solid;
@@ -46,4 +47,29 @@ th{
 
 #quantity{
     width:30px
+}
+
+.button{
+    background-color: black;
+    color:white;
+    padding: 1%;
+    border-radius: 2px;
+    font-family: 'Fredoka', sans-serif;
+
+}
+.button:hover{
+    color:red;
+}
+
+#remove{
+    border-radius: 30px;
+    background-color: black;
+    color:white;
+    border-color: black;
+    font-weight: bold;
+    font-family: 'Fredoka', sans-serif;
+}
+
+#remove:hover{
+    color:red;
 }

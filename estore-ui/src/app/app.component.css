@@ -1,3 +1,6 @@
+body{
+    font-family: 'Fredoka', sans-serif;
+}
 nav{
     display:block;
     line-height: 80px;
