@@ -22,5 +22,11 @@ export class CartComponent implements OnInit {
     .subscribe(cart => this.cart = cart);
   }
 
+  onDelete(item: CartItem): void {
+    this.cart = this.cart.filter(h => h !== item);
+    this.CartitemService.deleteCartItem(item.item).subscribe();
+  }
+
+
 
 }

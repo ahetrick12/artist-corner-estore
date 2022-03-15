@@ -14,9 +14,9 @@
               <th><figure><img src="../../assets/images/placeholder.jpg" class="storeimg">
                <figcaption>{{cartitem.item.name}}</figcaption></figure></th> 
                 <th>${{cartitem.item.price}}</th>
-                <th><label for="quantity">{{cartitem.quantity}}</label></th>
-                <th><button>x</button></th>
-                <th>${{cartitem.quantity}}*{{cartitem.item.price}}</th>
+                <th><input id="quantity" type="number" value="{{cartitem.quantity}}" size="3"></th>
+                <th><button id="remove" (click)="onDelete(cartitem)">x</button></th>
+                <th>${{cartitem.quantity*cartitem.item.price}}</th>
             </tr>
 
     </table>

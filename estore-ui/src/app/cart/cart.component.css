@@ -43,3 +43,7 @@ tr{
 th{
     border-bottom: 2px black solid;
 }
+
+#quantity{
+    width:30px
+}
