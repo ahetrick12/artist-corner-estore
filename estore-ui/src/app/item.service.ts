@@ -19,10 +19,15 @@ export class ItemService {
 
   constructor(
     private http: HttpClient){}
+    private items: Observable<Item[]> = of()
+    private searched: boolean = false
     //private messageService: MessageService) { }
 
   /** GET heroes from the server */
   getItems(): Observable<Item[]> {
+    if(this.searched) {
+      return this.items;
+    }
     return this.http.get<Item[]>(this.itemsUrl)
       .pipe(
         tap(_ => this.log('fetched items')),
@@ -30,6 +35,22 @@ export class ItemService {
       );
   }
 
+  /* GET items whose name contains search term */
+  searchItem(term: string): Observable<Item[]> {
+    if (!term.trim()) {
+      // if not search term, return empty item array.
+      return of([]);
+    }
+    console.log(`${this.itemsUrl}/?name=${term}`);
+    this.items = this.http.get<Item[]>(`${this.itemsUrl}/?name=${term}`).pipe(
+      tap(x => x.length ?
+        this.log(`found items matching "${term}"`) :
+         this.log(`no items matching "${term}"`)),
+      catchError(this.handleError<Item[]>('searchItems', []))
+    );
+    this.searched = true;
+    return this.items;
+  }
 
   /**
    * Handle Http operation that failed.
