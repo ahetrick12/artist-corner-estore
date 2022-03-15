@@ -17,7 +17,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.estore.api.estoreapi.persistence.CartDAO;
-import com.estore.api.estoreapi.model.Cart;
 import com.estore.api.estoreapi.model.CartItem;
 import com.estore.api.estoreapi.model.Item;
 

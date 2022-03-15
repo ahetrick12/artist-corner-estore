@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.estore.api.estoreapi.model.Item;
-import com.estore.api.estoreapi.model.Cart;
 import com.estore.api.estoreapi.model.CartItem;
 
 /**

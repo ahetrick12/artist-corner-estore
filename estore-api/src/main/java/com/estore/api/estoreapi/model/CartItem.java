@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class CartItem {
     @JsonProperty("quantity") private int quantity;
-    @JsonProperty("Item") private Item item;
+    @JsonProperty("item") private Item item;
     static final String STRING_FORMAT = "CartItem [item=%s, quantity=%s]";
 
 
