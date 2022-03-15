@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ItemService } from '../item.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { ItemService } from '../item.service';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
+  @Output() getItems: EventEmitter<any> = new EventEmitter();
   search: string = '';
 
 
@@ -14,12 +15,12 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Hello");
-    
+
   }
 
   onSubmit() {
     this.itemService.searchItem(this.search);
-    console.log("test");
+    this.getItems.emit(); //calls getItems from the store component to refresh the list
   }
 
 }
