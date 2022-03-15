@@ -33,7 +33,7 @@ import com.estore.api.estoreapi.model.Item;
 @RestController
 @RequestMapping("cart")
 public class CartController {
-    private static final Logger LOG = Logger.getLogger(ItemController.class.getName());
+    private static final Logger LOG = Logger.getLogger(CartController.class.getName());
     private CartDAO CartDao;
 
     /**
@@ -66,7 +66,6 @@ public class CartController {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        // martinez
     }
 
     /**

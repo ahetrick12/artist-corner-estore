@@ -1,6 +1,6 @@
 <div id="titl">Cart</div>
 <div>
-    <table id="bar">
+    <table id ="center">
         <tr>
             <th>Item</th>
             <th>Price</th>
@@ -11,10 +11,10 @@
 
           <tr class="items">
             <tr *ngFor="let cartitem of cart">
-              <img src="../../assets/images/tat.jpg" class="storeimg">
-                <th>{{cartitem.item.name}}</th> 
+              <th><figure><img src="../../assets/images/placeholder.jpg" class="storeimg">
+               <figcaption>{{cartitem.item.name}}</figcaption></figure></th> 
                 <th>${{cartitem.item.price}}</th>
-                <th><label for="quantity">${{cartitem.quantity}}</label></th>
+                <th><label for="quantity">{{cartitem.quantity}}</label></th>
                 <th><button>x</button></th>
                 <th>${{cartitem.quantity}}*{{cartitem.item.price}}</th>
             </tr>

@@ -9,7 +9,7 @@ import { CartItem } from './cartitem'
 
 
 @Injectable({ providedIn: 'root' })
-export class CartService {
+export class CartItemService {
 
   private cartUrl = 'http://localhost:8080/cart';
 

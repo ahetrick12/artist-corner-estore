@@ -126,7 +126,7 @@ public class CartFileDAO implements CartDAO {
     @Override
     public CartItem[] getCart() {
         synchronized(cart) {
-            return getCart();
+            return getCartItems();
         }
     }
 
