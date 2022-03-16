@@ -1,22 +1,19 @@
 package com.estore.api.estoreapi.persistence;
 
-import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.estore.api.estoreapi.model.CartItem;
 import com.estore.api.estoreapi.model.Item;
+import com.estore.api.estoreapi.model.CartItem;
 
 /**
  * Implements the functionality for JSON file-based peristance for Items
@@ -28,38 +25,26 @@ import com.estore.api.estoreapi.model.Item;
  * @author code heavily based on heroes-api by SWEN Faculty
  */
 @Component
-public class ItemFileDAO implements ItemDAO {
-    private static final Logger LOG = Logger.getLogger(ItemFileDAO.class.getName());
-    Map<Integer,Item> items;   // Provides a local cache of the item objects
+public class CartFileDAO implements CartDAO {
+    private static final Logger LOG = Logger.getLogger(CartFileDAO.class.getName());
+    Map<String,CartItem> cart;   // Provides a local cache of the item objects
     private ObjectMapper objectMapper;  // Provides conversion between Item
                                         // objects and JSON text format written
                                         // to the file
-    private static int nextId;  // The next Id to assign to a new item
     private String filename;    // Filename to read from and write to
 
     /**
-     * Creates an Item File Data Access Object
+     * Creates an Cart File Data Access Object
      * 
      * @param filename Filename to read from and write to
      * @param objectMapper Provides JSON Object to/from Java Object serialization and deserialization
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public ItemFileDAO(@Value("${estore.file}") String filename,ObjectMapper objectMapper) throws IOException {
+    public CartFileDAO(@Value("${cart.file}") String filename,ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();  // load the items from the file
-    }
-
-    /**
-     * Generates the next id for a new {@linkplain Item item}
-     * 
-     * @return The next id
-     */
-    private synchronized static int nextId() {
-        int id = nextId;
-        ++nextId;
-        return id;
     }
 
     /**
@@ -67,8 +52,8 @@ public class ItemFileDAO implements ItemDAO {
      * 
      * @return  The array of {@link Item items}, may be empty
      */
-    private Item[] getItemsArray() {
-        return getItemsArray(null);
+    private CartItem[] getCartItems() {
+        return getCartItems(null);
     }
 
     /**
@@ -79,17 +64,17 @@ public class ItemFileDAO implements ItemDAO {
      * 
      * @return the array of {@link Item items}, may be empty.
      */
-    private Item[] getItemsArray(String containsText) { // if containsText == null, no filter
-        ArrayList<Item> itemArrayList = new ArrayList<>();
+    private CartItem[] getCartItems(String containsText) { // if containsText == null, no filter
+        ArrayList<CartItem> Cart = new ArrayList<>();
 
-        for (Item item : items.values()) {
-            if (containsText == null || item.getName().toLowerCase().contains(containsText.toLowerCase())) {
-                itemArrayList.add(item);
+        for (CartItem item : cart.values()) {
+            if (containsText == null || item.getItem().getName().contains(containsText)) {
+                Cart.add(item);
             }
         }
 
-        Item[] itemArray = new Item[itemArrayList.size()];
-        itemArrayList.toArray(itemArray);
+        CartItem[] itemArray = new CartItem[Cart.size()];
+        Cart.toArray(itemArray);
         return itemArray;
     }
 
@@ -101,7 +86,7 @@ public class ItemFileDAO implements ItemDAO {
      * @throws IOException when file cannot be accessed or written to
      */
     private boolean save() throws IOException {
-        Item[] itemArray = getItemsArray();
+        CartItem[] itemArray = getCartItems();
 
         // Serializes the Java Objects to JSON objects into the file
         // writeValue will thrown an IOException if there is an issue
@@ -119,22 +104,19 @@ public class ItemFileDAO implements ItemDAO {
      * @throws IOException when file cannot be accessed or read from
      */
     private boolean load() throws IOException {
-        items = new TreeMap<>();
-        nextId = 0;
+        cart = new TreeMap<>();
 
         // deserializes the JSON objects from the file into an array of items;
         // readValue will throw an IOException if there's an issue with the file
         // or reading from the file.
-        Item[] itemArray = objectMapper.readValue(new File(filename),Item[].class);
+        CartItem[] Cart = objectMapper.readValue(new File(filename),CartItem[].class);
 
         // add each item to the tree map and keep track of the greatest id
-        for (Item item : itemArray) {
-            items.put(item.getId(),item);
-            if (item.getId() > nextId)
-                nextId = item.getId();
+        for (CartItem item : Cart) {
+            cart.put(item.getItem().getName(),item);
         }
         // make the next id one greater than the maximum from the file
-        ++nextId;
+
         return true;
     }
 
@@ -142,9 +124,9 @@ public class ItemFileDAO implements ItemDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Item[] getItems() {
-        synchronized(items) {
-            return getItemsArray();
+    public CartItem[] getCart() {
+        synchronized(cart) {
+            return getCartItems();
         }
     }
 
@@ -152,88 +134,58 @@ public class ItemFileDAO implements ItemDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Item[] findItems(String containsText) {
-        synchronized(items) {
-            return getItemsArray(containsText);
+    public CartItem addCartItem(Item item) throws IOException {
+        synchronized(cart) {
+                if (cart.get(item.getName()) != null){
+                    cart.get(item.getName()).incrementQuantity();
+                    return null;
+                }
+                else{
+                    cart.put(item.getName(),new CartItem(item, 1));
+                    save(); // may throw an IOException
+                    return new CartItem(item, 1);
+            }   
         }
     }
-
-    /**
-    ** {@inheritDoc}
-     */
-    @Override
-    public Item getItem(int id) {
-        synchronized(items) {
-            if (items.containsKey(id))
-                return items.get(id);
-            else
-                return null;
-        }
-    }
-
-    /**
-    ** {@inheritDoc}
-     */
-    @Override
-    public Item createItem(Item item) throws IOException {
-        synchronized(items) {
-            // we create a new item object because the id field is immutable
-            // and we need to assign the next unique id
-            if (nameExists(item.getName())== false){
-                Item newItem = new Item(nextId(),item.getName(), item.getStock(), item.getPrice());
-                items.put(newItem.getId(),newItem);
-                save(); // may throw an IOException
-                return newItem;
-            }
-            else {
-                return null;
-            }
-            
-        }
-    }
-
-    /**
-    ** {@inheritDoc}
-     */
-    @Override
-    public Item updateItem(Item item) throws IOException {
-        synchronized(items) {
-            if (items.containsKey(item.getId()) == false)
-                return null;  // item does not exist
-
-            items.put(item.getId(),item);
-            save(); // may throw an IOException
-            return item;
-        }
-    }
-
    /**
     ** {@inheritDoc}
      */
     @Override
-    public boolean deleteItem(int id) throws IOException {
-        synchronized(items) {
-            if (items.containsKey(id)) {
-                items.remove(id);
+    public boolean deleteCartItem(String item) throws IOException {
+        synchronized(cart) {
+            if (cart.containsKey(item)) {
+                cart.remove(item);
                 return save();
             }
             else
                 return false;
         }
     }
-
-    /**
+      /**
     ** {@inheritDoc}
      */
     @Override
-    public boolean nameExists(String name) throws IOException {
-    synchronized(items) {
-        for (Item stock_item: items.values()){
-            if (stock_item.getName().equals(name)){
-                return true;
-            }
+    public CartItem updateItem(CartItem item) throws IOException {
+        synchronized(cart) {
+            if (cart.containsKey(item.getItem().getName()) == false)
+                return null;  // item does not exist
+
+            cart.put(item.getItem().getName(),item);
+            save(); // may throw an IOException
+            return item;
         }
-        return false;
     }
-}
+
+     /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public CartItem getCartItem(Item item) {
+        synchronized(cart) {
+            if (cart.containsKey(item.getName()))
+                return cart.get(item.getName());
+            else
+                return null;
+        }
+    }
 }

@@ -4,15 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Item } from './item';
-import { CartItem } from './cartitem';
+import { CartItem } from './cartitem'
+import { Item } from './item'
 //import { MessageService } from './message.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class ItemService {
+export class CartItemService {
 
-  private itemsUrl = 'http://localhost:8080/items';
+  private cartUrl = 'http://localhost:8080/cart';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,39 +20,37 @@ export class ItemService {
 
   constructor(
     private http: HttpClient){}
-    private items: Observable<Item[]> = of()
-    private searched: boolean = false
     //private messageService: MessageService) { }
 
-  /** GET heroes from the server */
-  getItems(): Observable<Item[]> {
-    if(this.searched) {
-      return this.items;
-    }
-    return this.http.get<Item[]>(this.itemsUrl)
+  getCart(): Observable<CartItem[]> {
+    return this.http.get<CartItem[]>(this.cartUrl)
       .pipe(
-        tap(_ => this.log('fetched items')),
-        catchError(this.handleError<Item[]>('getItems', []))
+        tap(_ => this.log('fetched cart')),
+        catchError(this.handleError<CartItem[]>('getCart', []))
       );
   }
 
-  /* GET items whose name contains search term */
-  searchItem(term: string): Observable<Item[]> {
-    if (!term.trim()) {
-      // if not search term, set searched to false to go back to using the full list and return empty item array
-      this.searched = false;
-      return of([]);
-    }
-
-    // sets items variable to the search result
-    this.items = this.http.get<Item[]>(`${this.itemsUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found items matching "${term}"`) :
-         this.log(`no items matching "${term}"`)),
-      catchError(this.handleError<Item[]>('searchItems', []))
+  updateCartItem(item: CartItem): Observable<any> {
+    return this.http.put(this.cartUrl, item, this.httpOptions).pipe(
+      tap(_ => this.log(`updated item quantity=${item.quantity}`)),
+      catchError(this.handleError<any>('updateCartItem'))
     );
-    this.searched = true; // sets searched to true to indicate to getItems to use the items list
-    return this.items;
+  }
+
+  deleteCartItem(item: String): Observable<CartItem> {
+    const url = `${this.cartUrl}/${item}`;
+  
+    return this.http.delete<CartItem>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted cartItem=${item}`)),
+      catchError(this.handleError<CartItem>('deleteCartItem'))
+    );
+  }
+
+  addCartItem(item: Item): Observable<CartItem> {
+    return this.http.post<CartItem>(this.cartUrl, item).pipe(
+      tap((_) => this.log('added item to cart')),
+      catchError(this.handleError<CartItem>('addItem'))
+    );
   }
 
   /**
@@ -78,6 +76,6 @@ export class ItemService {
 
   /** Log a ItemService message with the MessageService */
   private log(message: string) {
-    console.log(`ItemService: ${message}`);
+    console.log(`CartService: ${message}`);
   }
 }

@@ -1,3 +1,9 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+</head>
+<body>
 <nav>
   <a id="mentit" routerLink="/homepage">{{ title }}</a>
   <a *ngIf="!isLoggedIn" class="auth-button green" routerLink="/login">Login</a>
@@ -17,8 +23,9 @@
   </ul>
   <ul id="desktop-links">
     <li><a routerLink="/store">Store</a></li>
-    <li><a>About</a></li>
-    <li><a>Announcements</a></li>
+    <li><a routerLink="/cart">Cart</a></li>
+    <li><a >About</a></li>
+    <li><a >Announcements</a></li>
     <li><a>Contact</a></li>
     <li>
       <a href="https://www.facebook.com/"
@@ -39,3 +46,4 @@
 </nav>
 
 <router-outlet></router-outlet>
+</body>

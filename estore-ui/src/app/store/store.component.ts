@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Item } from '../item';
+import { CartItem } from '../cartitem';
 import { ItemService } from '../item.service';
+import { CartItemService } from '../cartitem.service';
 
 @Component({
   selector: 'app-store',
@@ -11,8 +13,8 @@ import { ItemService } from '../item.service';
 export class StoreComponent implements OnInit {
   items: Item[] = [];
 
-  constructor(private itemService: ItemService) { }
-
+  constructor(private itemService: ItemService, private CartitemService : CartItemService
+    ) { }
   ngOnInit(): void {
     this.getItems();
   }
@@ -22,5 +24,9 @@ export class StoreComponent implements OnInit {
     .subscribe(items => this.items = items);
   }
 
-
+  add(item: Item): void {
+    this.CartitemService.addCartItem(item).subscribe(() => {
+      this.CartitemService.getCart();
+    })
+  }
 }

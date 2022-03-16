@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author kara kolodinsky of team 8
  * @author code heavily based on heroes-api by SWEN Faculty
  */
-public class Item {
+public class Item implements Comparable<Item>{
     private static final Logger LOG = Logger.getLogger(Item.class.getName());
 
     // Package private for tests
@@ -81,6 +81,11 @@ public class Item {
     public String toString() {
         return String.format(STRING_FORMAT,id,name,stock,price);
     }
+    @Override
+    public int compareTo(Item obj){
+        return this.name.compareTo(obj.name);
+  }
+
 
     public void setPrice(float expected_price) {
         this.price = price;

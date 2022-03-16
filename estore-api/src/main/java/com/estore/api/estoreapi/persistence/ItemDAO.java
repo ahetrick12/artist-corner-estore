@@ -1,6 +1,8 @@
 package com.estore.api.estoreapi.persistence;
 
 import java.io.IOException;
+
+import com.estore.api.estoreapi.model.CartItem;
 import com.estore.api.estoreapi.model.Item;
 
 /**
@@ -91,4 +93,6 @@ public interface ItemDAO {
      */
 
     boolean nameExists(String name) throws IOException;
+
 }
+
