@@ -42,7 +42,9 @@ public interface CartDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    public boolean deleteCartItem(Item item) throws IOException;
+    public boolean deleteCartItem(String item) throws IOException;
 
     public CartItem updateItem(CartItem item) throws IOException;
+
+    CartItem getCartItem(Item item) throws IOException;
 }

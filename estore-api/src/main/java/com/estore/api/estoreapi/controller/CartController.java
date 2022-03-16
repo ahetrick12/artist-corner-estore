@@ -45,6 +45,21 @@ public class CartController {
         this.CartDao = CartDao;
     }
 
+    @GetMapping("/{item}.name")
+    public ResponseEntity<CartItem> getItem(@PathVariable Item item) {
+        LOG.info("GET /cart/" + item.getName());
+        try {
+            CartItem cartitem = CartDao.getCartItem(item);
+            if (cartitem != null)
+                return new ResponseEntity<CartItem>(cartitem, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     /**
      * Responds to the GET request for all {@linkplain Item items}
      * 
@@ -102,9 +117,9 @@ public class CartController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<CartItem> deleteItem(@PathVariable Item item) {
-        LOG.info("DELETE /cart/" + item.getName());
+    @DeleteMapping("/{item}")
+    public ResponseEntity<CartItem> deleteItem(@PathVariable String item) {
+        LOG.info("DELETE /cart/" + item);
         try {
             if(CartDao.deleteCartItem(item)) {
                 return new ResponseEntity<CartItem>(HttpStatus.OK);

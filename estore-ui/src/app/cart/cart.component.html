@@ -21,7 +21,7 @@
               <th><figure><img src="../../assets/images/placeholder.jpg" class="storeimg">
                <figcaption>{{cartitem.item.name}}</figcaption></figure></th> 
                 <th>{{cartitem.item.price | currency}}</th>
-                <th><input [(ngModel)]="cartitem.quantity" id="quantity" type="number" placeholder="{{cartitem.quantity}}">
+                <th><input [(ngModel)]="cartitem.quantity" id="quantity" type="number" placeholder="{{cartitem.quantity}}" min="0" max="{{cartitem.item.stock}}">
                 <br><button class="button"id="update" (click)="save(cartitem)">save</button></th>
                 <th><button id="remove" (click)="onDelete(cartitem)">x</button></th>
                 <th>{{cartitem.quantity*cartitem.item.price | currency}}</th>

@@ -27,7 +27,7 @@ import com.estore.api.estoreapi.model.CartItem;
 @Component
 public class CartFileDAO implements CartDAO {
     private static final Logger LOG = Logger.getLogger(CartFileDAO.class.getName());
-    Map<Item,CartItem> cart;   // Provides a local cache of the item objects
+    Map<String,CartItem> cart;   // Provides a local cache of the item objects
     private ObjectMapper objectMapper;  // Provides conversion between Item
                                         // objects and JSON text format written
                                         // to the file
@@ -113,7 +113,7 @@ public class CartFileDAO implements CartDAO {
 
         // add each item to the tree map and keep track of the greatest id
         for (CartItem item : Cart) {
-            cart.put(item.getItem(),item);
+            cart.put(item.getItem().getName(),item);
         }
         // make the next id one greater than the maximum from the file
 
@@ -136,12 +136,12 @@ public class CartFileDAO implements CartDAO {
     @Override
     public CartItem addCartItem(Item item) throws IOException {
         synchronized(cart) {
-                if (cart.get(item) != null){
-                    cart.get(item).incrementQuantity();
+                if (cart.get(item.getName()) != null){
+                    cart.get(item.getName()).incrementQuantity();
                     return null;
                 }
                 else{
-                    cart.put(item,new CartItem(item, 1));
+                    cart.put(item.getName(),new CartItem(item, 1));
                     save(); // may throw an IOException
                     return new CartItem(item, 1);
             }   
@@ -151,7 +151,7 @@ public class CartFileDAO implements CartDAO {
     ** {@inheritDoc}
      */
     @Override
-    public boolean deleteCartItem(Item item) throws IOException {
+    public boolean deleteCartItem(String item) throws IOException {
         synchronized(cart) {
             if (cart.containsKey(item)) {
                 cart.remove(item);
@@ -167,12 +167,25 @@ public class CartFileDAO implements CartDAO {
     @Override
     public CartItem updateItem(CartItem item) throws IOException {
         synchronized(cart) {
-            if (cart.containsKey(item.getItem()) == false)
+            if (cart.containsKey(item.getItem().getName()) == false)
                 return null;  // item does not exist
 
-            cart.put(item.getItem(),item);
+            cart.put(item.getItem().getName(),item);
             save(); // may throw an IOException
             return item;
+        }
+    }
+
+     /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public CartItem getCartItem(Item item) {
+        synchronized(cart) {
+            if (cart.containsKey(item.getName()))
+                return cart.get(item.getName());
+            else
+                return null;
         }
     }
 }
