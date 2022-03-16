@@ -1,0 +1,21 @@
+.search input[type=text] {
+  float:left;
+  margin: 0 auto;
+  display: block;
+  padding: 6px;
+  font-size: 17px;
+  width: 90%;
+}
+
+.search button {
+  float: left;
+  padding: 7px 10px;
+  background: #ddd;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.search button:hover {
+  background: gray;
+}
