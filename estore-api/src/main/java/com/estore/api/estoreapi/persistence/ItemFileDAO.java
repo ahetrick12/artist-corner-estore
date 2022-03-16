@@ -1,14 +1,17 @@
 package com.estore.api.estoreapi.persistence;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -80,7 +83,7 @@ public class ItemFileDAO implements ItemDAO {
         ArrayList<Item> itemArrayList = new ArrayList<>();
 
         for (Item item : items.values()) {
-            if (containsText == null || item.getName().contains(containsText)) {
+            if (containsText == null || item.getName().toLowerCase().contains(containsText.toLowerCase())) {
                 itemArrayList.add(item);
             }
         }

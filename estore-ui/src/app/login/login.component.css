@@ -1,0 +1,44 @@
+h1 {
+  text-align: center;
+}
+
+ul {
+  text-align: center;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+input {
+  width: 500px;
+  padding: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 25px;
+  margin: 3px;
+  background-color: rgb(231, 231, 231);
+  border: none;
+}
+
+button {
+  width: 16%;
+  margin-left: 42%;
+  margin-right: 42%;
+  cursor: pointer;
+}
+
+#login {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 30px;
+  border-width: 0px;
+  background-color: rgb(99, 181, 99);
+  color: white;
+}
+
+#create-account {
+  border-width: 0px;
+  margin-top: 10px;
+  background-color: white;
+}

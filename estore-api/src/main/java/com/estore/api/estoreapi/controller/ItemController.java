@@ -52,6 +52,8 @@ public class ItemController {
      * @return ResponseEntity with {@link Item item} object and HTTP status of OK if found
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * @author Jonathan Campbell
      */
     @GetMapping("/{id}")
     public ResponseEntity<Item> getItem(@PathVariable int id) {
@@ -75,6 +77,8 @@ public class ItemController {
      * @return ResponseEntity with array of {@link Item item} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * @author Alex Martinez
      */
     @GetMapping("")
     public ResponseEntity<Item[]> getItems() {
@@ -90,7 +94,6 @@ public class ItemController {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        // martinez
     }
 
     /**
@@ -103,6 +106,7 @@ public class ItemController {
      * HTTP status of OK
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * 
+     * @author Daniel Kench
      */
     @GetMapping("/")
     public ResponseEntity<Item[]> searchItems(@RequestParam String name) {
@@ -128,6 +132,8 @@ public class ItemController {
      * @return ResponseEntity with created {@link Item item} object and HTTP status of CREATED<br>
      * ResponseEntity with HTTP status of CONFLICT if {@link Item item} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * @author Kara Kolodinsky
      */
     @PostMapping("")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
@@ -135,7 +141,7 @@ public class ItemController {
         try {
             Item created_item = itemDao.createItem(item);
             if (created_item != null){
-                return new ResponseEntity<Item>(created_item,HttpStatus.OK);
+                return new ResponseEntity<Item>(created_item,HttpStatus.CREATED);
             }
             else {
                 return new ResponseEntity<Item>(HttpStatus.CONFLICT);
@@ -156,6 +162,8 @@ public class ItemController {
      * @return ResponseEntity with updated {@link Item item} object and HTTP status of OK if updated
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * @author Alex Hetrick
      */
     @PutMapping("")
     public ResponseEntity<Item> updateItem(@RequestBody Item item) {
@@ -181,6 +189,8 @@ public class ItemController {
      * @return ResponseEntity HTTP status of OK if deleted<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * @author Jonathan Campbell
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Item> deleteItem(@PathVariable int id) {

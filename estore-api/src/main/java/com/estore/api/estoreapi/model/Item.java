@@ -84,6 +84,10 @@ public class Item implements Comparable<Item>{
     @Override
     public int compareTo(Item obj){
         return this.name.compareTo(obj.name);
+  }
 
+
+    public void setPrice(float expected_price) {
+        this.price = price;
     }
 }

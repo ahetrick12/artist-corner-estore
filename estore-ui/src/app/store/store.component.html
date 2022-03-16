@@ -18,3 +18,11 @@
     </li>
   </ul>
   </body>
+  <app-search-bar (getItems)="getItems()"></app-search-bar>
+
+  <li *ngFor="let item of items">
+    <img src="../../assets/images/tat.jpg" class="storeimg" />
+    <div>{{ item.name }}</div>
+    <div>${{ item.price }}</div>
+  </li>
+</ul>
