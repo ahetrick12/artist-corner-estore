@@ -1,6 +1,8 @@
 <div id="titl">Products</div>
 
 <ul class="items">
+  <app-search-bar (getItems)="getItems()"></app-search-bar>
+
   <li *ngFor="let item of items">
     <img src="../../assets/images/tat.jpg" class="storeimg" />
     <div>{{ item.name }}</div>

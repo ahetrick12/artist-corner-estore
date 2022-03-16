@@ -7,7 +7,9 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './homepage/homepage.component';
 import { StoreComponent } from './store/store.component';
+
 import { LoginComponent } from './login/login.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -16,8 +18,9 @@ import { FormsModule } from '@angular/forms';
     HomepageComponent,
     StoreComponent,
     LoginComponent,
+    SearchBarComponent,
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
