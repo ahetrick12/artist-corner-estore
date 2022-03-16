@@ -11,7 +11,6 @@ import { CartComponent } from './cart/cart.component';
 
 import { LoginComponent } from './login/login.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,16 +18,15 @@ import { FormsModule } from '@angular/forms';
     HomepageComponent,
     StoreComponent,
     CartComponent,
+    SearchBarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    LoginComponent,
-    SearchBarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

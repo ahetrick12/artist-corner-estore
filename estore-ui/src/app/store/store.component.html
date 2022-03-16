@@ -6,7 +6,7 @@
 </head>
 <body>
 <div id="titl">Products</div>
-
+<app-search-bar (getItems)="getItems()"></app-search-bar>
 <ul class="items">
     <li *ngFor="let item of items">
       <div class = "boxes">
@@ -18,11 +18,3 @@
     </li>
   </ul>
   </body>
-  <app-search-bar (getItems)="getItems()"></app-search-bar>
-
-  <li *ngFor="let item of items">
-    <img src="../../assets/images/tat.jpg" class="storeimg" />
-    <div>{{ item.name }}</div>
-    <div>${{ item.price }}</div>
-  </li>
-</ul>
