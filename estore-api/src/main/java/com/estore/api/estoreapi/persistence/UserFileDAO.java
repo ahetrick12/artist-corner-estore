@@ -120,7 +120,7 @@ public class UserFileDAO implements UserDAO {
      * {@inheritDoc}
      */
     @Override
-    public User[] getUsers() throws IOException {
+    public User[] getUsers() {
         synchronized(users) {
             return getUsersArray();
         }
@@ -130,7 +130,7 @@ public class UserFileDAO implements UserDAO {
      * {@inheritDoc}
      */
     @Override
-    public User getUser(int id) throws IOException {
+    public User getUser(int id) {
         synchronized(users) {
             if (users.containsKey(id))
                 return users.get(id);
@@ -143,7 +143,7 @@ public class UserFileDAO implements UserDAO {
      * {@inheritDoc}
      */
     @Override
-    public User findUser(String username) throws IOException {
+    public User findUser(String username) {
         synchronized(users) {
             User[] userArray = getUsersArray();
             for (User user : userArray)
