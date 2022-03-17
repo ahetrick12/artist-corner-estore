@@ -21,7 +21,7 @@ import com.estore.api.estoreapi.model.CartItem;
 import com.estore.api.estoreapi.model.Item;
 
 /**
- * handles the rest api requests for the item resource.
+ * handles the rest api requests for the CartItem resource.
  * 
  * {@literal @}RestController spring annotation identifies this class as a rest api
  * method handler to the spring framework.
@@ -39,7 +39,7 @@ public class CartController {
     /**
      * creates a rest api controller to reponds to requests.
      * 
-     * @param ItemDao the {@link ItemDAO item data access object} to perform CRUD operations
+     * @param CartItemDao the {@link CartItemDAO item data access object} to perform CRUD operations
      */
     public CartController(CartDAO CartDao) {
         this.CartDao = CartDao;
@@ -61,9 +61,9 @@ public class CartController {
         }
     }
     /**
-     * Responds to the GET request for all {@linkplain Item items}
+     * Responds to the GET request for all {@linkplain CartItem items}
      * 
-     * @return ResponseEntity with array of {@link Item item} objects (may be empty) and
+     * @return ResponseEntity with array of {@link CartItem item} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
@@ -84,11 +84,11 @@ public class CartController {
     }
 
     /**
-     * updates the {@linkplain Item item} with the provided {@linkplain Item item} object, if it exists.
+     * updates the {@linkplain CartItem item} with the provided {@linkplain CartItem item} object, if it exists.
      * 
-     * @param item the {@link Item item} to update
+     * @param item the {@link CartItem item} to update
      * 
-     * @return ResponseEntity with updated {@link Item item} object and HTTP status of OK if updated
+     * @return ResponseEntity with updated {@link CartItem item} object and HTTP status of OK if updated
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
@@ -109,9 +109,9 @@ public class CartController {
     }
 
     /**
-     * Deletes a {@linkplain Item item} with the given id
+     * Deletes a {@linkplain CartItem item} with the given item name
      * 
-     * @param id The id of the {@link Item item} to deleted
+     * @param item The name of the {@link Item item} to deleted
      * 
      * @return ResponseEntity HTTP status of OK if deleted<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
@@ -134,12 +134,12 @@ public class CartController {
     }
 
      /**
-     * creates a {@linkplain Item item} with the provided item object.
+     * creates a {@linkplain CartItem item} with the provided item object.
      * 
      * @param item - The {@link Item item} to create
      * 
-     * @return ResponseEntity with created {@link Item item} object and HTTP status of CREATED<br>
-     * ResponseEntity with HTTP status of CONFLICT if {@link Item item} object already exists<br>
+     * @return ResponseEntity with created {@link CartItem item} object and HTTP status of CREATED<br>
+     * ResponseEntity with HTTP status of CONFLICT if {@link CartItem item} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")

@@ -70,7 +70,7 @@ public class Item implements Comparable<Item>{
 
     /**
      * sets the stock of the item.
-     * @param name The stock of the item.
+     * @param stock The stock of the item.
      */
     public void setStock(int stock) {this.stock = stock;}
 
@@ -85,9 +85,12 @@ public class Item implements Comparable<Item>{
     public int compareTo(Item obj){
         return this.name.compareTo(obj.name);
   }
+    /**
+     * sets the price of the item.
+     * @param price The price of the item.
+     */
 
-
-    public void setPrice(float expected_price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 }
