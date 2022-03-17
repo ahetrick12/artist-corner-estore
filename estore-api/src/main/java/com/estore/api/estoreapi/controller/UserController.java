@@ -133,7 +133,7 @@ public class UserController {
         try {
             User created_user = userDAO.createUser(user);
             if (created_user != null){
-                return new ResponseEntity<User>(created_user,HttpStatus.OK);
+                return new ResponseEntity<User>(created_user,HttpStatus.CREATED);
             }
             else {
                 return new ResponseEntity<User>(HttpStatus.CONFLICT);
