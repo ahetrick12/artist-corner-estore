@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 /**
- * Test the Hero Controller class
+ * Test the User Controller class
  * 
  * @author SWEN Faculty
  */
@@ -27,25 +27,25 @@ public class ItemControllerTest {
     private ItemDAO mockItemDAO;
 
     /**
-     * Before each test, create a new HeroController object and inject
-     * a mock Hero DAO
+     * Before each test, create a new UserController object and inject
+     * a mock User DAO
      */
     @BeforeEach
-    public void setupHeroController() {
+    public void setupUserController() {
         mockItemDAO = mock(ItemDAO.class);
         itemController = new ItemController(mockItemDAO);
     }
 
     @Test
-    public void testGetItem() throws IOException {  // getHero may throw IOException
+    public void testGetItem() throws IOException {  // getUser may throw IOException
     }
 
     @Test
-    public void testGetItemNotFound() throws Exception { // createHero may throw IOException
+    public void testGetItemNotFound() throws Exception { // createUser may throw IOException
     }
 
     @Test
-    public void testGetItemHandleException() throws Exception { // createHero may throw IOException
+    public void testGetItemHandleException() throws Exception { // createUser may throw IOException
     }
 
     /*****************************************************************
@@ -103,7 +103,7 @@ public class ItemControllerTest {
     public void testUpdateItem() throws IOException { 
         // Setup
         Item item = new Item(99, "Sticker", 20, (float)1.99);
-        // when updateHero is called, return true simulating successful
+        // when updateUser is called, return true simulating successful
         // update and save
         when(mockItemDAO.updateItem(item)).thenReturn(item);
         ResponseEntity<Item> response = itemController.updateItem(item);
@@ -121,7 +121,7 @@ public class ItemControllerTest {
     public void testUpdateItemFailed() throws IOException {
         // Setup
         Item item = new Item(99, "Sticker", 20, (float)1.99);
-        // when updateHero is called, return true simulating successful
+        // when updateUser is called, return true simulating successful
         // update and save
         when(mockItemDAO.updateItem(item)).thenReturn(null);
 
@@ -136,7 +136,7 @@ public class ItemControllerTest {
     public void testUpdateItemHandleException() throws IOException { 
         // Setup
         Item item = new Item(99, "Sticker", 20, (float)1.99);
-        // When updateHero is called on the Mock Hero DAO, throw an IOException
+        // When updateUser is called on the Mock User DAO, throw an IOException
         doThrow(new IOException()).when(mockItemDAO).updateItem(item);
 
         // Invoke
@@ -178,7 +178,7 @@ public class ItemControllerTest {
     public void testSearchItemsHandleException() throws IOException {
         // Setup
         String searchString = "an";
-        // When createHero is called on the Mock Hero DAO, throw an IOException
+        // When createUser is called on the Mock User DAO, throw an IOException
         doThrow(new IOException()).when(mockItemDAO).findItems(searchString);
 
         // Invoke

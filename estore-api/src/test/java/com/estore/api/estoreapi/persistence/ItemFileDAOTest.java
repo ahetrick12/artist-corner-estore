@@ -38,7 +38,7 @@ public class ItemFileDAOTest {
      * @throws IOException
      */
     @BeforeEach
-    public void setupHeroFileDAO() throws IOException {
+    public void setupItemFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testItems = new Item[3];
         testItems[0] = new Item(99,"Hamburger", 30,(float) 3.99);
@@ -46,7 +46,7 @@ public class ItemFileDAOTest {
         testItems[2] = new Item(101,"Art Print", 50, (float) 15.99);
 
         // When the object mapper is supposed to read from the file
-        // the mock object mapper will return the hero array above
+        // the mock object mapper will return the item array above
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"),Item[].class))
                 .thenReturn(testItems);
@@ -135,7 +135,7 @@ public class ItemFileDAOTest {
         // exception was raised during JSON object deseerialization
         // into Java objects
         // When the Mock Object Mapper readValue method is called
-        // from the HeroFileDAO load method, an IOException is
+        // from the ItemFileDAO load method, an IOException is
         // raised
         doThrow(new IOException())
             .when(mockObjectMapper)
