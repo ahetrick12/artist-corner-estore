@@ -235,15 +235,43 @@ public class ItemControllerTest {
 
     @Test
     public void testDeleteItem() throws IOException {
+        // Setup
+        int itemId = 99;
+        // when deleteItem is called return true, simulating successful deletion
+        when(mockItemDAO.deleteItem(itemId)).thenReturn(true);
 
+        // Invoke
+        ResponseEntity<Item> response = itemController.deleteItem(itemId);
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
     @Test
     public void testDeleteItemNotFound() throws IOException { 
-    
+        // Setup
+        int itemId = 99;
+        // when deleteItem is called return false, simulating failed deletion
+        when(mockItemDAO.deleteItem(itemId)).thenReturn(false);
+
+        // Invoke
+        ResponseEntity<Item> response = itemController.deleteItem(itemId);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
     @Test
     public void testDeleteItemHandleException() throws IOException { 
+        // Setup
+        int itemId = 99;
+        // When deleteItem is called on the Mock Item DAO, throw an IOException
+        doThrow(new IOException()).when(mockItemDAO).deleteItem(itemId);
+
+        // Invoke
+        ResponseEntity<Item> response = itemController.deleteItem(itemId);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 }
