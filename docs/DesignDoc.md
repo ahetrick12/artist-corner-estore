@@ -35,12 +35,16 @@ Customers are able to buy those products, learn information via the announcement
 
 This section describes the features of the application.
 
-> _In this section you do not need to be exhaustive and list every
-> story.  Focus on top-level features from the Vision document and
-> maybe Epics and critical Stories._
+- Inventory management
+- Item browsing
+- Authentication (login/logout)
+- Cart management
+- Checking out
+- Viewing and posting annoucements
+- Data persistence
 
 ### Definition of MVP
-> _Provide a simple description of the Minimum Viable Product._
+A store where you can view items for sale by the artist, add these items to your cart, and then purchase them. You can also login to an account in order to save your cart, as well as view store-wide announcements that the artist has posted. As the owner of the store, the artist, you can add, delete, or update items in the inventory, as well as post  store-wide annoucements to the site
 
 ### MVP Features
 > _Provide a list of top-level Epics and/or Stories of the MVP._

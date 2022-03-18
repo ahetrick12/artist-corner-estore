@@ -11,14 +11,15 @@ import { CartComponent } from './cart/cart.component';
 
 import { LoginComponent } from './login/login.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     StoreComponent,
     CartComponent,
-    LoginComponent,
     SearchBarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
