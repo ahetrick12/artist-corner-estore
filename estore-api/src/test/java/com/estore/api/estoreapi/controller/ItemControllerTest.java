@@ -37,15 +37,41 @@ public class ItemControllerTest {
     }
 
     @Test
-    public void testGetItem() throws IOException {  // getUser may throw IOException
+    public void testGetItem() throws IOException {  // getItem may throw IOException
+        //Setup
+        Item item = new Item(44,"Puzzle",10, (float)99.99);
+        // When the same id is passed in, our mock Item DAO will return the Item object
+        when(mockItemDAO.getItem(item.getId())).thenReturn(item);
+        //Invoke
+        ResponseEntity<Item> response = itemController.getItem(item.getId());
+        //Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(item, response.getBody());
     }
 
     @Test
-    public void testGetItemNotFound() throws Exception { // createUser may throw IOException
+    public void testGetItemNotFound() throws Exception { // getItem may throw IOException
+        // Setup
+        int itemId = 99;
+        // When the same id is passed in, our mock Item DAO will return null, simulating
+        // no item found
+        when(mockItemDAO.getItem(itemId)).thenReturn(null);
+        // Invoke
+        ResponseEntity<Item> response = itemController.getItem(itemId);
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
     @Test
-    public void testGetItemHandleException() throws Exception { // createUser may throw IOException
+    public void testGetItemHandleException() throws Exception { // getItem may throw IOException
+        // Setup
+        int itemId = 99;
+        // When getItem is called on the Mock Item DAO, throw an IOException
+        doThrow(new IOException()).when(mockItemDAO).getItem(itemId);
+        // Invoke
+        ResponseEntity<Item> response = itemController.getItem(itemId);
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
     /*****************************************************************
@@ -148,11 +174,30 @@ public class ItemControllerTest {
 
     @Test
     public void testGetItems() throws IOException { 
-    
+        // Setup
+        Item[] items = new Item[4];
+        items[0] = new Item(45, "Wood Print", 15, (float)299.99);
+        items[1] = new Item(46, "Metal Print", 20, (float)199.99);
+        items[2] = new Item(47, "Sticker", 100, (float)9.99);
+        items[3] = new Item(48, "Bikini", 50, (float)49.99);
+        // When getItems is called return the items created above
+        when(mockItemDAO.getItems()).thenReturn(items);
+        // Invoke
+        ResponseEntity<Item[]> response = itemController.getItems();
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(items,response.getBody());
     }
 
     @Test
     public void testGetItemsHandleException() throws IOException { 
+        // Setup
+        // When getItems is called on the Mock Item DAO, throw an IOException
+        doThrow(new IOException()).when(mockItemDAO).getItems();
+        // Invoke
+        ResponseEntity<Item[]> response = itemController.getItems();
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
     @Test
