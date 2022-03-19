@@ -28,7 +28,7 @@ public class CartItemTest {
     }
 
     @Test
-    public void testQuantity() {
+    public void testSetQuantity() {
         // Setup
         int id = 99;
         String name = "Bandana";
@@ -46,7 +46,7 @@ public class CartItemTest {
         assertEquals(expected_quantity,cartItem.getQuantity());
     }
 
-    public void testItem(){
+    public void testSetItem(){
         int id = 99;
         String name = "Bandana";
         int stock = 30;
@@ -83,4 +83,42 @@ public class CartItemTest {
         // Analyze`
         assertEquals(expected_string,actual_string);
     }
+
+    @Test
+    public void testIncrementQuantity() {
+        // Setup
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        Item item = new Item(id,name,stock,price);
+        int quantity = 2;
+        CartItem cartItem = new CartItem(item, quantity); 
+        int expected_quantity = 3;
+        // Invoke
+        cartItem.incrementQuantity();
+
+        // Analyze
+        assertEquals(expected_quantity,cartItem.getQuantity());
+    }
+
+    @Test
+    public void testCompareItem() {
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        Item item = new Item(id,name,stock,price);
+        Item item2 = new Item(55,"Bandaid",5,(float)3.00);
+        int quantity = 2;
+        CartItem cartItem = new CartItem(item, quantity); 
+
+        boolean resp1 = cartItem.compareItem(item);
+        boolean resp2 = cartItem.compareItem(item2);
+
+        assertEquals(resp1,true);
+        assertEquals(resp2,false);
+
+    }
+    
 }

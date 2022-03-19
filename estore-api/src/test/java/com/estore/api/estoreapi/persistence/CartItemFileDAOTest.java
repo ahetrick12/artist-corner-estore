@@ -42,9 +42,9 @@ public class CartItemFileDAOTest {
     public void setupCartFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testItems = new CartItem[3];
-        Item a = new Item(99,"Hamburger", 30,(float) 3.99);
+        Item c = new Item(99,"Hamburger", 30,(float) 3.99);
         Item b = new Item(100,"Cheeseburger", 20, (float) 4.99);
-        Item c = new Item(101,"Art Print", 50, (float) 15.99);
+        Item a = new Item(101,"Art Print", 50, (float) 15.99);
         testItems[0] = new CartItem(a, 1);
         testItems[1] = new CartItem(b, 1);
         testItems[2] = new CartItem(c, 1);
@@ -75,14 +75,14 @@ public class CartItemFileDAOTest {
         CartItem item = cartFileDAO.getCartItem(a);
 
         // Analzye
-        assertEquals(item,testItems[0]);
+        assertEquals(item,testItems[2]);
     }
 
     @Test
     public void testDeleteCartItem() {
         // Invoke
         Item a = new Item(99,"Hamburger", 30,(float) 3.99);
-        boolean result = assertDoesNotThrow(() -> cartFileDAO.deleteCartItem(a.toString()),
+        boolean result = assertDoesNotThrow(() -> cartFileDAO.deleteCartItem(a.getName()),
                             "Unexpected exception thrown");
 
         // Analzye
@@ -115,8 +115,8 @@ public class CartItemFileDAOTest {
     @Test
     public void testUpdateCartItem() throws IOException {
         // Setup
-        Item item = new Item(99,"Sticker", 20, (float)1.99);
-        CartItem cartitem = new CartItem(item, 1);
+        Item item = new Item(100,"Cheeseburger", 20, (float) 4.99);
+        CartItem cartitem = new CartItem(item, 5);
         // Invoke
         CartItem result = assertDoesNotThrow(() -> cartFileDAO.updateItem(cartitem),
                                 "Unexpected exception thrown");
@@ -124,7 +124,7 @@ public class CartItemFileDAOTest {
         // Analyze
         assertNotNull(result);
         CartItem actual = cartFileDAO.updateItem(cartitem);
-        assertEquals(actual, item);
+        assertEquals(actual, cartitem);
     }
 
     @Test

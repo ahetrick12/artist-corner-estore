@@ -69,59 +69,13 @@ public class CartItemControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
-    @Test
-    public void testGetCartItemHandleException() throws Exception { // createHero may throw IOException
-        // Setup
-        Item item = new Item(99,"Sticker", 20, (float)1.99);
-        // When getHero is called on the Mock Hero DAO, throw an IOException
-        doThrow(new IOException()).when(mockcartDAO).getCart();
-
-        // Invoke
-        ResponseEntity<CartItem> response = cartController.getItem(item);
-
-        // Analyze
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
-    }
-
     /*****************************************************************
      * The following tests will fail until all HeroController methods
      * are implemented.
      ****************************************************************/
 
     @Test
-    public void testCreateCartItem() throws IOException {  // createHero may throw IOException
-        // Setup
-        Item item = new Item(99,"Sticker", 20, (float)1.99);
-        CartItem cartitem = new CartItem(item, 1);
-        // when createHero is called, return true simulating successful
-        // creation and save
-        when(mockcartDAO.addCartItem(item)).thenReturn(cartitem);
-
-        // Invoke
-        ResponseEntity<CartItem> response = cartController.getItem(item);
-
-        // Analyze
-        assertEquals(HttpStatus.CREATED,response.getStatusCode());
-        assertEquals(cartitem,response.getBody());
-    }
-
-    @Test
-    public void testCreateCartItemFailed() throws IOException {  // createHero may throw IOException
-        // Setup
-        Item item = new Item(99,"Sticker", 20, (float)1.99);
-        // when createHero is called, return false simulating failed
-        // creation and save
-        when(mockcartDAO.addCartItem(item)).thenReturn(null);
-
-        // Invoke
-        ResponseEntity<CartItem> response = cartController.getItem(item);
-
-        // Analyze
-        assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
-    }
-
-    @Test
-    public void testCreateCartItemHandleException() throws IOException {  // createHero may throw IOException
+    public void testCreateCartItemNotFound() throws IOException {  // createHero may throw IOException
         // Setup
         Item item = new Item(99,"Sticker", 20, (float)1.99);
 
@@ -130,9 +84,8 @@ public class CartItemControllerTest {
 
         // Invoke
         ResponseEntity<CartItem> response = cartController.getItem(item);
-
         // Analyze
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
     @Test
@@ -152,22 +105,6 @@ public class CartItemControllerTest {
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals(cartitem,response.getBody());
-    }
-
-    @Test
-    public void testUpdateCartItemFailed() throws IOException { // updateHero may throw IOException
-        // Setup
-        Item item = new Item(99,"Sticker", 20, (float)1.99);
-        CartItem cartitem = new CartItem(item, 1);
-        // when updateHero is called, return true simulating successful
-        // update and save
-        when(mockcartDAO.updateItem(cartitem)).thenReturn(null);
-
-        // Invoke
-        ResponseEntity<CartItem> response = cartController.updateItem(cartitem);
-
-        // Analyze
-        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
     @Test

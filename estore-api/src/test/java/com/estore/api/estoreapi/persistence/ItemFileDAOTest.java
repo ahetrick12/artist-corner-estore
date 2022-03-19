@@ -55,18 +55,48 @@ public class ItemFileDAOTest {
 
     @Test
     public void testGetItems() {
+        // Invoke
+        Item[] items = itemFileDAO.getItems();
+
+        // Analyze
+        assertEquals(items.length,testItems.length);
+        for (int i = 0; i < testItems.length;++i)
+            assertEquals(items[i],testItems[i]);
     }
 
     @Test
     public void testFindItems() {
+         // Invoke
+         Item[] items = itemFileDAO.findItems("burger");
+
+         // Analyze
+         assertEquals(items.length,2);
+         assertEquals(items[0],testItems[0]);
+         assertEquals(items[1],testItems[1]);
     }
 
     @Test
     public void testGetItem() {
+
+        Item item = itemFileDAO.getItem(99);
+
+        // Analzye
+        assertEquals(item,testItems[0]);
     }
 
     @Test
     public void testDeleteItem() {
+        // Invoke
+        boolean result = assertDoesNotThrow(() -> itemFileDAO.deleteItem(99),
+                            "Unexpected exception thrown");
+
+        // Analzye
+        assertEquals(result,true);
+        // We check the internal tree map size against the length
+        // of the test heroes array - 1 (because of the delete)
+        // Because heroes attribute of HeroFileDAO is package private
+        // we can access it directly
+        assertEquals(itemFileDAO.items.size(),testItems.length-1);
     }
 
     @Test
@@ -104,14 +134,37 @@ public class ItemFileDAOTest {
 
     @Test
     public void testSaveException() throws IOException{
+        doThrow(new IOException())
+            .when(mockObjectMapper)
+                .writeValue(any(File.class),any(Item[].class));
+
+        Item item = new Item(99,"Sticker", 20, (float)1.99);
+
+        assertThrows(IOException.class,
+                        () -> itemFileDAO.createItem(item),
+                        "IOException not thrown");
     }
+
 
     @Test
     public void testGetItemNotFound() {
+
+         // Invoke
+         Item item = itemFileDAO.getItem(98);
+
+         // Analyze
+         assertEquals(item,null);
     }
 
     @Test
     public void testDeleteItemNotFound() {
+         // Invoke
+         boolean result = assertDoesNotThrow(() -> itemFileDAO.deleteItem(98),
+         "Unexpected exception thrown");
+
+        // Analyze
+        assertEquals(result,false);
+        assertEquals(itemFileDAO.items.size(),testItems.length);
     }
 
     @Test
