@@ -148,7 +148,7 @@ public class CartController {
         try {
             CartItem created_item = CartDao.addCartItem(item);
             if (created_item != null){
-                return new ResponseEntity<CartItem>(created_item,HttpStatus.OK);
+                return new ResponseEntity<CartItem>(created_item,HttpStatus.CREATED);
             }
             else {
                 return new ResponseEntity<CartItem>(HttpStatus.CONFLICT);

@@ -75,6 +75,40 @@ public class CartItemControllerTest {
      ****************************************************************/
 
     @Test
+    public void testCreateCartItemConflict() throws IOException {  // createHero may throw IOException
+        // Setup
+        Item item = new Item(99,"Sticker", 20, (float)1.99);
+        CartItem item2 = mockcartDAO.addCartItem(item);
+        // when createHero is called, return true simulating successful
+        // creation and save
+        when(mockcartDAO.addCartItem(item)).thenReturn(item2);
+
+        // Invoke
+        ResponseEntity<CartItem> response = cartController.addItem(item);
+
+        // Analyze
+        assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
+        assertEquals(item2,response.getBody());
+    }
+
+    @Test
+    public void testCreateCartItem() throws IOException {  // createHero may throw IOException
+        // Setup
+        Item item = new Item(99,"Sticker", 20, (float)1.99);
+        CartItem item2 = new CartItem(item, 1);
+        // when createHero is called, return true simulating successful
+        // creation and save
+        when(mockcartDAO.addCartItem(item)).thenReturn(item2);
+
+        // Invoke
+        ResponseEntity<CartItem> response = cartController.addItem(item);
+
+        // Analyze
+        assertEquals(HttpStatus.CREATED,response.getStatusCode());
+        assertEquals(item2,response.getBody());
+    }
+
+    @Test
     public void testCreateCartItemNotFound() throws IOException {  // createHero may throw IOException
         // Setup
         Item item = new Item(99,"Sticker", 20, (float)1.99);
