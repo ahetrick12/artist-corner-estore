@@ -30,7 +30,9 @@
     </table>
     <h2 style="text-align: right; padding-right: 5%;">Total: {{findsum() | currency}} </h2>
     <div *ngIf="cart.length != 0">
-    <button class ="button" style="margin-left:90%; margin-bottom: 1%;">Checkout</button>
+        <a routerLink="/checkout">
+          <button class = "button" style="margin-left:90%; margin-bottom: 1%;">Checkout</button>
+        </a>
     </div>
 </div>
 </body>

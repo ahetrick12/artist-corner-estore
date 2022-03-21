@@ -11,6 +11,7 @@ import { CartComponent } from './cart/cart.component';
 
 import { LoginComponent } from './login/login.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     CartComponent,
     SearchBarComponent,
     LoginComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
