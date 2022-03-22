@@ -44,7 +44,7 @@ public class UserTest {
         // Analyze
         assertEquals(expected_name, user.getUsername());
     }
-
+    @Test
     public void testStock(){
         int id = 99;
         String username = "TestUsername";

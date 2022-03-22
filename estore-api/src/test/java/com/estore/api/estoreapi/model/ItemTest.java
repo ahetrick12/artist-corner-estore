@@ -47,7 +47,7 @@ public class ItemTest {
         // Analyze
         assertEquals(expected_name,item.getName());
     }
-
+    @Test
     public void testSetStock(){
         int id = 99;
         String name = "Bandana";
@@ -64,6 +64,7 @@ public class ItemTest {
         assertEquals(expected_stock,item.getStock());
     }
 
+    @Test
     public void testSetPrice(){
         int id = 99;
         String name = "Bandana";
