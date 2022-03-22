@@ -4,6 +4,79 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
 </head>
 <body>
-<div id="chk" Checkout></div>
-<p>This is the checkout page</p>
+<div id="chk">Checkout</div>
+<div>
+  <table id="rw" >Review Items
+    <tr class="items">
+      <tr *ngFor="let cartitem of cart">
+      <td><figure><img src="../../assets/images/placeholder.jpg" class="storeimg">
+        <figcaption>{{cartitem.item.name}}</figcaption></figure></td>
+      <td>
+        <table>
+          <tr>Price: {{cartitem.item.price | currency}}</tr>
+          <tr>Quantity: {{cartitem.quantity}}</tr>
+          <tr>Total: {{cartitem.quantity*cartitem.item.price | currency}}</tr>
+        </table>
+      </td>
+      </tr>
+  </table>
+</div>
+<table id="Per">
+  <th>Personal Info</th>
+  <tr>
+    <td>First name</td>
+    <td>Last name</td>
+  </tr>
+  <tr>
+    <td><input type="text" id="fname" name="fname"></td>
+    <td><input type="text" id="lname" name="lname"></td>
+  </tr>
+  <tr>
+    <td>Phone Number</td>
+    <td>Email</td>
+  </tr>
+  <tr>
+    <td><input type="text" id="phone" name="phone"></td>
+    <td><input type="text" id="email" name="email"></td>
+  </tr>
+  <tr>
+    <td>Country</td>
+    <td>State</td>
+  </tr>
+  <tr>
+    <td><input type="text" id="country" name="country"></td>
+    <td><input type="text" id="state" name="state"></td>
+  </tr>
+  <tr>
+    <td>Street Address</td>
+    <td>Address line 2</td>
+  </tr>
+  <tr>
+    <td><input type="text" id="address" name="address"></td>
+    <td><input type="text" id="line2" name="line2"></td>
+  </tr>
+  <tr>
+    <td>City</td>
+    <td>ZIP Code</td>
+  </tr>
+  <tr>
+    <td><input type="text" id="city" name="city"></td>
+    <td><input type="text" id="zip" name="zip"></td>
+  </tr>
+</table>
+<table id="Pay">
+  <th>Payment Info</th>
+  <tr>Name on Card</tr>
+  <tr><input type="text" id="name" name="name"></tr>
+  <tr>Card Number</tr>
+  <tr><input type="text" id="card" name="card"></tr>
+  <tr>
+    <td>Expiration Date</td>
+    <td><input type="text" id="exp" name="exp"></td>
+    <td>CVV</td>
+    <td><input type="text" id="ccv" name="cvv"></td>
+  </tr>
+
+</table>
+<button class = "button" style="margin-left:90%; margin-bottom: 1%;">Purchase Items</button>
 </body>
