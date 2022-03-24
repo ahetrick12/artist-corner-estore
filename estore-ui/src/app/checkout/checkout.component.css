@@ -36,6 +36,18 @@ body{
   margin:auto;
 }
 
+.button{
+  background-color: black;
+  color:white;
+  padding: 1%;
+  border-radius: 2px;
+  font-family: 'Fredoka', sans-serif;
+}
+
 #quantity{
   width:30px
+}
+
+#purchase:hover{
+  color:red;
 }

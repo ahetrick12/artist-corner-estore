@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../cartitem';
 import { CartItemService } from '../cartitem.service';
+import { CartComponent } from "../cart/cart.component";
 
 @Component({
   selector: 'app-checkout',
@@ -21,4 +22,7 @@ export class CheckoutComponent implements OnInit {
       .subscribe(cart => this.cart = cart);
   }
 
+  clearCart(cart: CartItem[]): void{
+    this.CartitemService.clearCart(cart);
+  }
 }
