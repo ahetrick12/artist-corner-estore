@@ -41,9 +41,15 @@ body{
 .storeimg{
   width: 150px;
 }
+
 .items{
-  text-align: center;
-  margin:auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#data{
+  right:150px;
 }
 
 .button{
@@ -82,4 +88,9 @@ body{
 
 #card{
   width:350px;
+}
+
+#state{
+  width:172px;
+  height:21px;
 }
