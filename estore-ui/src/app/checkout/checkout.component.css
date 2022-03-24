@@ -19,13 +19,23 @@ body{
 #Per{
   position: absolute;
   top: 100px;
-  right: 250px;
+  right: 200px;
+}
+
+#pi{
+  text-align: center;
 }
 
 #Pay{
   position: absolute;
   top: 400px;
-  right: 250px;
+  right: 200px;
+}
+
+#xc{
+  position: absolute;
+  top: 530px;
+  right: 200px;
 }
 
 .storeimg{
@@ -45,9 +55,31 @@ body{
 }
 
 #quantity{
-  width:30px
+  width:30px;
+}
+
+#purchase{
+  position: absolute;
+  top: 600px;
+  right: 100px;
 }
 
 #purchase:hover{
   color:red;
+}
+
+#ccv{
+  width:50px;
+}
+
+#exp{
+  width:75px;
+}
+
+#name{
+  width:350px;
+}
+
+#card{
+  width:350px;
 }

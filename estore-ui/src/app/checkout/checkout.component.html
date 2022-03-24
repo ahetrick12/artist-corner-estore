@@ -22,7 +22,9 @@
   </table>
 </div>
 <table id="Per">
-  <th>Personal Info</th>
+  <tr>
+  <th colspan="2">Personal Info</th>
+  </tr>
   <tr>
     <td>First name</td>
     <td>Last name</td>
@@ -70,15 +72,16 @@
   <tr><input type="text" id="name" name="name"></tr>
   <tr>Card Number</tr>
   <tr><input type="text" id="card" name="card"></tr>
+</table>
+<table id="xc">
   <tr>
     <td>Expiration Date</td>
     <td><input type="text" id="exp" name="exp"></td>
-    <td>CVV</td>
+    <td>cvv</td>
     <td><input type="text" id="ccv" name="cvv"></td>
   </tr>
-
 </table>
 <a routerLink="/homepage">
-  <button class = "button" id="purchase" (click)="clearCart(cart)" style="margin-left:90%; margin-bottom: 1%;">Purchase Items</button>
+  <button class = "button" id="purchase" (click)="clearCart(cart)">Purchase Items</button>
 </a>
 </body>
