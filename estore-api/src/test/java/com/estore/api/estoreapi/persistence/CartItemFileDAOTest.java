@@ -15,21 +15,22 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.estore.api.estoreapi.model.Item;
+import com.estore.api.estoreapi.model.CartItem;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test the Item File DAO class
+ * Test the CartItem File DAO class
  * 
  * @author SWEN Faculty
  * @author team 8
  */
 @Tag("Persistence-tier")
-public class ItemFileDAOTest {
-    ItemFileDAO itemFileDAO;
-    Item[] testItems;
+public class CartItemFileDAOTest {
+    CartFileDAO cartFileDAO;
+    CartItem[] testItems;
     ObjectMapper mockObjectMapper;
 
     /**
@@ -38,56 +39,50 @@ public class ItemFileDAOTest {
      * @throws IOException
      */
     @BeforeEach
-    public void setupItemFileDAO() throws IOException {
+    public void setupCartFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
-        testItems = new Item[3];
-        testItems[0] = new Item(99,"Hamburger", 30,(float) 3.99);
-        testItems[1] = new Item(100,"Cheeseburger", 20, (float) 4.99);
-        testItems[2] = new Item(101,"Art Print", 50, (float) 15.99);
+        testItems = new CartItem[3];
+        Item c = new Item(99,"Hamburger", 30,(float) 3.99);
+        Item b = new Item(100,"Cheeseburger", 20, (float) 4.99);
+        Item a = new Item(101,"Art Print", 50, (float) 15.99);
+        testItems[0] = new CartItem(a, 1);
+        testItems[1] = new CartItem(b, 1);
+        testItems[2] = new CartItem(c, 1);
 
         // When the object mapper is supposed to read from the file
-        // the mock object mapper will return the item array above
+        // the mock object mapper will return the cartitem array above
         when(mockObjectMapper
-            .readValue(new File("doesnt_matter.txt"),Item[].class))
+            .readValue(new File("doesnt_matter.txt"),CartItem[].class))
                 .thenReturn(testItems);
-        itemFileDAO = new ItemFileDAO("doesnt_matter.txt",mockObjectMapper);
+        cartFileDAO = new CartFileDAO("doesnt_matter.txt",mockObjectMapper);
     }
 
     @Test
-    public void testGetItems() {
+    public void testCart() {
         // Invoke
-        Item[] items = itemFileDAO.getItems();
+        CartItem[] cart = cartFileDAO.getCart();
 
         // Analyze
-        assertEquals(items.length,testItems.length);
+        assertEquals(cart.length,testItems.length);
         for (int i = 0; i < testItems.length;++i)
-            assertEquals(items[i],testItems[i]);
+            assertEquals(cart[i],testItems[i]);
     }
 
     @Test
-    public void testFindItems() {
-         // Invoke
-         Item[] items = itemFileDAO.findItems("burger");
-
-         // Analyze
-         assertEquals(items.length,2);
-         assertEquals(items[0],testItems[0]);
-         assertEquals(items[1],testItems[1]);
-    }
-
-    @Test
-    public void testGetItem() {
-
-        Item item = itemFileDAO.getItem(99);
+    public void testGetCartItem() {
+        // Invoke
+        Item a = new Item(99,"Hamburger", 30,(float) 3.99);
+        CartItem item = cartFileDAO.getCartItem(a);
 
         // Analzye
-        assertEquals(item,testItems[0]);
+        assertEquals(item,testItems[2]);
     }
 
     @Test
-    public void testDeleteItem() {
+    public void testDeleteCartItem() {
         // Invoke
-        boolean result = assertDoesNotThrow(() -> itemFileDAO.deleteItem(99),
+        Item a = new Item(99,"Hamburger", 30,(float) 3.99);
+        boolean result = assertDoesNotThrow(() -> cartFileDAO.deleteCartItem(a.getName()),
                             "Unexpected exception thrown");
 
         // Analzye
@@ -96,84 +91,85 @@ public class ItemFileDAOTest {
         // of the test heroes array - 1 (because of the delete)
         // Because heroes attribute of HeroFileDAO is package private
         // we can access it directly
-        assertEquals(itemFileDAO.items.size(),testItems.length-1);
+        assertEquals(cartFileDAO.cart.size(),testItems.length-1);
     }
 
     @Test
-    public void testCreateItem() {
+    public void testAddCartItem() {
         // Setup
         Item item = new Item(102,"Mask", 20, (float)5.99);
+        int quantity = 1;
+        CartItem cartitem = new CartItem(item, quantity);
 
         // Invoke
-        Item result = assertDoesNotThrow(() -> itemFileDAO.createItem(item),
+        CartItem result = assertDoesNotThrow(() -> cartFileDAO.addCartItem(item),
                                 "Unexpected exception thrown");
 
         // Analyze
         assertNotNull(result);
-        Item actual = itemFileDAO.getItem(item.getId());
-        assertEquals(actual.getId(),item.getId());
-        assertEquals(actual.getName(),item.getName());
-        assertEquals(actual.getStock(),item.getStock());
-        assertEquals(actual.getPrice(),item.getPrice());
+        CartItem actual = cartFileDAO.getCartItem(cartitem.getItem());
+        assertEquals(actual.getItem(),cartitem.getItem());
+        assertEquals(actual.getQuantity(),cartitem.getQuantity());
     }
 
     @Test
-    public void testUpdateItem() {
+    public void testUpdateCartItem() throws IOException {
         // Setup
-        Item item = new Item(99,"Sticker", 20, (float)1.99);
-
+        Item item = new Item(100,"Cheeseburger", 20, (float) 4.99);
+        CartItem cartitem = new CartItem(item, 5);
         // Invoke
-        Item result = assertDoesNotThrow(() -> itemFileDAO.updateItem(item),
+        CartItem result = assertDoesNotThrow(() -> cartFileDAO.updateItem(cartitem),
                                 "Unexpected exception thrown");
 
         // Analyze
         assertNotNull(result);
-        Item actual = itemFileDAO.getItem(item.getId());
-        assertEquals(actual, item);
+        CartItem actual = cartFileDAO.updateItem(cartitem);
+        assertEquals(actual, cartitem);
     }
 
     @Test
     public void testSaveException() throws IOException{
         doThrow(new IOException())
             .when(mockObjectMapper)
-                .writeValue(any(File.class),any(Item[].class));
+                .writeValue(any(File.class),any(CartItem[].class));
 
-        Item item = new Item(99,"Sticker", 20, (float)1.99);
+        Item item = new Item(4,"Flag", 30, (float) 4.00);
 
         assertThrows(IOException.class,
-                        () -> itemFileDAO.createItem(item),
+                        () -> cartFileDAO.addCartItem(item),
                         "IOException not thrown");
     }
 
-
     @Test
-    public void testGetItemNotFound() {
+    public void testGetCartItemNotFound() {
+        // Invoke
+        Item test = new Item(4,"Flag", 30, (float) 4.00);
+        CartItem item = cartFileDAO.getCartItem(test);
 
-         // Invoke
-         Item item = itemFileDAO.getItem(98);
-
-         // Analyze
-         assertEquals(item,null);
+        // Analyze
+        assertEquals(item,null);
     }
 
     @Test
-    public void testDeleteItemNotFound() {
-         // Invoke
-         boolean result = assertDoesNotThrow(() -> itemFileDAO.deleteItem(98),
-         "Unexpected exception thrown");
+    public void testDeleteCartItemNotFound() {
+        // Invoke
+        Item test = new Item(4,"Flag", 30, (float) 4.00);
+        boolean result = assertDoesNotThrow(() -> cartFileDAO.deleteCartItem(test.getName()),
+                                                "Unexpected exception thrown");
 
         // Analyze
         assertEquals(result,false);
-        assertEquals(itemFileDAO.items.size(),testItems.length);
+        assertEquals(cartFileDAO.cart.size(),testItems.length);
     }
 
     @Test
-    public void testUpdateItemNotFound() {
+    public void testUpdateCartItemNotFound() {
         // Setup
         Item item = new Item(98, "Shirt", 20, (float)8.99);
+        CartItem cartitem = new CartItem(item, 1);
 
         // Invoke
-        Item result = assertDoesNotThrow(() -> itemFileDAO.updateItem(item),
+        CartItem result = assertDoesNotThrow(() -> cartFileDAO.updateItem(cartitem),
                                                 "Unexpected exception thrown");
 
         // Analyze
