@@ -60,6 +60,14 @@ body{
   font-family: 'Fredoka', sans-serif;
 }
 
+.cards{
+  position: absolute;
+  width: 125px;
+  height: 28px;
+  right: 198px;
+  top: 488px;
+}
+
 #quantity{
   width:30px;
 }
@@ -74,12 +82,12 @@ body{
   color:red;
 }
 
-#ccv{
+#cvc{
   width:50px;
 }
 
 #exp{
-  width:75px;
+  width:144px;
 }
 
 #name{

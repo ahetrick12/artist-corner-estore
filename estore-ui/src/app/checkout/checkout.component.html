@@ -22,6 +22,7 @@
       </tr>
   </table>
 </div>
+<form>
 <h2 style="text-align: left; padding-left: 5%;">Total: {{findsum() | currency}} </h2>
 <table id="Per">
   <tr>
@@ -40,8 +41,8 @@
     <td>Email</td>
   </tr>
   <tr>
-    <td><input type="text" id="phone" name="phone"></td>
-    <td><input type="text" id="email" name="email"></td>
+    <td><input type="tel" id="phone" placeholder="123-456-7890" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></td>
+    <td><input type="email" id="email" placeholder="example@gmail.com" name="email"></td>
   </tr>
   <tr>
     <td>Country</td>
@@ -119,7 +120,7 @@
   </tr>
   <tr>
     <td><input type="text" id="city" name="city"></td>
-    <td><input type="text" id="zip" name="zip"></td>
+    <td><input type="number" id="zip" name="zip"></td>
   </tr>
 </table>
 <table id="Pay">
@@ -127,17 +128,19 @@
   <tr>Name on Card</tr>
   <tr><input type="text" id="name" name="name"></tr>
   <tr>Card Number</tr>
-  <tr><input type="text" id="card" name="card"></tr>
+  <tr><input type="tel" id="card" pattern="/d*" maxlength="19" name="card"></tr>
 </table>
 <table id="xc">
   <tr>
     <td>Expiration Date</td>
-    <td><input type="text" id="exp" name="exp"></td>
-    <td>cvv</td>
-    <td><input type="text" id="ccv" name="cvv"></td>
+    <td><input type="month" id="exp" name="exp"></td>
+    <td>CVC</td>
+    <td><input type="number" id="cvc" maxlength="3" name="cvc"></td>
   </tr>
 </table>
+</form>
+<img src="../../assets/images/cards.png" class="cards" alt="cards">
 <a routerLink="/homepage">
-  <button class = "button" id="purchase" (click)="clearCart(cart)">Purchase Items</button>
+  <input type="submit" value="Purchase Items" class="button" id="purchase" (click)="clearCart(cart)">
 </a>
 </body>
