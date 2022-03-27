@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
     return total;
   }
 
-  clearCart(cart: CartItem[]): void{
+  checkout(cart: CartItem[]): void{
     this.CartitemService.clearCart(cart);
   }
 }
