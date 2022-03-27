@@ -44,8 +44,9 @@ public class UserTest {
         // Analyze
         assertEquals(expected_name, user.getUsername());
     }
+
     @Test
-    public void testStock(){
+    public void testPassword(){
         int id = 99;
         String username = "TestUsername";
         String password = "TestPassword";
