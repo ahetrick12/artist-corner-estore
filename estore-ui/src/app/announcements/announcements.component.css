@@ -1,0 +1,28 @@
+input[type=text], textarea {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 6px 0;
+  font-family: 'Fredoka', sans-serif;
+}
+
+textarea {
+  resize: vertical;
+}
+
+div {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+button {
+  padding: 7px 10px;
+  background: #ddd;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: gray;
+}
