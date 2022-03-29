@@ -11,6 +11,8 @@ import { CartComponent } from './cart/cart.component';
 
 import { LoginComponent } from './login/login.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     CartComponent,
     SearchBarComponent,
     LoginComponent,
+    ContactComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
