@@ -234,6 +234,20 @@ public class ItemControllerTest {
     }
 
     @Test
+    public void testSearchItemsNotFound() throws IOException {
+        // Setup
+        String searchString = "an";
+        // When createUser is called on the Mock User DAO, throw an IOException
+        doThrow(new IOException()).when(mockItemDAO).findItems(searchString);
+
+        // Invoke
+        ResponseEntity<Item[]> response = itemController.searchItems(searchString);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+
+    @Test
     public void testDeleteItem() throws IOException {
         // Setup
         int itemId = 99;

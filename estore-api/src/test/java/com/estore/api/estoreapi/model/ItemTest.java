@@ -31,7 +31,7 @@ public class ItemTest {
     }
 
     @Test
-    public void testName() {
+    public void testSetName() {
         // Setup
         int id = 99;
         String name = "Bandana";
@@ -47,8 +47,8 @@ public class ItemTest {
         // Analyze
         assertEquals(expected_name,item.getName());
     }
-
-    public void testStock(){
+    @Test
+    public void testSetStock(){
         int id = 99;
         String name = "Bandana";
         int stock = 30;
@@ -64,7 +64,8 @@ public class ItemTest {
         assertEquals(expected_stock,item.getStock());
     }
 
-    public void testPrice(){
+    @Test
+    public void testSetPrice(){
         int id = 99;
         String name = "Bandana";
         int stock = 30;
@@ -95,5 +96,23 @@ public class ItemTest {
 
         // Analyze`
         assertEquals(expected_string,actual_string);
+    }
+
+    @Test
+    public void testCompareTo(){
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        Item item = new Item(id,name,stock,price);
+        Item item2 = new Item(id,name,stock,price);
+        Item item3 = new Item(2,"shoes",2,(float) 3.99);
+
+        int res1 = item.compareTo(item2);
+        int res2 = item.compareTo(item3);
+
+        assertEquals(res1,0);
+        assertEquals(res2,-49);
+
     }
 }

@@ -1,0 +1,154 @@
+body{
+  font-family: 'Fredoka', sans-serif;
+  padding-bottom: 100px;
+}
+
+#chk{
+  text-align: center;
+  margin-block: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#rw{
+  text-align: center;
+  margin-block: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#Per{
+  position: absolute;
+  top: 100px;
+  right: 12%;
+}
+
+#pi{
+  text-align: center;
+}
+
+#Pay{
+  position: absolute;
+  top: 470px;
+  right: 12%;
+}
+
+#xc{
+  position: absolute;
+  top: 625px;
+  right: 12%;
+}
+
+.storeimg{
+  width: 150px;
+}
+
+.items{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#data{
+  right:150px;
+}
+
+.button{
+  background-color: black;
+  color:white;
+  padding: 1%;
+  border-radius: 2px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.cards{
+  position: absolute;
+  width: 180px;
+  height: 45px;
+  right: 11.8%;
+  top: 572px;
+}
+
+input[type=text] {
+  width: 90%;
+  margin-bottom: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type=number] {
+  width: 90%;
+  margin-bottom: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type=email] {
+  width: 90%;
+  margin-bottom: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type=tel] {
+  width: 90%;
+  margin-bottom: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type=month] {
+  width: 90%;
+  margin-bottom: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#quantity{
+  width:30px;
+}
+
+#sameadr{
+  position: absolute;
+  right: 15%;
+  top: 678px;
+}
+
+#purchase{
+  position: absolute;
+  top: 715px;
+  right: 10%;
+}
+
+#purchase:hover{
+  color:red;
+}
+
+#cvc{
+  width:50px;
+}
+
+#exp{
+  width:155px;
+}
+
+#name{
+  width:350px;
+}
+
+#card{
+  width:350px;
+}
+
+#state{
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}

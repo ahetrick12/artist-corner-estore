@@ -39,11 +39,17 @@ export class CartItemService {
 
   deleteCartItem(item: String): Observable<CartItem> {
     const url = `${this.cartUrl}/${item}`;
-  
+
     return this.http.delete<CartItem>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted cartItem=${item}`)),
       catchError(this.handleError<CartItem>('deleteCartItem'))
     );
+  }
+
+  clearCart(cart: CartItem[]): void {
+    for(let i = 0; i < cart.length; i++){
+      this.deleteCartItem(cart[i].item.name).subscribe();
+    }
   }
 
   addCartItem(item: Item): Observable<CartItem> {

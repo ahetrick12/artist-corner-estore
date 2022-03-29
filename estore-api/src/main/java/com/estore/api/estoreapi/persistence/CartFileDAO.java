@@ -16,7 +16,7 @@ import com.estore.api.estoreapi.model.Item;
 import com.estore.api.estoreapi.model.CartItem;
 
 /**
- * Implements the functionality for JSON file-based peristance for Items
+ * Implements the functionality for JSON file-based peristance for CartItem
  * 
  * {@literal @}Component Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
@@ -28,7 +28,7 @@ import com.estore.api.estoreapi.model.CartItem;
 public class CartFileDAO implements CartDAO {
     private static final Logger LOG = Logger.getLogger(CartFileDAO.class.getName());
     Map<String,CartItem> cart;   // Provides a local cache of the item objects
-    private ObjectMapper objectMapper;  // Provides conversion between Item
+    private ObjectMapper objectMapper;  // Provides conversion between CartItem
                                         // objects and JSON text format written
                                         // to the file
     private String filename;    // Filename to read from and write to
@@ -44,25 +44,25 @@ public class CartFileDAO implements CartDAO {
     public CartFileDAO(@Value("${cart.file}") String filename,ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
-        load();  // load the items from the file
+        load();  // load the Cartitems from the file
     }
 
     /**
-     * Generates an array of {@linkplain Item items} from the tree map
+     * Generates an array of {@linkplain CartItem items} from the tree map
      * 
-     * @return  The array of {@link Item items}, may be empty
+     * @return  The array of {@link CartItem items}, may be empty
      */
     private CartItem[] getCartItems() {
         return getCartItems(null);
     }
 
     /**
-     * generates an array of {@linkplain Item items} from the tree map for any
-     * {@linkplain Item items} that contains the text specified by containsText.
+     * generates an array of {@linkplain CartItem items} from the tree map for any
+     * {@linkplain CartItem items} that contains the text specified by containsText.
      * if containsText is null, the array contains all of the {@linkplain Item items}
      * in the tree map
      * 
-     * @return the array of {@link Item items}, may be empty.
+     * @return the array of {@link CartItem items}, may be empty.
      */
     private CartItem[] getCartItems(String containsText) { // if containsText == null, no filter
         ArrayList<CartItem> Cart = new ArrayList<>();
@@ -79,9 +79,9 @@ public class CartFileDAO implements CartDAO {
     }
 
     /**
-     * saves the {@linkplain Item items} from the map into the file as an array of JSON objects.
+     * saves the {@linkplain CartItem items} from the map into the file as an array of JSON objects.
      * 
-     * @return true if the {@link Item items} were written successfully
+     * @return true if the {@link CartItem items} were written successfully
      * 
      * @throws IOException when file cannot be accessed or written to
      */
@@ -96,7 +96,7 @@ public class CartFileDAO implements CartDAO {
     }
 
     /**
-     * loads {@linkplain Item item} from the JSON file into the map;
+     * loads {@linkplain CartItem item} from the JSON file into the map;
      * also sets next id to one more than the greatest id found in the file.
      * 
      * @return true if the file was read successfully
@@ -138,10 +138,12 @@ public class CartFileDAO implements CartDAO {
         synchronized(cart) {
                 if (cart.get(item.getName()) != null){
                     cart.get(item.getName()).incrementQuantity();
+                    item.setStock(item.getStock()-1);
                     return null;
                 }
                 else{
                     cart.put(item.getName(),new CartItem(item, 1));
+                    item.setStock(item.getStock()-1);
                     save(); // may throw an IOException
                     return new CartItem(item, 1);
             }   
