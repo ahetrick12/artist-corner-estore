@@ -1,20 +1,29 @@
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-<div id="titl">Products</div>
-<app-search-bar (getItems)="getItems()"></app-search-bar>
-<ul class="items">
+  <div id="titl">Products</div>
+  <app-search-bar (getItems)="getItems()"></app-search-bar>
+  <br />
+  <div id="admin_view" *ngIf="adminLoggedIn()">
+    <p id="view_status">User View</p>
+    <button id="switch_view">
+      Click to switch to inventory management view
+    </button>
+  </div>
+  <ul class="items">
     <li *ngFor="let item of items">
-      <div class = "boxes">
-      <img src="../../assets/images/tat.jpg" class="storeimg">
-        <div >{{item.name}}</div> 
-        <div>${{item.price}}</div>
-        <button  id="add" (click)="add(item)">Add to cart</button>
+      <div class="boxes">
+        <img src="../../assets/images/tat.jpg" class="storeimg" />
+        <div>{{ item.name }}</div>
+        <div>${{ item.price }}</div>
+        <button id="add" (click)="add(item)">Add to cart</button>
       </div>
     </li>
   </ul>
-  </body>
+</body>
