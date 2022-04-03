@@ -23,7 +23,7 @@ export class AdminComponent implements OnInit {
 
     // Send back to homepage is user is not admin, like if they try to access it by directly going to "http://localhost:4200/admin"
     if (!this.authService.userIsAdmin()) {
-      this.route.navigate(['']);
+      //this.route.navigate(['']);
     }
   }
 
@@ -33,5 +33,10 @@ export class AdminComponent implements OnInit {
 
   saveItem(item: Item): void {
     this.itemService.updateItem(item).subscribe();
+  }
+
+  deleteItem(item: Item): void {
+    this.items = this.items.filter((i) => i !== item);
+    this.itemService.deleteItem(item.id).subscribe();
   }
 }
