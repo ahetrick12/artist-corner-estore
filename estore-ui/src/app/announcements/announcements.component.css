@@ -26,3 +26,13 @@ button {
 button:hover {
   background: gray;
 }
+
+li{
+  list-style-type: none;
+  width: 75ch;
+  margin-left: 31.2%;
+  padding: 5px;
+  text-align: left;
+  border: 1px solid black;
+
+}

@@ -23,7 +23,7 @@ import com.estore.api.estoreapi.model.Announcement;
  * {@literal @}Component Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
  * 
- * @author kara kolodinsky of team 8
+ * @author jonathan campbell of team 8
  * @author code heavily based on heroes-api by SWEN Faculty
  */
 @Component
@@ -44,7 +44,7 @@ public class AnnouncementFileDAO implements AnnouncementDAO {
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public AnnouncementFileDAO(@Value("${estore.file}") String filename,ObjectMapper objectMapper) throws IOException {
+    public AnnouncementFileDAO(@Value("${announcements.file}") String filename,ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();  // load the announcements from the file

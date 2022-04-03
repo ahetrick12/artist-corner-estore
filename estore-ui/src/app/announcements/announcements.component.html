@@ -1,7 +1,15 @@
-<div>
-  <form>
-    <input type="text" placeholder="Title" name = 'title' >
-    <textarea id="message" placeholder="Message" name="message" rows="5" cols="50"></textarea>
-    <button (click)="onSubmit()">Submit</button>
-  </form>
-</div>
+<body>
+  <div>
+    <form>
+      <input type="text" placeholder="Title" name = 'title' [(ngModel)]="title">
+      <textarea id="message" placeholder="Message" name="message" rows="5" cols="50" [(ngModel)]="message"></textarea>
+      <button (click)="onSubmit()">Submit</button>
+    </form>
+  </div>
+  <ul class="announcements">
+    <li *ngFor="let announcement of announcements">
+          <h1>{{announcement.title}}</h1>
+          <p>{{announcement.message}}<p>
+    </li>
+  </ul>
+</body>
