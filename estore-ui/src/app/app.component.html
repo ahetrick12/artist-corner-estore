@@ -1,49 +1,55 @@
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-<nav>
-  <a id="mentit" routerLink="/homepage">{{ title }}</a>
-  <a *ngIf="!isLoggedIn" class="auth-button green" routerLink="/login">Login</a>
-  <a
-    *ngIf="isLoggedIn"
-    class="avatar"
-    (click)="toggleAccountDropdown()"
-    (clickOutside)="setAccountDropdown(false)"
-  >
-    <img #avatar src="../../assets/images/avatar.jpg "
-  /></a>
-  <ul #dropdown *ngIf="accountDropdownToggle" class="account-dropdown">
-    <li><button>Account Details</button></li>
-    <li><button>Cart??</button></li>
-    <li><button>Anything else that might go here</button></li>
-    <li><button class="red" (click)="logout()">Logout</button></li>
-  </ul>
-  <ul id="desktop-links">
-    <li><a routerLink="/store">Store</a></li>
-    <li><a routerLink="/cart">Cart</a></li>
-    <li><a >About</a></li>
-    <li><a >Announcements</a></li>
-    <li><a>Contact</a></li>
-    <li>
-      <a href="https://www.facebook.com/"
-        ><img src="../../assets/images/facebook.png"
-      /></a>
-    </li>
-    <li>
-      <a href="https://www.instagram.com/"
-        ><img src="../../assets/images/instagram.png"
-      /></a>
-    </li>
-    <li>
-      <a href="https://twitter.com/"
-        ><img src="../../assets/images/twitter.png"
-      /></a>
-    </li>
-  </ul>
-</nav>
+  <nav>
+    <ul #dropdown *ngIf="accountDropdownToggle" class="account-dropdown">
+      <li><button>Account Details</button></li>
+      <li><button>Cart??</button></li>
+      <li><button>Anything else that might go here</button></li>
+      <li><button class="red" (click)="logout()">Logout</button></li>
+    </ul>
+    <a id="mentit" routerLink="/homepage">{{ title }}</a>
+    <a *ngIf="!isLoggedIn" class="auth-button green" routerLink="/login"
+      >Login</a
+    >
+    <a
+      *ngIf="isLoggedIn"
+      class="avatar"
+      (click)="toggleAccountDropdown()"
+      (clickOutside)="setAccountDropdown(false)"
+    >
+      <img #avatar src="../../assets/images/avatar.jpg "
+    /></a>
 
-<router-outlet></router-outlet>
+    <ul id="desktop-links">
+      <li><a routerLink="/store">Store</a></li>
+      <li><a routerLink="/cart">Cart</a></li>
+      <li><a>About</a></li>
+      <li><a>Announcements</a></li>
+      <li><a>Contact</a></li>
+      <li>
+        <a href="https://www.facebook.com/"
+          ><img src="../../assets/images/facebook.png"
+        /></a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/"
+          ><img src="../../assets/images/instagram.png"
+        /></a>
+      </li>
+      <li>
+        <a href="https://twitter.com/"
+          ><img src="../../assets/images/twitter.png"
+        /></a>
+      </li>
+    </ul>
+  </nav>
+
+  <router-outlet></router-outlet>
 </body>
