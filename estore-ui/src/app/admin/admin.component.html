@@ -1,1 +1,74 @@
-<p>admin works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin View</title>
+  </head>
+  <body>
+    <button routerLink="/store">Back</button>
+    <h1>Inventory Management</h1>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Stock</th>
+        <th>Price</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>
+            <input
+              [(ngModel)]="item.name"
+              (change)="saveItem(item)"
+              type="name"
+              value="{{ item.name }}"
+            />
+          </td>
+          <td>
+            <input
+              [(ngModel)]="item.stock"
+              (change)="saveItem(item)"
+              type="number"
+              value="{{ item.stock }}"
+              min="0"
+              oninput="this.value = Math.round(this.value);"
+            />
+          </td>
+          <td>
+            $<input
+              [(ngModel)]="item.price"
+              (change)="saveItem(item)"
+              type="number"
+              value="{{ item.price }}"
+              min="0.01"
+              oninput="this.value = Math.round(this.value * 100) / 100"
+            />
+          </td>
+        </tr>
+      </tbody>
+
+      <!--
+      <tr>
+        <td><input type="name" value={{ item.name }} /></td>
+        <td>
+          <input
+            type="number"
+            value={{ item.stock }}
+            min="0"
+            oninput="this.value = Math.round(this.value);"
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            value={{ item.price }}
+            min="0.01"
+            oninput="this.value = Math.round(this.value * 100) / 100"
+          />
+        </td>
+      </tr>
+      -->
+    </table>
+  </body>
+</html>

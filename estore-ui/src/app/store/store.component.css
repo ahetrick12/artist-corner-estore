@@ -34,9 +34,10 @@
   border-width: 0px;
   padding: 10px;
   cursor: pointer;
+  background-color: rgb(225, 225, 225);
 }
 #switch_view:hover {
-  background-color: rgb(175, 175, 175);
+  background-color: rgb(175, 175, 175) !important;
 }
 ul {
   margin-left: 10%;
