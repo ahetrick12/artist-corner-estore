@@ -46,10 +46,13 @@
             />
           </td>
           <td id="delete-cell">
-            <button id="delete" (click)="deleteItem(item)"><b>X</b></button>
+            <button id="delete" (click)="deleteItem(item)">
+              <b>&#10006;</b>
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
+    <button id="add" (click)="addItem()"><b>&#43;</b></button>
   </body>
 </html>

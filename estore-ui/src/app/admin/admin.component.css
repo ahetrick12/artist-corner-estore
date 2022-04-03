@@ -19,14 +19,14 @@ h1 {
   background-color: rgb(225, 225, 225);
 }
 
-button:hover {
+#back:hover {
   background-color: rgb(175, 175, 175) !important;
   cursor: pointer;
 }
 
 table {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   margin-left: calc(50% + 35px);
   transform: translateX(-50%);
   margin-right: auto;
@@ -94,4 +94,20 @@ input:focus {
 
 #delete:hover {
   background-color: rgb(173, 57, 57) !important;
+}
+
+#add {
+  width: calc(90% - 75px);
+  margin-left: calc(5% + 35px);
+  margin-right: calc(5% - 35px);
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: x-large;
+  color: rgb(167, 167, 167);
+}
+
+#add:hover {
+  background-color: rgb(242, 242, 242);
+  cursor: pointer;
 }
