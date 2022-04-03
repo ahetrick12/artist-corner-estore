@@ -117,7 +117,7 @@ public class AnnouncementController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/{anouncement}")
+    @DeleteMapping("/{anouncementId}")
     public ResponseEntity<Announcement> deleteAnouncement(@PathVariable int anouncementId) {
         LOG.info("DELETE /announcement/" + anouncementId);
         try {

@@ -34,7 +34,7 @@ export class AnnouncementsService {
   }
 
   deleteAnnouncement(announcement: Announcement): Observable<Announcement> {
-    const url = `${this.announcementUrl}/${announcement}`;
+    const url = `${this.announcementUrl}/${announcement.id}`;
 
     return this.http.delete<Announcement>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted announcement=${announcement}`)),

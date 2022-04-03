@@ -10,6 +10,7 @@
     <li *ngFor="let announcement of announcements">
           <h1>{{announcement.title}}</h1>
           <p>{{announcement.message}}<p>
+          <button (click)="onDelete(announcement)">Delete</button>
     </li>
   </ul>
 </body>

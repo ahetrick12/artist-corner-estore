@@ -25,15 +25,24 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   onSubmit() {
-      const announcement: Announcement = {
-        id: 0,
-        title: this.title,
-        message: this.message
-      }
+    const announcement: Announcement = {
+      id: 0,
+      title: this.title,
+      message: this.message
+    }
 
-      this.announcementsService.addAnnouncement(announcement).subscribe(() => {
-        this.announcementsService.getAnnouncements();
-        this.getAnnouncements();
-      })
+    this.announcementsService.addAnnouncement(announcement).subscribe(() => {
+      this.announcementsService.getAnnouncements();
+      this.getAnnouncements();
+    })
+  }
+
+  onDelete(announcement: Announcement) {
+    console.log("delete");
+
+    this.announcementsService.deleteAnnouncement(announcement).subscribe(() => {
+      this.announcementsService.getAnnouncements();
+      this.getAnnouncements();
+    })
   }
 }
