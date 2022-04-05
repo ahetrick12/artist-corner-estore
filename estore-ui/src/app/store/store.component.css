@@ -1,56 +1,85 @@
-body{
-    font-family: 'Fredoka', sans-serif;
+* {
+  font-family: "Fredoka", sans-serif;
 }
-#titl{
-    text-align: center;
-    margin-block: 20px;
-    font-size: 20px;
-    font-weight: bold;
+#titl {
+  text-align: center;
+  margin-block: 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
-ul{
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    padding:0;
+#admin_view {
+  border-color: black;
+  border-width: 2px;
+  border-radius: 5px;
+  border-style: solid;
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 50px;
 }
-li{
-    display: inline-block;
-    list-style-type: none;
-    width: 19%;
-    margin-left: 1%;
-    margin-bottom: 1%;
-    margin-top: 1%;
-    height: 200px;
-    background-color: lightslategray;
+#view_status {
+  text-align: center;
+  margin-block: 20px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  font-size: 25px;
+  color: red;
+}
+#switch_view {
+  margin-bottom: 10px;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  border-radius: 30px;
+  border-width: 0px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgb(225, 225, 225);
+}
+#switch_view:hover {
+  background-color: rgb(175, 175, 175) !important;
+}
+ul {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  list-style-type: none;
+  width: 19%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+  margin-top: 1%;
+  height: 200px;
+  background-color: lightslategray;
+}
+li span {
+  text-align: center;
+}
+.storeimg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 70px;
+  margin-top: 15px;
+}
+.items div {
+  text-align: center;
+  margin-top: 2%;
+}
 
-}
-li span{
-    text-align: center;
-}
-.storeimg{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 70px;
-    margin-top: 15px;
-}
-.items div{
-    text-align: center;
-    margin-top: 2%;
+#add {
+  left: 50%;
+  background-color: #000;
+  color: white;
+  padding: 5%;
+  border-radius: 4px;
+  border-color: black;
 }
 
-#add{
-    left:50%;
-    background-color:  #000;
-    color: white;
-    padding: 5%;
-    border-radius: 4px;
-    font-family: 'Fredoka', sans-serif;
-    border-color: black;
-
-}
-
-#add:active{
-    color:red;
+#add:active {
+  color: red;
 }

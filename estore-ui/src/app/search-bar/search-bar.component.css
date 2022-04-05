@@ -1,13 +1,16 @@
+* {
+  font-family: "Fredoka", sans-serif;
+}
 
-
-
-.search input[type=text] {
-  float:left;
+.search input[type="text"] {
+  float: left;
   margin: 0 auto;
   display: block;
   padding: 6px;
+  margin-left: 4%;
+  margin-right: 0%;
   font-size: 17px;
-  width: 90%;
+  width: 85%;
 }
 
 .search button {
