@@ -12,7 +12,9 @@
           <input *ngIf="announcement.editing" type="text" name = 'announcementTitleEdit' [(ngModel)]="announcementTitleEdit">
           <p *ngIf="!announcement.editing">{{announcement.message}}<p>
           <textarea *ngIf="announcement.editing" id="announcementMessageEdit" rows="5" cols="50" [(ngModel)]="announcementMessageEdit"></textarea>
-          <p style="font-size: small;">{{getTime(announcement.timestamp)}}</p>
+          <p style="font-size: small;display:inline-block;padding-right: 5px;">{{getTime(announcement.timestamp)}}</p>
+          <p *ngIf="announcement.edited" style="font-size: small;display:inline-block;">(edited)</p>
+          <pre></pre>
           <button *ngIf="!announcement.editing" (click)="onEdit(announcement)">Edit</button>
           <button *ngIf="announcement.editing" (click)="onEditSubmit(announcement)">Submit</button>
           <button (click)="onDelete(announcement)">Delete</button>

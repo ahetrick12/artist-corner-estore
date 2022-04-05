@@ -168,7 +168,7 @@ public class AnnouncementFileDAO implements AnnouncementDAO {
         synchronized(announcements) {
             // we create a new announcement object because the id field is immutable
             // and we need to assign the next unique id
-            Announcement newAnnouncement = new Announcement(nextId(), announcement.getTitle(), announcement.getMessage());
+            Announcement newAnnouncement = new Announcement(nextId(), announcement.getTitle(), announcement.getMessage(), announcement.getEdited());
             announcements.put(newAnnouncement.getId(),newAnnouncement);
             save(); // may throw an IOException
             return newAnnouncement;

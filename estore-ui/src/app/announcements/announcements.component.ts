@@ -37,6 +37,7 @@ export class AnnouncementsComponent implements OnInit {
       id: 0,
       title: this.title,
       message: this.message,
+      edited: false,
       timestamp: "",
       editing: false
     }
@@ -62,6 +63,7 @@ export class AnnouncementsComponent implements OnInit {
       id: announcement.id,
       title: this.announcementTitleEdit,
       message: this.announcementMessageEdit,
+      edited: true,
       timestamp: announcement.timestamp,
       editing: false
     }
