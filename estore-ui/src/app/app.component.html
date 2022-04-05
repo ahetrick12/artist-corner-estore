@@ -9,11 +9,11 @@
 <body>
   <nav>
     <a id="mentit" routerLink="/homepage">{{ title }}</a>
-    <a *ngIf="isLoggedIn" class="auth-button green" routerLink="/login"
+    <a *ngIf="!isLoggedIn" class="auth-button green" routerLink="/login"
       >Login</a
     >
     <a
-      *ngIf="!isLoggedIn"
+      *ngIf="isLoggedIn"
       class="avatar"
       (click)="toggleAccountDropdown()"
       (clickOutside)="setAccountDropdown(false)"

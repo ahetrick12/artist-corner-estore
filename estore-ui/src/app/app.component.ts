@@ -5,6 +5,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
 
@@ -22,7 +23,11 @@ export class AppComponent {
   @ViewChild('dropdown') dropdown?: ElementRef;
   @ViewChild('avatar') avatar?: ElementRef;
 
-  constructor(private authService: AuthService, private renderer: Renderer2) {
+  constructor(
+    private authService: AuthService,
+    private renderer: Renderer2,
+    private route: Router
+  ) {
     this.authService.getAuthStateObs().subscribe((x) => (this.isLoggedIn = x));
 
     this.renderer.listen('window', 'click', (e: Event) => {
@@ -48,5 +53,6 @@ export class AppComponent {
   logout(): void {
     this.authService.updateLoginState(undefined);
     this.setAccountDropdown(false);
+    this.route.navigate(['']);
   }
 }
