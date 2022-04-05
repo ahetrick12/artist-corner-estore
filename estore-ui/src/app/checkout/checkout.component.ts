@@ -1,17 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../cartitem';
 import { CartItemService } from '../cartitem.service';
-import { CartComponent } from "../cart/cart.component";
+import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
+
 export class CheckoutComponent implements OnInit {
   cart: CartItem[] = [];
 
-  constructor(private CartitemService: CartItemService) { }
+  checkoutForm: any;
+
+  constructor(private CartitemService: CartItemService,
+              private formBuilder: FormBuilder,
+              private router:Router) {
+    this.checkoutForm = this.formBuilder.group({
+      fname: ['', [Validators.required]], lname: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.pattern("[0-9]{3}-[0-9]{3}-[0-9]{4}")]], email: ['', [Validators.required, Validators.email]],
+      country: ['', [Validators.required]], state: ['', [Validators.required]],
+      address: ['', [Validators.required]], line2: [''],
+      city: ['', [Validators.required]], zip: ['', [Validators.required]],
+      name: ['', [Validators.required]], card: ['', [Validators.required, Validators.maxLength(19), Validators.minLength(16)]],
+      exp: ['', [Validators.required]], cvc: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(3)]]
+    });
+  }
 
   ngOnInit(): void {
     this.getItems()
@@ -32,5 +49,7 @@ export class CheckoutComponent implements OnInit {
 
   checkout(cart: CartItem[]): void{
     this.CartitemService.clearCart(cart);
+    this.checkoutForm.reset();
+    this.router.navigate(['/homepage']);
   }
 }

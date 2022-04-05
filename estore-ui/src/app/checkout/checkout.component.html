@@ -22,7 +22,8 @@
       </tr>
   </table>
 </div>
-<form>
+<div class="form-group">
+<form class="form" [formGroup]="checkoutForm" (submit)="checkout(cart)">
 <h2 style="text-align: left; padding-left: 5%;">Total: {{findsum() | currency}} </h2>
 <table id="Per">
   <tr>
@@ -33,25 +34,25 @@
     <td>Last name</td>
   </tr>
   <tr>
-    <td><input type="text" id="fname" name="fname"></td>
-    <td><input type="text" id="lname" name="lname"></td>
+    <td><input type="text" id="fname" name="fname" formControlName="fname"></td>
+    <td><input type="text" id="lname" name="lname" formControlName="lname"></td>
   </tr>
   <tr>
     <td>Phone Number</td>
     <td>Email</td>
   </tr>
   <tr>
-    <td><input type="tel" id="phone" placeholder="123-456-7890" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></td>
-    <td><input type="email" id="email" placeholder="john@example.com" name="email"></td>
+    <td><input type="tel" id="phone" placeholder="123-456-7890" name="phone" formControlName="phone"></td>
+    <td><input type="email" id="email" placeholder="john@example.com" name="email" formControlName="email"></td>
   </tr>
   <tr>
     <td>Country</td>
     <td>State</td>
   </tr>
   <tr>
-    <td><input type="text" id="country" name="country"></td>
+    <td><input type="text" id="country" name="country" formControlName="country"></td>
     <td>
-      <select id="state">
+      <select id="state" formControlName="state">
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
       <option value="AZ">Arizona</option>
@@ -111,39 +112,39 @@
     <td>Address line 2</td>
   </tr>
   <tr>
-    <td><input type="text" id="address" name="address"></td>
-    <td><input type="text" id="line2" name="line2"></td>
+    <td><input type="text" id="address" name="address" formControlName="address"></td>
+    <td><input type="text" id="line2" name="line2" formControlName="line2"></td>
   </tr>
   <tr>
     <td>City</td>
     <td>ZIP Code</td>
   </tr>
   <tr>
-    <td><input type="text" id="city" name="city"></td>
-    <td><input type="number" id="zip" name="zip"></td>
+    <td><input type="text" id="city" name="city" formControlName="city"></td>
+    <td><input type="number" id="zip" name="zip" formControlName="zip"></td>
   </tr>
 </table>
 <table id="Pay">
   <th>Payment Info</th>
   <tr>Name on Card</tr>
-  <tr><input type="text" id="name" name="name"></tr>
+  <tr><input type="text" class="form-control" id="name" formControlName="name"></tr>
   <tr>Card Number</tr>
-  <tr><input type="text" id="card" maxlength="19" name="card"></tr>
+  <tr><input type="number" id="card" name="card" formControlName="card"></tr>
 </table>
 <table id="xc">
   <tr>
     <td>Exp Date</td>
-    <td><input type="month" id="exp" name="exp"></td>
+    <td><input type="month" id="exp" name="exp" formControlName="exp"></td>
     <td>CVC</td>
-    <td><input type="number" id="cvc" maxlength="3" name="cvc"></td>
+    <td><input type="number" id="cvc" minlength="3" maxlength="4" name="cvc" formControlName="cvc"></td>
   </tr>
 </table>
-</form>
 <img src="../../assets/images/cards.png" class="cards" alt="cards">
 <label id="sameadr">
   <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
 </label>
-<a routerLink="/homepage">
-  <input type="submit" value="Purchase Items" class="button" id="purchase" (click)="checkout(cart)">
-</a>
+    <button class="button" type="submit" id="purchase" [disabled]="!checkoutForm.valid">Purchase Items</button>
+</form>
+</div>
+<p>{{checkoutForm.valid}} </p>
 </body>
