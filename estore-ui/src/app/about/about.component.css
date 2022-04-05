@@ -1,7 +1,3 @@
-* {
-  font-family: "Fredoka", sans-serif;
-}
-
 h1 {
   text-align: center;
 }
@@ -14,7 +10,7 @@ ul {
 }
 
 input {
-  width: 50%;
+  width: 500px;
   padding: 15px;
   padding-left: 25px;
   padding-right: 25px;
@@ -25,9 +21,9 @@ input {
 }
 
 button {
-  width: 20%;
-  margin-left: 40%;
-  margin-right: 40%;
+  width: 16%;
+  margin-left: 42%;
+  margin-right: 42%;
   cursor: pointer;
 }
 
@@ -41,16 +37,19 @@ button {
   color: white;
 }
 
-#login:hover {
-  background-color: rgb(63, 128, 63);
-}
-
 #create-account {
   border-width: 0px;
   margin-top: 10px;
   background-color: white;
 }
 
-#create-account:hover {
-  color: rgb(84, 84, 84);
+
+div{
+    margin: auto;
+    text-align: center;
+
+}
+
+img{
+    width: 30%;
 }

@@ -46,6 +46,12 @@ export class CartItemService {
     );
   }
 
+  clearCart(cart: CartItem[]): void {
+    for(let i = 0; i < cart.length; i++){
+      this.deleteCartItem(cart[i].item.name).subscribe();
+    }
+  }
+
   addCartItem(item: Item): Observable<CartItem> {
     return this.http.post<CartItem>(this.cartUrl, item).pipe(
       tap((_) => this.log('added item to cart')),

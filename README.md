@@ -21,9 +21,9 @@ An online E-store system built in Java 8=>11 and **\_ _replace with other platfo
 ## How to run it
 
 1. Clone the repository and go to the root directory.
-2. Execute `mvn compile exec:java`
-3. Open in your browser `http://localhost:8080/`
-4. _add any other steps required or examples of how to use/run_
+2. Cd to the 'estore-api' folder and execute 'mvn compile exec:java'
+3. In a seperate terminal, cd to the "estore-ui" folder and execute 'ng serve --open'
+4. Open in your browser 'http://localhost:8080/'
 
 ## Known bugs and disclaimers
 

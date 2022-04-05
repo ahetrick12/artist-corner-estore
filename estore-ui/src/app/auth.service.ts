@@ -29,4 +29,8 @@ export class AuthService {
   getCurrentUser(): User | null {
     return this.loggedInUser != null ? this.loggedInUser : null;
   }
+
+  userIsAdmin(): boolean {
+    return this.loggedInUser != null && this.loggedInUser.username === 'admin';
+  }
 }

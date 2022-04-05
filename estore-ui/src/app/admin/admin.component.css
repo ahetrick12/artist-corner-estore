@@ -1,0 +1,113 @@
+* {
+  font-family: "Fredoka", sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+#back {
+  position: absolute;
+  top: 100px;
+  left: 15px;
+  margin: 0px;
+  padding: 12px;
+  padding-right: 30px;
+  padding-left: 30px;
+  border: 0px solid rgb(128, 128, 128);
+  border-radius: 25px;
+  background-color: rgb(225, 225, 225);
+}
+
+#back:hover {
+  background-color: rgb(175, 175, 175) !important;
+  cursor: pointer;
+}
+
+table {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: calc(50% + 35px);
+  transform: translateX(-50%);
+  margin-right: auto;
+  width: 90%;
+  border-collapse: collapse;
+}
+
+th {
+  font-size: large;
+}
+
+th,
+td {
+  width: 30%;
+  text-align: center;
+  border-bottom: 1px solid rgb(191, 191, 191);
+  padding: 10px;
+}
+
+table td + td,
+table th + th {
+  border-left: 1px solid rgb(191, 191, 191);
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  width: 80%;
+}
+
+input[type="number"] {
+  /* Compensate for the step widget to the side which messes up center alignment */
+  transform: translateX(6px);
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 1px solid rgb(121, 121, 121);
+}
+
+#delete-cell {
+  border: none;
+  background-color: white !important;
+  width: 0%;
+}
+
+#delete {
+  float: left;
+  font-size: large;
+  color: white;
+  background-color: rgb(223, 55, 55);
+  border: none;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#delete:hover {
+  background-color: rgb(173, 57, 57) !important;
+}
+
+#add {
+  width: calc(90% - 75px);
+  margin-left: calc(5% + 35px);
+  margin-right: calc(5% - 35px);
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: x-large;
+  color: rgb(167, 167, 167);
+}
+
+#add:hover {
+  background-color: rgb(242, 242, 242);
+  cursor: pointer;
+}

@@ -138,10 +138,12 @@ public class CartFileDAO implements CartDAO {
         synchronized(cart) {
                 if (cart.get(item.getName()) != null){
                     cart.get(item.getName()).incrementQuantity();
+                    item.setStock(item.getStock()-1);
                     return null;
                 }
                 else{
                     cart.put(item.getName(),new CartItem(item, 1));
+                    item.setStock(item.getStock()-1);
                     save(); // may throw an IOException
                     return new CartItem(item, 1);
             }   

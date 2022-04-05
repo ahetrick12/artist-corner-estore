@@ -19,7 +19,7 @@
           <tr class="items">
             <tr *ngFor="let cartitem of cart">
               <th><figure><img src="../../assets/images/placeholder.jpg" class="storeimg">
-               <figcaption>{{cartitem.item.name}}</figcaption></figure></th> 
+               <figcaption>{{cartitem.item.name}}</figcaption></figure></th>
                 <th>{{cartitem.item.price | currency}}</th>
                 <th><input [(ngModel)]="cartitem.quantity" id="quantity" type="number" placeholder="{{cartitem.quantity}}" min="0" max="{{cartitem.item.stock}}">
                 <br><button class="button"id="update" (click)="save(cartitem)">save</button></th>
@@ -29,6 +29,10 @@
 
     </table>
     <h2 style="text-align: right; padding-right: 5%;">Total: {{findsum() | currency}} </h2>
-    <button class ="button" style="margin-left:90%; margin-bottom: 1%;">Checkout</button>
+    <div *ngIf="cart.length != 0">
+        <a routerLink="/checkout">
+          <button class = "button" style="margin-left:90%; margin-bottom: 1%;">Checkout</button>
+        </a>
+    </div>
 </div>
 </body>

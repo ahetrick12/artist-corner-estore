@@ -1,6 +1,6 @@
-
-body{
-    font-family: 'Fredoka', sans-serif;
+* {
+  font-family: "Fredoka", sans-serif;
+  z-index: 1;
 }
 
 nav {
@@ -77,35 +77,37 @@ nav img {
   position: absolute;
   right: 10px;
   top: 70px;
-  width: 200px;
+  width: 280px;
   line-height: 20px;
   color: white !important;
-  background-color: rgb(202, 202, 202);
+  background-color: rgb(240, 240, 240);
   list-style-type: none;
   margin: 0px;
   padding: 10px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border-radius: 5px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px #636363;
 }
 
 .account-dropdown li button {
   right: 0px;
-  width: 98%;
-  margin-left: 1%;
-  margin-right: 1%;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  padding: 10px;
-  border-radius: 4px;
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 16px;
+  border-radius: 10px;
   display: inline-block;
   font-size: small;
   word-wrap: break-word;
-  color: white;
-  background-color: #2f2f2f;
+  color: rgb(255, 255, 255);
+  background-color: #444444;
   text-align: center;
   cursor: pointer;
   border: none;
+  font-size: 14px;
 }
 
 .red {

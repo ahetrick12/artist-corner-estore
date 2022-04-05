@@ -8,32 +8,28 @@ import { Item } from './item';
 import { CartItem } from './cartitem';
 //import { MessageService } from './message.service';
 
-
 @Injectable({ providedIn: 'root' })
 export class ItemService {
-
   private itemsUrl = 'http://localhost:8080/items';
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(
-    private http: HttpClient){}
-    private items: Observable<Item[]> = of()
-    private searched: boolean = false
-    //private messageService: MessageService) { }
+  constructor(private http: HttpClient) {}
+  private items: Observable<Item[]> = of();
+  private searched: boolean = false;
+  //private messageService: MessageService) { }
 
   /** GET heroes from the server */
   getItems(): Observable<Item[]> {
-    if(this.searched) {
+    if (this.searched) {
       return this.items;
     }
-    return this.http.get<Item[]>(this.itemsUrl)
-      .pipe(
-        tap(_ => this.log('fetched items')),
-        catchError(this.handleError<Item[]>('getItems', []))
-      );
+    return this.http.get<Item[]>(this.itemsUrl).pipe(
+      tap((_) => this.log('fetched items')),
+      catchError(this.handleError<Item[]>('getItems', []))
+    );
   }
 
   /* GET items whose name contains search term */
@@ -46,13 +42,38 @@ export class ItemService {
 
     // sets items variable to the search result
     this.items = this.http.get<Item[]>(`${this.itemsUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found items matching "${term}"`) :
-         this.log(`no items matching "${term}"`)),
+      tap((x) =>
+        x.length
+          ? this.log(`found items matching "${term}"`)
+          : this.log(`no items matching "${term}"`)
+      ),
       catchError(this.handleError<Item[]>('searchItems', []))
     );
     this.searched = true; // sets searched to true to indicate to getItems to use the items list
     return this.items;
+  }
+
+  updateItem(item: Item): Observable<any> {
+    return this.http.put(this.itemsUrl, item, this.httpOptions).pipe(
+      tap((_) => this.log(`updated hero id=${item.id}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
+  }
+
+  deleteItem(id: number): Observable<Item> {
+    const url = `${this.itemsUrl}/${id}`;
+
+    return this.http.delete<Item>(url, this.httpOptions).pipe(
+      tap((_) => this.log(`deleted item id=${id}`)),
+      catchError(this.handleError<Item>('deleteItem'))
+    );
+  }
+
+  addItem(item: Item): Observable<Item> {
+    return this.http.post<Item>(this.itemsUrl, item, this.httpOptions).pipe(
+      tap((newItem: Item) => this.log(`added item w/ id=${newItem.id}`)),
+      catchError(this.handleError<Item>('addItem'))
+    );
   }
 
   /**
@@ -64,7 +85,6 @@ export class ItemService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
