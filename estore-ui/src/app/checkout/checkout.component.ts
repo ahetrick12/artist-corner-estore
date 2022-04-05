@@ -25,8 +25,8 @@ export class CheckoutComponent implements OnInit {
       country: ['', [Validators.required]], state: ['', [Validators.required]],
       address: ['', [Validators.required]], line2: [''],
       city: ['', [Validators.required]], zip: ['', [Validators.required]],
-      name: ['', [Validators.required]], card: ['', [Validators.required, Validators.maxLength(19), Validators.minLength(16)]],
-      exp: ['', [Validators.required]], cvc: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(3)]]
+      name: ['', [Validators.required]], card: ['', [Validators.required, Validators.pattern("[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}")]],
+      exp: ['', [Validators.required]], cvc: ['', [Validators.required, Validators.pattern("[0-9]{3,4}")]]
     });
   }
 
