@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AnnouncementsService } from '../announcements.service';
+import { AuthService } from '../auth.service';
 
 import { Announcement } from '../announcement';
 
@@ -15,7 +16,7 @@ export class AnnouncementsComponent implements OnInit {
   announcementTitleEdit: string = '';
   announcementMessageEdit: string = '';
 
-  constructor(private announcementsService: AnnouncementsService) { }
+  constructor(private announcementsService: AnnouncementsService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getAnnouncements()
@@ -30,6 +31,10 @@ export class AnnouncementsComponent implements OnInit {
     var date = new Date(millis);
 
     return date.toLocaleString();
+  }
+
+  getAdminStatus() {
+    return this.authService.userIsAdmin();
   }
 
   onSubmit() {
