@@ -2,6 +2,7 @@ package com.estore.api.estoreapi.model;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.sql.Timestamp;
 /**
  * represents an Announcement entity.
  *
@@ -11,10 +12,11 @@ public class Announcement {
     @JsonProperty("id") private int id;
     @JsonProperty("title") private String title;
     @JsonProperty("message") private String message;
-    static final String STRING_FORMAT = "Announcement [title=%s, message=%s]";
+    @JsonProperty("timestamp") private long timestamp;
+    static final String STRING_FORMAT = "Announcement [title=%s, message=%s, timestamp=%s]";
 
     /**
-     * create an announcement with the given title and message
+     * create an announcement with the given title and message and current timestamp
      * @param title the title of the annoncement
      * @param message the message of the announcement
      * 
@@ -27,6 +29,7 @@ public class Announcement {
         this.id = id;
         this.title = title;
         this.message = message;
+        this.timestamp = System.currentTimeMillis(); //Sets timestamp to the current time
     }
 
     /**
@@ -46,6 +49,12 @@ public class Announcement {
      * @return the message of the announcement
      */
     public String getMessage() {return message;}
+
+    /**
+     * retrieves the timestamp of the announcement
+     * @return the timestamp of the announcement
+     */
+    public long getTimestamp() {return timestamp;}
 
     /**
      * sets the title of the announcment
@@ -68,6 +77,6 @@ public class Announcement {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, title, message);
+        return String.format(STRING_FORMAT, title, message, timestamp);
     }
 }

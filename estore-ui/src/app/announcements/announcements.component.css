@@ -1,8 +1,11 @@
 input[type=text], textarea {
-  width: 100%;
   padding: 10px 10px;
   margin: 6px 0;
   font-family: 'Fredoka', sans-serif;
+}
+
+input[name=title], textarea[name=message] {
+  width: 100%;
 }
 
 textarea {
@@ -17,6 +20,7 @@ div {
 
 button {
   padding: 7px 10px;
+  margin-right:5px;
   background: #ddd;
   font-size: 15px;
   border: none;
@@ -30,9 +34,13 @@ button:hover {
 li{
   list-style-type: none;
   width: 75ch;
-  margin-left: 31.2%;
+  margin-left: 31.4%;
   padding: 5px;
   text-align: left;
   border: 1px solid black;
+  margin-bottom: 10px;
+}
 
+input[name=announcementTitleEdit], textarea[id=announcementMessageEdit] {
+  width: 96.5%;
 }

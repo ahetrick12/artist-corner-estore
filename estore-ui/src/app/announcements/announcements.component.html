@@ -8,8 +8,13 @@
   </div>
   <ul class="announcements">
     <li *ngFor="let announcement of announcements">
-          <h1>{{announcement.title}}</h1>
-          <p>{{announcement.message}}<p>
+          <h1 *ngIf="!announcement.editing">{{announcement.title}}</h1>
+          <input *ngIf="announcement.editing" type="text" name = 'announcementTitleEdit' [(ngModel)]="announcementTitleEdit">
+          <p *ngIf="!announcement.editing">{{announcement.message}}<p>
+          <textarea *ngIf="announcement.editing" id="announcementMessageEdit" rows="5" cols="50" [(ngModel)]="announcementMessageEdit"></textarea>
+          <p style="font-size: small;">{{getTime(announcement.timestamp)}}</p>
+          <button *ngIf="!announcement.editing" (click)="onEdit(announcement)">Edit</button>
+          <button *ngIf="announcement.editing" (click)="onEditSubmit(announcement)">Submit</button>
           <button (click)="onDelete(announcement)">Delete</button>
     </li>
   </ul>
