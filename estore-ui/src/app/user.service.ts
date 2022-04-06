@@ -1,17 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  catchError,
-  EMPTY,
-  find,
-  mergeMap,
-  Observable,
-  of,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { catchError, mergeMap, Observable, of, tap } from 'rxjs';
 import { CartItem } from './cartitem';
-import { CartItemService } from './cartitem.service';
 import { Item } from './item';
 import { User } from './user';
 
@@ -42,62 +32,6 @@ export class UserService {
   }
 
   // CART ITEM QUERIES
-
-  updateCartItem(username: string, cartItem: CartItem): Observable<any> {
-    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
-      mergeMap((user) => {
-        let filteredCart = user.cart.filter(
-          (item) => item.item.id === cartItem.item.id
-        );
-
-        // Never called unless manually changing quantity so we don't need to check if filteredCart[0] exists
-        user.cart[user.cart.indexOf(filteredCart[0])] = cartItem;
-        return this.http.put(this.usersUrl, user, this.httpOptions);
-      }),
-      catchError(this.handleError<User>('updateCartItem'))
-    );
-  }
-
-  deleteCartItem(username: string, cartItem: CartItem): Observable<any> {
-    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
-      mergeMap((user) => {
-        const index = user.cart.indexOf(cartItem);
-        user.cart.splice(index, 1);
-        return this.http.put(this.usersUrl, user, this.httpOptions);
-      }),
-      catchError(this.handleError<User>('deleteCartItem'))
-    );
-  }
-
-  clearCart(username: string, cart: CartItem[]): void {
-    for (let i = 0; i < cart.length; i++) {
-      this.deleteCartItem(username, cart[i]).subscribe();
-    }
-  }
-
-  addCartItem(username: string, item: Item): Observable<any> {
-    let cartItem: CartItem = {
-      item: item,
-      quantity: 1,
-    };
-
-    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
-      mergeMap((user) => {
-        let filteredCart = user.cart.filter(
-          (cartItem) => cartItem.item.id === item.id
-        );
-
-        if (filteredCart.length > 0) {
-          user.cart[user.cart.indexOf(filteredCart[0])].quantity++;
-        } else {
-          user.cart.push(cartItem);
-        }
-
-        return this.http.put(this.usersUrl, user, this.httpOptions);
-      }),
-      catchError(this.handleError<User>('addCartItem'))
-    );
-  }
 
   /**
    * Handle Http operation that failed.

@@ -1,36 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../cartitem';
-import { CartItemService } from '../cartitem.service';
-import { CartComponent } from "../cart/cart.component";
+import { CartService } from '../cart.service';
+import { CartComponent } from '../cart/cart.component';
+import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
   cart: CartItem[] = [];
 
-  constructor(private CartitemService: CartItemService) { }
+  constructor(
+    private cartService: CartService,
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.getItems()
+    this.getItems();
   }
 
   getItems(): void {
-    this.CartitemService.getCart()
-      .subscribe(cart => this.cart = cart);
+    this.userService
+      .findUser(this.authService.getCurrentUser().username)
+      .subscribe((user) => {
+        this.cart = user.cart;
+      });
   }
 
-  findsum(): number{
+  findsum(): number {
     var total = 0;
-    for(let j=0;j<this.cart.length;j++){
-      total+= this.cart[j].item.price * this.cart[j].quantity;
+    for (let j = 0; j < this.cart.length; j++) {
+      total += this.cart[j].item.price * this.cart[j].quantity;
     }
     return total;
   }
 
-  checkout(cart: CartItem[]): void{
-    this.CartitemService.clearCart(cart);
+  checkout(cart: CartItem[]): void {
+    this.cartService.clearCart(
+      this.authService.getCurrentUser().username,
+      cart
+    );
   }
 }

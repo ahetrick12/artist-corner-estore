@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { CartService } from '../cart.service';
 
 import { CartItem } from '../cartitem';
 import { UserService } from '../user.service';
@@ -14,6 +15,7 @@ export class CartComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private cartService: CartService,
     private authService: AuthService
   ) {}
 
@@ -31,7 +33,7 @@ export class CartComponent implements OnInit {
 
   onDelete(cartItem: CartItem): void {
     this.cart = this.cart.filter((i) => i !== cartItem);
-    this.userService
+    this.cartService
       .deleteCartItem(this.authService.getCurrentUser().username, cartItem)
       .subscribe();
   }
@@ -46,7 +48,7 @@ export class CartComponent implements OnInit {
 
   save(cartItem: CartItem): void {
     if (this.cart) {
-      this.userService
+      this.cartService
         .updateCartItem(this.authService.getCurrentUser().username, cartItem)
         .subscribe();
     }

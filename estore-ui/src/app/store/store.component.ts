@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Item } from '../item';
-import { CartItem } from '../cartitem';
 import { ItemService } from '../item.service';
-import { CartItemService } from '../cartitem.service';
+import { CartService } from '../cart.service';
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
 
@@ -17,7 +16,7 @@ export class StoreComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
-    private userService: UserService,
+    private cartService: CartService,
     private authService: AuthService
   ) {}
   ngOnInit(): void {
@@ -29,7 +28,7 @@ export class StoreComponent implements OnInit {
   }
 
   add(item: Item): void {
-    this.userService
+    this.cartService
       .addCartItem(this.authService.getCurrentUser().username, item)
       .subscribe();
   }
