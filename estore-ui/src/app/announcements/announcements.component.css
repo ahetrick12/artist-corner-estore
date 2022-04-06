@@ -1,7 +1,20 @@
+* {
+  font-family: "Fredoka", sans-serif;
+}
+
+#title {
+  margin-block: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 input[type=text], textarea {
   padding: 10px 10px;
   margin: 6px 0;
   font-family: 'Fredoka', sans-serif;
+  border-radius: 25px;
+  background-color: rgb(231, 231, 231);
+  border: none;
 }
 
 input[name=title], textarea[name=message] {
@@ -21,10 +34,12 @@ div {
 button {
   padding: 7px 10px;
   margin-right:5px;
-  background: #ddd;
   font-size: 15px;
   border: none;
   cursor: pointer;
+  background-color:  #000;
+  color: white;
+  border-radius: 4px;
 }
 
 button:hover {
@@ -33,12 +48,17 @@ button:hover {
 
 li{
   list-style-type: none;
-  width: 75ch;
-  margin-left: 23.6%;
-  padding: 5px;
+  width: 40%;
+  padding: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translate(-8px, 0px);
   text-align: left;
   border: 1px solid black;
+  border-radius: 15px;
   margin-bottom: 10px;
+  background-color: lightslategray;
 }
 
 input[name=announcementTitleEdit], textarea[id=announcementMessageEdit] {
