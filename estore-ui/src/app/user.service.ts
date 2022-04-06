@@ -1,6 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, EMPTY, find, Observable, of, tap } from 'rxjs';
+import {
+  catchError,
+  EMPTY,
+  find,
+  mergeMap,
+  Observable,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { CartItem } from './cartitem';
 import { CartItemService } from './cartitem.service';
 import { Item } from './item';
@@ -35,31 +44,24 @@ export class UserService {
   // CART ITEM QUERIES
 
   updateCartItem(username: string, cartItem: CartItem): Observable<any> {
-    this.findUser(username).subscribe((user) => {
-      user.cart[cartItem.item.id] = cartItem;
-
-      return this.http.put(this.usersUrl, user, this.httpOptions).pipe(
-        tap((_) => this.log(`updated item quantity=${cartItem.quantity}`)),
-        catchError(this.handleError<any>('updateCartItem'))
-      );
-    });
-
-    return EMPTY;
+    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
+      mergeMap((user) => {
+        user.cart[cartItem.item.id] = cartItem;
+        return this.http.put(this.usersUrl, user, this.httpOptions);
+      }),
+      catchError(this.handleError<User>('updateCartItem'))
+    );
   }
 
-  deleteCartItem(username: string, cartItem: CartItem): Observable<CartItem> {
-    this.findUser(username).subscribe((user) => {
-      user.cart.splice(cartItem.item.id, 1);
-    });
-
-    return EMPTY;
-
-    // const url = `${this.cartUrl}/${item}`;
-
-    // return this.http.delete<CartItem>(url, this.httpOptions).pipe(
-    //   tap((_) => this.log(`deleted cartItem=${item}`)),
-    //   catchError(this.handleError<CartItem>('deleteCartItem'))
-    // );
+  deleteCartItem(username: string, cartItem: CartItem): Observable<any> {
+    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
+      mergeMap((user) => {
+        const index = user.cart.indexOf(cartItem);
+        user.cart.splice(index, 1);
+        return this.http.put(this.usersUrl, user, this.httpOptions);
+      }),
+      catchError(this.handleError<User>('deleteCartItem'))
+    );
   }
 
   clearCart(username: string, cart: CartItem[]): void {
@@ -68,28 +70,28 @@ export class UserService {
     }
   }
 
-  addCartItem(username: string, item: Item): Observable<CartItem> {
-    this.findUser(username).subscribe((user) => {
-      let cartItem: CartItem = {
-        item: item,
-        quantity: 1,
-      };
-      this.log(cartItem.item.name);
-      this.log(user.cart + '');
-      user.cart.push(cartItem);
+  addCartItem(username: string, item: Item): Observable<any> {
+    let cartItem: CartItem = {
+      item: item,
+      quantity: 1,
+    };
 
-      return this.http.put(this.usersUrl, user, this.httpOptions).pipe(
-        tap((_) => this.log(`updated item quantity=${cartItem.quantity}`)),
-        catchError(this.handleError<any>('updateCartItem'))
-      );
-    });
+    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
+      mergeMap((user) => {
+        let filteredCart = user.cart.filter(
+          (cartItem) => cartItem.item.id === item.id
+        );
 
-    return EMPTY;
+        if (filteredCart.length > 0) {
+          user.cart[user.cart.indexOf(filteredCart[0])].quantity++;
+        } else {
+          user.cart.push(cartItem);
+        }
 
-    // return this.http.post<CartItem>(this.cartUrl, item).pipe(
-    //   tap((_) => this.log('added item to cart')),
-    //   catchError(this.handleError<CartItem>('addItem'))
-    // );
+        return this.http.put(this.usersUrl, user, this.httpOptions);
+      }),
+      catchError(this.handleError<User>('addCartItem'))
+    );
   }
 
   /**

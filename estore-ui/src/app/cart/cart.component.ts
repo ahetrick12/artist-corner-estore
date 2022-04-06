@@ -48,7 +48,7 @@ export class CartComponent implements OnInit {
     if (this.cart) {
       this.userService
         .updateCartItem(this.authService.getCurrentUser().username, cartItem)
-        .subscribe(() => location.reload());
+        .subscribe();
     }
   }
 }
