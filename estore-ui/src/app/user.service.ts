@@ -46,7 +46,12 @@ export class UserService {
   updateCartItem(username: string, cartItem: CartItem): Observable<any> {
     return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
       mergeMap((user) => {
-        user.cart[cartItem.item.id] = cartItem;
+        let filteredCart = user.cart.filter(
+          (item) => item.item.id === cartItem.item.id
+        );
+
+        // Never called unless manually changing quantity so we don't need to check if filteredCart[0] exists
+        user.cart[user.cart.indexOf(filteredCart[0])] = cartItem;
         return this.http.put(this.usersUrl, user, this.httpOptions);
       }),
       catchError(this.handleError<User>('updateCartItem'))
