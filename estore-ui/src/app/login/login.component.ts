@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   currentUser: User = {
     username: '',
     password: '',
+    cart: [],
   };
 
   constructor(

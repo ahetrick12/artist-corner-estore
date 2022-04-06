@@ -1,44 +1,54 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 import { CartItem } from '../cartitem';
-import { CartItemService } from '../cartitem.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   cart: CartItem[] = [];
 
-  constructor(private CartitemService: CartItemService) { }
+  constructor(
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.getItems();
   }
 
   getItems(): void {
-    this.CartitemService.getCart()
-    .subscribe(cart => this.cart = cart);
+    this.userService
+      .findUser(this.authService.getCurrentUser().username)
+      .subscribe((user) => {
+        this.cart = user.cart;
+      });
   }
 
-  onDelete(item: CartItem): void {
-    this.cart = this.cart.filter(i => i !== item);
-    this.CartitemService.deleteCartItem(item.item.name).subscribe();
+  onDelete(cartItem: CartItem): void {
+    this.cart = this.cart.filter((i) => i !== cartItem);
+    this.userService
+      .deleteCartItem(this.authService.getCurrentUser().username, cartItem)
+      .subscribe();
   }
 
-  findsum(): number{   
+  findsum(): number {
     var total = 0;
-      for(let j=0;j<this.cart.length;j++){   
-         total+= this.cart[j].item.price * this.cart[j].quantity; 
-      }  
-      return total;
-}
-save(item: CartItem): void {
-  if (this.cart) {
-    this.CartitemService.updateCartItem(item)
-      .subscribe(() => location.reload()
-      );
+    for (let j = 0; j < this.cart.length; j++) {
+      total += this.cart[j].item.price * this.cart[j].quantity;
+    }
+    return total;
   }
-}
+
+  save(cartItem: CartItem): void {
+    if (this.cart) {
+      this.userService
+        .updateCartItem(this.authService.getCurrentUser().username, cartItem)
+        .subscribe(() => location.reload());
+    }
+  }
 }

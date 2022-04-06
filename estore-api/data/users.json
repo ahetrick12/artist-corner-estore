@@ -1,1 +1,50 @@
-[{"id":0,"username":"test123","password":"testpw"},{"id":1,"username":"username","password":"password"},{"id":2,"username":"admin","password":"admin"},{"id":3,"username":"alpha_male","password":"p"},{"id":4,"username":"                   ","password":"              "},{"id":5,"username":"{{{{{~~~~~","password":"hi"},{"id":6,"username":"hetrickalex","password":"password"}]
+[
+	{
+		"id": 0,
+		"username": "test123",
+		"password": "testpw",
+		"cart": [
+			{
+				"item": {
+					"id": 1,
+					"name": "Art Canvas Print",
+					"stock": 9,
+					"price": 150.0
+				},
+				"quantity": 1
+			}
+		]
+	},
+	{
+		"id": 1,
+		"username": "username",
+		"password": "password",
+		"cart": [
+			{
+				"item": {
+					"id": 1,
+					"name": "Art Canvas Print",
+					"stock": 9,
+					"price": 150.0
+				},
+				"quantity": 1
+			}
+		]
+	},
+	{
+		"id": 2,
+		"username": "admin",
+		"password": "admin",
+		"cart": [
+			{
+				"item": {
+					"id": 1,
+					"name": "Art Canvas Print",
+					"stock": 9,
+					"price": 150.0
+				},
+				"quantity": 1
+			}
+		]
+	}
+]

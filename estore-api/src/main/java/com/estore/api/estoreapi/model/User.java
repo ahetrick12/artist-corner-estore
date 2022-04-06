@@ -13,22 +13,24 @@ public class User {
     @JsonProperty("id") private int id;
     @JsonProperty("username") private String username;
     @JsonProperty("password") private String password;
+    @JsonProperty("cart") private CartItem[] cart;
 
      /**
      * Create an user with a given username and password.
      * @param username the username of the user
      * @param password the password of the user
+     * @param cart the user's shopping cart
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public User(@JsonProperty("id") int id, @JsonProperty("username") String username, @JsonProperty("password") String password)
-    {
+    public User(@JsonProperty("id") int id, @JsonProperty("username") String username, @JsonProperty("password") String password, @JsonProperty("cart") CartItem[] cart) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.cart = cart;
     }
 
     /**
@@ -60,6 +62,18 @@ public class User {
      * @return the password of the user
      */
     public String getPassword() {return password;}
+
+    /**
+     * Sets the cart of the user
+     * @param cart The cart of the user
+     */
+    public void setCart(CartItem[] cart) {this.cart = cart;}
+
+    /**
+     * Retrieves the cart of the user
+     * @return the cart of the user
+     */
+    public CartItem[] getCart() {return cart;}
 
     /**
      * {@inheritDoc}

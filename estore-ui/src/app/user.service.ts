@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, EMPTY, find, Observable, of, tap } from 'rxjs';
+import { CartItem } from './cartitem';
+import { CartItemService } from './cartitem.service';
+import { Item } from './item';
 import { User } from './user';
 
 @Injectable({
@@ -27,6 +30,66 @@ export class UserService {
       tap((_) => this.log('created user')),
       catchError(this.handleError<User>('findUser'))
     );
+  }
+
+  // CART ITEM QUERIES
+
+  updateCartItem(username: string, cartItem: CartItem): Observable<any> {
+    this.findUser(username).subscribe((user) => {
+      user.cart[cartItem.item.id] = cartItem;
+
+      return this.http.put(this.usersUrl, user, this.httpOptions).pipe(
+        tap((_) => this.log(`updated item quantity=${cartItem.quantity}`)),
+        catchError(this.handleError<any>('updateCartItem'))
+      );
+    });
+
+    return EMPTY;
+  }
+
+  deleteCartItem(username: string, cartItem: CartItem): Observable<CartItem> {
+    this.findUser(username).subscribe((user) => {
+      user.cart.splice(cartItem.item.id, 1);
+    });
+
+    return EMPTY;
+
+    // const url = `${this.cartUrl}/${item}`;
+
+    // return this.http.delete<CartItem>(url, this.httpOptions).pipe(
+    //   tap((_) => this.log(`deleted cartItem=${item}`)),
+    //   catchError(this.handleError<CartItem>('deleteCartItem'))
+    // );
+  }
+
+  clearCart(username: string, cart: CartItem[]): void {
+    for (let i = 0; i < cart.length; i++) {
+      this.deleteCartItem(username, cart[i]).subscribe();
+    }
+  }
+
+  addCartItem(username: string, item: Item): Observable<CartItem> {
+    this.findUser(username).subscribe((user) => {
+      let cartItem: CartItem = {
+        item: item,
+        quantity: 1,
+      };
+      this.log(cartItem.item.name);
+      this.log(user.cart + '');
+      user.cart.push(cartItem);
+
+      return this.http.put(this.usersUrl, user, this.httpOptions).pipe(
+        tap((_) => this.log(`updated item quantity=${cartItem.quantity}`)),
+        catchError(this.handleError<any>('updateCartItem'))
+      );
+    });
+
+    return EMPTY;
+
+    // return this.http.post<CartItem>(this.cartUrl, item).pipe(
+    //   tap((_) => this.log('added item to cart')),
+    //   catchError(this.handleError<CartItem>('addItem'))
+    // );
   }
 
   /**
