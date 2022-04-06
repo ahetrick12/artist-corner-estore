@@ -21,6 +21,7 @@ export class CartService {
   //private messageService: MessageService) { }
 
   // Maybe not needed - instead just get cart from current user?
+  //
   // getCart(): Observable<CartItem[]> {
   //   return this.http.get<CartItem[]>(this.cartUrl).pipe(
   //     tap((_) => this.log('fetched cart')),
@@ -54,10 +55,14 @@ export class CartService {
     );
   }
 
-  clearCart(username: string, cart: CartItem[]): void {
-    for (let i = 0; i < cart.length; i++) {
-      this.deleteCartItem(username, cart[i]).subscribe();
-    }
+  clearCart(username: string): Observable<any> {
+    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
+      mergeMap((user) => {
+        user.cart.splice(0, user.cart.length);
+        return this.http.put(this.usersUrl, user, this.httpOptions);
+      }),
+      catchError(this.handleError<User>('clearCart'))
+    );
   }
 
   addCartItem(username: string, item: Item): Observable<any> {

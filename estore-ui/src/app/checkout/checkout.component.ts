@@ -39,10 +39,10 @@ export class CheckoutComponent implements OnInit {
     return total;
   }
 
-  checkout(cart: CartItem[]): void {
-    this.cartService.clearCart(
-      this.authService.getCurrentUser().username,
-      cart
-    );
+  checkout(): void {
+    this.cart.splice(0, this.cart.length);
+    this.cartService
+      .clearCart(this.authService.getCurrentUser().username)
+      .subscribe();
   }
 }

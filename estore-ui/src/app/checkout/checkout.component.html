@@ -1,149 +1,204 @@
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-<div id="chk">Checkout</div>
-<div>
-  <table id="rw" >
-    <th colspan="2">Review Items</th>
-    <tr class="items">
+  <div id="chk">Checkout</div>
+  <div>
+    <table id="rw">
+      <th colspan="2">Review Items</th>
+      <tr class="items"></tr>
       <tr *ngFor="let cartitem of cart">
-      <td><figure><img src="../../assets/images/placeholder.jpg" class="storeimg">
-        <figcaption>{{cartitem.item.name}}</figcaption></figure></td>
-      <td>
-        <table>
-          <tr>Price: {{cartitem.item.price | currency}}</tr>
-          <tr>Quantity: {{cartitem.quantity}}</tr>
-          <tr>Total: {{cartitem.quantity*cartitem.item.price | currency}}</tr>
-        </table>
-      </td>
+        <td>
+          <figure>
+            <img src="../../assets/images/placeholder.jpg" class="storeimg" />
+            <figcaption>{{ cartitem.item.name }}</figcaption>
+          </figure>
+        </td>
+        <td>
+          <table>
+            <tr>
+              Price:
+              {{
+                cartitem.item.price | currency
+              }}
+            </tr>
+            <tr>
+              Quantity:
+              {{
+                cartitem.quantity
+              }}
+            </tr>
+            <tr>
+              Total:
+              {{
+                cartitem.quantity * cartitem.item.price | currency
+              }}
+            </tr>
+          </table>
+        </td>
       </tr>
-  </table>
-</div>
-<form>
-<h2 style="text-align: left; padding-left: 5%;">Total: {{findsum() | currency}} </h2>
-<table id="Per">
-  <tr>
-  <th colspan="2">Personal Info</th>
-  </tr>
-  <tr>
-    <td>First name</td>
-    <td>Last name</td>
-  </tr>
-  <tr>
-    <td><input type="text" id="fname" name="fname"></td>
-    <td><input type="text" id="lname" name="lname"></td>
-  </tr>
-  <tr>
-    <td>Phone Number</td>
-    <td>Email</td>
-  </tr>
-  <tr>
-    <td><input type="tel" id="phone" placeholder="123-456-7890" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></td>
-    <td><input type="email" id="email" placeholder="john@example.com" name="email"></td>
-  </tr>
-  <tr>
-    <td>Country</td>
-    <td>State</td>
-  </tr>
-  <tr>
-    <td><input type="text" id="country" name="country"></td>
-    <td>
-      <select id="state">
-      <option value="AL">Alabama</option>
-      <option value="AK">Alaska</option>
-      <option value="AZ">Arizona</option>
-      <option value="AR">Arkansas</option>
-      <option value="CA">California</option>
-      <option value="CO">Colorado</option>
-      <option value="CT">Connecticut</option>
-      <option value="DE">Delaware</option>
-      <option value="DC">District Of Columbia</option>
-      <option value="FL">Florida</option>
-      <option value="GA">Georgia</option>
-      <option value="HI">Hawaii</option>
-      <option value="ID">Idaho</option>
-      <option value="IL">Illinois</option>
-      <option value="IN">Indiana</option>
-      <option value="IA">Iowa</option>
-      <option value="KS">Kansas</option>
-      <option value="KY">Kentucky</option>
-      <option value="LA">Louisiana</option>
-      <option value="ME">Maine</option>
-      <option value="MD">Maryland</option>
-      <option value="MA">Massachusetts</option>
-      <option value="MI">Michigan</option>
-      <option value="MN">Minnesota</option>
-      <option value="MS">Mississippi</option>
-      <option value="MO">Missouri</option>
-      <option value="MT">Montana</option>
-      <option value="NE">Nebraska</option>
-      <option value="NV">Nevada</option>
-      <option value="NH">New Hampshire</option>
-      <option value="NJ">New Jersey</option>
-      <option value="NM">New Mexico</option>
-      <option value="NY">New York</option>
-      <option value="NC">North Carolina</option>
-      <option value="ND">North Dakota</option>
-      <option value="OH">Ohio</option>
-      <option value="OK">Oklahoma</option>
-      <option value="OR">Oregon</option>
-      <option value="PA">Pennsylvania</option>
-      <option value="RI">Rhode Island</option>
-      <option value="SC">South Carolina</option>
-      <option value="SD">South Dakota</option>
-      <option value="TN">Tennessee</option>
-      <option value="TX">Texas</option>
-      <option value="UT">Utah</option>
-      <option value="VT">Vermont</option>
-      <option value="VA">Virginia</option>
-      <option value="WA">Washington</option>
-      <option value="WV">West Virginia</option>
-      <option value="WI">Wisconsin</option>
-      <option value="WY">Wyoming</option>
-    </select>
-    </td>
-  </tr>
-  <tr>
-    <td>Street Address</td>
-    <td>Address line 2</td>
-  </tr>
-  <tr>
-    <td><input type="text" id="address" name="address"></td>
-    <td><input type="text" id="line2" name="line2"></td>
-  </tr>
-  <tr>
-    <td>City</td>
-    <td>ZIP Code</td>
-  </tr>
-  <tr>
-    <td><input type="text" id="city" name="city"></td>
-    <td><input type="number" id="zip" name="zip"></td>
-  </tr>
-</table>
-<table id="Pay">
-  <th>Payment Info</th>
-  <tr>Name on Card</tr>
-  <tr><input type="text" id="name" name="name"></tr>
-  <tr>Card Number</tr>
-  <tr><input type="text" id="card" maxlength="19" name="card"></tr>
-</table>
-<table id="xc">
-  <tr>
-    <td>Exp Date</td>
-    <td><input type="month" id="exp" name="exp"></td>
-    <td>CVC</td>
-    <td><input type="number" id="cvc" maxlength="3" name="cvc"></td>
-  </tr>
-</table>
-</form>
-<img src="../../assets/images/cards.png" class="cards" alt="cards">
-<label id="sameadr">
-  <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-</label>
-<a routerLink="/homepage">
-  <input type="submit" value="Purchase Items" class="button" id="purchase" (click)="checkout(cart)">
-</a>
+    </table>
+  </div>
+  <form>
+    <h2 style="text-align: left; padding-left: 5%">
+      Total: {{ findsum() | currency }}
+    </h2>
+    <table id="Per">
+      <tr>
+        <th colspan="2">Personal Info</th>
+      </tr>
+      <tr>
+        <td>First name</td>
+        <td>Last name</td>
+      </tr>
+      <tr>
+        <td><input type="text" id="fname" name="fname" /></td>
+        <td><input type="text" id="lname" name="lname" /></td>
+      </tr>
+      <tr>
+        <td>Phone Number</td>
+        <td>Email</td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="tel"
+            id="phone"
+            placeholder="123-456-7890"
+            name="phone"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            required
+          />
+        </td>
+        <td>
+          <input
+            type="email"
+            id="email"
+            placeholder="john@example.com"
+            name="email"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>Country</td>
+        <td>State</td>
+      </tr>
+      <tr>
+        <td><input type="text" id="country" name="country" /></td>
+        <td>
+          <select id="state">
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Street Address</td>
+        <td>Address line 2</td>
+      </tr>
+      <tr>
+        <td><input type="text" id="address" name="address" /></td>
+        <td><input type="text" id="line2" name="line2" /></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td>ZIP Code</td>
+      </tr>
+      <tr>
+        <td><input type="text" id="city" name="city" /></td>
+        <td><input type="number" id="zip" name="zip" /></td>
+      </tr>
+    </table>
+    <table id="Pay">
+      <th>Payment Info</th>
+      <tr>
+        Name on Card
+      </tr>
+      <tr>
+        <input type="text" id="name" name="name" />
+      </tr>
+      <tr>
+        Card Number
+      </tr>
+      <tr>
+        <input type="text" id="card" maxlength="19" name="card" />
+      </tr>
+    </table>
+    <table id="xc">
+      <tr>
+        <td>Exp Date</td>
+        <td><input type="month" id="exp" name="exp" /></td>
+        <td>CVC</td>
+        <td><input type="number" id="cvc" maxlength="3" name="cvc" /></td>
+      </tr>
+    </table>
+  </form>
+  <img src="../../assets/images/cards.png" class="cards" alt="cards" />
+  <label id="sameadr">
+    <input type="checkbox" checked="checked" name="sameadr" /> Shipping address
+    same as billing
+  </label>
+  <a routerLink="/homepage">
+    <input
+      type="submit"
+      value="Purchase Items"
+      class="button"
+      id="purchase"
+      (click)="checkout()"
+    />
+  </a>
 </body>
