@@ -33,6 +33,10 @@ export class AuthService {
     return this.loginStateObs;
   }
 
+  userLoggedIn(): boolean {
+    return this.loggedInUser != null;
+  }
+
   getCurrentUser(): User {
     return this.loggedInUser != null ? this.loggedInUser : this.emptyUser;
   }

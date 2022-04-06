@@ -24,11 +24,13 @@ export class CartComponent implements OnInit {
   }
 
   getItems(): void {
-    this.userService
-      .findUser(this.authService.getCurrentUser().username)
-      .subscribe((user) => {
-        this.cart = user.cart;
-      });
+    if (this.authService.userLoggedIn()) {
+      this.userService
+        .findUser(this.authService.getCurrentUser().username)
+        .subscribe((user) => {
+          this.cart = user.cart;
+        });
+    }
   }
 
   onDelete(cartItem: CartItem): void {
@@ -38,7 +40,7 @@ export class CartComponent implements OnInit {
       .subscribe();
   }
 
-  findsum(): number {
+  findSum(): number {
     var total = 0;
     for (let j = 0; j < this.cart.length; j++) {
       total += this.cart[j].item.price * this.cart[j].quantity;
