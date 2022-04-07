@@ -24,11 +24,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   getItems(): void {
-    this.userService
-      .findUser(this.authService.getCurrentUser().username)
-      .subscribe((user) => {
-        this.cart = user.cart;
-      });
+    this.cartService.getCart().subscribe((cart) => {
+      this.cart = cart;
+    });
   }
 
   findsum(): number {

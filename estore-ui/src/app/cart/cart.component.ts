@@ -24,13 +24,9 @@ export class CartComponent implements OnInit {
   }
 
   getItems(): void {
-    if (this.authService.userLoggedIn()) {
-      this.userService
-        .findUser(this.authService.getCurrentUser().username)
-        .subscribe((user) => {
-          this.cart = user.cart;
-        });
-    }
+    this.cartService.getCart().subscribe((cart) => {
+      this.cart = cart;
+    });
   }
 
   onDelete(cartItem: CartItem): void {

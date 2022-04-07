@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, mergeMap, Observable, of, tap } from 'rxjs';
-import { CartItem } from './cartitem';
-import { Item } from './item';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { User } from './user';
 
 @Injectable({

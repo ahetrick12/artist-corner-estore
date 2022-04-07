@@ -1,68 +1,106 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { EMPTY, Observable, of } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 
 import { CartItem } from './cartitem';
 import { Item } from './item';
 import { User } from './user';
+import { AuthService } from './auth.service';
+import { UserService } from './user.service';
 //import { MessageService } from './message.service';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
   private usersUrl = 'http://localhost:8080/users';
 
+  private noUserCart: CartItem[] = [];
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private http: HttpClient) {}
-  //private messageService: MessageService) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
-  // Maybe not needed - instead just get cart from current user?
-  //
-  // getCart(): Observable<CartItem[]> {
-  //   return this.http.get<CartItem[]>(this.cartUrl).pipe(
-  //     tap((_) => this.log('fetched cart')),
-  //     catchError(this.handleError<CartItem[]>('getCart', []))
-  //   );
-  // }
+  getCart(): Observable<any> {
+    if (this.authService.userLoggedIn()) {
+      // Remove noUserCart items when someone is logged in
+      this.noUserCart = [];
+
+      return this.userService
+        .findUser(this.authService.getCurrentUser().username)
+        .pipe(
+          switchMap((user) => {
+            return of(user.cart);
+          })
+        );
+    } else {
+      return of(this.noUserCart);
+    }
+  }
 
   updateCartItem(username: string, cartItem: CartItem): Observable<any> {
-    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
-      mergeMap((user) => {
-        let filteredCart = user.cart.filter(
-          (item) => item.item.id === cartItem.item.id
-        );
+    if (this.authService.userLoggedIn()) {
+      return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
+        switchMap((user) => {
+          let filteredCart = user.cart.filter(
+            (item) => item.item.id === cartItem.item.id
+          );
 
-        // Never called unless manually changing quantity so we don't need to check if filteredCart[0] exists
-        user.cart[user.cart.indexOf(filteredCart[0])] = cartItem;
-        return this.http.put(this.usersUrl, user, this.httpOptions);
-      }),
-      catchError(this.handleError<User>('updateCartItem'))
-    );
+          // Never called unless manually changing quantity so we don't need to check if filteredCart[0] exists
+          user.cart[user.cart.indexOf(filteredCart[0])] = cartItem;
+          return this.http.put(this.usersUrl, user, this.httpOptions);
+        }),
+        catchError(this.handleError<User>('updateCartItem'))
+      );
+    } else {
+      let filteredCart = this.noUserCart.filter(
+        (item) => item.item.id === cartItem.item.id
+      );
+
+      this.noUserCart[this.noUserCart.indexOf(filteredCart[0])] = cartItem;
+
+      return EMPTY;
+    }
   }
 
   deleteCartItem(username: string, cartItem: CartItem): Observable<any> {
-    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
-      mergeMap((user) => {
-        const index = user.cart.indexOf(cartItem);
-        user.cart.splice(index, 1);
-        return this.http.put(this.usersUrl, user, this.httpOptions);
-      }),
-      catchError(this.handleError<User>('deleteCartItem'))
-    );
+    if (this.authService.userLoggedIn()) {
+      return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
+        switchMap((user) => {
+          const index = user.cart.indexOf(cartItem);
+          user.cart.splice(index, 1);
+          return this.http.put(this.usersUrl, user, this.httpOptions);
+        }),
+        catchError(this.handleError<User>('deleteCartItem'))
+      );
+    } else {
+      const index = this.noUserCart.indexOf(cartItem);
+      this.noUserCart.splice(index, 1);
+
+      return EMPTY;
+    }
   }
 
   clearCart(username: string): Observable<any> {
-    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
-      mergeMap((user) => {
-        user.cart.splice(0, user.cart.length);
-        return this.http.put(this.usersUrl, user, this.httpOptions);
-      }),
-      catchError(this.handleError<User>('clearCart'))
-    );
+    if (this.authService.userLoggedIn()) {
+      return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
+        switchMap((user) => {
+          user.cart = [];
+          return this.http.put(this.usersUrl, user, this.httpOptions);
+        }),
+        catchError(this.handleError<User>('clearCart'))
+      );
+    } else {
+      this.noUserCart = [];
+
+      return EMPTY;
+    }
   }
 
   addCartItem(username: string, item: Item): Observable<any> {
@@ -71,22 +109,36 @@ export class CartService {
       quantity: 1,
     };
 
-    return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
-      mergeMap((user) => {
-        let filteredCart = user.cart.filter(
-          (cartItem) => cartItem.item.id === item.id
-        );
+    if (this.authService.userLoggedIn()) {
+      return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
+        switchMap((user) => {
+          let filteredCart = user.cart.filter(
+            (cartItem) => cartItem.item.id === item.id
+          );
 
-        if (filteredCart.length > 0) {
-          user.cart[user.cart.indexOf(filteredCart[0])].quantity++;
-        } else {
-          user.cart.push(cartItem);
-        }
+          if (filteredCart.length > 0) {
+            user.cart[user.cart.indexOf(filteredCart[0])].quantity++;
+          } else {
+            user.cart.push(cartItem);
+          }
 
-        return this.http.put(this.usersUrl, user, this.httpOptions);
-      }),
-      catchError(this.handleError<User>('addCartItem'))
-    );
+          return this.http.put(this.usersUrl, user, this.httpOptions);
+        }),
+        catchError(this.handleError<User>('addCartItem'))
+      );
+    } else {
+      let filteredCart = this.noUserCart.filter(
+        (cartItem) => cartItem.item.id === item.id
+      );
+
+      if (filteredCart.length > 0) {
+        this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].quantity++;
+      } else {
+        this.noUserCart.push(cartItem);
+      }
+
+      return EMPTY;
+    }
   }
 
   /**
