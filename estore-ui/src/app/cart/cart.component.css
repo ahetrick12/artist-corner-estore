@@ -1,4 +1,4 @@
-body {
+* {
   font-family: "Fredoka", sans-serif;
 }
 #titl {
@@ -9,6 +9,7 @@ body {
 }
 
 table {
+  width: 60%;
   border-collapse: collapse;
 }
 
@@ -60,7 +61,7 @@ td {
   outline: none;
   border-bottom: 1px solid rgb(121, 121, 121);
   margin-bottom: 10px;
-  transform: translateY(12px);
+  transform: translateY(12px) translateX(6px);
 }
 
 .button {
@@ -97,8 +98,10 @@ h2 {
 }
 
 #checkout {
+  position: fixed;
   text-align: center;
-  margin-left: 75%;
+  right: 50px;
+  bottom: 50px;
 }
 
 #checkout-button {
