@@ -38,7 +38,7 @@ public class AnnouncementController {
     /**
      * creates a rest api controller to reponds to requests.
      * 
-     * @param AnnouncementDao the {@link AnnouncementDAO anouncement data access object} to perform CRUD operations
+     * @param AnnouncementDao the {@link AnnouncementDAO announcement data access object} to perform CRUD operations
      */
     public AnnouncementController(AnnouncementDAO AnnouncementDao) {
         this.AnnouncementDao = AnnouncementDao;
@@ -61,9 +61,9 @@ public class AnnouncementController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Announcement anouncements}
+     * Responds to the GET request for all {@linkplain Announcement announcements}
      * 
-     * @return ResponseEntity with array of {@link Announcement anouncement} objects (may be empty) and
+     * @return ResponseEntity with array of {@link Announcement announcement} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
@@ -86,19 +86,19 @@ public class AnnouncementController {
     /**
      * updates the {@linkplain Announcement announcement} with the provided {@linkplain Announcement announcement} object, if it exists.
      * 
-     * @param announcement the {@link Anouncement announcement} to update
+     * @param announcement the {@link Announcement announcement} to update
      * 
-     * @return ResponseEntity with updated {@link Anouncement anouncement} object and HTTP status of OK if updated
+     * @return ResponseEntity with updated {@link Announcement announcement} object and HTTP status of OK if updated
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
-    public ResponseEntity<Announcement> updateAnouncement(@RequestBody Announcement announcement) {
+    public ResponseEntity<Announcement> updateAnnouncement(@RequestBody Announcement announcement) {
         LOG.info("PUT /announcement " + announcement.toString());
         try {
-            Announcement updatedAnouncement = AnnouncementDao.updateAnnouncement(announcement);
-            if (updatedAnouncement != null)
-                return new ResponseEntity<Announcement>(updatedAnouncement, HttpStatus.OK);
+            Announcement updatedAnnouncement = AnnouncementDao.updateAnnouncement(announcement);
+            if (updatedAnnouncement != null)
+                return new ResponseEntity<Announcement>(updatedAnnouncement, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -109,19 +109,19 @@ public class AnnouncementController {
     }
 
     /**
-     * Deletes a {@linkplain Announcement anouncement} with the given anouncement id
+     * Deletes a {@linkplain Announcement announcement} with the given announcement id
      * 
-     * @param anouncement The id of the {@link Anouncement anouncement} to deleted
+     * @param announcement The id of the {@link Announcement announcement} to deleted
      * 
      * @return ResponseEntity HTTP status of OK if deleted<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/{anouncementId}")
-    public ResponseEntity<Announcement> deleteAnouncement(@PathVariable int anouncementId) {
-        LOG.info("DELETE /announcement/" + anouncementId);
+    @DeleteMapping("/{announcementId}")
+    public ResponseEntity<Announcement> deleteAnnouncement(@PathVariable int announcementId) {
+        LOG.info("DELETE /announcement/" + announcementId);
         try {
-            if(AnnouncementDao.deleteAnnouncement(anouncementId)) {
+            if(AnnouncementDao.deleteAnnouncement(announcementId)) {
                 return new ResponseEntity<Announcement>(HttpStatus.OK);
             }
             else {
@@ -134,21 +134,21 @@ public class AnnouncementController {
     }
 
      /**
-     * creates a {@linkplain Announcement anouncement} with the provided anouncement object.
+     * creates a {@linkplain Announcement announcement} with the provided announcement object.
      * 
-     * @param anouncement - The {@link Anouncement anouncement} to create
+     * @param announcement - The {@link Announcement announcement} to create
      * 
-     * @return ResponseEntity with created {@link Announcement anouncement} object and HTTP status of CREATED<br>
-     * ResponseEntity with HTTP status of CONFLICT if {@link Announcement anouncement} object already exists<br>
+     * @return ResponseEntity with created {@link Announcement announcement} object and HTTP status of CREATED<br>
+     * ResponseEntity with HTTP status of CONFLICT if {@link Announcement announcement} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
-    public ResponseEntity<Announcement> addAnouncement(@RequestBody Announcement anouncement) {
-        LOG.info("POST /announcement/ " + anouncement);
+    public ResponseEntity<Announcement> createAnnouncement(@RequestBody Announcement announcement) {
+        LOG.info("POST /announcement/ " + announcement);
         try {
-            Announcement created_anouncement = AnnouncementDao.createAnnouncement(anouncement);
-            if (created_anouncement != null){
-                return new ResponseEntity<Announcement>(created_anouncement,HttpStatus.CREATED);
+            Announcement created_announcement = AnnouncementDao.createAnnouncement(announcement);
+            if (created_announcement != null){
+                return new ResponseEntity<Announcement>(created_announcement,HttpStatus.CREATED);
             }
             else {
                 return new ResponseEntity<Announcement>(HttpStatus.CONFLICT);
