@@ -69,11 +69,16 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   onEditSubmit(announcement: Announcement) {
+    var edited = false;
+    if(announcement.title != this.announcementTitleEdit || announcement.message != this.announcementMessageEdit) {
+      edited = true;
+    }
+
     const updatedAnnouncement: Announcement = {
       id: announcement.id,
       title: this.announcementTitleEdit,
       message: this.announcementMessageEdit,
-      edited: true,
+      edited: edited,
       timestamp: announcement.timestamp,
       editing: false
     }
