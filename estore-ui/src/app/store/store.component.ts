@@ -28,9 +28,11 @@ export class StoreComponent implements OnInit {
   }
 
   add(item: Item): void {
-    this.cartService
+    if (item.stock> 0){
+      this.cartService
       .addCartItem(this.authService.getCurrentUser().username, item)
       .subscribe();
+    }
   }
 
   adminLoggedIn(): boolean {

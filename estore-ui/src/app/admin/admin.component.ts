@@ -57,7 +57,7 @@ export class AdminComponent implements OnInit {
       id: 0,
       name: newName,
       stock: 0,
-      price: 0,
+      price: .01,
     };
 
     this.itemService.addItem(item).subscribe((i) => {
