@@ -61,7 +61,7 @@ td {
   outline: none;
   border-bottom: 1px solid rgb(121, 121, 121);
   margin-bottom: 10px;
-  transform: translateY(12px) translateX(6px);
+  transform: translateX(6px);
 }
 
 .button {

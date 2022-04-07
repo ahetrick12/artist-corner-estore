@@ -30,6 +30,7 @@
         <th>
           <input
             [(ngModel)]="cartitem.quantity"
+            (ngModelChange)="save(cartitem)"
             (keyup)="validateInput(cartitem)"
             id="quantity"
             type="number"
@@ -37,9 +38,9 @@
             min="0"
             max="{{ cartitem.item.stock }}"
           />
-          <br /><button class="button" id="update" (click)="save(cartitem)">
+          <!--<br /><button class="button" id="update" (click)="save(cartitem)">
             save
-          </button>
+          </button>-->
         </th>
         <th>{{ cartitem.quantity * cartitem.item.price | currency }}</th>
         <th>
