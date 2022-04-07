@@ -4,9 +4,14 @@ body {
 #titl {
   text-align: center;
   margin-block: 20px;
-  font-size: 20px;
+  font-size: x-large;
   font-weight: bold;
 }
+
+table {
+  border-collapse: collapse;
+}
+
 ul {
   margin-left: 10%;
   margin-right: 10%;
@@ -25,9 +30,12 @@ li {
 li span {
   text-align: center;
 }
+
 .storeimg {
   width: 150px;
+  border-radius: 10px;
 }
+
 .items {
   text-align: center;
   margin: auto;
@@ -37,37 +45,70 @@ li span {
   text-align: center;
   margin: auto;
 }
-tr {
-  border-top: 2px black solid;
-}
-th {
+
+th,
+td {
   border-bottom: 2px black solid;
+  padding: 10px;
 }
 
 #quantity {
-  width: 40px;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  width: 80%;
+  outline: none;
+  border-bottom: 1px solid rgb(121, 121, 121);
+  margin-bottom: 10px;
+  transform: translateY(12px);
 }
 
 .button {
   background-color: black;
   color: white;
-  padding: 1%;
-  border-radius: 2px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
   font-family: "Fredoka", sans-serif;
+  transform: translateY(12px);
 }
 .button:hover {
-  color: red;
+  background-color: rgb(79, 79, 79);
+  cursor: pointer;
 }
 
 #remove {
-  border-radius: 30px;
-  background-color: black;
+  border-radius: 50%;
+  background-color: rgb(223, 55, 55);
+  text-align: center;
   color: white;
-  border-color: black;
-  font-weight: bold;
-  font-family: "Fredoka", sans-serif;
+  border: none;
+  height: 30px;
+  width: 30px;
 }
 
 #remove:hover {
-  color: red;
+  background-color: rgb(173, 57, 57) !important;
+  cursor: pointer;
+}
+
+h2 {
+  margin: 0;
+}
+
+#checkout {
+  text-align: center;
+  margin-left: 75%;
+}
+
+#checkout-button {
+  font-size: large;
+  margin-bottom: 5%;
+  padding: 10px;
+  background-color: rgb(71, 167, 71);
+}
+
+#checkout-button:hover {
+  background-color: rgb(53, 106, 53);
+  cursor: pointer;
 }

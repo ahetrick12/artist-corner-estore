@@ -14,8 +14,13 @@
         <th>Item</th>
         <th>Price</th>
         <th>Quantity</th>
+        <<<<<<< Updated upstream
         <th>Remove</th>
         <th>Total</th>
+        =======
+        <th>Total</th>
+        <th>Remove</th>
+        >>>>>>> Stashed changes
       </tr>
 
       <tr class="items"></tr>
@@ -41,19 +46,21 @@
             save
           </button>
         </th>
-        <th><button id="remove" (click)="onDelete(cartitem)">x</button></th>
         <th>{{ cartitem.quantity * cartitem.item.price | currency }}</th>
+        <th>
+          <button id="remove" (click)="onDelete(cartitem)">
+            <b>&#10006;</b>
+          </button>
+        </th>
       </tr>
     </table>
-    <h2 style="text-align: right; padding-right: 5%">
-      Total: {{ findSum() | currency }}
-    </h2>
-    <div *ngIf="cart.length != 0">
-      <a routerLink="/checkout">
-        <button class="button" style="margin-left: 90%; margin-bottom: 1%">
-          Checkout
-        </button>
-      </a>
+    <div id="checkout">
+      <h2>Total: {{ findSum() | currency }}</h2>
+      <div *ngIf="cart.length != 0">
+        <a routerLink="/checkout">
+          <button class="button" id="checkout-button">Checkout</button>
+        </a>
+      </div>
     </div>
   </div>
 </body>
