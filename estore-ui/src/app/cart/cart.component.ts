@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { filter } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { CartService } from '../cart.service';
 
@@ -50,5 +51,23 @@ export class CartComponent implements OnInit {
         .updateCartItem(this.authService.getCurrentUser().username, cartItem)
         .subscribe();
     }
+  }
+
+  validateInput(cartItem: CartItem): void {
+    let filteredCart = this.cart.filter(
+      (item) => item.item.id === cartItem.item.id
+    );
+    let index = this.cart.indexOf(filteredCart[0]);
+    let num = this.cart[index].quantity;
+
+    num = Math.round(num);
+
+    if (num < 0) {
+      num = 0;
+    } else if (num > cartItem.item.stock) {
+      num = cartItem.item.stock;
+    }
+
+    this.cart[index].quantity = num;
   }
 }
