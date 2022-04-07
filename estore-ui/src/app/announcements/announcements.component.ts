@@ -38,22 +38,27 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   onSubmit() {
-    const announcement: Announcement = {
-      id: 0,
-      title: this.title,
-      message: this.message,
-      edited: false,
-      timestamp: "",
-      editing: false
+    if(this.title != "" && this.message != "") {
+      const announcement: Announcement = {
+        id: 0,
+        title: this.title,
+        message: this.message,
+        edited: false,
+        timestamp: "",
+        editing: false
+      }
+
+      this.announcementsService.addAnnouncement(announcement).subscribe(() => {
+        this.announcementsService.getAnnouncements();
+        this.getAnnouncements();
+      })
+
+      this.title = "";
+      this.message = "";
     }
-
-    this.announcementsService.addAnnouncement(announcement).subscribe(() => {
-      this.announcementsService.getAnnouncements();
-      this.getAnnouncements();
-    })
-
-    this.title = '';
-    this.message = '';
+    else {
+      alert("Please enter both a title and message.");
+    }
   }
 
   onEdit(announcement: Announcement) {
