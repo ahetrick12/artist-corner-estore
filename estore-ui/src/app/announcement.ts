@@ -1,8 +1,8 @@
 export interface Announcement {
-    id: number;
-    title: string;
-    message: string;
-    edited: boolean;
-    timestamp: string;
-    editing: boolean;
-  }
+  id: number;
+  title: string;
+  message: string;
+  edited: boolean;
+  timestamp: string;
+  editing: boolean;
+}

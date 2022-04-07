@@ -1,3 +1,9 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+</head>
+
 <body>
   <div id="title">Announcements</div>
   <div>
@@ -11,11 +17,15 @@
     <li *ngFor="let announcement of announcements">
           <h1 *ngIf="!announcement.editing">{{announcement.title}}</h1>
           <input *ngIf="announcement.editing" type="text" name = 'announcementTitleEdit' [(ngModel)]="announcementTitleEdit">
+
           <p *ngIf="!announcement.editing">{{announcement.message}}<p>
           <textarea *ngIf="announcement.editing" id="announcementMessageEdit" rows="5" cols="50" [(ngModel)]="announcementMessageEdit"></textarea>
+
           <p style="font-size: small;display:inline-block;padding-right: 5px;">{{getTime(announcement.timestamp)}}</p>
           <p *ngIf="announcement.edited" style="font-size: small;display:inline-block;">(edited)</p>
+
           <pre></pre>
+          
           <button *ngIf="!announcement.editing && getAdminStatus()" (click)="onEdit(announcement)">Edit</button>
           <button *ngIf="announcement.editing" (click)="onEditSubmit(announcement)">Submit</button>
           <button (click)="onDelete(announcement)" *ngIf="getAdminStatus()">Delete</button>

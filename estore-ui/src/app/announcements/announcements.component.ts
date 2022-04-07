@@ -62,10 +62,10 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   onEdit(announcement: Announcement) {
-      announcement.editing = true;
+    announcement.editing = true;
 
-      this.announcementTitleEdit = announcement.title;
-      this.announcementMessageEdit = announcement.message;
+    this.announcementTitleEdit = announcement.title;
+    this.announcementMessageEdit = announcement.message;
   }
 
   onEditSubmit(announcement: Announcement) {
