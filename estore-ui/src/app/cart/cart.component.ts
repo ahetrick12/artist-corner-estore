@@ -44,7 +44,6 @@ export class CartComponent implements OnInit {
     }
     return total;
   }
-
   save(cartItem: CartItem): void {
     if (this.cart) {
       this.cartService
