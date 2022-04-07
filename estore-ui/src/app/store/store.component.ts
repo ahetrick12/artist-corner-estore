@@ -36,4 +36,8 @@ export class StoreComponent implements OnInit {
   adminLoggedIn(): boolean {
     return this.authService.userIsAdmin();
   }
+
+  itemsSize(){
+    return this.items.length;
+  }
 }

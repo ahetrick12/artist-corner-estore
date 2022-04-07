@@ -8,7 +8,7 @@
 </head>
 <body>
   <div id="titl">Cart</div>
-  <div>
+  <div *ngIf="cart.length != 0; else no_items">
     <table id="center">
       <tr>
         <th>Item</th>
@@ -52,11 +52,12 @@
     </table>
     <div id="checkout">
       <h2>Total: {{ findSum() | currency }}</h2>
-      <div *ngIf="cart.length != 0">
+      <div>
         <a routerLink="/checkout">
           <button class="button" id="checkout-button">Checkout</button>
         </a>
       </div>
     </div>
   </div>
+  <ng-template #no_items> <p style="text-align: center;">Your cart is currently empty. Add some items!</p></ng-template>
 </body>

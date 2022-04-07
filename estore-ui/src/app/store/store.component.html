@@ -17,6 +17,9 @@
       Click to switch to admin inventory management view
     </button>
   </div>
+  <div *ngIf="items.length == 0" style="text-align: center">
+    No items found.
+  </div>
   <ul class="items">
     <li *ngFor="let item of items">
       <div class="boxes">
