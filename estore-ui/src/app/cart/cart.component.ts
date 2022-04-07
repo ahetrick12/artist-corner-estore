@@ -36,9 +36,17 @@ export class CartComponent implements OnInit {
 }
 save(item: CartItem): void {
   if (this.cart) {
+    if (item.quantity <= item.item.stock && item.quantity>0){
     this.CartitemService.updateCartItem(item)
       .subscribe(() => location.reload()
       );
   }
+  else if (item.quantity < 0){
+    alert("Entered quantity is less than zero.");
+  }
+  else{
+    alert("Entered quantity is higher than current stock: " + item.item.stock);
+  }
+}
 }
 }
