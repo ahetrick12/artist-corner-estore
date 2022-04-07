@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Item } from '../item';
-import { CartItem } from '../cartitem';
 import { ItemService } from '../item.service';
-import { CartItemService } from '../cartitem.service';
+import { CartService } from '../cart.service';
 import { AuthService } from '../auth.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-store',
@@ -16,7 +16,7 @@ export class StoreComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
-    private cartitemService: CartItemService,
+    private cartService: CartService,
     private authService: AuthService
   ) {}
   ngOnInit(): void {
@@ -28,9 +28,9 @@ export class StoreComponent implements OnInit {
   }
 
   add(item: Item): void {
-    this.cartitemService.addCartItem(item).subscribe(() => {
-      this.cartitemService.getCart();
-    });
+    this.cartService
+      .addCartItem(this.authService.getCurrentUser().username, item)
+      .subscribe();
   }
 
   adminLoggedIn(): boolean {

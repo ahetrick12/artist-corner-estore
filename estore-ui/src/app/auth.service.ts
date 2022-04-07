@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { User } from './user';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   loggedInUser?: User;
+  emptyUser: User = {
+    username: '',
+    password: '',
+    cart: [],
+  };
+
   val: boolean = false;
   private loginState = new Subject<boolean>();
   private loginStateObs = this.loginState.asObservable();
@@ -26,8 +33,12 @@ export class AuthService {
     return this.loginStateObs;
   }
 
-  getCurrentUser(): User | null {
-    return this.loggedInUser != null ? this.loggedInUser : null;
+  userLoggedIn(): boolean {
+    return this.loggedInUser != null;
+  }
+
+  getCurrentUser(): User {
+    return this.loggedInUser != null ? this.loggedInUser : this.emptyUser;
   }
 
   userIsAdmin(): boolean {
