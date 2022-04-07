@@ -1,9 +1,14 @@
 <div class="search">
   <form>
-    <input type="text" placeholder="Search.." name="search" [(ngModel)]="search">
+    <input
+      type="text"
+      placeholder="Search.."
+      name="search"
+      [(ngModel)]="search"
+    />
     <button (click)="onSubmit()">Submit</button>
   </form>
-
-
-  <div *ngIf="(searchArray | async)?.length == 0" style="text-align: center;"> No items found. </div>
+  <div *ngIf="(searchArray | async)?.length == 0" style="text-align: center">
+    No items found.
+  </div>
 </div>

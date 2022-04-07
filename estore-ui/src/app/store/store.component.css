@@ -4,8 +4,9 @@
 #titl {
   text-align: center;
   margin-block: 20px;
-  font-size: 20px;
+  font-size: x-large;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 #admin_view {
   border-color: black;
@@ -15,7 +16,7 @@
   width: 40%;
   margin-left: 30%;
   margin-right: 30%;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 #view_status {
   text-align: center;

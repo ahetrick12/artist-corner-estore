@@ -9,22 +9,30 @@
   padding: 6px;
   margin-left: 4%;
   margin-right: 0%;
-  font-size: 17px;
+  font-size: 15px;
   width: 85%;
+  padding: 10px;
+  padding-left: 20px;
+}
+
+.search input[type="text"]:focus {
+  outline: none;
 }
 
 .search button {
-    background-color:  #000;
-    color: white;
-    padding: 1%;
-    border-radius: 4px;
-    font-family: 'Fredoka', sans-serif;
-    border-color: black;
-    margin-left: 1%;
+  background-color: #000;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: "Fredoka", sans-serif;
+  border: none;
+  margin: 0px;
+  margin-left: 1%;
 }
 
 .search button:hover {
   background: gray;
+  cursor: pointer;
 }
 
 input {
@@ -39,9 +47,9 @@ input {
   margin-left: 2%;
 }
 
-form{padding:1%}
+form {
+  padding: 1%;
+}
 
-
-#NonEmpty{
-  
+#NonEmpty {
 }
