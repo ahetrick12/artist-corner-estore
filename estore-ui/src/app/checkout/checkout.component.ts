@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../cartitem';
 import { CartItemService } from '../cartitem.service';
 import { FormBuilder } from '@angular/forms';
+import {ReactiveFormsModule} from "@angular/forms";
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import {Router} from "@angular/router";
 
@@ -18,7 +19,11 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private CartitemService: CartItemService,
               private formBuilder: FormBuilder,
-              private router:Router) {
+              private router: Router) {
+    this.createForm();
+  }
+
+  createForm() {
     this.checkoutForm = this.formBuilder.group({
       fname: ['', [Validators.required]], lname: ['', [Validators.required]],
       phone: ['', [Validators.required, Validators.pattern("[0-9]{3}-[0-9]{3}-[0-9]{4}")]], email: ['', [Validators.required, Validators.email]],
@@ -28,6 +33,7 @@ export class CheckoutComponent implements OnInit {
       name: ['', [Validators.required]], card: ['', [Validators.required, Validators.pattern("[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}")]],
       exp: ['', [Validators.required]], cvc: ['', [Validators.required, Validators.pattern("[0-9]{3,4}")]]
     });
+
   }
 
   ngOnInit(): void {

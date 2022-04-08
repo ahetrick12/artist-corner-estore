@@ -3,6 +3,14 @@ body{
   padding-bottom: 100px;
 }
 
+input.ng-touched.ng-invalid {
+  border-color:red;
+}
+
+input.ng-touched.ng-valid {
+  border-color:green;
+}
+
 #chk{
   text-align: center;
   margin-block: 20px;
