@@ -14,6 +14,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ContactComponent,
     AboutComponent,
     CheckoutComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

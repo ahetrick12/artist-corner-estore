@@ -1,44 +1,73 @@
 import { Component, OnInit } from '@angular/core';
+import { filter } from 'rxjs';
+import { AuthService } from '../auth.service';
+import { CartService } from '../cart.service';
 
 import { CartItem } from '../cartitem';
-import { CartItemService } from '../cartitem.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   cart: CartItem[] = [];
 
-  constructor(private CartitemService: CartItemService) { }
+  constructor(
+    private userService: UserService,
+    private cartService: CartService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.getItems();
   }
 
   getItems(): void {
-    this.CartitemService.getCart()
-    .subscribe(cart => this.cart = cart);
+    this.cartService.getCart().subscribe((cart) => {
+      this.cart = cart;
+    });
   }
 
-  onDelete(item: CartItem): void {
-    this.cart = this.cart.filter(i => i !== item);
-    this.CartitemService.deleteCartItem(item.item.name).subscribe();
+  onDelete(cartItem: CartItem): void {
+    this.cart = this.cart.filter((i) => i !== cartItem);
+    this.cartService
+      .deleteCartItem(this.authService.getCurrentUser().username, cartItem)
+      .subscribe();
   }
 
-  findsum(): number{   
+  findSum(): number {
     var total = 0;
-      for(let j=0;j<this.cart.length;j++){   
-         total+= this.cart[j].item.price * this.cart[j].quantity; 
-      }  
-      return total;
-}
-save(item: CartItem): void {
-  if (this.cart) {
-    this.CartitemService.updateCartItem(item)
-      .subscribe(() => location.reload()
-      );
+    for (let j = 0; j < this.cart.length; j++) {
+      total += this.cart[j].item.price * this.cart[j].quantity;
+    }
+    return total;
   }
-}
+
+  save(cartItem: CartItem): void {
+    if (this.cart) {
+      this.cartService
+        .updateCartItem(this.authService.getCurrentUser().username, cartItem)
+        .subscribe();
+    }
+  }
+
+  validateInput(cartItem: CartItem): void {
+    let filteredCart = this.cart.filter(
+      (item) => item.item.id === cartItem.item.id
+    );
+    let index = this.cart.indexOf(filteredCart[0]);
+    let num = this.cart[index].quantity;
+
+    num = Math.round(num);
+
+    if (num < 0) {
+      num = 0;
+    } else if (num > cartItem.item.stock) {
+      num = cartItem.item.stock;
+    }
+
+    this.cart[index].quantity = num;
+  }
 }

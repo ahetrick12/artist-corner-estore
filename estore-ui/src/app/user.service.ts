@@ -29,6 +29,8 @@ export class UserService {
     );
   }
 
+  // CART ITEM QUERIES
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

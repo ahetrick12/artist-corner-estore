@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../cartitem';
-import { CartItemService } from '../cartitem.service';
+import { CartService } from '../cart.service';
+import { CartComponent } from '../cart/cart.component';
+import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import {Router} from "@angular/router";
@@ -8,19 +11,24 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.css'],
 })
 
 export class CheckoutComponent implements OnInit {
-  cart: CartItem[] = [];
 
+  cart: CartItem[] = [];
   checkoutForm: any;
 
-  constructor(private CartitemService: CartItemService,
-              private formBuilder: FormBuilder,
-              private router: Router) {
+  constructor(
+    private cartService: CartService,
+    private userService: UserService,
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
     this.createForm();
   }
+
 
   createForm() {
     this.checkoutForm = this.formBuilder.group({
@@ -36,24 +44,28 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getItems()
+    this.getItems();
   }
 
   getItems(): void {
-    this.CartitemService.getCart()
-      .subscribe(cart => this.cart = cart);
+    this.cartService.getCart().subscribe((cart) => {
+      this.cart = cart;
+    });
   }
 
-  findsum(): number{
+  findsum(): number {
     var total = 0;
-    for(let j=0;j<this.cart.length;j++){
-      total+= this.cart[j].item.price * this.cart[j].quantity;
+    for (let j = 0; j < this.cart.length; j++) {
+      total += this.cart[j].item.price * this.cart[j].quantity;
     }
     return total;
   }
 
-  checkout(cart: CartItem[]): void{
-    this.CartitemService.clearCart(cart);
+  checkout(): void {
+    this.cart.splice(0, this.cart.length);
+    this.cartService
+      .clearCart(this.authService.getCurrentUser().username)
+      .subscribe();
     this.checkoutForm.reset();
     this.router.navigate(['/homepage']);
   }

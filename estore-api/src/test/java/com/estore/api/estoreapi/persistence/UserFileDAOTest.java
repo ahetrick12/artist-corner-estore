@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.estore.api.estoreapi.model.CartItem;
 import com.estore.api.estoreapi.model.User;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -41,9 +42,9 @@ public class UserFileDAOTest {
     public void setupUserFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testUsers = new User[3];
-        testUsers[0] = new User(99,"Username", "Password");
-        testUsers[1] = new User(100,"TestUsername", "12345");
-        testUsers[2] = new User(101,"qwrhkjh123987", "asdkjflaskjd");
+        testUsers[0] = new User(99,"Username", "Password", new CartItem[1]);
+        testUsers[1] = new User(100,"TestUsername", "12345", new CartItem[1]);
+        testUsers[2] = new User(101,"qwrhkjh123987", "asdkjflaskjd", new CartItem[1]);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the User array above
@@ -101,7 +102,7 @@ public class UserFileDAOTest {
     @Test
     public void testCreateUser() {
         // Setup
-        User user = new User(102,"Test123", "12345");
+        User user = new User(102,"Test123", "12345", new CartItem[1]);
 
         // Invoke
         User result = assertDoesNotThrow(() -> userFileDAO.createUser(user),
@@ -118,7 +119,7 @@ public class UserFileDAOTest {
     @Test
     public void testUpdateUser() {
         // Setup
-        User user = new User(99,"CoolUsername", "SecurePassword");
+        User user = new User(99,"CoolUsername", "SecurePassword", new CartItem[1]);
 
         // Invoke
         User result = assertDoesNotThrow(() -> userFileDAO.updateUser(user),
@@ -136,7 +137,7 @@ public class UserFileDAOTest {
             .when(mockObjectMapper)
                 .writeValue(any(File.class),any(User[].class));
 
-        User user = new User(102, "customer", "password12345");
+        User user = new User(102, "customer", "password12345", new CartItem[1]);
 
         assertThrows(IOException.class,
                         () -> userFileDAO.createUser(user),
@@ -166,7 +167,7 @@ public class UserFileDAOTest {
     @Test
     public void testUpdateUserNotFound() {
         // Setup
-        User user = new User(98, "user", "pw");
+        User user = new User(98, "user", "pw", new CartItem[1]);
 
         // Invoke
         User result = assertDoesNotThrow(() -> userFileDAO.updateUser(user),

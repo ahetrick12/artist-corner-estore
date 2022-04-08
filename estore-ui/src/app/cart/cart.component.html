@@ -1,38 +1,59 @@
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-<div id="titl">Cart</div>
-<div>
-    <table id ="center">
-        <tr>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Remove</th>
-            <th>Total</th>
-          </tr>
+  <div id="titl">Cart</div>
+  <div>
+    <table id="center">
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Remove</th>
+        <th>Total</th>
+      </tr>
 
-          <tr class="items">
-            <tr *ngFor="let cartitem of cart">
-              <th><figure><img src="../../assets/images/placeholder.jpg" class="storeimg">
-               <figcaption>{{cartitem.item.name}}</figcaption></figure></th>
-                <th>{{cartitem.item.price | currency}}</th>
-                <th><input [(ngModel)]="cartitem.quantity" id="quantity" type="number" placeholder="{{cartitem.quantity}}" min="0" max="{{cartitem.item.stock}}">
-                <br><button class="button"id="update" (click)="save(cartitem)">save</button></th>
-                <th><button id="remove" (click)="onDelete(cartitem)">x</button></th>
-                <th>{{cartitem.quantity*cartitem.item.price | currency}}</th>
-            </tr>
-
+      <tr class="items"></tr>
+      <tr *ngFor="let cartitem of cart">
+        <th>
+          <figure>
+            <img src="../../assets/images/placeholder.jpg" class="storeimg" />
+            <figcaption>{{ cartitem.item.name }}</figcaption>
+          </figure>
+        </th>
+        <th>{{ cartitem.item.price | currency }}</th>
+        <th>
+          <input
+            [(ngModel)]="cartitem.quantity"
+            (keyup)="validateInput(cartitem)"
+            id="quantity"
+            type="number"
+            value="{{ cartitem.quantity }}"
+            min="0"
+            max="{{ cartitem.item.stock }}"
+          />
+          <br /><button class="button" id="update" (click)="save(cartitem)">
+            save
+          </button>
+        </th>
+        <th><button id="remove" (click)="onDelete(cartitem)">x</button></th>
+        <th>{{ cartitem.quantity * cartitem.item.price | currency }}</th>
+      </tr>
     </table>
-    <h2 style="text-align: right; padding-right: 5%;">Total: {{findsum() | currency}} </h2>
+    <h2 style="text-align: right; padding-right: 5%">
+      Total: {{ findSum() | currency }}
+    </h2>
     <div *ngIf="cart.length != 0">
-        <a routerLink="/checkout">
-          <button class = "button" style="margin-left:90%; margin-bottom: 1%;">Checkout</button>
-        </a>
+      <a routerLink="/checkout">
+        <button class="button" style="margin-left: 90%; margin-bottom: 1%">
+          Checkout
+        </button>
+      </a>
     </div>
-</div>
+  </div>
 </body>
