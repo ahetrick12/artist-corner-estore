@@ -28,11 +28,10 @@ export class StoreComponent implements OnInit {
   }
 
   add(item: Item): void {
-    if (item.stock> 0){
+    // chek if item.stock> cart.item.quantity ???? cant figure out how to do taht
       this.cartService
       .addCartItem(this.authService.getCurrentUser().username, item)
       .subscribe();
-    }
   }
 
   adminLoggedIn(): boolean {
