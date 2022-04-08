@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../cartitem';
 import { CartItemService } from '../cartitem.service';
 import { FormBuilder } from '@angular/forms';
-import {ReactiveFormsModule} from "@angular/forms";
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import {Router} from "@angular/router";
 
