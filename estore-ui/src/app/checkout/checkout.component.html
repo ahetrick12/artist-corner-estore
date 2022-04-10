@@ -6,25 +6,21 @@
 <body>
   <div id="chk">Checkout</div>
   <div>
-    <table id="rw">
-      <th colspan="2">Review Items</th>
-      <tr class="items"></tr>
-      <tr *ngFor="let cartitem of cart">
-      <td><figure><img src="../../assets/images/placeholder.jpg" class="storeimg">
-        <figcaption>{{cartitem.item.name}}</figcaption></figure></td>
-      <td>
-        <table>
-          <tr>Price: {{cartitem.item.price | currency}}</tr>
-          <tr>Quantity: {{cartitem.quantity}}</tr>
-          <tr>Total: {{cartitem.quantity*cartitem.item.price | currency}}</tr>
-        </table>
-      </td>
-      </tr>
-  </table>
+    <div id="rw">Review Items</div>
+    <ul class="items">
+      <li *ngFor="let cartitem of cart">
+          <figure><img src="../../assets/images/placeholder.jpg" class="storeimg">
+            <figcaption>{{cartitem.item.name}}</figcaption></figure>
+          <table class="iteminfo">
+            <tr>Price: {{cartitem.item.price | currency}}</tr>
+            <tr>Quantity: {{cartitem.quantity}}</tr>
+            <tr>Total: {{cartitem.quantity*cartitem.item.price | currency}}</tr>
+          </table>
+      </li>
+    </ul>
 </div>
 <div class="form-group">
 <form class="form" [formGroup]="checkoutForm" (ngSubmit)="checkout()" novalidate>
-<h2 style="text-align: left; padding-left: 5%;">Total: {{findsum() | currency}} </h2>
 <table id="Per">
   <tr>
   <th colspan="2">Personal Info</th>
@@ -143,7 +139,7 @@
 <label id="sameadr">
   <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
 </label>
-    <button class="button" type="submit" id="purchase" [disabled]="!checkoutForm.valid">Purchase Items</button>
+    <button class="button" type="submit" id="purchase" [disabled]="!checkoutForm.valid">Purchase Total: {{findsum() | currency}}</button>
 </form>
 </div>
 <!--
