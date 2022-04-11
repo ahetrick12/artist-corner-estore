@@ -91,6 +91,6 @@ public class Announcement {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, title, message, timestamp);
+        return String.format(STRING_FORMAT, title, message, edited);
     }
 }
