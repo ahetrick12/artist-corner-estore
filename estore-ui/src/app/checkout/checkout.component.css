@@ -3,6 +3,36 @@ body{
   padding-bottom: 100px;
 }
 
+ul{
+  position: absolute;
+  padding-right: 40%;
+}
+
+li{
+  display: inline-flex;
+  padding-right: 100px;
+}
+
+.iteminfo{
+  height: 75%;
+  padding-top: 15%;
+  font-weight: bold;
+  text-align: center;
+}
+
+figcaption{
+  font-weight: bold;
+  text-align: center;
+}
+
+input.ng-touched.ng-invalid {
+  border-color:red;
+}
+
+input.ng-touched.ng-valid {
+  border-color:green;
+}
+
 #chk{
   text-align: center;
   margin-block: 20px;
@@ -11,7 +41,9 @@ body{
 }
 
 #rw{
-  text-align: center;
+  position: absolute;
+  top: 120px;
+  left: 25%;
   margin-block: 20px;
   font-size: 20px;
   font-weight: bold;
@@ -63,10 +95,10 @@ body{
 
 .cards{
   position: absolute;
-  width: 180px;
-  height: 45px;
-  right: 11.8%;
-  top: 572px;
+  width: 110px;
+  height: 25px;
+  right: 12.5%;
+  top: 582px;
 }
 
 input[type=text] {
