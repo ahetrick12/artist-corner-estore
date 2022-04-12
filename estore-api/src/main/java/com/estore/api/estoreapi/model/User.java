@@ -16,11 +16,10 @@ public class User {
     @JsonProperty("cart") private CartItem[] cart;
 
      /**
-     * Create an user with a given username and password.
+     * Create an user with a given username, password, and cart.
      * @param username the username of the user
      * @param password the password of the user
-     * @param cart the user's shopping cart
-     * @param image the user's image
+     * @param cart the user's shopping cart.
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
