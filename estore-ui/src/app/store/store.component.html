@@ -23,7 +23,7 @@
   <ul class="items">
     <li *ngFor="let item of items">
       <div class="boxes" >
-        <img src="../../assets/images/tat.jpg" class="storeimg" />
+        <img src="{{item.imageLink}}" class="storeimg" />
         <div>{{ item.name }}</div>
         <div>${{ item.price }}</div>
         <div *ngIf="item.stock > 0 else outofstock;">

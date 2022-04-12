@@ -65,7 +65,8 @@ li span {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 70px;
+  height: 80px;
+  width: 80px;
   margin-top: 15px;
   border-radius: 10px;
 }

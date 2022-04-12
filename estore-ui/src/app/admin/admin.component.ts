@@ -32,7 +32,12 @@ export class AdminComponent implements OnInit {
   }
 
   saveItem(item: Item): void {
-    this.itemService.updateItem(item).subscribe();
+    if (item.imageLink == "" || item.price == 0 || item.name == ""){
+      alert("Field cannot be empty/0.");
+    }
+    else{
+      this.itemService.updateItem(item).subscribe();
+    }
   }
 
   deleteItem(item: Item): void {
@@ -42,7 +47,7 @@ export class AdminComponent implements OnInit {
 
   addItem(): void {
     // Add
-    let name: string = 'New Item';
+    let name: string = 'New Item ' + (this.items.length+1);
     let newName: string = name;
     for (
       let i = 1;
@@ -58,6 +63,7 @@ export class AdminComponent implements OnInit {
       name: newName,
       stock: 0,
       price: .01,
+      imageLink: "../../assets/images/tat.jpg",
     };
 
     this.itemService.addItem(item).subscribe((i) => {

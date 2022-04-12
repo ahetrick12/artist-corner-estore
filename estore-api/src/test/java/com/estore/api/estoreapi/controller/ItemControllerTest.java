@@ -39,7 +39,7 @@ public class ItemControllerTest {
     @Test
     public void testGetItem() throws IOException {  // getItem may throw IOException
         //Setup
-        Item item = new Item(44,"Puzzle",10, (float)99.99);
+        Item item = new Item(44,"Puzzle",10, (float)99.99, "dog.jpg");
         // When the same id is passed in, our mock Item DAO will return the Item object
         when(mockItemDAO.getItem(item.getId())).thenReturn(item);
         //Invoke
@@ -82,7 +82,7 @@ public class ItemControllerTest {
     @Test
     public void testCreateItem() throws IOException {  // createItem may throw IOException
         // Setup
-        Item item = new Item(99,"Keychain",25, (float) 3.99);
+        Item item = new Item(99,"Keychain",25, (float) 3.99, "dog.jpg");
         // when createItem is called, return true simulating successful
         // creation and save
         when(mockItemDAO.createItem(item)).thenReturn(item);
@@ -98,7 +98,7 @@ public class ItemControllerTest {
     @Test
     public void testCreateItemFailed() throws IOException {  // createItem may throw IOException
         // Setup
-        Item item = new Item(99,"Pin", 50, (float)1.99);
+        Item item = new Item(99,"Pin", 50, (float)1.99, "dog.jpg");
         // when createItem is called, return false simulating failed
         // creation and save
         when(mockItemDAO.createItem(item)).thenReturn(null);
@@ -113,7 +113,7 @@ public class ItemControllerTest {
     @Test
     public void testCreateItemHandleException() throws IOException {  // createItem may throw IOException
         // Setup
-        Item item = new Item(99,"Canvas", 10, (float) 10.99);
+        Item item = new Item(99,"Canvas", 10, (float) 10.99, "dog.jpg");
 
         // When createItem is called on the Mock Item DAO, throw an IOException
         doThrow(new IOException()).when(mockItemDAO).createItem(item);
@@ -128,7 +128,7 @@ public class ItemControllerTest {
     @Test
     public void testUpdateItem() throws IOException { 
         // Setup
-        Item item = new Item(99, "Sticker", 20, (float)1.99);
+        Item item = new Item(99, "Sticker", 20, (float)1.99, "dog.jpg");
         // when updateUser is called, return true simulating successful
         // update and save
         when(mockItemDAO.updateItem(item)).thenReturn(item);
@@ -146,7 +146,7 @@ public class ItemControllerTest {
     @Test
     public void testUpdateItemFailed() throws IOException {
         // Setup
-        Item item = new Item(99, "Sticker", 20, (float)1.99);
+        Item item = new Item(99, "Sticker", 20, (float)1.99, "dog.jpg");
         // when updateUser is called, return true simulating successful
         // update and save
         when(mockItemDAO.updateItem(item)).thenReturn(null);
@@ -161,7 +161,7 @@ public class ItemControllerTest {
     @Test
     public void testUpdateItemHandleException() throws IOException { 
         // Setup
-        Item item = new Item(99, "Sticker", 20, (float)1.99);
+        Item item = new Item(99, "Sticker", 20, (float)1.99, "dog.jpg");
         // When updateUser is called on the Mock User DAO, throw an IOException
         doThrow(new IOException()).when(mockItemDAO).updateItem(item);
 
@@ -176,10 +176,10 @@ public class ItemControllerTest {
     public void testGetItems() throws IOException { 
         // Setup
         Item[] items = new Item[4];
-        items[0] = new Item(45, "Wood Print", 15, (float)299.99);
-        items[1] = new Item(46, "Metal Print", 20, (float)199.99);
-        items[2] = new Item(47, "Sticker", 100, (float)9.99);
-        items[3] = new Item(48, "Bikini", 50, (float)49.99);
+        items[0] = new Item(45, "Wood Print", 15, (float)299.99, "dog.jpg");
+        items[1] = new Item(46, "Metal Print", 20, (float)199.99, "cat.jpg");
+        items[2] = new Item(47, "Sticker", 100, (float)9.99, "meow.jpg");
+        items[3] = new Item(48, "Bikini", 50, (float)49.99, "wow.jpg");
         // When getItems is called return the items created above
         when(mockItemDAO.getItems()).thenReturn(items);
         // Invoke
@@ -208,9 +208,9 @@ public class ItemControllerTest {
         // Setup
         String searchString = "michael";
         Item[] items = new Item[3];
-        items[0] = new Item(101, "one", 1, 1);
-        items[1] = new Item(102, "two", 2, 2);
-        items[2] = new Item(103, "three", 3, 3);
+        items[0] = new Item(101, "one", 1, 1,"1.jpg");
+        items[1] = new Item(102, "two", 2, 2, "2.jpg");
+        items[2] = new Item(103, "three", 3, 3, "3.jpg");
 
         // When findUsers is called with the search string, return the last
         /// of the users above
@@ -239,8 +239,8 @@ public class ItemControllerTest {
         // Setup
         String searchString = "Print";
         Item[] items = new Item[2];
-        items[0] = new Item(99, "Paper Print", 10, (float)99.99);
-        items[1] = new Item(100, "Canvas Print", 10, (float)199.99);
+        items[0] = new Item(99, "Paper Print", 10, (float)99.99, "paper.jpg");
+        items[1] = new Item(100, "Canvas Print", 10, (float)199.99, "dog.jpg");
         // When findItems is called with the search string, return the two
         /// items above
         when(mockItemDAO.findItems(searchString)).thenReturn(items);

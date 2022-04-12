@@ -14,6 +14,7 @@
       <th>Name</th>
       <th>Stock</th>
       <th>Price</th>
+      <th>Image Link</th>
     </thead>
     <tbody>
       <tr *ngFor="let item of items">
@@ -47,6 +48,13 @@
             && Math.abs(this.value) >= 0.01 ?
              Math.abs(this.value) : null"
           />
+        </td>
+        <td>
+          <input
+            [(ngModel)]="item.imageLink"
+            (change)="saveItem(item)"
+            type="imageLink"
+            value="{{ item.imageLink }}">
         </td>
         <td id="delete-cell">
           <button id="delete" (click)="deleteItem(item)">

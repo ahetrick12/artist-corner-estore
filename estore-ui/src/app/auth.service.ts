@@ -15,6 +15,7 @@ export class AuthService {
     username: '',
     password: '',
     cart: [],
+    imageLink: "../../assets/images/avatar.jpg",
   };
 
   val: boolean = false;

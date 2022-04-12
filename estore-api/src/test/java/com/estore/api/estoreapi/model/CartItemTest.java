@@ -20,7 +20,8 @@ public class CartItemTest {
         String expected_name = "Hamburger";
         int expected_stock = 30;
         float expected_price = (float) 3.99;
-        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price);
+        String expected_imagelink = "dog.jpg";
+        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price, expected_imagelink);
         int expected_quantity =  2;
         CartItem cartItem = new CartItem(expected_item, expected_quantity);
         assertEquals(expected_item,cartItem.getItem());
@@ -34,7 +35,8 @@ public class CartItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
-        Item item = new Item(id,name,stock,price);
+        String link = "dog.jpg";
+        Item item = new Item(id,name,stock,price,link);
         int quantity = 2;
         CartItem cartItem = new CartItem(item, quantity); 
         int expected_quantity = 5;
@@ -51,11 +53,12 @@ public class CartItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
-        Item item = new Item(id,name,stock,price);
+        String imagelink = "dog.jpg";
+        Item item = new Item(id,name,stock,price,imagelink);
         int quantity = 2;
         CartItem cartItem = new CartItem(item, quantity); 
 
-        Item expected_item = new Item(99, "Bandana", 30, 10);
+        Item expected_item = new Item(99, "Bandana", 30, 10, "dog.jpg");
 
         // Invoke
         cartItem.setItem(expected_item);
@@ -71,8 +74,9 @@ public class CartItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
+        String imagelink = "dog.jpg";
         int quantity = 2;
-        Item item = new Item(id,name,stock,price);
+        Item item = new Item(id,name,stock,price,imagelink);
         CartItem cartItem = new CartItem(item, quantity); 
         String expected_string = String.format(CartItem.STRING_FORMAT,item, quantity);
         
@@ -91,7 +95,8 @@ public class CartItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
-        Item item = new Item(id,name,stock,price);
+        String imagelink ="dog.jpg";
+        Item item = new Item(id,name,stock,price,imagelink);
         int quantity = 2;
         CartItem cartItem = new CartItem(item, quantity); 
         int expected_quantity = 3;
@@ -108,8 +113,9 @@ public class CartItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
-        Item item = new Item(id,name,stock,price);
-        Item item2 = new Item(55,"Bandaid",5,(float)3.00);
+        String imagelink = "dog.jpg";
+        Item item = new Item(id,name,stock,price,imagelink);
+        Item item2 = new Item(55,"Bandaid",5,(float)3.00, "baby.jpg");
         int quantity = 2;
         CartItem cartItem = new CartItem(item, quantity); 
 

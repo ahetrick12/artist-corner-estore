@@ -22,7 +22,7 @@
       <tr *ngFor="let cartitem of cart">
         <th>
           <figure>
-            <img src="../../assets/images/placeholder.jpg" class="storeimg" />
+            <img src={{cartitem.item.imageLink}} class="storeimg" />
             <figcaption>{{ cartitem.item.name }}</figcaption>
           </figure>
         </th>

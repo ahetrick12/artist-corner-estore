@@ -16,7 +16,7 @@
     (click)="toggleAccountDropdown()"
     (clickOutside)="setAccountDropdown(false)"
   >
-    <img #avatar src="../../assets/images/avatar.jpg"
+    <img #avatar src={{user.imageLink}}
   /></a>
   <ul #dropdown *ngIf="accountDropdownToggle" class="account-dropdown">
     <a routerLink="/user"><li><button>Account Details</button></li></a>

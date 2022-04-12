@@ -41,9 +41,9 @@ public class ItemFileDAOTest {
     public void setupItemFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testItems = new Item[3];
-        testItems[0] = new Item(99,"Hamburger", 30,(float) 3.99);
-        testItems[1] = new Item(100,"Cheeseburger", 20, (float) 4.99);
-        testItems[2] = new Item(101,"Art Print", 50, (float) 15.99);
+        testItems[0] = new Item(99,"Hamburger", 30,(float) 3.99,"dog.jpg");
+        testItems[1] = new Item(100,"Cheeseburger", 20, (float) 4.99,"dog.jpg");
+        testItems[2] = new Item(101,"Art Print", 50, (float) 15.99,"dog.jpg");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the item array above
@@ -102,7 +102,7 @@ public class ItemFileDAOTest {
     @Test
     public void testCreateItem() {
         // Setup
-        Item item = new Item(102,"Mask", 20, (float)5.99);
+        Item item = new Item(102,"Mask", 20, (float)5.99,"dog.jpg");
 
         // Invoke
         Item result = assertDoesNotThrow(() -> itemFileDAO.createItem(item),
@@ -120,7 +120,7 @@ public class ItemFileDAOTest {
     @Test
     public void testCreateItemFailure() {
         // Setup
-        Item item = new Item(102,"Hamburger", 20, (float)5.99);
+        Item item = new Item(102,"Hamburger", 20, (float)5.99,"dog.jpg");
 
         // Invoke
         Item result = assertDoesNotThrow(() -> itemFileDAO.createItem(item),
@@ -133,7 +133,7 @@ public class ItemFileDAOTest {
     @Test
     public void testUpdateItem() {
         // Setup
-        Item item = new Item(99,"Sticker", 20, (float)1.99);
+        Item item = new Item(99,"Sticker", 20, (float)1.99,"dog.jpg");
 
         // Invoke
         Item result = assertDoesNotThrow(() -> itemFileDAO.updateItem(item),
@@ -151,7 +151,7 @@ public class ItemFileDAOTest {
             .when(mockObjectMapper)
                 .writeValue(any(File.class),any(Item[].class));
 
-        Item item = new Item(99,"Sticker", 20, (float)1.99);
+        Item item = new Item(99,"Sticker", 20, (float)1.99,"dog.jpg");
 
         assertThrows(IOException.class,
                         () -> itemFileDAO.createItem(item),
@@ -183,7 +183,7 @@ public class ItemFileDAOTest {
     @Test
     public void testUpdateItemNotFound() {
         // Setup
-        Item item = new Item(98, "Shirt", 20, (float)8.99);
+        Item item = new Item(98, "Shirt", 20, (float)8.99,"dog.jpg");
 
         // Invoke
         Item result = assertDoesNotThrow(() -> itemFileDAO.updateItem(item),
