@@ -5,18 +5,18 @@ import { User } from '../user';
 import { MessageService } from '../message.service';
 import { AuthService } from '../auth.service';
 
-
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
-  styleUrls: ['./message.component.css']
+  styleUrls: ['./message.component.css'],
 })
 export class MessageComponent implements OnInit {
   messages: Message[] = [];
-  user: User= {
+  user: User = {
     username: '',
     password: '',
     cart: [],
+    imageLink: '../../assets/images/avatar.jpg',
   };
   mess: string = '';
 
@@ -25,38 +25,33 @@ export class MessageComponent implements OnInit {
     private authService: AuthService
   ) {}
   ngOnInit(): void {
-    
     this.getMessages();
   }
 
   getMessages(): void {
-    this.messageService.getMessages().subscribe((messages) => (this.messages = messages));
+    this.messageService
+      .getMessages()
+      .subscribe((messages) => (this.messages = messages));
   }
   onSubmit() {
-    if(this.mess != "") {
+    if (this.mess != '') {
       const messag: Message = {
         id: this.messages.length,
         name: this.authService.getCurrentUser().username,
         message: this.mess,
-        
-      }
+      };
       console.log(messag);
       this.messageService.addMessage(messag).subscribe(() => {
-        
         this.getMessages();
-      })
+      });
 
-      
-      this.mess = "";
-    }
-    else {
-      alert("Please enter both a title and message.");
+      this.mess = '';
+    } else {
+      alert('Please enter both a title and message.');
     }
   }
   add(message: Message): void {
-    this.messageService
-      .addMessage(message)
-      .subscribe();
+    this.messageService.addMessage(message).subscribe();
   }
 
   userLoggedIn(): boolean {
