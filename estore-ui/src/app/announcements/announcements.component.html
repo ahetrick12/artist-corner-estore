@@ -1,38 +1,86 @@
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap"
+    rel="stylesheet"
+  />
 </head>
 
 <body>
   <div id="title">Announcements</div>
   <div>
     <form *ngIf="getAdminStatus()">
-      <input type="text" placeholder="Title" name = 'title' [(ngModel)]="title">
-      <textarea id="message" placeholder="Message" name="message" rows="5" cols="50" [(ngModel)]="message"></textarea>
+      <input type="text" placeholder="Title" name="title" [(ngModel)]="title" />
+      <textarea
+        id="message"
+        placeholder="Message"
+        name="message"
+        rows="5"
+        cols="50"
+        [(ngModel)]="message"
+      ></textarea>
       <button (click)="onSubmit()">Submit</button>
     </form>
   </div>
-  <div *ngIf="getUserStatus(); else not_logged">
-  <ul class="announcements">
-    <div *ngIf="announcements.length == 0" style="text-align: center"> Admin has posted no announcements.</div>
-    <li *ngFor="let announcement of announcements">
-          <h1 *ngIf="!announcement.editing">{{announcement.title}}</h1>
-          <input *ngIf="announcement.editing" type="text" name = 'announcementTitleEdit' [(ngModel)]="announcementTitleEdit">
+  <div *ngIf="!getUserStatus(); else not_logged">
+    <ul class="announcements">
+      <div *ngIf="announcements.length == 0" style="text-align: center">
+        Admin has posted no announcements.
+      </div>
+      <li *ngFor="let announcement of announcements">
+        <h1 *ngIf="!announcement.editing">{{ announcement.title }}</h1>
+        <input
+          *ngIf="announcement.editing"
+          type="text"
+          name="announcementTitleEdit"
+          [(ngModel)]="announcementTitleEdit"
+        />
 
-          <p *ngIf="!announcement.editing">{{announcement.message}}<p>
-          <textarea *ngIf="announcement.editing" id="announcementMessageEdit" rows="5" cols="50" [(ngModel)]="announcementMessageEdit"></textarea>
+        <p *ngIf="!announcement.editing">{{ announcement.message }}</p>
+        <p>
+          <textarea
+            *ngIf="announcement.editing"
+            id="announcementMessageEdit"
+            rows="5"
+            cols="50"
+            [(ngModel)]="announcementMessageEdit"
+          ></textarea>
+        </p>
 
-          <p style="font-size: small;display:inline-block;padding-right: 5px;">{{getTime(announcement.timestamp)}}</p>
-          <p *ngIf="announcement.edited" style="font-size: small;display:inline-block;">(edited)</p>
+        <p style="font-size: small; display: inline-block; padding-right: 5px">
+          {{ getTime(announcement.timestamp) }}
+        </p>
+        <p
+          *ngIf="announcement.edited"
+          style="font-size: small; display: inline-block"
+        >
+          (edited)
+        </p>
 
-          <pre></pre>
-          
-          <button *ngIf="!announcement.editing && getAdminStatus()" (click)="onEdit(announcement)">Edit</button>
-          <button *ngIf="announcement.editing" (click)="onEditSubmit(announcement)">Submit</button>
-          <button (click)="onDelete(announcement)" *ngIf="getAdminStatus()">Delete</button>
-    </li>
-  </ul>
-</div>
-<ng-template #not_logged ><p style="text-align: center">Please login or create an account to see announcements.</p></ng-template>
+        <pre></pre>
+
+        <button
+          *ngIf="!announcement.editing && getAdminStatus()"
+          (click)="onEdit(announcement)"
+        >
+          Edit
+        </button>
+        <button
+          *ngIf="announcement.editing"
+          (click)="onEditSubmit(announcement)"
+        >
+          Submit
+        </button>
+        <button (click)="onDelete(announcement)" *ngIf="getAdminStatus()">
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+  <ng-template #not_logged
+    ><p style="text-align: center">
+      Please login or create an account to see announcements.
+    </p></ng-template
+  >
 </body>

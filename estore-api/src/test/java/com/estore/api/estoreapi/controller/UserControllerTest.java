@@ -40,7 +40,7 @@ public class UserControllerTest {
     @Test
     public void testGetUser() throws IOException {  // getUser may throw IOException
         // Setup
-        User user = new User(99, "Username", "Password", new CartItem[1], "");
+        User user = new User(99, "Username", "Password", new CartItem[1]);
         // When the same id is passed in, our mock User DAO will return the User object
         when(mockUserDAO.getUser(user.getId())).thenReturn(user);
 
@@ -89,7 +89,7 @@ public class UserControllerTest {
     @Test
     public void testCreateUser() throws IOException {  // createUser may throw IOException
         // Setup
-        User user = new User(99, "Username", "Password", new CartItem[1], "");
+        User user = new User(99, "Username", "Password", new CartItem[1]);
         // when createUser is called, return true simulating successful
         // creation and save
         when(mockUserDAO.createUser(user)).thenReturn(user);
@@ -105,7 +105,7 @@ public class UserControllerTest {
     @Test
     public void testCreateUserFailed() throws IOException {  // createUser may throw IOException
         // Setup
-        User user = new User(99, "FailedUsername", "FailedPassword", new CartItem[1], "");
+        User user = new User(99, "FailedUsername", "FailedPassword", new CartItem[1]);
         // when createUser is called, return false simulating failed
         // creation and save
         when(mockUserDAO.createUser(user)).thenReturn(null);
@@ -120,7 +120,7 @@ public class UserControllerTest {
     @Test
     public void testCreateUserHandleException() throws IOException {  // createUser may throw IOException
         // Setup
-        User user = new User(99, "ExceptionUsername", "ExceptionPassword", new CartItem[1], "");
+        User user = new User(99, "ExceptionUsername", "ExceptionPassword", new CartItem[1]);
 
         // When createUser is called on the Mock User DAO, throw an IOException
         doThrow(new IOException()).when(mockUserDAO).createUser(user);
@@ -135,7 +135,7 @@ public class UserControllerTest {
     @Test
     public void testUpdateUser() throws IOException { 
         // Setup
-        User user = new User(99, "UN", "PW", new CartItem[1], "");
+        User user = new User(99, "UN", "PW", new CartItem[1]);
         // when updateUser is called, return true simulating successful
         // update and save
         when(mockUserDAO.updateUser(user)).thenReturn(user);
@@ -153,7 +153,7 @@ public class UserControllerTest {
     @Test
     public void testUpdateUserFailed() throws IOException {
         // Setup
-        User user = new User(99, "UN", "PW", new CartItem[1], "");
+        User user = new User(99, "UN", "PW", new CartItem[1]);
         // when updateUser is called, return true simulating successful
         // update and save
         when(mockUserDAO.updateUser(user)).thenReturn(null);
@@ -168,7 +168,7 @@ public class UserControllerTest {
     @Test
     public void testUpdateUserHandleException() throws IOException { 
         // Setup
-        User user = new User(99, "UN", "PW", new CartItem[1], "");
+        User user = new User(99, "UN", "PW", new CartItem[1]);
         // When updateUser is called on the Mock User DAO, throw an IOException
         doThrow(new IOException()).when(mockUserDAO).updateUser(user);
 
@@ -183,8 +183,8 @@ public class UserControllerTest {
     public void testGetUsers() throws IOException { 
         // Setup
         User[] users = new User[2];
-        users[0] = new User(99, "Username", "Password", new CartItem[1], "");
-        users[1] = new User(100, "Test123", "12345", new CartItem[1], "");
+        users[0] = new User(99, "Username", "Password", new CartItem[1]);
+        users[1] = new User(100, "Test123", "12345", new CartItem[1]);
         // When getUseres is called return the useres created above
         when(mockUserDAO.getUsers()).thenReturn(users);
 
@@ -228,9 +228,9 @@ public class UserControllerTest {
         // Setup
         String searchString = "safjakslf";
         User[] users = new User[3];
-        users[0] = new User(99, "Username", "Password", new CartItem[1], "");
-        users[1] = new User(100, "Test123", "12345", new CartItem[1], "");
-        users[2] = new User(100, "safjakslf", "213912837", new CartItem[1], "");
+        users[0] = new User(99, "Username", "Password", new CartItem[1]);
+        users[1] = new User(100, "Test123", "12345", new CartItem[1]);
+        users[2] = new User(100, "safjakslf", "213912837", new CartItem[1]);
 
         // When findUsers is called with the search string, return the last
         /// of the users above

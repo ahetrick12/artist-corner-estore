@@ -126,7 +126,7 @@ public class ItemFileDAOTest {
     @Test
     public void testCreateItemFailure() {
         // Setup
-        Item item = new Item(102,"Hamburger", 20, (float)5.99);
+        Item item = new Item(102,"Hamburger", 20, (float)5.99, 0,25,35,10,0,0, "");
 
         // Invoke
         Item result = assertDoesNotThrow(() -> itemFileDAO.createItem(item),
