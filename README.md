@@ -2,7 +2,7 @@
 
 # Modify this document to expand any and all sections that are applicable for a better understanding from your users/testers/collaborators (remove this comment and other instructions areas for your FINAL release)
 
-An online E-store system built in Java 8=>11 and **\_ _replace with other platform requirements_ \_**
+An online E-store system built in Java 8=>11, TypeScript, HTML, CSS, and JavaScript.
 
 ## Team
 
@@ -16,6 +16,8 @@ An online E-store system built in Java 8=>11 and **\_ _replace with other platfo
 
 - Java 8=>11 (Make sure to have correct JAVA_HOME setup in your environment)
 - Maven
+- Node.js
+- npm package manager
 - _add any other tech stack requirements_
 
 ## How to run it
@@ -23,7 +25,7 @@ An online E-store system built in Java 8=>11 and **\_ _replace with other platfo
 1. Clone the repository and go to the root directory.
 2. Cd to the 'estore-api' folder and execute 'mvn compile exec:java'
 3. In a seperate terminal, cd to the "estore-ui" folder and execute 'ng serve --open'
-4. Open in your browser 'http://localhost:8080/'
+4. Open in your browser 'http://localhost:4200/'
 
 ## Known bugs and disclaimers
 

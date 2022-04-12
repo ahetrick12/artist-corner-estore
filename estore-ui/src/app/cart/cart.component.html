@@ -28,21 +28,82 @@
         </th>
         <th>{{ cartitem.item.price | currency }}</th>
         <th>
-          <input
-            [(ngModel)]="cartitem.quantity"
-            (ngModelChange)="save(cartitem)"
-            (keyup)="validateInput(cartitem)"
-            id="quantity"
-            type="number"
-            value="{{ cartitem.quantity }}"
-            min="0"
-            max="{{ cartitem.item.stock }}"
-          />
-          <!--<br /><button class="button" id="update" (click)="save(cartitem)">
-            save
-          </button>-->
+          <div *ngIf="!cartitem.item.name.includes('Print')">
+            S:
+            <input
+              [(ngModel)]="cartitem.small"
+              (keyup)="validateInput(cartitem, 'S'); save(cartitem)"
+              id="quantity"
+              type="number"
+              value="{{ cartitem.small }}"
+              min="0"
+              max="{{ cartitem.item.s }}"
+            />
+            <br />M:
+            <input
+              [(ngModel)]="cartitem.medium"
+              (keyup)="validateInput(cartitem, 'M'); save(cartitem)"
+              id="quantity"
+              type="number"
+              value="{{ cartitem.medium }}"
+              min="0"
+              max="{{ cartitem.item.m }}"
+            />
+            <br />L:
+            <input
+              [(ngModel)]="cartitem.large"
+              (keyup)="validateInput(cartitem, 'L'); save(cartitem)"
+              id="quantity"
+              type="number"
+              value="{{ cartitem.large }}"
+              min="0"
+              max="{{ cartitem.item.l }}"
+            />
+            <br />XL:
+            <input
+              [(ngModel)]="cartitem.xlarge"
+              (keyup)="validateInput(cartitem, 'XL'); save(cartitem)"
+              id="quantity"
+              type="number"
+              value="{{ cartitem.xlarge }}"
+              min="0"
+              max="{{ cartitem.item.xl }}"
+            />
+          </div>
+          <div *ngIf="cartitem.item.name.includes('Print')">
+            9x12:
+            <input
+              [(ngModel)]="cartitem.x920"
+              (keyup)="validateInput(cartitem, 'x9'); save(cartitem)"
+              id="quantity"
+              type="number"
+              value="{{ cartitem.x920 }}"
+              min="0"
+              max="{{ cartitem.item.x920 }}"
+            />
+            <br />19x30:
+            <input
+              [(ngModel)]="cartitem.x1930"
+              (keyup)="validateInput(cartitem, 'x19'); save(cartitem)"
+              id="quantity"
+              type="number"
+              value="{{ cartitem.x1930 }}"
+              min="0"
+              max="{{ cartitem.item.x1930 }}"
+            />
+          </div>
         </th>
-        <th>{{ cartitem.quantity * cartitem.item.price | currency }}</th>
+        <th>
+          {{
+            (cartitem.small +
+              cartitem.medium +
+              cartitem.large +
+              cartitem.xlarge +
+              cartitem.x920 +
+              cartitem.x1930) *
+              cartitem.item.price | currency
+          }}
+        </th>
         <th>
           <button id="remove" (click)="onDelete(cartitem)">
             <b>&#10006;</b>
@@ -59,5 +120,9 @@
       </div>
     </div>
   </div>
-  <ng-template #no_items> <p style="text-align: center;">Your cart is currently empty. Add some items!</p></ng-template>
+  <ng-template #no_items>
+    <p style="text-align: center">
+      Your cart is currently empty. Add some items!
+    </p></ng-template
+  >
 </body>

@@ -159,6 +159,7 @@ public class UserController {
         LOG.info("PUT /users " + user);
         try {
             User updatedUser = userDAO.updateUser(user);
+            LOG.info(updatedUser.getCart()[0].toString());
             if (updatedUser != null)
                 return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
             else

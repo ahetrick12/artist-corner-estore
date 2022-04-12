@@ -21,7 +21,7 @@ export class ItemService {
   private searched: boolean = false;
   //private messageService: MessageService) { }
 
-  /** GET heroes from the server */
+  /** GET items from the server */
   getItems(): Observable<Item[]> {
     if (this.searched) {
       return this.items;
@@ -55,8 +55,8 @@ export class ItemService {
 
   updateItem(item: Item): Observable<any> {
     return this.http.put(this.itemsUrl, item, this.httpOptions).pipe(
-      tap((_) => this.log(`updated hero id=${item.id}`)),
-      catchError(this.handleError<any>('updateHero'))
+      tap((_) => this.log(`updated item id=${item.id}`)),
+      catchError(this.handleError<any>('updateItem'))
     );
   }
 
@@ -73,6 +73,14 @@ export class ItemService {
     return this.http.post<Item>(this.itemsUrl, item, this.httpOptions).pipe(
       tap((newItem: Item) => this.log(`added item w/ id=${newItem.id}`)),
       catchError(this.handleError<Item>('addItem'))
+    );
+  }
+
+  getItem(id: number): Observable<Item> {
+    const url = `${this.itemsUrl}/${id}`;
+    return this.http.get<Item>(url).pipe(
+      tap(_ => this.log(`fetched item id=${id}`)),
+      catchError(this.handleError<Item>(`getItem id=${id}`))
     );
   }
 

@@ -17,11 +17,12 @@ public class User {
     @JsonProperty("imagelink") private String imagelink;
 
      /**
-     * Create an user with a given username and password.
+     * Create an user with a given username, password, and cart.
      * @param username the username of the user
      * @param password the password of the user
      * @param cart the user's shopping cart
-     * @param image the user's imagelink
+     * @param imagelink the user's imagelink
+     * @param cart the user's shopping cart.
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field

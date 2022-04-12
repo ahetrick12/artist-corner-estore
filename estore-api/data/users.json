@@ -1,1 +1,2 @@
-[{"id":0,"username":"admin","password":"admin","cart":[],"imagelink":"https://upload.wikimedia.org/wikipedia/commons/d/db/Codepage-437_%28cropped%29.png","imageLink":"https://upload.wikimedia.org/wikipedia/commons/d/db/Codepage-437_%28cropped%29.png"},{"id":1,"username":"username","password":"password","cart":[],"imagelink":null,"imageLink":null},{"id":2,"username":"admin","password":"admin","cart":[{"item":{"id":8,"name":"T-shirt","stock":5,"price":30.0,"imageLink":null},"quantity":1}],"imagelink":null,"imageLink":null}]
+
+[{"id":0,"username":"username","password":"password","cart":[],"image":null},{"id":1,"username":"admin","password":"admin","cart":[],"image":null}]

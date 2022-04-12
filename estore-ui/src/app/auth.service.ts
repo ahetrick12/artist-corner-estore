@@ -7,9 +7,6 @@ import { UserService } from './user.service';
   providedIn: 'root',
 })
 export class AuthService {
-  static getCurrentUser(): User {
-    return this.getCurrentUser();    
-  }
   loggedInUser?: User;
   emptyUser: User = {
     username: '',

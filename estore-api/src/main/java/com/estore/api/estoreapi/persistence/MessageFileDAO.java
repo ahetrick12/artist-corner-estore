@@ -1,18 +1,21 @@
 package com.estore.api.estoreapi.persistence;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-//import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.estore.api.estoreapi.model.Item;
+import com.estore.api.estoreapi.model.Message;
 
 /**
  * Implements the functionality for JSON file-based peristance for Items
@@ -24,9 +27,9 @@ import com.estore.api.estoreapi.model.Item;
  * @author code heavily based on heroes-api by SWEN Faculty
  */
 @Component
-public class ItemFileDAO implements ItemDAO {
-    //private static final Logger LOG = Logger.getLogger(ItemFileDAO.class.getName());
-    Map<Integer,Item> items;   // Provides a local cache of the item objects
+public class MessageFileDAO implements MessageDAO {
+    private static final Logger LOG = Logger.getLogger(MessageFileDAO.class.getName());
+    Map<Integer,Message> messages;   // Provides a local cache of the item objects
     private ObjectMapper objectMapper;  // Provides conversion between Item
                                         // objects and JSON text format written
                                         // to the file
@@ -41,8 +44,8 @@ public class ItemFileDAO implements ItemDAO {
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public ItemFileDAO(@Value("${estore.file}") String filename,ObjectMapper objectMapper) throws IOException {
-        this.filename = filename;
+    public MessageFileDAO(@Value("${messages.file}") String filename,ObjectMapper objectMapper) throws IOException {
+        this.filename= filename;
         this.objectMapper = objectMapper;
         load();  // load the items from the file
     }
@@ -63,8 +66,8 @@ public class ItemFileDAO implements ItemDAO {
      * 
      * @return  The array of {@link Item items}, may be empty
      */
-    private Item[] getItemsArray() {
-        return getItemsArray(null);
+    private Message[] getMessagesArray() {
+        return getMessagesArray(null);
     }
 
     /**
@@ -75,18 +78,18 @@ public class ItemFileDAO implements ItemDAO {
      * 
      * @return the array of {@link Item items}, may be empty.
      */
-    private Item[] getItemsArray(String containsText) { // if containsText == null, no filter
-        ArrayList<Item> itemArrayList = new ArrayList<>();
+    private Message[] getMessagesArray(String containsText) { // if containsText == null, no filter
+        ArrayList<Message> messageArrayList = new ArrayList<>();
 
-        for (Item item : items.values()) {
-            if (containsText == null || item.getName().toLowerCase().contains(containsText.toLowerCase())) {
-                itemArrayList.add(item);
+        for (Message message : messages.values()) {
+            if (containsText == null || message.getName().toLowerCase().contains(containsText.toLowerCase())) {
+                messageArrayList.add(message);
             }
         }
 
-        Item[] itemArray = new Item[itemArrayList.size()];
-        itemArrayList.toArray(itemArray);
-        return itemArray;
+        Message[] messageArray = new Message[messageArrayList.size()];
+        messageArrayList.toArray(messageArray);
+        return messageArray;
     }
 
     /**
@@ -97,12 +100,12 @@ public class ItemFileDAO implements ItemDAO {
      * @throws IOException when file cannot be accessed or written to
      */
     private boolean save() throws IOException {
-        Item[] itemArray = getItemsArray();
+        Message[] messageArray = getMessagesArray();
 
         // Serializes the Java Objects to JSON objects into the file
         // writeValue will thrown an IOException if there is an issue
         // with the file or reading from the file
-        objectMapper.writeValue(new File(filename),itemArray);
+        objectMapper.writeValue(new File(filename),messageArray);
         return true;
     }
 
@@ -115,19 +118,19 @@ public class ItemFileDAO implements ItemDAO {
      * @throws IOException when file cannot be accessed or read from
      */
     private boolean load() throws IOException {
-        items = new TreeMap<>();
+        messages = new TreeMap<>();
         nextId = 0;
 
         // deserializes the JSON objects from the file into an array of items;
         // readValue will throw an IOException if there's an issue with the file
         // or reading from the file.
-        Item[] itemArray = objectMapper.readValue(new File(filename),Item[].class);
+        Message[] messageArray = objectMapper.readValue(new File(filename),Message[].class);
 
         // add each item to the tree map and keep track of the greatest id
-        for (Item item : itemArray) {
-            items.put(item.getId(),item);
-            if (item.getId() > nextId)
-                nextId = item.getId();
+        for (Message message : messageArray) {
+            messages.put(message.getId(),message);
+            if (message.getId() > nextId)
+                nextId = message.getId();
         }
         // make the next id one greater than the maximum from the file
         ++nextId;
@@ -138,9 +141,9 @@ public class ItemFileDAO implements ItemDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Item[] getItems() {
-        synchronized(items) {
-            return getItemsArray();
+    public Message[] getMessages() {
+        synchronized(messages) {
+            return getMessagesArray();
         }
     }
 
@@ -148,9 +151,9 @@ public class ItemFileDAO implements ItemDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Item[] findItems(String containsText) {
-        synchronized(items) {
-            return getItemsArray(containsText);
+    public Message[] findMessages(String containsText) {
+        synchronized(messages) {
+            return getMessagesArray(containsText);
         }
     }
 
@@ -158,10 +161,10 @@ public class ItemFileDAO implements ItemDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Item getItem(int id) {
-        synchronized(items) {
-            if (items.containsKey(id))
-                return items.get(id);
+    public Message getMessage(int id) {
+        synchronized(messages) {
+            if (messages.containsKey(id))
+                return messages.get(id);
             else
                 return null;
         }
@@ -171,16 +174,15 @@ public class ItemFileDAO implements ItemDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Item createItem(Item item) throws IOException {
-        synchronized(items) {
+    public Message createMessage(Message message) throws IOException {
+        synchronized(messages) {
             // we create a new item object because the id field is immutable
             // and we need to assign the next unique id
-            if (nameExists(item.getName())== false){
-                Item newItem = new Item(nextId(),item.getName(), item.getStock(), item.getPrice(), item.getS(),
-                                        item.getM(),item.getL(),item.getXL(),item.getx920(),item.getx1930(), item.getImageLink());
-                items.put(newItem.getId(),newItem);
+            if (nameExists(message.getName())== false){
+                Message newMessage = new Message(nextId(),message.getName(), message.getMessage());
+                messages.put(newMessage.getId(),newMessage);
                 save(); // may throw an IOException
-                return newItem;
+                return newMessage;
             }
             else {
                 return null;
@@ -189,29 +191,15 @@ public class ItemFileDAO implements ItemDAO {
         }
     }
 
-    /**
-    ** {@inheritDoc}
-     */
-    @Override
-    public Item updateItem(Item item) throws IOException {
-        synchronized(items) {
-            if (items.containsKey(item.getId()) == false)
-                return null;  // item does not exist
-
-            items.put(item.getId(),item);
-            save(); // may throw an IOException
-            return item;
-        }
-    }
 
    /**
     ** {@inheritDoc}
      */
     @Override
-    public boolean deleteItem(int id) throws IOException {
-        synchronized(items) {
-            if (items.containsKey(id)) {
-                items.remove(id);
+    public boolean deleteMessage(int id) throws IOException {
+        synchronized(messages) {
+            if (messages.containsKey(id)) {
+                messages.remove(id);
                 return save();
             }
             else
@@ -224,9 +212,9 @@ public class ItemFileDAO implements ItemDAO {
      */
     @Override
     public boolean nameExists(String name) throws IOException {
-    synchronized(items) {
-        for (Item stock_item: items.values()){
-            if (stock_item.getName().equals(name)){
+    synchronized(messages) {
+        for (Message message_name: messages.values()){
+            if (message_name.getName().equals(name)){
                 return true;
             }
         }

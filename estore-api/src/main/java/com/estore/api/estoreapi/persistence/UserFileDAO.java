@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +24,7 @@ import com.estore.api.estoreapi.model.User;
  */
 @Component
 public class UserFileDAO implements UserDAO {
-    Map<Integer, User> users;           // Provides a local cache of the item objects
+    Map<Integer, User> users;           // Provides a local cache of the user objects
     private ObjectMapper objectMapper;  // Provides conversion between User
                                         // objects and JSON text format written
                                         // to the file
@@ -185,9 +187,9 @@ public class UserFileDAO implements UserDAO {
     public User updateUser(User user) throws IOException {
         synchronized(users) {
             if (users.containsKey(user.getId()) == false)
-                return null;  // item does not exist
+                return null;  // user does not exist
 
-                users.put(user.getId(), user);
+            users.put(user.getId(), user);
             save(); // may throw an IOException
             return user;
         }

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The unit test suite for the CartItem class
  * 
- * @author Kara Kolodinsky of Team 8
+ * @author Team 8
  */
 @Tag("Model-tier")
 public class CartItemTest {
@@ -26,10 +26,27 @@ public class CartItemTest {
         CartItem cartItem = new CartItem(expected_item, expected_quantity);
         assertEquals(expected_item,cartItem.getItem());
         assertEquals(expected_quantity,cartItem.getQuantity());
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(expected_item, 0, 0, 0, 0, 0, 0); 
+        assertEquals(expected_item, cartItem.getItem());
+        assertEquals(0, cartItem.getSmall());
+        assertEquals(0, cartItem.getMedium());
+        assertEquals(0, cartItem.getLarge());
+        assertEquals(0, cartItem.getXLarge());
+        assertEquals(0, cartItem.getx920());
+        assertEquals(0, cartItem.getX1930());
     }
 
     @Test
-    public void testSetQuantity() {
+    public void testGetItem()
+    {
         // Setup
         int id = 99;
         String name = "Bandana";
@@ -40,14 +57,301 @@ public class CartItemTest {
         int quantity = 2;
         CartItem cartItem = new CartItem(item, quantity); 
         int expected_quantity = 5;
-
-        // Invoke
-        cartItem.setQuantity(expected_quantity);
-
-        // Analyze
-        assertEquals(expected_quantity,cartItem.getQuantity());
+=======
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(expected_item, 0, 0, 0, 0, 0, 0); 
+        // Test
+        assertEquals(expected_item, cartItem.getItem());
     }
 
+    @Test
+    public void testGetSmall()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(expected_item, 0, 0, 0, 0, 0, 0); 
+        // Test
+        assertEquals(0, cartItem.getSmall());
+    }
+
+    @Test
+    public void testGetMedium()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(expected_item, 0, 0, 0, 0, 0, 0); 
+        // Test
+        assertEquals(0, cartItem.getMedium());
+    }
+
+    @Test
+    public void testGetLarge()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(expected_item, 0, 0, 0, 0, 0, 0); 
+        // Test
+        assertEquals(0, cartItem.getLarge());
+    }
+
+    @Test
+    public void testGetXLarge()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(expected_item, 0, 0, 0, 0, 0, 0); 
+        // Test
+        assertEquals(0, cartItem.getXLarge());
+    }
+
+    @Test
+    public void testGetx920()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(expected_item, 0, 0, 0, 0, 0, 0); 
+        // Test
+        assertEquals(0, cartItem.getx920());
+    }
+
+    @Test
+    public void testGetX1930()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(expected_item, 0, 0, 0, 0, 0, 0); 
+        // Test
+        assertEquals(0, cartItem.getX1930());
+    }
+
+    @Test
+    public void testSetSmall()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(item, 0, 0, 0, 0, 0, 0); 
+
+        // Invoke
+        cartItem.setSmall(1);
+
+        // Test
+        assertEquals(1, cartItem.getSmall());
+    }
+
+    @Test
+    public void testSetMedium()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(item, 0, 0, 0, 0, 0, 0); 
+
+        // Invoke
+        cartItem.setMedium(1);
+
+        // Test
+        assertEquals(1, cartItem.getMedium());
+    }
+
+    @Test
+    public void testSetLarge()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(item, 0, 0, 0, 0, 0, 0); 
+
+        // Invoke
+        cartItem.setLarge(1);
+
+        // Test
+        assertEquals(1, cartItem.getLarge());
+    }
+
+    @Test
+    public void testSetXLarge()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(item, 0, 0, 0, 0, 0, 0); 
+
+        // Invoke
+        cartItem.setXLarge(1);
+
+        // Test
+        assertEquals(1, cartItem.getXLarge());
+    }
+
+    @Test
+    public void testSetx920()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(item, 0, 0, 0, 0, 0, 0); 
+
+        // Invoke
+        cartItem.setx920(1);
+
+        // Test
+        assertEquals(1, cartItem.getx920());
+    }
+
+    @Test
+    public void testSetX1930()
+    {
+        // Setup
+        int expected_id = 99;
+        String expected_name = "Hamburger";
+        int expected_stock = 30;
+        float expected_price = (float) 3.99;
+        int expected_S = 15;
+        int expected_M = 25;
+        int expected_L = 40;
+        int expected_XL = 35;
+        int expected_x920 = 0;
+        int expected_x1930 = 0;
+        Item item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
+                            expected_XL,expected_x920,expected_x1930, "");
+        CartItem cartItem = new CartItem(item, 0, 0, 0, 0, 0, 0); 
+
+        // Invoke
+        cartItem.setX1930(1);
+
+        // Test
+        assertEquals(1, cartItem.getX1930());
+    }
+
+    @Test
     public void testSetItem(){
         int id = 99;
         String name = "Bandana";
@@ -59,6 +363,16 @@ public class CartItemTest {
         CartItem cartItem = new CartItem(item, quantity); 
 
         Item expected_item = new Item(99, "Bandana", 30, 10, "dog.jpg");
+        int S = 10;
+        int M = 15;
+        int L = 40;
+        int XL = 30;
+        int x920 = 0;
+        int x1930 = 0;
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        CartItem cartItem = new CartItem(item, 0, 0, 0, 0, 0, 0); 
+
+        Item expected_item = new Item(99, "Bandana", 30, 10,10,15,40,30,0,0, "");
 
         // Invoke
         cartItem.setItem(expected_item);
@@ -79,6 +393,16 @@ public class CartItemTest {
         Item item = new Item(id,name,stock,price,imagelink);
         CartItem cartItem = new CartItem(item, quantity); 
         String expected_string = String.format(CartItem.STRING_FORMAT,item, quantity);
+        int S = 10;
+        int M = 15;
+        int L = 40;
+        int XL = 30;
+        int x920 = 0;
+        int x1930 = 0;
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        CartItem cartItem = new CartItem(item, 0, 0, 0, 0, 0, 0); 
+        String expected_string = String.format(CartItem.STRING_FORMAT,item, 0, 0, 0, 0, 0, 0);
+
         
 
         // Invoke
@@ -118,6 +442,15 @@ public class CartItemTest {
         Item item2 = new Item(55,"Bandaid",5,(float)3.00, "baby.jpg");
         int quantity = 2;
         CartItem cartItem = new CartItem(item, quantity); 
+        int S = 10;
+        int M = 15;
+        int L = 40;
+        int XL = 30;
+        int x920 = 0;
+        int x1930 = 0;
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        Item item2 = new Item(55,"Bandaid",5,(float)3.00, 20,25,50,10,0,0, "");
+        CartItem cartItem = new CartItem(item, 0, 0, 0, 0, 0, 0); 
 
         boolean resp1 = cartItem.compareItem(item);
         boolean resp2 = cartItem.compareItem(item2);

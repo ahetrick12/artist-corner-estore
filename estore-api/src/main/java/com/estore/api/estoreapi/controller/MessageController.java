@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException.Conflict;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.Console;
 
-import com.estore.api.estoreapi.persistence.ItemDAO;
-import com.estore.api.estoreapi.model.Item;
+import com.estore.api.estoreapi.persistence.MessageDAO;
+import com.estore.api.estoreapi.model.Message;
 
 /**
  * handles the rest api requests for the item resource.
@@ -29,18 +31,18 @@ import com.estore.api.estoreapi.model.Item;
  */
 
 @RestController
-@RequestMapping("items")
-public class ItemController {
-    private static final Logger LOG = Logger.getLogger(ItemController.class.getName());
-    private ItemDAO itemDao;
+@RequestMapping("messages")
+public class MessageController {
+    private static final Logger LOG = Logger.getLogger(MessageController.class.getName());
+    private MessageDAO messageDAO;
 
     /**
      * creates a rest api controller to reponds to requests.
      * 
      * @param ItemDao the {@link ItemDAO item data access object} to perform CRUD operations
      */
-    public ItemController(ItemDAO itemDao) {
-        this.itemDao = itemDao;
+    public MessageController(MessageDAO messageDAO) {
+        this.messageDAO = messageDAO;
     }
 
     /**
@@ -55,12 +57,12 @@ public class ItemController {
      * @author Jonathan Campbell
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Item> getItem(@PathVariable int id) {
-        LOG.info("GET /items/" + id);
+    public ResponseEntity<Message> getMessage(@PathVariable int id) {
+        LOG.info("GET /messages/" + id);
         try {
-            Item item = itemDao.getItem(id);
-            if (item != null)
-                return new ResponseEntity<Item>(item, HttpStatus.OK);
+            Message message = messageDAO.getMessage(id);
+            if (message != null)
+                return new ResponseEntity<Message>(message, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -80,12 +82,12 @@ public class ItemController {
      * @author Alex Martinez
      */
     @GetMapping("")
-    public ResponseEntity<Item[]> getItems() {
-        LOG.info("GET /items");
+    public ResponseEntity<Message[]> getMessages() {
+        LOG.info("GET /messages");
         try{
-            Item[] items = itemDao.getItems();
-            if (items != null)
-                return new ResponseEntity<Item[]>(items, HttpStatus.OK);
+            Message[] messages = messageDAO.getMessages();
+            if (messages != null)
+                return new ResponseEntity<Message[]>(messages, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -108,12 +110,14 @@ public class ItemController {
      * @author Daniel Kench
      */
     @GetMapping("/")
-    public ResponseEntity<Item[]> searchItems(@RequestParam String name) {
-        LOG.info("GET /items/?name= " + name);
+    public ResponseEntity<Message[]> searchMessages(@RequestParam String name) {
+        LOG.info("GET /messages/?name= " + name);
         try {
-            Item[] items = itemDao.findItems(name);
-            if (items != null)
-                return new ResponseEntity<Item[]>(items, HttpStatus.OK);
+            Message[] messages = messageDAO.findMessages(name);
+            if (messages != null){
+                
+                return new ResponseEntity<Message[]>(messages, HttpStatus.OK);
+            }
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -135,15 +139,15 @@ public class ItemController {
      * @author Kara Kolodinsky
      */
     @PostMapping("")
-    public ResponseEntity<Item> createItem(@RequestBody Item item) {
-        LOG.info("POST /items/ " + item);
+    public ResponseEntity<Message> createMessage(@RequestBody Message message) {
+        LOG.info("POST /messages/ "+message);
         try {
-            Item created_item = itemDao.createItem(item);
-            if (created_item != null){
-                return new ResponseEntity<Item>(created_item,HttpStatus.CREATED);
+            Message created_message = messageDAO.createMessage(message);
+            if (created_message != null){
+                return new ResponseEntity<Message>(created_message,HttpStatus.CREATED);
             }
             else {
-                return new ResponseEntity<Item>(HttpStatus.CONFLICT);
+                return new ResponseEntity<Message>(HttpStatus.CONFLICT);
             }
         }
         catch(IOException e) {
@@ -153,32 +157,6 @@ public class ItemController {
         //kk was here :o)
     }
 
-    /**
-     * updates the {@linkplain Item item} with the provided {@linkplain Item item} object, if it exists.
-     * 
-     * @param item the {@link Item item} to update
-     * 
-     * @return ResponseEntity with updated {@link Item item} object and HTTP status of OK if updated
-     * ResponseEntity with HTTP status of NOT_FOUND if not found
-     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
-     * 
-     * @author Alex Hetrick
-     */
-    @PutMapping("")
-    public ResponseEntity<Item> updateItem(@RequestBody Item item) {
-        LOG.info("PUT /items " + item);
-        try {
-            Item updatedItem = itemDao.updateItem(item);
-            if (updatedItem != null)
-                return new ResponseEntity<Item>(updatedItem, HttpStatus.OK);
-            else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     /**
      * Deletes a {@linkplain Item item} with the given id
@@ -192,11 +170,11 @@ public class ItemController {
      * @author Jonathan Campbell
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Item> deleteItem(@PathVariable int id) {
-        LOG.info("DELETE /items/" + id);
+    public ResponseEntity<Message> deleteMessage(@PathVariable int id) {
+        LOG.info("DELETE /messages/" + id);
         try {
-            if(itemDao.deleteItem(id)) {
-                return new ResponseEntity<Item>(HttpStatus.OK);
+            if(messageDAO.deleteMessage(id)) {
+                return new ResponseEntity<Message>(HttpStatus.OK);
             }
             else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);

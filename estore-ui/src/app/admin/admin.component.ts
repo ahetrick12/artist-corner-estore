@@ -64,6 +64,12 @@ export class AdminComponent implements OnInit {
       stock: 0,
       price: .01,
       imageLink: "../../assets/images/tat.jpg",
+      s: 0,
+      m: 0,
+      l: 0,
+      xl: 0,
+      x920: 0,
+      x1930: 0,
     };
 
     this.itemService.addItem(item).subscribe((i) => {

@@ -37,6 +37,10 @@ export class AnnouncementsComponent implements OnInit {
     return this.authService.userIsAdmin();
   }
 
+  getUserStatus(){
+    return this.authService.userLoggedIn();
+  }
+
   onSubmit() {
     if(this.title != "" && this.message != "") {
       const announcement: Announcement = {
