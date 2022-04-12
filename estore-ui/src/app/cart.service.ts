@@ -111,28 +111,26 @@ export class CartService {
   ): Observable<any> {
     let cartItem: CartItem = {
       item: item,
-      s: 0,
-      m: 0,
-      l: 0,
-      xl: 0,
+      small: 0,
+      medium: 0,
+      large: 0,
+      xlarge: 0,
       x920: 0,
       x1930: 0,
     };
 
-    console.log(item);
-
     switch (selection) {
       case 'S':
-        cartItem.s++;
+        cartItem.small++;
         break;
       case 'M':
-        cartItem.m++;
+        cartItem.medium++;
         break;
       case 'L':
-        cartItem.l++;
+        cartItem.large++;
         break;
       case 'XL':
-        cartItem.xl++;
+        cartItem.xlarge++;
         break;
       case 'x9':
         cartItem.x920++;
@@ -150,18 +148,21 @@ export class CartService {
           );
 
           if (filteredCart.length > 0) {
+            console.log(selection);
+
             switch (selection) {
               case 'S':
-                user.cart[user.cart.indexOf(filteredCart[0])].s++;
+                user.cart[user.cart.indexOf(filteredCart[0])].small++;
                 break;
               case 'M':
-                user.cart[user.cart.indexOf(filteredCart[0])].m++;
+                user.cart[user.cart.indexOf(filteredCart[0])].medium++;
+                console.log(user.cart[user.cart.indexOf(filteredCart[0])]);
                 break;
               case 'L':
-                user.cart[user.cart.indexOf(filteredCart[0])].l++;
+                user.cart[user.cart.indexOf(filteredCart[0])].large++;
                 break;
               case 'XL':
-                user.cart[user.cart.indexOf(filteredCart[0])].xl++;
+                user.cart[user.cart.indexOf(filteredCart[0])].xlarge++;
                 break;
               case 'x9':
                 user.cart[user.cart.indexOf(filteredCart[0])].x920++;
@@ -172,6 +173,7 @@ export class CartService {
             }
           } else {
             user.cart.push(cartItem);
+            console.log(user.cart[user.cart.indexOf(cartItem)]);
           }
 
           return this.http.put(this.usersUrl, user, this.httpOptions);
@@ -186,16 +188,16 @@ export class CartService {
       if (filteredCart.length > 0) {
         switch (selection) {
           case 'S':
-            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].s++;
+            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].small++;
             break;
           case 'M':
-            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].m++;
+            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].medium++;
             break;
           case 'L':
-            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].l++;
+            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].large++;
             break;
           case 'XL':
-            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].xl++;
+            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].xlarge++;
             break;
           case 'x9':
             this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].x920++;

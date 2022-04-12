@@ -73,10 +73,10 @@ export class CheckoutComponent implements OnInit {
     for (let j = 0; j < this.cart.length; j++) {
       total +=
         this.cart[j].item.price *
-        (this.cart[j].s +
-          this.cart[j].m +
-          this.cart[j].l +
-          this.cart[j].xl +
+        (this.cart[j].small +
+          this.cart[j].medium +
+          this.cart[j].large +
+          this.cart[j].xlarge +
           this.cart[j].x920 +
           this.cart[j].x1930);
     }
@@ -87,10 +87,10 @@ export class CheckoutComponent implements OnInit {
     console.log('CHECKOUT');
     for (let i = 0; i < this.cart.length; i++) {
       // Small
-      if (this.cart[i].item.s >= this.cart[i].s) {
-        var stock = this.cart[i].item.s - this.cart[i].s;
+      if (this.cart[i].item.s >= this.cart[i].small) {
+        var stock = this.cart[i].item.s - this.cart[i].small;
       } else {
-        var diff = Math.abs(this.cart[i].item.s - this.cart[i].s);
+        var diff = Math.abs(this.cart[i].item.s - this.cart[i].small);
         alert(
           this.cart[i].item.name +
             ' has ' +
@@ -104,10 +104,10 @@ export class CheckoutComponent implements OnInit {
       this.cart[i].item.s = stock;
 
       // Medium
-      if (this.cart[i].item.m >= this.cart[i].m) {
-        var stock = this.cart[i].item.m - this.cart[i].m;
+      if (this.cart[i].item.m >= this.cart[i].medium) {
+        var stock = this.cart[i].item.m - this.cart[i].medium;
       } else {
-        var diff = Math.abs(this.cart[i].item.m - this.cart[i].m);
+        var diff = Math.abs(this.cart[i].item.m - this.cart[i].medium);
         alert(
           this.cart[i].item.name +
             ' has ' +
@@ -121,10 +121,10 @@ export class CheckoutComponent implements OnInit {
       this.cart[i].item.m = stock;
 
       // Large
-      if (this.cart[i].item.l >= this.cart[i].l) {
-        var stock = this.cart[i].item.l - this.cart[i].l;
+      if (this.cart[i].item.l >= this.cart[i].large) {
+        var stock = this.cart[i].item.l - this.cart[i].large;
       } else {
-        var diff = Math.abs(this.cart[i].item.l - this.cart[i].l);
+        var diff = Math.abs(this.cart[i].item.l - this.cart[i].large);
         alert(
           this.cart[i].item.name +
             ' has ' +
@@ -138,10 +138,10 @@ export class CheckoutComponent implements OnInit {
       this.cart[i].item.l = stock;
 
       // Extra Large
-      if (this.cart[i].item.xl >= this.cart[i].xl) {
-        var stock = this.cart[i].item.xl - this.cart[i].xl;
+      if (this.cart[i].item.xl >= this.cart[i].xlarge) {
+        var stock = this.cart[i].item.xl - this.cart[i].xlarge;
       } else {
-        var diff = Math.abs(this.cart[i].item.xl - this.cart[i].xl);
+        var diff = Math.abs(this.cart[i].item.xl - this.cart[i].xlarge);
         alert(
           this.cart[i].item.name +
             ' has ' +

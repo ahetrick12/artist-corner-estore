@@ -1,1 +1,1 @@
-[{"id":0,"username":"username","password":"password","cart":[],"image":null},{"id":1,"username":"admin","password":"admin","cart":[{"item":{"id":4,"name":"Sweatpants","stock":100,"price":40.0,"s":30,"m":20,"l":20,"xl":20,"x920":0,"x1930":0,"image":null},"s":1,"m":0,"l":0,"xl":0,"x920":0,"x1930":0,"small":1,"medium":0,"xlarge":0,"large":0}],"image":null}]
+[{"id":0,"username":"username","password":"password","cart":[],"image":null},{"id":1,"username":"admin","password":"admin","cart":[],"image":null}]

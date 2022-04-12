@@ -42,10 +42,10 @@ export class CartComponent implements OnInit {
     for (let j = 0; j < this.cart.length; j++) {
       total +=
         this.cart[j].item.price *
-        (this.cart[j].s +
-          this.cart[j].m +
-          this.cart[j].l +
-          this.cart[j].xl +
+        (this.cart[j].small +
+          this.cart[j].medium +
+          this.cart[j].large +
+          this.cart[j].xlarge +
           this.cart[j].x920 +
           this.cart[j].x1930);
     }
@@ -71,19 +71,19 @@ export class CartComponent implements OnInit {
 
     switch (selection) {
       case 'S':
-        num = this.cart[index].s;
+        num = this.cart[index].small;
         stock = this.cart[index].item.s;
         break;
       case 'M':
-        num = this.cart[index].m;
+        num = this.cart[index].medium;
         stock = this.cart[index].item.m;
         break;
       case 'L':
-        num = this.cart[index].l;
+        num = this.cart[index].large;
         stock = this.cart[index].item.l;
         break;
       case 'XL':
-        num = this.cart[index].xl;
+        num = this.cart[index].xlarge;
         stock = this.cart[index].item.xl;
         break;
       case 'x9':
@@ -106,16 +106,16 @@ export class CartComponent implements OnInit {
 
     switch (selection) {
       case 'S':
-        this.cart[index].s = num;
+        this.cart[index].small = num;
         break;
       case 'M':
-        this.cart[index].m = num;
+        this.cart[index].medium = num;
         break;
       case 'L':
-        this.cart[index].l = num;
+        this.cart[index].large = num;
         break;
       case 'XL':
-        this.cart[index].xl = num;
+        this.cart[index].xlarge = num;
         break;
       case 'x9':
         this.cart[index].x920 = num;

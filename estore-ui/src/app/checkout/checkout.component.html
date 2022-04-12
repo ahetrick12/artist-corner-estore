@@ -25,8 +25,8 @@
           </tr>
           <tr>
             <div *ngIf="!cartitem.item.name.includes('Print')">
-              S: {{ cartitem.s }} <br />M: {{ cartitem.m }} <br />L:
-              {{ cartitem.l }} <br />XL: {{ cartitem.xl }}
+              S: {{ cartitem.small }} <br />M: {{ cartitem.medium }} <br />L:
+              {{ cartitem.large }} <br />XL: {{ cartitem.xlarge }}
             </div>
             <div *ngIf="cartitem.item.name.includes('Print')">
               9x12: {{ cartitem.x920 }} <br />19x30: {{ cartitem.x1930 }} <br />
@@ -36,10 +36,10 @@
             Total:
             {{
               cartitem.item.price *
-                (cartitem.s +
-                  cartitem.m +
-                  cartitem.l +
-                  cartitem.xl +
+                (cartitem.small +
+                  cartitem.medium +
+                  cartitem.large +
+                  cartitem.xlarge +
                   cartitem.x920 +
                   cartitem.x1930) | currency
             }}

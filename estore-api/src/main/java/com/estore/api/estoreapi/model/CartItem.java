@@ -8,14 +8,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Team 8
  */
 public class CartItem {
-    @JsonProperty("s") private int s;
-    @JsonProperty("m") private int m;
-    @JsonProperty("l") private int l;
-    @JsonProperty("xl") private int xl;
+    @JsonProperty("small") private int s;
+    @JsonProperty("medium") private int m;
+    @JsonProperty("large") private int l;
+    @JsonProperty("xlarge") private int xl;
     @JsonProperty("x920") private int x920;
     @JsonProperty("x1930") private int x1930;
     @JsonProperty("item") private Item item;
-    static final String STRING_FORMAT = "CartItem [item=%s, S=%s, M=%s, L=%s, XL=%s, x920=%s, x1930=%s]";
+    static final String STRING_FORMAT = "CartItem [item=%s, small=%s, medium=%s, large=%s, xlarge=%s, x920=%s, x1930=%s]";
 
         /**
      * create an item with the given id, name, and stock.
@@ -33,7 +33,7 @@ public class CartItem {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public CartItem(@JsonProperty("item") Item item, @JsonProperty("s") int s, @JsonProperty("m") int m, @JsonProperty("l") int l, @JsonProperty("xl") int xl, @JsonProperty("x920") int x920, @JsonProperty("x1930") int x1930) {
+    public CartItem(@JsonProperty("item") Item item, @JsonProperty("small") int s, @JsonProperty("medium") int m, @JsonProperty("large") int l, @JsonProperty("xlarge") int xl, @JsonProperty("x920") int x920, @JsonProperty("x1930") int x1930) {
         this.item = item;
         this.s = s;
         this.m = m;
@@ -132,7 +132,7 @@ public class CartItem {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,item.toString(), s, m, l, xl, x920, x1930);
+        return String.format(STRING_FORMAT, item.toString(), s, m, l, xl, x920, x1930);
     }
     /**
      * sets the Item of the cartitem.

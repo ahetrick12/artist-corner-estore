@@ -73,7 +73,6 @@ export class StoreComponent implements OnInit {
   }
 
   viewMore(item: Item) {
-    console.log(item);
     this.selectedItem.id = item.id;
     this.selectedItem.name = item.name;
     this.selectedItem.price = item.price;

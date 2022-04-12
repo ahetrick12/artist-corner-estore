@@ -31,45 +31,41 @@
           <div *ngIf="!cartitem.item.name.includes('Print')">
             S:
             <input
-              [(ngModel)]="cartitem.s"
-              (ngModelChange)="save(cartitem)"
-              (keyup)="validateInput(cartitem, 'S')"
+              [(ngModel)]="cartitem.small"
+              (keyup)="validateInput(cartitem, 'S'); save(cartitem)"
               id="quantity"
               type="number"
-              value="{{ cartitem.s }}"
+              value="{{ cartitem.small }}"
               min="0"
               max="{{ cartitem.item.s }}"
             />
             <br />M:
             <input
-              [(ngModel)]="cartitem.m"
-              (ngModelChange)="save(cartitem)"
-              (keyup)="validateInput(cartitem, 'M')"
+              [(ngModel)]="cartitem.medium"
+              (keyup)="validateInput(cartitem, 'M'); save(cartitem)"
               id="quantity"
               type="number"
-              value="{{ cartitem.m }}"
+              value="{{ cartitem.medium }}"
               min="0"
               max="{{ cartitem.item.m }}"
             />
             <br />L:
             <input
-              [(ngModel)]="cartitem.l"
-              (ngModelChange)="save(cartitem)"
-              (keyup)="validateInput(cartitem, 'L')"
+              [(ngModel)]="cartitem.large"
+              (keyup)="validateInput(cartitem, 'L'); save(cartitem)"
               id="quantity"
               type="number"
-              value="{{ cartitem.l }}"
+              value="{{ cartitem.large }}"
               min="0"
               max="{{ cartitem.item.l }}"
             />
             <br />XL:
             <input
-              [(ngModel)]="cartitem.xl"
-              (ngModelChange)="save(cartitem)"
-              (keyup)="validateInput(cartitem, 'XL')"
+              [(ngModel)]="cartitem.xlarge"
+              (keyup)="validateInput(cartitem, 'XL'); save(cartitem)"
               id="quantity"
               type="number"
-              value="{{ cartitem.xl }}"
+              value="{{ cartitem.xlarge }}"
               min="0"
               max="{{ cartitem.item.xl }}"
             />
@@ -78,8 +74,7 @@
             9x12:
             <input
               [(ngModel)]="cartitem.x920"
-              (ngModelChange)="save(cartitem)"
-              (keyup)="validateInput(cartitem, 'x9')"
+              (keyup)="validateInput(cartitem, 'x9'); save(cartitem)"
               id="quantity"
               type="number"
               value="{{ cartitem.x920 }}"
@@ -100,10 +95,10 @@
         </th>
         <th>
           {{
-            (cartitem.s +
-              cartitem.m +
-              cartitem.l +
-              cartitem.xl +
+            (cartitem.small +
+              cartitem.medium +
+              cartitem.large +
+              cartitem.xlarge +
               cartitem.x920 +
               cartitem.x1930) *
               cartitem.item.price | currency

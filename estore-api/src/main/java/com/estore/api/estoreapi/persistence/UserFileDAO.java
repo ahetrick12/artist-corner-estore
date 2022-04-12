@@ -189,7 +189,7 @@ public class UserFileDAO implements UserDAO {
             if (users.containsKey(user.getId()) == false)
                 return null;  // item does not exist
 
-                users.put(user.getId(), user);
+            users.put(user.getId(), user);
             save(); // may throw an IOException
             return user;
         }
