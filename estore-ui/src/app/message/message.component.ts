@@ -30,7 +30,7 @@ export class MessageComponent implements OnInit {
   }
 
   getMessages(): void {
-    this.messageService.searchMessage(this.authService.getCurrentUser().username).subscribe((messages) => (this.messages = messages));
+    this.messageService.getMessages().subscribe((messages) => (this.messages = messages));
   }
   onSubmit() {
     if(this.mess != "") {

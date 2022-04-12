@@ -1,9 +1,9 @@
-<p>message works!</p>
+
 <ul class="messages">
     <li *ngFor="let message of messages">
       
-        <div>{{ message.name }}</div>
-        <div >{{ message.message }}</div>
+        <div>{{ message.name }}: {{ message.message }}</div>
+        
         
       
     </li>
@@ -11,7 +11,7 @@
   <div>
     <form *ngIf="userLoggedIn()">
       
-      <textarea id="newmessage" placeholder="Message" name="mess" rows="5" cols="50" [(ngModel)]="mess"></textarea>
+      <textarea id="newmessage" placeholder="Message" name="newmess" rows="5" cols="50" [(ngModel)]="mess"></textarea>
       <button (click)="onSubmit()">Submit</button>
     </form>
   </div>
