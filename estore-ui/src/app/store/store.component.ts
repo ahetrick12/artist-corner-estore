@@ -129,4 +129,8 @@ export class StoreComponent implements OnInit {
     this.x9color = 'white';
     this.x19color = 'white';
   }
+
+  itemsSize() {
+    return this.items.length;
+  }
 }

@@ -180,7 +180,7 @@ public class ItemFileDAO implements ItemDAO {
             // and we need to assign the next unique id
             if (nameExists(item.getName())== false){
                 Item newItem = new Item(nextId(),item.getName(), item.getStock(), item.getPrice(), item.getS(),
-                                        item.getM(),item.getL(),item.getXL(),item.getx920(),item.getx1930());
+                                        item.getM(),item.getL(),item.getXL(),item.getx920(),item.getx1930(),  "../../assets/images/tat.jpg");
                 items.put(newItem.getId(),newItem);
                 save(); // may throw an IOException
                 return newItem;

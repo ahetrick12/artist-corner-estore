@@ -42,7 +42,10 @@
             type="number"
             value="{{ item.price }}"
             min="0.01"
-            oninput="this.value = Math.round(this.value * 100) / 100"
+            onkeyup= "this.value = 
+            !!this.value 
+            && Math.abs(this.value) >= 0.01 ?
+             Math.abs(this.value) : null"
           />
         </td>
         <td id="delete-cell">

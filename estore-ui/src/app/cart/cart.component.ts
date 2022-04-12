@@ -44,7 +44,6 @@ export class CartComponent implements OnInit {
     }
     return total;
   }
-
   save(cartItem: CartItem): void {
     if (this.cart) {
       this.cartService
@@ -62,8 +61,8 @@ export class CartComponent implements OnInit {
 
     num = Math.round(num);
 
-    if (num < 0) {
-      num = 0;
+    if (num <= 0) {
+      num = 1;
     } else if (num > cartItem.item.stock) {
       num = cartItem.item.stock;
     }

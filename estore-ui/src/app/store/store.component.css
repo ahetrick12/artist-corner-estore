@@ -4,8 +4,9 @@
 #titl {
   text-align: center;
   margin-block: 20px;
-  font-size: 20px;
+  font-size: x-large;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 #admin_view {
   border-color: black;
@@ -15,7 +16,7 @@
   width: 40%;
   margin-left: 30%;
   margin-right: 30%;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 #view_status {
   text-align: center;
@@ -55,6 +56,7 @@ li {
   margin-top: 1%;
   height: 200px;
   background-color: lightslategray;
+  border-radius: 10px;
 }
 li span {
   text-align: center;
@@ -65,6 +67,7 @@ li span {
   margin-right: auto;
   height: 70px;
   margin-top: 15px;
+  border-radius: 10px;
 }
 .items div {
   text-align: center;
@@ -76,14 +79,22 @@ li span {
   background-color: #000;
   color: white;
   padding: 5%;
-  border-radius: 4px;
-  border-color: black;
+  border-radius: 6px;
+  border: none;
+  margin-top: 10px;
+}
+
+#add:hover {
+  background-color: rgb(86, 86, 86) !important;
+  cursor: pointer;
 }
 
 #add:active {
-  color: red;
+  background-color: rgb(120, 120, 120) !important;
+  cursor: pointer;
 }
 
+<<<<<<< HEAD
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */

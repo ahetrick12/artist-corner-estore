@@ -53,18 +53,17 @@ export class AdminComponent implements OnInit {
       newName = name.concat(' ' + i);
     }
 
-
     let item: Item = {
       id: 0,
       name: newName,
       stock: 0,
       price: 0,
-      S:0,
-      M:0,
-      L:0,
-      XL:0,
-      x920:0,
-      x1930:0
+      S: 0,
+      M: 0,
+      L: 0,
+      XL: 0,
+      x920: 0,
+      x1930: 0,
     };
 
     this.itemService.addItem(item).subscribe((i) => {

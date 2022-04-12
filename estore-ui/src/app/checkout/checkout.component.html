@@ -139,7 +139,7 @@
 <label id="sameadr">
   <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
 </label>
-    <button class="button" type="submit" id="purchase" [disabled]="!checkoutForm.valid">Purchase Total: {{findsum() | currency}}</button>
+    <a routerLink="/confirmation"><button class="button" type="submit" id="purchase" [disabled]="!checkoutForm.valid">Purchase Total: {{findsum() | currency}}</button> </a>
 </form>
 </div>
 <!--
@@ -160,4 +160,5 @@
 <p>exp status: {{ checkoutForm.controls['exp'].status | json }}</p>
 <p>CVC status: {{ checkoutForm.controls['cvc'].status | json}}</p>
 -->
+
 </body>

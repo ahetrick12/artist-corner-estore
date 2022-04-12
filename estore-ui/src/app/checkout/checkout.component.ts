@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../cartitem';
 import { CartService } from '../cart.service';
+import { ItemService } from '../item.service';
 import { CartComponent } from '../cart/cart.component';
 import { UserService } from '../user.service';
 import { AuthService } from '../auth.service';
+import { Item } from '../item';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import {Router} from "@angular/router";
@@ -15,7 +17,7 @@ import {Router} from "@angular/router";
 })
 
 export class CheckoutComponent implements OnInit {
-
+  [x: string]: any;
   cart: CartItem[] = [];
   checkoutForm: any;
 
@@ -23,6 +25,7 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService,
     private userService: UserService,
     private authService: AuthService,
+    private itemService: ItemService
     private formBuilder: FormBuilder,
     private router: Router
   ) {
@@ -42,7 +45,6 @@ export class CheckoutComponent implements OnInit {
     });
 
   }
-
   ngOnInit(): void {
     this.getItems();
   }
@@ -62,11 +64,26 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkout(): void {
+    for (let i=0; i< this.cart.length ;i++){
+      if (this.cart[i].item.stock>= this.cart[i].quantity){ 
+        var stock = this.cart[i].item.stock - this.cart[i].quantity;
+      } else{
+        var diff = Math.abs(this.cart[i].item.stock - this.cart[i].quantity);
+        alert((this.cart[i].item.name) + " has " + this.cart[i].item.stock + " stock; " + diff + " removed from cart.")
+        var stock = 0;
+      }
+      this.cart[i].item.stock = stock;
+      this.saveItem(this.cart[i].item);
+    }
     this.cart.splice(0, this.cart.length);
     this.cartService
       .clearCart(this.authService.getCurrentUser().username)
       .subscribe();
     this.checkoutForm.reset();
     this.router.navigate(['/homepage']);
+  }
+
+  saveItem(item: Item): void {
+    this.itemService.updateItem(item).subscribe();
   }
 }

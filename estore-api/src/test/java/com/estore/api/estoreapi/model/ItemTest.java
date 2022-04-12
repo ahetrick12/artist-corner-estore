@@ -25,16 +25,18 @@ public class ItemTest {
         int expected_XL = 35;
         int expected_x920 = 0;
         int expected_x1930 = 0;
+        String expected_image = "dog.jpg";
 
         // Invoke
         Item item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
-                                expected_XL,expected_x920,expected_x1930);
+                                expected_XL,expected_x920,expected_x1930, expected_image);
 
         // Analyze
         assertEquals(expected_id,item.getId());
         assertEquals(expected_name,item.getName());
         assertEquals(expected_stock,item.getStock());
         assertEquals(expected_price,item.getPrice());
+        assertEquals(expected_image,item.getImage());
     }
 
     @Test
@@ -50,7 +52,7 @@ public class ItemTest {
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
 
         String expected_name = "Socks";
 
@@ -72,7 +74,7 @@ public class ItemTest {
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
 
         int expected_stock = 50;
 
@@ -95,7 +97,7 @@ public class ItemTest {
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
 
         float expected_price = (float) 99.99;
 
@@ -119,8 +121,9 @@ public class ItemTest {
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        String expected_string = String.format(Item.STRING_FORMAT,id,name,stock,price,S,M,L,XL,x920,x1930);
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
+        String expected_string = String.format(Item.STRING_FORMAT,id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+
 
         // Invoke
         String actual_string = item.toString();
@@ -141,9 +144,9 @@ public class ItemTest {
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
-        Item item2 = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
-        Item item3 = new Item(2,"shoes",2,(float) 3.99, 20,30,40,10,0,0);
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        Item item2 = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        Item item3 = new Item(2,"shoes",2,(float) 3.99, 20,30,40,10,0,0, "");
 
         int res1 = item.compareTo(item2);
         int res2 = item.compareTo(item3);
