@@ -197,6 +197,20 @@ public class UserControllerTest {
     }
 
     @Test
+    public void testGetUsersFail() throws IOException { 
+        // Setup
+        // When getUseres is called return the useres created above
+        when(mockUserDAO.getUsers()).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<User[]> response = userController.getUsers();
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(null, response.getBody());
+    }
+
+    @Test
     public void testGetUsersHandleException() throws IOException { 
         // Setup
         // When getUsers is called on the Mock User DAO, throw an IOException
@@ -228,6 +242,27 @@ public class UserControllerTest {
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(users[2], response.getBody());
+    }
+
+    @Test
+    public void testFindUserFailed() throws IOException {
+        // Setup
+        String searchString = "meow";
+        User[] users = new User[3];
+        users[0] = new User(99, "Username", "Password", new CartItem[1]);
+        users[1] = new User(100, "Test123", "12345", new CartItem[1]);
+        users[2] = new User(100, "safjakslf", "213912837", new CartItem[1]);
+
+        // When findUsers is called with the search string, return the last
+        /// of the users above
+        when(mockUserDAO.findUser(searchString)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<User> response = userController.findUser(searchString);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(null, response.getBody());
     }
 
     @Test

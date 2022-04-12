@@ -19,17 +19,15 @@ public class ItemTest {
         String expected_name = "Hamburger";
         int expected_stock = 30;
         float expected_price = (float) 3.99;
-        String expected_image = "dog.jpg";
 
         // Invoke
-        Item item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_image);
+        Item item = new Item(expected_id,expected_name,expected_stock,expected_price);
 
         // Analyze
         assertEquals(expected_id,item.getId());
         assertEquals(expected_name,item.getName());
         assertEquals(expected_stock,item.getStock());
         assertEquals(expected_price,item.getPrice());
-        assertEquals(expected_image,item.getImage());
     }
 
     @Test
@@ -39,7 +37,7 @@ public class ItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
-        Item item = new Item(id,name,stock,price, "");
+        Item item = new Item(id,name,stock,price);
 
         String expected_name = "Socks";
 
@@ -55,7 +53,7 @@ public class ItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
-        Item item = new Item(id,name,stock,price, "");
+        Item item = new Item(id,name,stock,price);
 
         int expected_stock = 50;
 
@@ -72,7 +70,7 @@ public class ItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
-        Item item = new Item(id,name,stock,price, "");
+        Item item = new Item(id,name,stock,price);
 
         float expected_price = (float) 99.99;
 
@@ -91,7 +89,7 @@ public class ItemTest {
         int stock = 30;
         float price = 10;
         String expected_string = String.format(Item.STRING_FORMAT,id,name,stock,price);
-        Item item = new Item(id,name,stock,price, "");
+        Item item = new Item(id,name,stock,price);
 
         // Invoke
         String actual_string = item.toString();

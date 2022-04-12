@@ -25,7 +25,7 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService,
     private userService: UserService,
     private authService: AuthService,
-    private itemService: ItemService
+    private itemService: ItemService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {

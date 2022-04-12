@@ -242,5 +242,19 @@ public class AnnouncementControllerTest {
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
+
+    @Test
+    public void testGetAnnouncementFail() throws IOException { 
+        // Setup
+        // When getUseres is called return the useres created above
+        when(mockAnnouncementDAO.getAnnouncements()).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Announcement[]> response = announcementController.getAnnouncements();
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(null, response.getBody());
+    }
 }
 

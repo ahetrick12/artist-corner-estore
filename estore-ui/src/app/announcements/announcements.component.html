@@ -14,6 +14,7 @@
     </form>
   </div>
   <ul class="announcements">
+    <div *ngIf="announcements.length == 0" style="text-align: center"> Admin has posted no announcements.</div>
     <li *ngFor="let announcement of announcements">
           <h1 *ngIf="!announcement.editing">{{announcement.title}}</h1>
           <input *ngIf="announcement.editing" type="text" name = 'announcementTitleEdit' [(ngModel)]="announcementTitleEdit">

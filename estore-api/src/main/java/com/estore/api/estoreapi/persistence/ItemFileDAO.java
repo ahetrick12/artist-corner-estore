@@ -179,7 +179,7 @@ public class ItemFileDAO implements ItemDAO {
             // we create a new item object because the id field is immutable
             // and we need to assign the next unique id
             if (nameExists(item.getName())== false){
-                Item newItem = new Item(nextId(),item.getName(), item.getStock(), item.getPrice(), "../../assets/images/tat.jpg");
+                Item newItem = new Item(nextId(),item.getName(), item.getStock(), item.getPrice());
                 items.put(newItem.getId(),newItem);
                 save(); // may throw an IOException
                 return newItem;

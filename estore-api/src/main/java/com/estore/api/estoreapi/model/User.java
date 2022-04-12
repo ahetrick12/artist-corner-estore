@@ -8,13 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class User {
     // Package private for tests
-    static final String STRING_FORMAT = "User [id=%s username=%s, password=%s, cart=%s, image=%s]";
+    static final String STRING_FORMAT = "User [id=%s username=%s, password=%s, cart=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("username") private String username;
     @JsonProperty("password") private String password;
     @JsonProperty("cart") private CartItem[] cart;
-    @JsonProperty("image") private String image;
 
      /**
      * Create an user with a given username and password.
@@ -28,12 +27,11 @@ public class User {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public User(@JsonProperty("id") int id, @JsonProperty("username") String username, @JsonProperty("password") String password, @JsonProperty("cart") CartItem[] cart, @JsonProperty("image")  String image) {
+    public User(@JsonProperty("id") int id, @JsonProperty("username") String username, @JsonProperty("password") String password, @JsonProperty("cart") CartItem[] cart) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.cart = cart;
-        this.image = image;
     }
 
     /**
@@ -79,22 +77,10 @@ public class User {
     public CartItem[] getCart() {return cart;}
 
     /**
-     * Retrieves the image of the user
-     * @return the image of the user
-     */
-    public String getImage() {return image;}
-
-    /**
-     * Sets the image of the user
-     * @param image The image of the user
-     */
-    public void setImage(String image) {this.image = image;}
-
-    /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, id, username, password, cart, image);
+        return String.format(STRING_FORMAT, id, username, password, cart);
     }
 }
