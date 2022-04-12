@@ -71,36 +71,132 @@ export class CheckoutComponent implements OnInit {
   findsum(): number {
     var total = 0;
     for (let j = 0; j < this.cart.length; j++) {
-      //total += this.cart[j].item.price * this.cart[j].quantity;
+      total +=
+        this.cart[j].item.price *
+        (this.cart[j].s +
+          this.cart[j].m +
+          this.cart[j].l +
+          this.cart[j].xl +
+          this.cart[j].x920 +
+          this.cart[j].x1930);
     }
     return total;
   }
 
   checkout(): void {
+    console.log('CHECKOUT');
     for (let i = 0; i < this.cart.length; i++) {
-      // if (this.cart[i].item.stock >= this.cart[i].quantity) {
-      //   var stock = this.cart[i].item.stock - this.cart[i].quantity;
-      // } else {
-      //   var diff = Math.abs(this.cart[i].item.stock - this.cart[i].quantity);
-      //   alert(
-      //     this.cart[i].item.name +
-      //       ' has ' +
-      //       this.cart[i].item.stock +
-      //       ' stock; ' +
-      //       diff +
-      //       ' removed from cart.'
-      //   );
-      //   var stock = 0;
-      // }
-      //this.cart[i].item.stock = stock;
+      // Small
+      if (this.cart[i].item.s >= this.cart[i].s) {
+        var stock = this.cart[i].item.s - this.cart[i].s;
+      } else {
+        var diff = Math.abs(this.cart[i].item.s - this.cart[i].s);
+        alert(
+          this.cart[i].item.name +
+            ' has ' +
+            this.cart[i].item.s +
+            ' stock; ' +
+            diff +
+            ' removed from cart.'
+        );
+        var stock = 0;
+      }
+      this.cart[i].item.s = stock;
+
+      // Medium
+      if (this.cart[i].item.m >= this.cart[i].m) {
+        var stock = this.cart[i].item.m - this.cart[i].m;
+      } else {
+        var diff = Math.abs(this.cart[i].item.m - this.cart[i].m);
+        alert(
+          this.cart[i].item.name +
+            ' has ' +
+            this.cart[i].item.m +
+            ' stock; ' +
+            diff +
+            ' removed from cart.'
+        );
+        var stock = 0;
+      }
+      this.cart[i].item.m = stock;
+
+      // Large
+      if (this.cart[i].item.l >= this.cart[i].l) {
+        var stock = this.cart[i].item.l - this.cart[i].l;
+      } else {
+        var diff = Math.abs(this.cart[i].item.l - this.cart[i].l);
+        alert(
+          this.cart[i].item.name +
+            ' has ' +
+            this.cart[i].item.l +
+            ' stock; ' +
+            diff +
+            ' removed from cart.'
+        );
+        var stock = 0;
+      }
+      this.cart[i].item.l = stock;
+
+      // Extra Large
+      if (this.cart[i].item.xl >= this.cart[i].xl) {
+        var stock = this.cart[i].item.xl - this.cart[i].xl;
+      } else {
+        var diff = Math.abs(this.cart[i].item.xl - this.cart[i].xl);
+        alert(
+          this.cart[i].item.name +
+            ' has ' +
+            this.cart[i].item.xl +
+            ' stock; ' +
+            diff +
+            ' removed from cart.'
+        );
+        var stock = 0;
+      }
+      this.cart[i].item.xl = stock;
+
+      // 9x12
+      if (this.cart[i].item.x920 >= this.cart[i].x920) {
+        var stock = this.cart[i].item.x920 - this.cart[i].x920;
+      } else {
+        var diff = Math.abs(this.cart[i].item.x920 - this.cart[i].x920);
+        alert(
+          this.cart[i].item.name +
+            ' has ' +
+            this.cart[i].item.x920 +
+            ' stock; ' +
+            diff +
+            ' removed from cart.'
+        );
+        var stock = 0;
+      }
+      this.cart[i].item.x920 = stock;
+
+      // 19x30
+      if (this.cart[i].item.x1930 >= this.cart[i].x1930) {
+        var stock = this.cart[i].item.x1930 - this.cart[i].x1930;
+      } else {
+        var diff = Math.abs(this.cart[i].item.x1930 - this.cart[i].x1930);
+        alert(
+          this.cart[i].item.name +
+            ' has ' +
+            this.cart[i].item.x1930 +
+            ' stock; ' +
+            diff +
+            ' removed from cart.'
+        );
+        var stock = 0;
+      }
+      this.cart[i].item.x1930 = stock;
+
       this.saveItem(this.cart[i].item);
     }
+
     this.cart.splice(0, this.cart.length);
     this.cartService
       .clearCart(this.authService.getCurrentUser().username)
       .subscribe();
     this.checkoutForm.reset();
-    this.router.navigate(['/homepage']);
+    this.router.navigate(['/confirmation']);
   }
 
   saveItem(item: Item): void {

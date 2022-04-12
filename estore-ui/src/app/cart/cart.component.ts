@@ -39,12 +39,20 @@ export class CartComponent implements OnInit {
 
   findSum(): number {
     var total = 0;
-    // for (let j = 0; j < this.cart.length; j++) {
-    //   total += this.cart[j].item.price * this.cart[j].quantity;
-    // }
+    for (let j = 0; j < this.cart.length; j++) {
+      total +=
+        this.cart[j].item.price *
+        (this.cart[j].s +
+          this.cart[j].m +
+          this.cart[j].l +
+          this.cart[j].xl +
+          this.cart[j].x920 +
+          this.cart[j].x1930);
+    }
     return total;
   }
   save(cartItem: CartItem): void {
+    console.log(cartItem);
     if (this.cart) {
       this.cartService
         .updateCartItem(this.authService.getCurrentUser().username, cartItem)
@@ -52,21 +60,69 @@ export class CartComponent implements OnInit {
     }
   }
 
-  validateInput(cartItem: CartItem): void {
+  validateInput(cartItem: CartItem, selection: string): void {
     let filteredCart = this.cart.filter(
       (item) => item.item.id === cartItem.item.id
     );
     let index = this.cart.indexOf(filteredCart[0]);
-    // let num = this.cart[index].quantity;
 
-    // num = Math.round(num);
+    let num = 0;
+    let stock = 0;
 
-    // if (num <= 0) {
-    //   num = 1;
-    // } else if (num > cartItem.item.stock) {
-    //   num = cartItem.item.stock;
-    // }
+    switch (selection) {
+      case 'S':
+        num = this.cart[index].s;
+        stock = this.cart[index].item.s;
+        break;
+      case 'M':
+        num = this.cart[index].m;
+        stock = this.cart[index].item.m;
+        break;
+      case 'L':
+        num = this.cart[index].l;
+        stock = this.cart[index].item.l;
+        break;
+      case 'XL':
+        num = this.cart[index].xl;
+        stock = this.cart[index].item.xl;
+        break;
+      case 'x9':
+        num = this.cart[index].x920;
+        stock = this.cart[index].item.x920;
+        break;
+      case 'x19':
+        num = this.cart[index].x1930;
+        stock = this.cart[index].item.x1930;
+        break;
+    }
 
-    // this.cart[index].quantity = num;
+    num = Math.round(num);
+
+    if (num <= 0) {
+      num = 1;
+    } else if (num > stock) {
+      num = stock;
+    }
+
+    switch (selection) {
+      case 'S':
+        this.cart[index].s = num;
+        break;
+      case 'M':
+        this.cart[index].m = num;
+        break;
+      case 'L':
+        this.cart[index].l = num;
+        break;
+      case 'XL':
+        this.cart[index].xl = num;
+        break;
+      case 'x9':
+        this.cart[index].x920 = num;
+        break;
+      case 'x19':
+        this.cart[index].x1930 = num;
+        break;
+    }
   }
 }

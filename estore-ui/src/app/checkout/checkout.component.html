@@ -23,8 +23,27 @@
               cartitem.item.price | currency
             }}
           </tr>
-          <!--<tr>Quantity: {{cartitem.quantity}}</tr>
-            <tr>Total: {{cartitem.quantity*cartitem.item.price | currency}}</tr>-->
+          <tr>
+            <div *ngIf="!cartitem.item.name.includes('Print')">
+              S: {{ cartitem.s }} <br />M: {{ cartitem.m }} <br />L:
+              {{ cartitem.l }} <br />XL: {{ cartitem.xl }}
+            </div>
+            <div *ngIf="cartitem.item.name.includes('Print')">
+              9x12: {{ cartitem.x920 }} <br />19x30: {{ cartitem.x1930 }} <br />
+            </div>
+          </tr>
+          <tr>
+            Total:
+            {{
+              cartitem.item.price *
+                (cartitem.s +
+                  cartitem.m +
+                  cartitem.l +
+                  cartitem.xl +
+                  cartitem.x920 +
+                  cartitem.x1930) | currency
+            }}
+          </tr>
         </table>
       </li>
     </ul>
@@ -240,16 +259,9 @@
         <input type="checkbox" checked="checked" name="sameadr" /> Shipping
         address same as billing
       </label>
-      <a routerLink="/confirmation"
-        ><button
-          class="button"
-          type="submit"
-          id="purchase"
-          [disabled]="!checkoutForm.valid"
-        >
-          Purchase Total: {{ findsum() | currency }}
-        </button>
-      </a>
+      <button class="button" type="submit" id="purchase" (click)="checkout()">
+        Purchase Total: {{ findsum() | currency }}
+      </button>
     </form>
   </div>
   <!--

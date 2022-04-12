@@ -92,6 +92,7 @@ export class CartService {
       return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
         switchMap((user) => {
           user.cart = [];
+          console.log('YEAH');
           return this.http.put(this.usersUrl, user, this.httpOptions);
         }),
         catchError(this.handleError<User>('clearCart'))
@@ -117,6 +118,8 @@ export class CartService {
       x920: 0,
       x1930: 0,
     };
+
+    console.log(item);
 
     switch (selection) {
       case 'S':
