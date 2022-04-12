@@ -11,6 +11,7 @@ import { CartComponent } from './cart/cart.component';
 
 import { LoginComponent } from './login/login.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { AnnouncementsComponent } from './announcements/announcements.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -25,6 +26,7 @@ import { AdminComponent } from './admin/admin.component';
     CartComponent,
     SearchBarComponent,
     LoginComponent,
+    AnnouncementsComponent,
     ContactComponent,
     AboutComponent,
     CheckoutComponent,
