@@ -1,6 +1,6 @@
 package com.estore.api.estoreapi.model;
 
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author code heavily based on heroes-api by SWEN Faculty
  */
 public class Item implements Comparable<Item>{
-    private static final Logger LOG = Logger.getLogger(Item.class.getName());
+    //private static final Logger LOG = Logger.getLogger(Item.class.getName());
 
     // Package private for tests
     static final String STRING_FORMAT = "Item [id=%d, name=%s, stock=%s, price=%s, s=%s, m=%s, l=%s, xl=%s, x920=%s, x1930=%s, image=%s]";
@@ -28,12 +28,11 @@ public class Item implements Comparable<Item>{
     @JsonProperty("image") private String image;
 
     /**
-     * create an item with the given id, name, and stock.
+     * create an item with the given id, name, stock, and price.
      * @param id the id of the item
      * @param name the name of the item
      * @param stock the stock of the item.
      * @param price the price of the item.
-     * @param image link to the item's image.
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
@@ -62,22 +61,30 @@ public class Item implements Comparable<Item>{
     public int getId() {return id;}
 
     /**
+     * retrieves the name of the item
+     * @return the name of the item
+     */
+    public String getName() {return name;}
+    
+    /**
      * sets the name of the item; necessary for JSON object to Java object deserialization.
      * @param name The name of the item
      */
     public void setName(String name) {this.name = name;}
 
     /**
-     * retrieves the name of the item
-     * @return the name of the item
-     */
-    public String getName() {return name;}
-
-    /**
      * retrieves the price of the item
      * @return the price of the item
      */
     public float getPrice() {return price;}
+
+    /**
+     * sets the price of the item.
+     * @param price The price of the item.
+     */
+    public void setPrice(float price) {
+        this.price = price;
+    }
 
      /**
      * retrieves the stock of the item
@@ -153,16 +160,12 @@ public class Item implements Comparable<Item>{
     public String toString() {
         return String.format(STRING_FORMAT,id,name,stock,price, S, M, L, XL, x920, x1930, image);
     }
+
+     /*
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(Item obj){
         return this.name.compareTo(obj.name);
-  }
-    /**
-     * sets the price of the item.
-     * @param price The price of the item.
-     */
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 }

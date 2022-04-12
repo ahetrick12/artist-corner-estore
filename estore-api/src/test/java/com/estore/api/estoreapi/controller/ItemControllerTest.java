@@ -190,6 +190,40 @@ public class ItemControllerTest {
     }
 
     @Test
+    public void testGetItemsFail() throws IOException { 
+        // Setup
+        // When getUseres is called return the useres created above
+        when(mockItemDAO.getItems()).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Item[]> response = itemController.getItems();
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(null, response.getBody());
+    }
+
+    @Test
+    public void testFindItemFailed() throws IOException {
+        // Setup
+        String searchString = "michael";
+        Item[] items = new Item[3];
+        items[0] = new Item(101, "one", 1, 1);
+        items[1] = new Item(102, "two", 2, 2);
+        items[2] = new Item(103, "three", 3, 3);
+
+        // When findUsers is called with the search string, return the last
+        /// of the users above
+        when(mockItemDAO.findItems(searchString)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Item[]> response = itemController.searchItems(searchString);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(null, response.getBody());
+    }
+    @Test
     public void testGetItemsHandleException() throws IOException { 
         // Setup
         // When getItems is called on the Mock Item DAO, throw an IOException

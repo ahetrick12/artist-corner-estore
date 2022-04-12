@@ -40,10 +40,12 @@ public class AnnouncementFileDAOTest {
     @BeforeEach
     public void setupAnnouncementFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
-        testAnnouncements = new Announcement[3];
+        testAnnouncements = new Announcement[5];
         testAnnouncements[0] = new Announcement(0,"Announcement","This is an announcement",false);
         testAnnouncements[1] = new Announcement(1,"Announcement2","This is an announcement2",false);
         testAnnouncements[2] = new Announcement(2,"Announcement3","This is an announcement3",false);
+        testAnnouncements[3] = new Announcement(3,"","This is an announcement4",false);
+        testAnnouncements[4] = new Announcement(4,"Announcement5","",false);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the announcement array above
@@ -91,7 +93,7 @@ public class AnnouncementFileDAOTest {
     @Test
     public void testCreateAnnouncement() {
         // Setup
-        Announcement announcement = new Announcement(3,"Announcement4","This is an announcement4",false);
+        Announcement announcement = new Announcement(5,"Announcement4","This is an announcement4",false);
 
         // Invoke
         Announcement result = assertDoesNotThrow(() -> announcementFileDAO.createAnnouncement(announcement),
@@ -143,7 +145,7 @@ public class AnnouncementFileDAOTest {
          // Analyze
          assertEquals(announcement,null);
     }
-
+    
     @Test
     public void testDeleteAnnouncementNotFound() {
          // Invoke

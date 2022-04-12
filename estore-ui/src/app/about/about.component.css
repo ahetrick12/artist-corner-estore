@@ -1,5 +1,13 @@
-h1 {
+
+* {
+  font-family: "Fredoka", sans-serif;
+}
+
+#title {
   text-align: center;
+  margin-block: 1.5%;
+  font-size: x-large;
+  font-weight: bold;
 }
 
 ul {
@@ -51,5 +59,6 @@ div{
 }
 
 img{
+  border-radius: 10px;
     width: 30%;
 }

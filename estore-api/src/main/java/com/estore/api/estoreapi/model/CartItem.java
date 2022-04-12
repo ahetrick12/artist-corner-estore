@@ -1,5 +1,4 @@
 package com.estore.api.estoreapi.model;
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
@@ -17,9 +16,9 @@ public class CartItem {
     @JsonProperty("item") private Item item;
     static final String STRING_FORMAT = "CartItem [item=%s, small=%s, medium=%s, large=%s, xlarge=%s, x920=%s, x1930=%s]";
 
-        /**
-     * create an item with the given id, name, and stock.
-     * @param item the item to be added to the cart
+    /**
+     * create a cartitem with the given item and quantity
+     * @param item the item 
      * @param quantity the quantity of the item
      * @param s the quantity of small items
      * @param m the quantity of medium items
@@ -48,6 +47,14 @@ public class CartItem {
      * @return the item of the cartitem
      */
     public Item getItem() {return item;}
+
+        /**
+     * sets the Item of the cartitem.
+     * @param item The item of the cartitem.
+     */
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     /**
      * retrieves the quantity of small items
@@ -121,6 +128,11 @@ public class CartItem {
      */
     public void setX1930(int x1930) {this.x1930 = x1930;}
 
+    /**
+     * compares two items to see if they equal eachother
+     * @param item2 the compared item
+     * @return true if same, false if not
+     */
     public boolean compareItem(Item item2){
         if (this.item.equals(item2)){
             return true;
@@ -133,12 +145,5 @@ public class CartItem {
     @Override
     public String toString() {
         return String.format(STRING_FORMAT, item.toString(), s, m, l, xl, x920, x1930);
-    }
-    /**
-     * sets the Item of the cartitem.
-     * @param item The item of the cartitem.
-     */
-    public void setItem(Item item) {
-        this.item = item;
     }
 }

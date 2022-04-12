@@ -124,6 +124,19 @@ public class ItemFileDAOTest {
     }
 
     @Test
+    public void testCreateItemFailure() {
+        // Setup
+        Item item = new Item(102,"Hamburger", 20, (float)5.99);
+
+        // Invoke
+        Item result = assertDoesNotThrow(() -> itemFileDAO.createItem(item),
+                                "Unexpected exception thrown");
+
+        // Analyze
+        assertNull(result);
+    }
+
+    @Test
     public void testUpdateItem() {
         // Setup
         Item item = new Item(99,"Sticker", 20, (float)1.99, 0,0,0,0,250,175, "");
@@ -185,6 +198,7 @@ public class ItemFileDAOTest {
         // Analyze
         assertNull(result);
     }
+
 
     @Test
     public void testConstructorException() throws IOException {

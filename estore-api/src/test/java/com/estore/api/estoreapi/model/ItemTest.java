@@ -36,7 +36,6 @@ public class ItemTest {
         assertEquals(expected_name,item.getName());
         assertEquals(expected_stock,item.getStock());
         assertEquals(expected_price,item.getPrice());
-        assertEquals(expected_image,item.getImage());
     }
 
     @Test
@@ -123,7 +122,6 @@ public class ItemTest {
         int x1930 = 0;
         String expected_string = String.format(Item.STRING_FORMAT,id,name,stock,price,S,M,L,XL,x920,x1930, "");
         Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
-
 
         // Invoke
         String actual_string = item.toString();

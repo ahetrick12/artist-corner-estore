@@ -1,3 +1,8 @@
+* {
+  font-family: "Fredoka", sans-serif;
+}
+
+
 h1 {
     text-align: center;
   }
@@ -58,4 +63,11 @@ h1 {
   div{
       margin:auto;
       text-align: center;
+  }
+
+  #title {
+    text-align: center;
+    margin-block: 1.5%;
+    font-size: x-large;
+    font-weight: bold;
   }

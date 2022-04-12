@@ -24,7 +24,7 @@ import com.estore.api.estoreapi.model.User;
  */
 @Component
 public class UserFileDAO implements UserDAO {
-    Map<Integer, User> users;           // Provides a local cache of the item objects
+    Map<Integer, User> users;           // Provides a local cache of the user objects
     private ObjectMapper objectMapper;  // Provides conversion between User
                                         // objects and JSON text format written
                                         // to the file
@@ -187,7 +187,7 @@ public class UserFileDAO implements UserDAO {
     public User updateUser(User user) throws IOException {
         synchronized(users) {
             if (users.containsKey(user.getId()) == false)
-                return null;  // item does not exist
+                return null;  // user does not exist
 
             users.put(user.getId(), user);
             save(); // may throw an IOException

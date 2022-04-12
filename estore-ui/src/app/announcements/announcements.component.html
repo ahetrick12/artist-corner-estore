@@ -13,7 +13,9 @@
       <button (click)="onSubmit()">Submit</button>
     </form>
   </div>
+  <div *ngIf="getUserStatus(); else not_logged">
   <ul class="announcements">
+    <div *ngIf="announcements.length == 0" style="text-align: center"> Admin has posted no announcements.</div>
     <li *ngFor="let announcement of announcements">
           <h1 *ngIf="!announcement.editing">{{announcement.title}}</h1>
           <input *ngIf="announcement.editing" type="text" name = 'announcementTitleEdit' [(ngModel)]="announcementTitleEdit">
@@ -31,4 +33,6 @@
           <button (click)="onDelete(announcement)" *ngIf="getAdminStatus()">Delete</button>
     </li>
   </ul>
+</div>
+<ng-template #not_logged ><p style="text-align: center">Please login or create an account to see announcements.</p></ng-template>
 </body>

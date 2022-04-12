@@ -1,9 +1,10 @@
 * {
   font-family: "Fredoka", sans-serif;
 }
-#titl {
+
+#title {
   text-align: center;
-  margin-block: 20px;
+  margin-block: 1.5%;
   font-size: x-large;
   font-weight: bold;
 }
