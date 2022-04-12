@@ -48,9 +48,9 @@ public class MessageFileDAOTest {
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the item array above
         when(mockObjectMapper
-            .readValue(new File("doesnt_matter.txt"),Message[].class))
+            .readValue(new File("doesnt_matter2.txt"),Message[].class))
                 .thenReturn(testMessages);
-        messageFileDAO = new MessageFileDAO("doesnt_matter.txt",mockObjectMapper);
+        messageFileDAO = new MessageFileDAO("doesnt_matter2.txt",mockObjectMapper);
     }
 
     @Test
@@ -64,16 +64,7 @@ public class MessageFileDAOTest {
             assertEquals(messages[i],testMessages[i]);
     }
 
-    @Test
-    public void testFindMessages() {
-         // Invoke
-         Message[] messages = messageFileDAO.findMessages("pay");
 
-         // Analyze
-         assertEquals(messages.length,2);
-         assertEquals(messages[0],testMessages[0]);
-         assertEquals(messages[1],testMessages[1]);
-    }
 
     @Test
     public void testGetMessage() {
@@ -122,7 +113,7 @@ public class MessageFileDAOTest {
             .when(mockObjectMapper)
                 .writeValue(any(File.class),any(Message[].class));
 
-        Message message = new Message(99,"admin", "more than you can afford buddy");
+        Message message = new Message(90,"admin", "you pay me now");
 
         assertThrows(IOException.class,
                         () -> messageFileDAO.createMessage(message),
@@ -163,11 +154,11 @@ public class MessageFileDAOTest {
         // raised
         doThrow(new IOException())
             .when(mockObjectMapper)
-                .readValue(new File("doesnt_matter.txt"),Message[].class);
+                .readValue(new File("doesnt_matter2.txt"),Message[].class);
 
         // Invoke & Analyze
         assertThrows(IOException.class,
-                        () -> new ItemFileDAO("doesnt_matter.txt",mockObjectMapper),
+                        () -> new ItemFileDAO("doesnt_matter2.txt",mockObjectMapper),
                         "IOException not thrown");
     }
 }

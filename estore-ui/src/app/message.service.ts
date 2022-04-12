@@ -17,7 +17,7 @@ export class MessageService {
   };
 
   constructor(private http: HttpClient) {}
-  
+  private messages: Observable<Message[]> = of();
   
   //private messageService: MessageService) { }
 
@@ -30,20 +30,46 @@ export class MessageService {
   }
 
   
+ /* GET items whose name contains search term */
+ searchMessage(term: string): Observable<Message[]> {
+  if (!term.trim()) {
+    // if not search term, set searched to false to go back to using the full list and return empty item array
+    return of([]);
+  }
+
+  // sets items variable to the search result
+  this.messages = this.http.get<Message[]>(`${this.messagesUrl}/?name=${term}`).pipe(
+    tap((x) =>
+      x.length
+        ? this.log(`found items matching "${term}"`)
+        : this.log(`no items matching "${term}"`)
+    ),
+    catchError(this.handleError<Message[]>('searchMessages', []))
+  );
+  
+  return this.messages;
+}
+  
 
 
   deleteMessage(id: number): Observable<Message> {
     const url = `${this.messagesUrl}/${id}`;
 
     return this.http.delete<Message>(url, this.httpOptions).pipe(
-      tap((_) => this.log(`deleted message id=${id}`)),
+      tap((x) => {
+        console.log(x);
+        this.log(`deleted message id=${id}`);
+    }),
       catchError(this.handleError<Message>('deleteMessage'))
     );
   }
 
-  addMessage(message: Message): Observable<Message> {
-    return this.http.post<Message>(this.messagesUrl, message, this.httpOptions).pipe(
-      tap((newMessage: Message) => this.log(`added message w/ id=${newMessage.id}`)),
+  addMessage(mes: Message): Observable<Message> {
+    return this.http.put<Message>(this.messagesUrl, mes).pipe(
+      tap((x) => {
+        console.log(x);
+        this.log('added message');
+    }),
       catchError(this.handleError<Message>('addMessage'))
     );
   }

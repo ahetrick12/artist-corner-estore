@@ -15,6 +15,7 @@ import org.springframework.web.client.HttpClientErrorException.Conflict;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.Console;
 
 import com.estore.api.estoreapi.persistence.MessageDAO;
 import com.estore.api.estoreapi.model.Message;
@@ -113,8 +114,10 @@ public class MessageController {
         LOG.info("GET /messages/?name= " + name);
         try {
             Message[] messages = messageDAO.findMessages(name);
-            if (messages != null)
+            if (messages != null){
+                
                 return new ResponseEntity<Message[]>(messages, HttpStatus.OK);
+            }
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -137,7 +140,7 @@ public class MessageController {
      */
     @PostMapping("")
     public ResponseEntity<Message> createMessage(@RequestBody Message message) {
-        LOG.info("POST /messages/ " + message);
+        LOG.info("POST /messages/ "+message);
         try {
             Message created_message = messageDAO.createMessage(message);
             if (created_message != null){

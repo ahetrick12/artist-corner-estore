@@ -17,7 +17,7 @@ public class Message implements Comparable<Message>{
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
-    @JsonProperty("message") private String mess;
+    @JsonProperty("message") private String messag;
 
     /**
      * create an item with the given id, name, and stock.
@@ -34,7 +34,7 @@ public class Message implements Comparable<Message>{
     public Message(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("message") String message) {
         this.id = id;
         this.name = name;
-        this.mess = message;
+        this.messag = message;
     }
 
     /**
@@ -59,24 +59,24 @@ public class Message implements Comparable<Message>{
      * retrieves the price of the item
      * @return the price of the item
      */
-    public String getMessage() {return mess;}
+    public String getMessage() {return messag;}
 
     /**
      * sets the stock of the item.
      * @param stock The stock of the item.
      */
-    public void setMessage(String message) {this.mess = message;}
+    public void setMessage(String message) {this.messag = message;}
 
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,name,mess);
+        return String.format(STRING_FORMAT,id,name,messag);
     }
     @Override
     public int compareTo(Message obj){
-        return this.mess.compareTo(obj.mess);
+        return this.messag.compareTo(obj.messag);
   }
     
 }
