@@ -39,9 +39,9 @@ export class CartComponent implements OnInit {
 
   findSum(): number {
     var total = 0;
-    for (let j = 0; j < this.cart.length; j++) {
-      total += this.cart[j].item.price * this.cart[j].quantity;
-    }
+    // for (let j = 0; j < this.cart.length; j++) {
+    //   total += this.cart[j].item.price * this.cart[j].quantity;
+    // }
     return total;
   }
   save(cartItem: CartItem): void {
@@ -57,16 +57,16 @@ export class CartComponent implements OnInit {
       (item) => item.item.id === cartItem.item.id
     );
     let index = this.cart.indexOf(filteredCart[0]);
-    let num = this.cart[index].quantity;
+    // let num = this.cart[index].quantity;
 
-    num = Math.round(num);
+    // num = Math.round(num);
 
-    if (num <= 0) {
-      num = 1;
-    } else if (num > cartItem.item.stock) {
-      num = cartItem.item.stock;
-    }
+    // if (num <= 0) {
+    //   num = 1;
+    // } else if (num > cartItem.item.stock) {
+    //   num = cartItem.item.stock;
+    // }
 
-    this.cart[index].quantity = num;
+    // this.cart[index].quantity = num;
   }
 }

@@ -19,22 +19,27 @@ export class StoreComponent implements OnInit {
     name: '',
     price: 0,
     stock: 10,
-    S: 0,
-    M: 0,
-    L: 0,
-    XL: 0,
+    s: 0,
+    m: 0,
+    l: 0,
+    xl: 0,
     x920: 0,
     x1930: 0,
+    image: '',
   };
 
   modal = 0;
   displayNone = 'none';
+
   scolor = 'white';
   mcolor = 'white';
   lcolor = 'white';
   xlcolor = 'white';
   x9color = 'white';
   x19color = 'white';
+
+  selection = '';
+
   showSizes = 'none';
   showFrames = 'none';
   selected = false;
@@ -67,9 +72,18 @@ export class StoreComponent implements OnInit {
   }
 
   viewMore(item: Item) {
+    console.log(item);
     this.selectedItem.id = item.id;
     this.selectedItem.name = item.name;
     this.selectedItem.price = item.price;
+    this.selectedItem.stock = item.stock;
+    this.selectedItem.s = item.s;
+    this.selectedItem.m = item.m;
+    this.selectedItem.l = item.l;
+    this.selectedItem.xl = item.xl;
+    this.selectedItem.x920 = item.x920;
+    this.selectedItem.x1930 = item.x1930;
+    this.selectedItem.image = item.image;
 
     this.displayNone = 'Block';
     if (item.name.includes('Print')) {
@@ -89,6 +103,7 @@ export class StoreComponent implements OnInit {
   select(str: string) {
     this.resetSelection();
     this.selected = true;
+    this.selection = str;
 
     switch (str) {
       case 'S':
@@ -114,13 +129,7 @@ export class StoreComponent implements OnInit {
 
   resetSelection(): void {
     this.selected = false;
-
-    this.selectedItem.S = 0;
-    this.selectedItem.M = 0;
-    this.selectedItem.L = 0;
-    this.selectedItem.XL = 0;
-    this.selectedItem.x920 = 0;
-    this.selectedItem.x1930 = 0;
+    this.selection = '';
 
     this.scolor = 'white';
     this.mcolor = 'white';

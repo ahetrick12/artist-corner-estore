@@ -5,26 +5,42 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * represents a CartItem entity.
  *
- * @author kara kolodinsky of team 8
+ * @author Team 8
  */
 public class CartItem {
-    @JsonProperty("quantity") private int quantity;
+    @JsonProperty("s") private int s;
+    @JsonProperty("m") private int m;
+    @JsonProperty("l") private int l;
+    @JsonProperty("xl") private int xl;
+    @JsonProperty("x920") private int x920;
+    @JsonProperty("x1930") private int x1930;
     @JsonProperty("item") private Item item;
-    static final String STRING_FORMAT = "CartItem [item=%s, quantity=%s]";
+    static final String STRING_FORMAT = "CartItem [item=%s, S=%s, M=%s, L=%s, XL=%s, x920=%s, x1930=%s]";
 
         /**
      * create an item with the given id, name, and stock.
      * @param item the item to be added to the cart
      * @param quantity the quantity of the item
+     * @param s the quantity of small items
+     * @param m the quantity of medium items
+     * @param l the quantity of large items
+     * @param xl the quantity of extra large items
+     * @param x920 the quantity of x920 items
+     * @param x1930 the quantity of x1930 items
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public CartItem(@JsonProperty("item") Item item, @JsonProperty("quantity") int quantity){
+    public CartItem(@JsonProperty("item") Item item, @JsonProperty("s") int s, @JsonProperty("m") int m, @JsonProperty("l") int l, @JsonProperty("xl") int xl, @JsonProperty("x920") int x920, @JsonProperty("x1930") int x1930) {
         this.item = item;
-        this.quantity = quantity;
+        this.s = s;
+        this.m = m;
+        this.l = l;
+        this.xl = xl;
+        this.x920 = x920;
+        this.x1930 = x1930;
     }
 
     /**
@@ -34,35 +50,89 @@ public class CartItem {
     public Item getItem() {return item;}
 
     /**
-     * retrieves the quantity of the cartitem
-     * @return the quantity of the cartitem
+     * retrieves the quantity of small items
+     * @return the quantity of small items
      */
-    public int getQuantity() {return quantity;}
+    public int getSmall() {return s;}
 
-        /**
-     * sets the quantity of the item.
-     * @param quantity The quantity of the item.
-     */
-    public void setQuantity(int quantity) { this.quantity = quantity;}
     /**
-     * increments the cartitem's quantity by 1.
+     * retrieves the quantity of medium items
+     * @return the quantity of medium items
      */
-    public void incrementQuantity(){this.quantity += 1;}
+    public int getMedium() {return m;}
+
+    /**
+     * retrieves the quantity of large items
+     * @return the quantity of large items
+     */
+    public int getLarge() {return l;}
+
+    /**
+     * retrieves the quantity of extra large items
+     * @return the quantity of extra large items
+     */
+    public int getXLarge() {return xl;}
+
+    /**
+     * retrieves the quantity of x920 items
+     * @return the quantity of x920 items
+     */
+    public int getx920() {return x920;}
+
+    /**
+     * retrieves the quantity of x1930 items
+     * @return the quantity of x1930 items
+     */
+    public int getX1930() {return x1930;}
+
+    /**
+     * sets the quantity of small items.
+     * @param s the quantity of small items.
+     */
+    public void setSmall(int s) {this.s = s;}
+
+    /**
+     * sets the quantity of medium items.
+     * @param m the quantity of medium items.
+     */
+    public void setMedium(int m) {this.m = m;}
+
+    /**
+     * sets the quantity of large items.
+     * @param l the quantity of large items.
+     */
+    public void setLarge(int l) {this.l = l;}
+
+    /**
+     * sets the quantity of extra large items.
+     * @param xl the quantity of extra large items.
+     */
+    public void setXLarge(int xl) {this.xl = xl;}
+
+    /**
+     * sets the quantity of x920 items.
+     * @param x920 the quantity of x920 items.
+     */
+    public void setx920(int x920) {this.x920 = x920;}
+
+    /**
+     * sets the quantity of x1930 items.
+     * @param x1930 the quantity of x1930 items.
+     */
+    public void setX1930(int x1930) {this.x1930 = x1930;}
 
     public boolean compareItem(Item item2){
         if (this.item.equals(item2)){
             return true;
         } else return false;
-
     }
 
-    
       /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,item.toString(), quantity);
+        return String.format(STRING_FORMAT,item.toString(), s, m, l, xl, x920, x1930);
     }
     /**
      * sets the Item of the cartitem.

@@ -3,10 +3,11 @@ export interface Item {
   name: string;
   price: number;
   stock: number;
-  S: number;
-  M: number;
-  L: number;
-  XL: number;
+  s: number;
+  m: number;
+  l: number;
+  xl: number;
   x920: number;
   x1930: number;
+  image: string;
 }

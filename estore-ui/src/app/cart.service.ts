@@ -106,7 +106,12 @@ export class CartService {
   addCartItem(username: string, item: Item): Observable<any> {
     let cartItem: CartItem = {
       item: item,
-      quantity: 1,
+      s: 1,
+      m: 2,
+      l: 3,
+      xl: 4,
+      x920: 5,
+      x1930: 6,
     };
 
     if (this.authService.userLoggedIn()) {
@@ -116,11 +121,12 @@ export class CartService {
             (cartItem) => cartItem.item.id === item.id
           );
 
-          if (filteredCart.length > 0) {
-            user.cart[user.cart.indexOf(filteredCart[0])].quantity++;
-          } else {
-            user.cart.push(cartItem);
-          }
+          // if (filteredCart.length > 0) {
+          //   user.cart[user.cart.indexOf(filteredCart[0])].quantity++;
+          // } else {
+          console.log(cartItem);
+          user.cart.push(cartItem);
+          // }
 
           return this.http.put(this.usersUrl, user, this.httpOptions);
         }),
@@ -131,11 +137,11 @@ export class CartService {
         (cartItem) => cartItem.item.id === item.id
       );
 
-      if (filteredCart.length > 0) {
-        this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].quantity++;
-      } else {
-        this.noUserCart.push(cartItem);
-      }
+      // if (filteredCart.length > 0) {
+      //   this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].quantity++;
+      // } else {
+      this.noUserCart.push(cartItem);
+      // }
 
       return EMPTY;
     }

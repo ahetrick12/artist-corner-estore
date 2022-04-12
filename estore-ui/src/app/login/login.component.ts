@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
       if (successful) {
         this.authSuccess('Successfully logged in!');
         this.AuthenticateCart(expectedUser);
-
       } else {
         alert('Invalid username or password, please try again.');
       }
@@ -87,13 +86,13 @@ export class LoginComponent implements OnInit {
     this.route.navigate(['']);
   }
 
-  AuthenticateCart(user : User){
-    for (let i=0; i< user.cart.length ;i++){
-      if (user.cart[i].item.stock< user.cart[i].quantity){
-        this.cartService
-      .deleteCartItem(user.username, user.cart[i])
-      .subscribe();
-      }
+  AuthenticateCart(user: User) {
+    for (let i = 0; i < user.cart.length; i++) {
+      // if (user.cart[i].item.stock< user.cart[i].quantity){
+      //   this.cartService
+      // .deleteCartItem(user.username, user.cart[i])
+      // .subscribe();
+      // }
     }
   }
 }

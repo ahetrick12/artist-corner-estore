@@ -19,10 +19,10 @@ public class Item implements Comparable<Item>{
     @JsonProperty("name") private String name;
     @JsonProperty("stock") private int stock;
     @JsonProperty("price") private float price;
-    @JsonProperty("S") private int S;
-    @JsonProperty("M") private int M;
-    @JsonProperty("L") private int L;
-    @JsonProperty("XL") private int XL;
+    @JsonProperty("s") private int S;
+    @JsonProperty("m") private int M;
+    @JsonProperty("l") private int L;
+    @JsonProperty("xl") private int XL;
     @JsonProperty("x920") private int x920;
     @JsonProperty("x1930") private int x1930;
     @JsonProperty("image") private String image;
@@ -41,7 +41,7 @@ public class Item implements Comparable<Item>{
      * value, i.e. 0 for int
      */
     public Item(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("stock") int stock,  @JsonProperty("price") float price,
-                 @JsonProperty("S") int S,@JsonProperty("M") int M,@JsonProperty("L") int L,@JsonProperty("XL") int XL,@JsonProperty("x920") int x920,@JsonProperty("x1930") int x1930,  @JsonProperty("image") String image) {
+                 @JsonProperty("s") int S,@JsonProperty("m") int M,@JsonProperty("l") int L,@JsonProperty("xl") int XL,@JsonProperty("x920") int x920,@JsonProperty("x1930") int x1930,  @JsonProperty("image") String image) {
         this.id = id;
         this.name = name;
         this.stock = stock;
