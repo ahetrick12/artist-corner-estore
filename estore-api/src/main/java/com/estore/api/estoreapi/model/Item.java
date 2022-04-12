@@ -13,7 +13,7 @@ public class Item implements Comparable<Item>{
     private static final Logger LOG = Logger.getLogger(Item.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "Item [id=%d, name=%s, stock=%s, price=%s, S=%s,m=%s,L=%s,XL=%s,x920=%s,x1930=%s]";
+    static final String STRING_FORMAT = "Item [id=%d, name=%s, stock=%s, price=%s, s=%s, m=%s, l=%s, xl=%s, x920=%s, x1930=%s, image=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
@@ -151,7 +151,7 @@ public class Item implements Comparable<Item>{
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,name,stock,price,image);
+        return String.format(STRING_FORMAT,id,name,stock,price, S, M, L, XL, x920, x1930, image);
     }
     @Override
     public int compareTo(Item obj){
