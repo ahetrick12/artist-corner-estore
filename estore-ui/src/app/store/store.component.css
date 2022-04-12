@@ -158,8 +158,7 @@ li span {
 .prodName {
   font-size: 30pt;
   text-align: center;
-  text-decoration: underline;
-  color: red;
+  font-weight: bolder;
 }
 
 #viewPic {

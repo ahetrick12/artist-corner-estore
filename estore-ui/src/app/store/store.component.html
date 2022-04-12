@@ -29,7 +29,7 @@
         <div *ngIf="item.stock>0 else oos;">
         <button id="more" (click)="viewMore(item)">View More</button>
       </div>
-      <ng-template #oos><button id="oos">out of stock</button></ng-template>
+      <ng-template #oos><button id="oos">Out of Stock</button></ng-template>
       </div>
     </li>
   </ul>
@@ -38,7 +38,7 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close" (click)="viewLess()">&times;</span>
-      <img src="../../assets/images/tat.jpg" class="storeimg" id="viewPic" />
+      <img src={{selectedItem.imageLink}} class="storeimg" id="viewPic" />
       <div class="prodName">{{ selectedItem.name }}</div>
       <div class="prodName">${{ selectedItem.price }}</div>
       <div [style.display]="showSizes" class="siz">
