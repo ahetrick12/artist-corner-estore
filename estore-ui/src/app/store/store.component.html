@@ -9,7 +9,6 @@
 <body>
   <div id="titl">Products</div>
   <app-search-bar (getItems)="getItems()"></app-search-bar>
-  <br />
   <div id="admin_view" *ngIf="adminLoggedIn()">
     <p id="view_status">
       <u><b>USER VIEW</b></u>
@@ -18,13 +17,19 @@
       Click to switch to admin inventory management view
     </button>
   </div>
+  <div *ngIf="items.length == 0" style="text-align: center">
+    No items found.
+  </div>
   <ul class="items">
     <li *ngFor="let item of items">
-      <div class="boxes">
+      <div class="boxes" >
         <img src="../../assets/images/tat.jpg" class="storeimg" />
         <div>{{ item.name }}</div>
         <div>${{ item.price }}</div>
+        <div *ngIf="item.stock > 0 else outofstock;">
         <button id="add" (click)="add(item)">Add to cart</button>
+      </div>
+      <ng-template #outofstock> <button id="OOS">OUT OF STOCK</button></ng-template>
       </div>
     </li>
   </ul>

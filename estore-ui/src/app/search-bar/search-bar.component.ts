@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Item } from '../item';
 import { ItemService } from '../item.service';
 
 @Component({
@@ -9,6 +11,7 @@ import { ItemService } from '../item.service';
 export class SearchBarComponent implements OnInit {
   @Output() getItems: EventEmitter<any> = new EventEmitter();
   search: string = '';
+  searchArray : Observable<Item[]> | undefined;
 
 
   constructor(private itemService: ItemService) { }
@@ -18,7 +21,9 @@ export class SearchBarComponent implements OnInit {
 
   onSubmit() {
     this.itemService.searchItem(this.search);
+    this.searchArray = this.itemService.getItems();
     this.getItems.emit(); //calls getItems from the store component to refresh the list
   }
+
 
 }
