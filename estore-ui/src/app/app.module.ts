@@ -15,6 +15,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { AdminComponent } from './admin/admin.component';
     AboutComponent,
     CheckoutComponent,
     AdminComponent,
+    ConfirmationComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,12 +16,10 @@
     (click)="toggleAccountDropdown()"
     (clickOutside)="setAccountDropdown(false)"
   >
-    <img #avatar src="../../assets/images/avatar.jpg "
+    <img #avatar src="../../assets/images/avatar.jpg"
   /></a>
   <ul #dropdown *ngIf="accountDropdownToggle" class="account-dropdown">
-    <li><button>Account Details</button></li>
-    <li><button>Cart??</button></li>
-    <li><button>Anything else that might go here</button></li>
+    <a routerLink="/user"><li><button>Account Details</button></li></a>
     <li><button class="red" (click)="logout()">Logout</button></li>
   </ul>
   <ul id="desktop-links">
