@@ -57,7 +57,14 @@ export class AdminComponent implements OnInit {
       id: 0,
       name: newName,
       stock: 0,
-      price: .01,
+      price: 0,
+      s: 0,
+      m: 0,
+      l: 0,
+      xl: 0,
+      x920: 0,
+      x1930: 0,
+      image: '',
     };
 
     this.itemService.addItem(item).subscribe((i) => {

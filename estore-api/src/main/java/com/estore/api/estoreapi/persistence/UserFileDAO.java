@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -166,7 +168,7 @@ public class UserFileDAO implements UserDAO {
             // We create a new user object because the id field is immutable
             // and we need to assign the next unique id
             if (usernameExists(user.getUsername()) == false && user.getUsername() != "" && user.getPassword() != ""){
-                User newUser = new User(nextId(), user.getUsername(), user.getPassword(), user.getCart());
+                User newUser = new User(nextId(), user.getUsername(), user.getPassword(), user.getCart(), "");
                 users.put(newUser.getId(), newUser);
                 save(); // may throw an IOException
                 return newUser;
@@ -187,7 +189,7 @@ public class UserFileDAO implements UserDAO {
             if (users.containsKey(user.getId()) == false)
                 return null;  // user does not exist
 
-                users.put(user.getId(), user);
+            users.put(user.getId(), user);
             save(); // may throw an IOException
             return user;
         }

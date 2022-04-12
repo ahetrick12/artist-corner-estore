@@ -40,7 +40,7 @@ th {
 
 th,
 td {
-  width: 30%;
+  width: 11.25%;
   text-align: center;
   border-bottom: 1px solid rgb(191, 191, 191);
   padding: 10px;
@@ -97,7 +97,7 @@ input:focus {
 }
 
 #add {
-  width: calc(90% - 75px);
+  width: calc(90% - 70px);
   margin-left: calc(5% + 35px);
   margin-right: calc(5% - 35px);
   padding: 10px;

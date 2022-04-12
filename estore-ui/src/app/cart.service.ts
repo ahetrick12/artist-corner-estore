@@ -92,6 +92,7 @@ export class CartService {
       return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
         switchMap((user) => {
           user.cart = [];
+          console.log('YEAH');
           return this.http.put(this.usersUrl, user, this.httpOptions);
         }),
         catchError(this.handleError<User>('clearCart'))
@@ -103,11 +104,41 @@ export class CartService {
     }
   }
 
-  addCartItem(username: string, item: Item): Observable<any> {
+  addCartItem(
+    username: string,
+    item: Item,
+    selection: string
+  ): Observable<any> {
     let cartItem: CartItem = {
       item: item,
-      quantity: 1,
+      small: 0,
+      medium: 0,
+      large: 0,
+      xlarge: 0,
+      x920: 0,
+      x1930: 0,
     };
+
+    switch (selection) {
+      case 'S':
+        cartItem.small++;
+        break;
+      case 'M':
+        cartItem.medium++;
+        break;
+      case 'L':
+        cartItem.large++;
+        break;
+      case 'XL':
+        cartItem.xlarge++;
+        break;
+      case 'x9':
+        cartItem.x920++;
+        break;
+      case 'x19':
+        cartItem.x1930++;
+        break;
+    }
 
     if (this.authService.userLoggedIn()) {
       return this.http.get<User>(this.usersUrl + '/?username=' + username).pipe(
@@ -117,9 +148,32 @@ export class CartService {
           );
 
           if (filteredCart.length > 0) {
-            user.cart[user.cart.indexOf(filteredCart[0])].quantity++;
+            console.log(selection);
+
+            switch (selection) {
+              case 'S':
+                user.cart[user.cart.indexOf(filteredCart[0])].small++;
+                break;
+              case 'M':
+                user.cart[user.cart.indexOf(filteredCart[0])].medium++;
+                console.log(user.cart[user.cart.indexOf(filteredCart[0])]);
+                break;
+              case 'L':
+                user.cart[user.cart.indexOf(filteredCart[0])].large++;
+                break;
+              case 'XL':
+                user.cart[user.cart.indexOf(filteredCart[0])].xlarge++;
+                break;
+              case 'x9':
+                user.cart[user.cart.indexOf(filteredCart[0])].x920++;
+                break;
+              case 'x19':
+                user.cart[user.cart.indexOf(filteredCart[0])].x1930++;
+                break;
+            }
           } else {
             user.cart.push(cartItem);
+            console.log(user.cart[user.cart.indexOf(cartItem)]);
           }
 
           return this.http.put(this.usersUrl, user, this.httpOptions);
@@ -132,7 +186,26 @@ export class CartService {
       );
 
       if (filteredCart.length > 0) {
-        this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].quantity++;
+        switch (selection) {
+          case 'S':
+            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].small++;
+            break;
+          case 'M':
+            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].medium++;
+            break;
+          case 'L':
+            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].large++;
+            break;
+          case 'XL':
+            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].xlarge++;
+            break;
+          case 'x9':
+            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].x920++;
+            break;
+          case 'x19':
+            this.noUserCart[this.noUserCart.indexOf(filteredCart[0])].x1930++;
+            break;
+        }
       } else {
         this.noUserCart.push(cartItem);
       }

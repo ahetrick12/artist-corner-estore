@@ -12,8 +12,13 @@
   <table>
     <thead>
       <th>Name</th>
-      <th>Stock</th>
       <th>Price</th>
+      <th>Small</th>
+      <th>Medium</th>
+      <th>Large</th>
+      <th>Extra Large</th>
+      <th>9"x20"</th>
+      <th>19"x30"</th>
     </thead>
     <tbody>
       <tr *ngFor="let item of items">
@@ -26,26 +31,76 @@
           />
         </td>
         <td>
-          <input
-            [(ngModel)]="item.stock"
-            (change)="saveItem(item)"
-            type="number"
-            value="{{ item.stock }}"
-            min="0"
-            oninput="this.value = Math.round(this.value);"
-          />
-        </td>
-        <td>
           $<input
             [(ngModel)]="item.price"
             (change)="saveItem(item)"
             type="number"
             value="{{ item.price }}"
             min="0.01"
-            onkeyup= "this.value = 
+            onkeyup="this.value = 
             !!this.value 
             && Math.abs(this.value) >= 0.01 ?
              Math.abs(this.value) : null"
+          />
+        </td>
+        <td>
+          <input
+            [(ngModel)]="item.s"
+            (change)="saveItem(item)"
+            type="number"
+            value="{{ item.s }}"
+            min="0"
+            oninput="this.value = Math.round(this.value);"
+          />
+        </td>
+        <td>
+          <input
+            [(ngModel)]="item.m"
+            (change)="saveItem(item)"
+            type="number"
+            value="{{ item.m }}"
+            min="0"
+            oninput="this.value = Math.round(this.value);"
+          />
+        </td>
+        <td>
+          <input
+            [(ngModel)]="item.l"
+            (change)="saveItem(item)"
+            type="number"
+            value="{{ item.l }}"
+            min="0"
+            oninput="this.value = Math.round(this.value);"
+          />
+        </td>
+        <td>
+          <input
+            [(ngModel)]="item.xl"
+            (change)="saveItem(item)"
+            type="number"
+            value="{{ item.xl }}"
+            min="0"
+            oninput="this.value = Math.round(this.value);"
+          />
+        </td>
+        <td>
+          <input
+            [(ngModel)]="item.x920"
+            (change)="saveItem(item)"
+            type="number"
+            value="{{ item.x920 }}"
+            min="0"
+            oninput="this.value = Math.round(this.value);"
+          />
+        </td>
+        <td>
+          <input
+            [(ngModel)]="item.x1930"
+            (change)="saveItem(item)"
+            type="number"
+            value="{{ item.x1930 }}"
+            min="0"
+            oninput="this.value = Math.round(this.value);"
           />
         </td>
         <td id="delete-cell">
