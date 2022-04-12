@@ -26,7 +26,10 @@
         <img src="{{item.imageLink}}" class="storeimg" />
         <div>{{ item.name }}</div>
         <div>${{ item.price }}</div>
+        <div *ngIf="item.stock>0 else oos;">
         <button id="more" (click)="viewMore(item)">View More</button>
+      </div>
+      <ng-template #oos><button id="oos">out of stock</button></ng-template>
       </div>
     </li>
   </ul>
