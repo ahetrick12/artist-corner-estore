@@ -17,8 +17,6 @@ export class SearchBarComponent implements OnInit {
   constructor(private itemService: ItemService) { }
 
   ngOnInit(): void {
-    console.log("Hello");
-
   }
 
   onSubmit() {
