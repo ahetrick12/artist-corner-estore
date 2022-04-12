@@ -1,0 +1,17 @@
+
+<ul class="messages">
+    <li *ngFor="let message of messages">
+      
+        <div>{{ message.name }}: {{ message.message }}</div>
+        
+        
+      
+    </li>
+  </ul>
+  <div>
+    <form *ngIf="userLoggedIn()">
+      
+      <textarea id="newmessage" placeholder="Message" name="newmess" rows="5" cols="50" [(ngModel)]="mess"></textarea>
+      <button (click)="onSubmit()">Submit</button>
+    </form>
+  </div>

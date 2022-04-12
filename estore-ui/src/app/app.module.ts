@@ -16,8 +16,12 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
+
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { UserComponent } from './user/user.component';
+
+import { MessageComponent } from './message/message.component';
+
 
 
 @NgModule({
@@ -35,6 +39,7 @@ import { UserComponent } from './user/user.component';
     AdminComponent,
     ConfirmationComponent,
     UserComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
