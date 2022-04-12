@@ -208,9 +208,9 @@ public class ItemControllerTest {
         // Setup
         String searchString = "michael";
         Item[] items = new Item[3];
-        items[0] = new Item(101, "one", 1, 1);
-        items[1] = new Item(102, "two", 2, 2);
-        items[2] = new Item(103, "three", 3, 3);
+        items[0] = new Item(101, "one", 1, 1, 0,0,0,0,0,0, "");
+        items[1] = new Item(102, "two", 2, 2, 0,0,0,0,0,0, "");
+        items[2] = new Item(103, "three", 3, 3, 0,0,0,0,0,0, "");
 
         // When findUsers is called with the search string, return the last
         /// of the users above

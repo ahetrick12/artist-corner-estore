@@ -76,16 +76,17 @@ li span {
 
 #add {
   left: 50%;
-  background-color: #000;
-  color: white;
-  padding: 5%;
-  border-radius: 6px;
+  background-color: rgb(71, 167, 71);
+  color: rgb(255, 255, 255);
+  padding: 20px;
+  width: 40%;
+  border-radius: 15px;
   border: none;
-  margin-top: 10px;
+  margin-top: 50px;
 }
 
 #add:hover {
-  background-color: rgb(86, 86, 86) !important;
+  background-color: rgb(53, 106, 53) !important;
   cursor: pointer;
 }
 
@@ -116,6 +117,7 @@ li span {
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
   height: 80%;
+  border-radius: 15px;
 }
 
 /* The Close Button */
@@ -138,13 +140,17 @@ li span {
   margin-top: 5%;
   width: 100%;
   display: block;
+  text-align: center;
 }
 .siz span,
 .fram span {
   width: 20%;
   margin: 1%;
+  padding: 10px;
   display: inline-block;
-  border-style: double;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
   text-align: center;
 }
 
@@ -157,4 +163,22 @@ li span {
 
 #viewPic {
   height: 200px;
+}
+
+.selec:hover {
+  cursor: pointer;
+}
+
+#more {
+  margin-top: 20px;
+  padding: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 6px;
+  border: none;
+}
+
+#more:hover {
+  background-color: rgb(214, 214, 214) !important;
+  cursor: pointer;
 }

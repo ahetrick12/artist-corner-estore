@@ -107,22 +107,22 @@ export class StoreComponent implements OnInit {
 
     switch (str) {
       case 'S':
-        this.scolor = 'green';
+        this.scolor = 'gray';
         break;
       case 'M':
-        this.mcolor = 'green';
+        this.mcolor = 'gray';
         break;
       case 'L':
-        this.lcolor = 'green';
+        this.lcolor = 'gray';
         break;
       case 'XL':
-        this.xlcolor = 'green';
+        this.xlcolor = 'gray';
         break;
       case 'x9':
-        this.x9color = 'green';
+        this.x9color = 'gray';
         break;
       case 'x19':
-        this.x19color = 'green';
+        this.x19color = 'gray';
         break;
     }
   }

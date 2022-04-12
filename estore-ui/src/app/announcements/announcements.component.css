@@ -9,16 +9,18 @@
   font-weight: bold;
 }
 
-input[type=text], textarea {
+input[type="text"],
+textarea {
   padding: 10px 10px;
   margin: 6px 0;
-  font-family: 'Fredoka', sans-serif;
+  font-family: "Fredoka", sans-serif;
   border-radius: 25px;
   background-color: rgb(231, 231, 231);
   border: none;
 }
 
-input[name=title], textarea[name=message] {
+input[name="title"],
+textarea[name="message"] {
   width: 100%;
 }
 
@@ -34,11 +36,11 @@ div {
 
 button {
   padding: 7px 10px;
-  margin-right:5px;
+  margin-right: 5px;
   font-size: 15px;
   border: none;
   cursor: pointer;
-  background-color:  #000;
+  background-color: #000;
   color: white;
   border-radius: 4px;
 }
@@ -47,21 +49,26 @@ button:hover {
   background: gray;
 }
 
-li{
+li {
   list-style-type: none;
-  width: 40%;
+  width: 70%;
   padding: 10px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  transform: translate(-8px, 0px);
+  transform: translate(-50px, 0px);
   text-align: left;
   border: 1px solid black;
   border-radius: 15px;
   margin-bottom: 10px;
-  background-color: lightslategray;
+  background-color: rgb(232, 232, 232);
 }
 
-input[name=announcementTitleEdit], textarea[id=announcementMessageEdit] {
+input[name="announcementTitleEdit"],
+textarea[id="announcementMessageEdit"] {
   width: 96.5%;
+}
+
+.announcements {
+  width: 100%;
 }

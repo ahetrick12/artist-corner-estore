@@ -65,14 +65,22 @@
         >
       </div>
       <div [style.display]="showFrames" class="fram">
-        <span (click)="select('x9')" [style.background-color]="x9color"
+        <span
+          class="selec"
+          (click)="select('x9')"
+          [style.background-color]="x9color"
           >9"x20"</span
         >
-        <span (click)="select('x19')" [style.background-color]="x19color"
+        <span
+          class="selec"
+          (click)="select('x19')"
+          [style.background-color]="x19color"
           >19"x30"</span
         >
       </div>
-      <button id="add" *ngIf="selected" (click)="add()">Add to cart</button>
+      <div style="text-align: center">
+        <button id="add" *ngIf="selected" (click)="add()">Add to cart</button>
+      </div>
     </div>
   </div>
 </body>
