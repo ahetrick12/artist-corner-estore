@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     username: '',
     password: '',
     cart: [],
+    imageLink: "../../assets/images/avatar.jpg",
   };
 
   constructor(

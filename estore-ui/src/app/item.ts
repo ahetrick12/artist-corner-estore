@@ -9,5 +9,5 @@ export interface Item {
   xl: number;
   x920: number;
   x1930: number;
-  image: string;
+imageLink: string;
 }

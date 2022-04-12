@@ -13,19 +13,19 @@ public class Item implements Comparable<Item>{
     //private static final Logger LOG = Logger.getLogger(Item.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "Item [id=%d, name=%s, stock=%s, price=%s, s=%s, m=%s, l=%s, xl=%s, x920=%s, x1930=%s, image=%s]";
+    static final String STRING_FORMAT = "Item [id=%d, name=%s, stock=%s, price=%s, s=%s, m=%s, l=%s, xl=%s, x920=%s, x1930=%s, imageLink=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("stock") private int stock;
     @JsonProperty("price") private float price;
+    @JsonProperty("imageLink") private String imageLink;
     @JsonProperty("s") private int S;
     @JsonProperty("m") private int M;
     @JsonProperty("l") private int L;
     @JsonProperty("xl") private int XL;
     @JsonProperty("x920") private int x920;
     @JsonProperty("x1930") private int x1930;
-    @JsonProperty("image") private String image;
 
     /**
      * create an item with the given id, name, stock, and price.
@@ -33,25 +33,27 @@ public class Item implements Comparable<Item>{
      * @param name the name of the item
      * @param stock the stock of the item.
      * @param price the price of the item.
+     * @param imageLink link to the item's image.
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
+
     public Item(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("stock") int stock,  @JsonProperty("price") float price,
-                 @JsonProperty("s") int S,@JsonProperty("m") int M,@JsonProperty("l") int L,@JsonProperty("xl") int XL,@JsonProperty("x920") int x920,@JsonProperty("x1930") int x1930,  @JsonProperty("image") String image) {
+                 @JsonProperty("s") int S,@JsonProperty("m") int M,@JsonProperty("l") int L,@JsonProperty("xl") int XL,@JsonProperty("x920") int x920,@JsonProperty("x1930") int x1930,  @JsonProperty("imageLink") String imageLink) {
         this.id = id;
         this.name = name;
         this.stock = stock;
         this.price = price;
+        this.imageLink = imageLink;
         this.S = S;
         this.M = M;
         this.L = L;
         this.XL = XL;
         this.x920 = x920;
         this.x1930 = x1930;
-        this.image = image;
     }
 
     /**
@@ -59,6 +61,7 @@ public class Item implements Comparable<Item>{
      * @return The id of the item
      */
     public int getId() {return id;}
+    
 
     /**
      * retrieves the name of the item
@@ -98,6 +101,19 @@ public class Item implements Comparable<Item>{
      */
     public void setStock(int stock) {this.stock = stock;}
 
+     /**
+     * retrieves the imageLink of the item
+     * @return The imageLink of the item
+     */
+    public String getImageLink() {return imageLink;}
+
+    /**
+     * sets the stock of the item.
+     * @param stock The stock of the item.
+     */
+    public void setImageLink(String imageLink) {this.imageLink = imageLink;}
+
+    /*
     public int getS(){
         return S;
     }
@@ -158,7 +174,7 @@ public class Item implements Comparable<Item>{
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,name,stock,price, S, M, L, XL, x920, x1930, image);
+        return String.format(STRING_FORMAT,id,name,stock,price, S, M, L, XL, x920, x1930, imageLink);
     }
 
      /*

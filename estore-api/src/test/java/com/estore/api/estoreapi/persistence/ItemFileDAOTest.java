@@ -138,7 +138,6 @@ public class ItemFileDAOTest {
 
     @Test
     public void testUpdateItem() {
-        // Setup
         Item item = new Item(99,"Sticker", 20, (float)1.99, 0,0,0,0,250,175, "");
 
         // Invoke
@@ -188,7 +187,6 @@ public class ItemFileDAOTest {
 
     @Test
     public void testUpdateItemNotFound() {
-        // Setup
         Item item = new Item(98, "Shirt", 20, (float)8.99, 40,25,30,20,0,0, "");
 
         // Invoke

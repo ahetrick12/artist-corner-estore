@@ -19,6 +19,7 @@
       <th>Extra Large</th>
       <th>9"x20"</th>
       <th>19"x30"</th>
+      <th>Image Link</th>
     </thead>
     <tbody>
       <tr *ngFor="let item of items">
@@ -102,6 +103,13 @@
             min="0"
             oninput="this.value = Math.round(this.value);"
           />
+        </td>
+        <td>
+          <input
+            [(ngModel)]="item.imageLink"
+            (change)="saveItem(item)"
+            type="imageLink"
+            value="{{ item.imageLink }}">
         </td>
         <td id="delete-cell">
           <button id="delete" (click)="deleteItem(item)">

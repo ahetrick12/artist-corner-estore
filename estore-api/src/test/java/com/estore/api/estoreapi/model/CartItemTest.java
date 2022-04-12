@@ -20,6 +20,12 @@ public class CartItemTest {
         String expected_name = "Hamburger";
         int expected_stock = 30;
         float expected_price = (float) 3.99;
+        String expected_imagelink = "dog.jpg";
+        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price, expected_imagelink);
+        int expected_quantity =  2;
+        CartItem cartItem = new CartItem(expected_item, expected_quantity);
+        assertEquals(expected_item,cartItem.getItem());
+        assertEquals(expected_quantity,cartItem.getQuantity());
         int expected_S = 15;
         int expected_M = 25;
         int expected_L = 40;
@@ -42,6 +48,16 @@ public class CartItemTest {
     public void testGetItem()
     {
         // Setup
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        String link = "dog.jpg";
+        Item item = new Item(id,name,stock,price,link);
+        int quantity = 2;
+        CartItem cartItem = new CartItem(item, quantity); 
+        int expected_quantity = 5;
+=======
         int expected_id = 99;
         String expected_name = "Hamburger";
         int expected_stock = 30;
@@ -341,6 +357,12 @@ public class CartItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
+        String imagelink = "dog.jpg";
+        Item item = new Item(id,name,stock,price,imagelink);
+        int quantity = 2;
+        CartItem cartItem = new CartItem(item, quantity); 
+
+        Item expected_item = new Item(99, "Bandana", 30, 10, "dog.jpg");
         int S = 10;
         int M = 15;
         int L = 40;
@@ -366,6 +388,11 @@ public class CartItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
+        String imagelink = "dog.jpg";
+        int quantity = 2;
+        Item item = new Item(id,name,stock,price,imagelink);
+        CartItem cartItem = new CartItem(item, quantity); 
+        String expected_string = String.format(CartItem.STRING_FORMAT,item, quantity);
         int S = 10;
         int M = 15;
         int L = 40;
@@ -375,6 +402,7 @@ public class CartItemTest {
         Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
         CartItem cartItem = new CartItem(item, 0, 0, 0, 0, 0, 0); 
         String expected_string = String.format(CartItem.STRING_FORMAT,item, 0, 0, 0, 0, 0, 0);
+
         
 
         // Invoke
@@ -385,11 +413,35 @@ public class CartItemTest {
     }
 
     @Test
+    public void testIncrementQuantity() {
+        // Setup
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        String imagelink ="dog.jpg";
+        Item item = new Item(id,name,stock,price,imagelink);
+        int quantity = 2;
+        CartItem cartItem = new CartItem(item, quantity); 
+        int expected_quantity = 3;
+        // Invoke
+        cartItem.incrementQuantity();
+
+        // Analyze
+        assertEquals(expected_quantity,cartItem.getQuantity());
+    }
+
+    @Test
     public void testCompareItem() {
         int id = 99;
         String name = "Bandana";
         int stock = 30;
         float price = 10;
+        String imagelink = "dog.jpg";
+        Item item = new Item(id,name,stock,price,imagelink);
+        Item item2 = new Item(55,"Bandaid",5,(float)3.00, "baby.jpg");
+        int quantity = 2;
+        CartItem cartItem = new CartItem(item, quantity); 
         int S = 10;
         int M = 15;
         int L = 40;

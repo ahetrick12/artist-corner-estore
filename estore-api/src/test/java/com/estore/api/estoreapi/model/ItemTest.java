@@ -19,6 +19,10 @@ public class ItemTest {
         String expected_name = "Hamburger";
         int expected_stock = 30;
         float expected_price = (float) 3.99;
+        String expected_link = "dog.jpg";
+
+        // Invoke
+        Item item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_link);
         int expected_S = 15;
         int expected_M = 25;
         int expected_L = 40;
@@ -36,6 +40,7 @@ public class ItemTest {
         assertEquals(expected_name,item.getName());
         assertEquals(expected_stock,item.getStock());
         assertEquals(expected_price,item.getPrice());
+        assertEquals(expected_link,item.getImageLink());
     }
 
     @Test
@@ -45,6 +50,8 @@ public class ItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
+        String link = "dog.jpg";
+        Item item = new Item(id,name,stock,price,link);
         int S = 10;
         int M = 15;
         int L = 40;
@@ -67,6 +74,8 @@ public class ItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
+        String link = "dog.jpg";
+        Item item = new Item(id,name,stock,price,link);
         int S = 10;
         int M = 15;
         int L = 40;
@@ -90,6 +99,8 @@ public class ItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
+        String link = "dog.jpg";
+        Item item = new Item(id,name,stock,price,link);
         int S = 10;
         int M = 15;
         int L = 40;
@@ -108,12 +119,33 @@ public class ItemTest {
     }
 
     @Test
+    public void testSetImage(){
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        String link = "dog.jpg";
+        Item item = new Item(id,name,stock,price,link);
+
+        String expected_image = "wowo.jpg";
+
+        // Invoke
+        item.setImageLink(expected_image);
+
+        // Analyze
+        assertEquals(expected_image,item.getImageLink());
+    }
+
+    @Test
     public void testToString() {
         // Setup
         int id = 99;
         String name = "Bandana";
         int stock = 30;
         float price = 10;
+        String link = "dog.jpg";
+        String expected_string = String.format(Item.STRING_FORMAT,id,name,stock,price,link);
+        Item item = new Item(id,name,stock,price,link);
         int S = 10;
         int M = 15;
         int L = 40;
@@ -136,6 +168,10 @@ public class ItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
+        String link = "dog.jpg";
+        Item item = new Item(id,name,stock,price,link);
+        Item item2 = new Item(id,name,stock,price,link);
+        Item item3 = new Item(2,"shoes",2,(float) 3.99, "shoe.jpg");
         int S = 10;
         int M = 15;
         int L = 40;
@@ -145,7 +181,6 @@ public class ItemTest {
         Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
         Item item2 = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
         Item item3 = new Item(2,"shoes",2,(float) 3.99, 20,30,40,10,0,0, "");
-
         int res1 = item.compareTo(item2);
         int res2 = item.compareTo(item3);
 

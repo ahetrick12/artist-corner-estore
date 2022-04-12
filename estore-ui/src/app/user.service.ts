@@ -29,6 +29,13 @@ export class UserService {
     );
   }
 
+  updateUser(user: User): Observable<any> {
+    return this.http.put(this.usersUrl, user, this.httpOptions).pipe(
+      tap((_) => this.log(`updated user username=${user.username}`)),
+      catchError(this.handleError<any>('updateUser'))
+    );
+  }
+
   // CART ITEM QUERIES
 
   

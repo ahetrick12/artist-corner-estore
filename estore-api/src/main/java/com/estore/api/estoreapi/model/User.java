@@ -8,17 +8,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class User {
     // Package private for tests
-    static final String STRING_FORMAT = "User [id=%s username=%s, password=%s, cart=%s]";
+    static final String STRING_FORMAT = "User [id=%s username=%s, password=%s, cart=%s, imagelink=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("username") private String username;
     @JsonProperty("password") private String password;
     @JsonProperty("cart") private CartItem[] cart;
+    @JsonProperty("imagelink") private String imagelink;
 
      /**
      * Create an user with a given username, password, and cart.
      * @param username the username of the user
      * @param password the password of the user
+     * @param cart the user's shopping cart
+     * @param imagelink the user's imagelink
      * @param cart the user's shopping cart.
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
@@ -26,11 +29,12 @@ public class User {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public User(@JsonProperty("id") int id, @JsonProperty("username") String username, @JsonProperty("password") String password, @JsonProperty("cart") CartItem[] cart) {
+    public User(@JsonProperty("id") int id, @JsonProperty("username") String username, @JsonProperty("password") String password, @JsonProperty("cart") CartItem[] cart, @JsonProperty("imagelink") String imagelink) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.cart = cart;
+        this.imagelink = imagelink;
     }
 
     /**
@@ -75,11 +79,23 @@ public class User {
      */
     public CartItem[] getCart() {return cart;}
 
+     /**
+     * retrieves the imagelink of the user
+     * @return The imagelink of the user
+     */
+    public String getImageLink() {return imagelink;}
+
+    /**
+     * sets the stock of the user.
+     * @param stock The stock of the user.
+     */
+    public void setImageLink(String imagelink) {this.imagelink = imagelink;}
+
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, id, username, password, cart);
+        return String.format(STRING_FORMAT, id, username, password, cart, imagelink);
     }
 }

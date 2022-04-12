@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
+import { User } from './user';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent {
 
   isLoggedIn: boolean = false;
   accountDropdownToggle: boolean = false;
+  user : User = this.authService.getCurrentUser();
 
   @ViewChild('dropdown') dropdown?: ElementRef;
   @ViewChild('avatar') avatar?: ElementRef;
