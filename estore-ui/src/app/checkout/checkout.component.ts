@@ -43,10 +43,15 @@ export class CheckoutComponent implements OnInit {
 
   checkout(): void {
     for (let i=0; i< this.cart.length ;i++){
-      var stock = this.cart[i].item.stock - this.cart[i].quantity;
+      if (this.cart[i].item.stock>= this.cart[i].quantity){ 
+        var stock = this.cart[i].item.stock - this.cart[i].quantity;
+      } else{
+        var diff = Math.abs(this.cart[i].item.stock - this.cart[i].quantity);
+        alert((this.cart[i].item.name) + " has " + this.cart[i].item.stock + " stock; " + diff + " removed from cart.")
+        var stock = 0;
+      }
       this.cart[i].item.stock = stock;
       this.saveItem(this.cart[i].item);
-      
     }
     this.cart.splice(0, this.cart.length);
     this.cartService
