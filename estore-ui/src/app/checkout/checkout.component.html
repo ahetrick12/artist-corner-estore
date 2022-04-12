@@ -259,7 +259,13 @@
         <input type="checkbox" checked="checked" name="sameadr" /> Shipping
         address same as billing
       </label>
-      <button class="button" type="submit" id="purchase" (click)="checkout()">
+      <button
+        class="button"
+        type="submit"
+        id="purchase"
+        (click)="checkout()"
+        [disabled]="!checkoutForm.valid"
+      >
         Purchase Total: {{ findsum() | currency }}
       </button>
     </form>
