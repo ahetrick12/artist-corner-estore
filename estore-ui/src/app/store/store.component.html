@@ -24,34 +24,54 @@
         <img src="../../assets/images/tat.jpg" class="storeimg" />
         <div>{{ item.name }}</div>
         <div>${{ item.price }}</div>
-        
+
         <button id="more" (click)="viewMore(item)">View More</button>
-        
       </div>
     </li>
   </ul>
 
   <div id="myModal" class="modal" [style.display]="displayNone">
-
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close" (click)="viewLess()">&times;</span>
-      <img src="../../assets/images/tat.jpg" class="storeimg" id="viewPic"/>
-      <div class="prodName">{{itemName}}</div>
-      <div class="prodName">${{itemPrice}}</div>
+      <img src="../../assets/images/tat.jpg" class="storeimg" id="viewPic" />
+      <div class="prodName">{{ selectedItem.name }}</div>
+      <div class="prodName">${{ selectedItem.price }}</div>
       <div [style.display]="showSizes" class="siz">
-        <span class="selec" (click)="select('S')" [style.background-color]="scolor">Small</span>
-        <span class="selec" (click)="select('M')" [style.background-color]="mcolor">Medium</span>
-        <span class="selec" (click)="select('L')" [style.background-color]="lcolor">Large</span>
-        <span class="selec" (click)="select('XL')" [style.background-color]="xlcolor">Extra Large</span>
+        <span
+          class="selec"
+          (click)="select('S')"
+          [style.background-color]="scolor"
+          >Small</span
+        >
+        <span
+          class="selec"
+          (click)="select('M')"
+          [style.background-color]="mcolor"
+          >Medium</span
+        >
+        <span
+          class="selec"
+          (click)="select('L')"
+          [style.background-color]="lcolor"
+          >Large</span
+        >
+        <span
+          class="selec"
+          (click)="select('XL')"
+          [style.background-color]="xlcolor"
+          >Extra Large</span
+        >
       </div>
       <div [style.display]="showFrames" class="fram">
-        <span (click)="select('x9')" [style.background-color]="x9color">9"x20"</span>
-        <span (click)="select('x19')" [style.background-color]="x19color">19"x30"</span>
+        <span (click)="select('x9')" [style.background-color]="x9color"
+          >9"x20"</span
+        >
+        <span (click)="select('x19')" [style.background-color]="x19color"
+          >19"x30"</span
+        >
       </div>
-      <button id="add">Add to cart</button>
-      
+      <button id="add" *ngIf="selected" (click)="add()">Add to cart</button>
     </div>
-  
   </div>
 </body>

@@ -35,7 +35,7 @@
             type="number"
             value="{{ cartitem.quantity }}"
             min="0"
-            max="{{ cartitem.item.stock }}"
+            max="10"
           />
           <br /><button class="button" id="update" (click)="save(cartitem)">
             save

@@ -14,20 +14,30 @@ import { compileDeclareInjectableFromMetadata } from '@angular/compiler';
 })
 export class StoreComponent implements OnInit {
   items: Item[] = [];
+  selectedItem: Item = {
+    id: -1,
+    name: '',
+    price: 0,
+    stock: 10,
+    S: 0,
+    M: 0,
+    L: 0,
+    XL: 0,
+    x920: 0,
+    x1930: 0,
+  };
+
   modal = 0;
-  displayNone = "none";
-  size='';
-  scolor = "white";
-  mcolor = "white";
-  lcolor = "white";
-  xlcolor = "white";
-  x9color = "white";
-  x19color = "white";
-  showSizes = "none";
-  showFrames = "none";
-  itemid = -1;
-  itemName = "";
-  itemPrice = 0.0;
+  displayNone = 'none';
+  scolor = 'white';
+  mcolor = 'white';
+  lcolor = 'white';
+  xlcolor = 'white';
+  x9color = 'white';
+  x19color = 'white';
+  showSizes = 'none';
+  showFrames = 'none';
+  selected = false;
 
   constructor(
     private itemService: ItemService,
@@ -40,99 +50,83 @@ export class StoreComponent implements OnInit {
 
   getItems(): void {
     this.itemService.getItems().subscribe((items) => (this.items = items));
-    //console.log(this.items.length);
   }
 
-  add(item: Item): void {
+  add(): void {
     this.cartService
-      .addCartItem(this.authService.getCurrentUser().username, item)
+      .addCartItem(
+        this.authService.getCurrentUser().username,
+        this.selectedItem
+      )
       .subscribe();
+    this.viewLess();
   }
 
   adminLoggedIn(): boolean {
     return this.authService.userIsAdmin();
   }
 
-  viewMore(item: Item){
-    this.itemid = item.id;
-    this.itemName = item.name;
-    this.itemPrice = item.price;
-    this.displayNone = "Block";
-    if (item.name.includes("Print")){
-      this.showFrames = "Block";
-      this.showSizes = "none";
-    } else{
-      this.showSizes = "Block";
-      this.showFrames = "none";
+  viewMore(item: Item) {
+    this.selectedItem.id = item.id;
+    this.selectedItem.name = item.name;
+    this.selectedItem.price = item.price;
+
+    this.displayNone = 'Block';
+    if (item.name.includes('Print')) {
+      this.showFrames = 'Block';
+      this.showSizes = 'none';
+    } else {
+      this.showSizes = 'Block';
+      this.showFrames = 'none';
     }
   }
 
-  viewLess(){
-    this.displayNone = "none";
+  viewLess() {
+    this.displayNone = 'none';
+    this.resetSelection();
   }
 
-  select(str: string){
-    this.size=str;
-    if (str == "S"){
-      if (this.scolor == "white"){
-        this.scolor="green";
-      }else{
-        this.scolor="white";
-      }
-      this.mcolor="white";
-      this.lcolor="white";
-      this.xlcolor="white";
+  select(str: string) {
+    this.resetSelection();
+    this.selected = true;
+
+    switch (str) {
+      case 'S':
+        this.scolor = 'green';
+        break;
+      case 'M':
+        this.mcolor = 'green';
+        break;
+      case 'L':
+        this.lcolor = 'green';
+        break;
+      case 'XL':
+        this.xlcolor = 'green';
+        break;
+      case 'x9':
+        this.x9color = 'green';
+        break;
+      case 'x19':
+        this.x19color = 'green';
+        break;
     }
-    if (str == "M"){
-      if (this.mcolor == "white"){
-        this.mcolor="green";
-      }else{
-        this.mcolor="white";
-      }
-      this.scolor="white";
-      this.lcolor="white";
-      this.xlcolor="white";
-    }
-    if (str == "L"){
-      if (this.lcolor == "white"){
-        this.lcolor="green";
-      }else{
-        this.lcolor="white";
-      }
-      this.mcolor="white";
-      this.scolor="white";
-      this.xlcolor="white";
-    }
-    if (str == "XL"){
-      if (this.xlcolor == "white"){
-        this.xlcolor="green";
-      }else{
-        this.xlcolor="white";
-      }
-      this.mcolor="white";
-      this.lcolor="white";
-      this.scolor="white";
-    }
-    if (str=="x9"){
-      if (this.x9color == "white"){
-        this.x9color = "green";
-        //this.x19color = "white";
-      } else{
-        this.x9color = "white";
-        //this.x19color = "white";
-      }
-      this.x19color = "white";
-    }
-    else if (str="x19"){
-      if (this.x19color == "white"){
-        this.x19color = "green";
-        //this.x9color = "white";
-      } else{
-        this.x19color = "white";
-        //this.x9color = "white";
-      }
-      this.x9color="white"
-    }
+  }
+
+  resetSelection(): void {
+    this.selected = false;
+
+    this.selectedItem.S = 0;
+    this.selectedItem.M = 0;
+    this.selectedItem.L = 0;
+    this.selectedItem.XL = 0;
+    this.selectedItem.x920 = 0;
+    this.selectedItem.x1930 = 0;
+
+    this.scolor = 'white';
+    this.mcolor = 'white';
+    this.lcolor = 'white';
+    this.xlcolor = 'white';
+    this.x9color = 'white';
+    this.x19color = 'white';
   }
 }
-
