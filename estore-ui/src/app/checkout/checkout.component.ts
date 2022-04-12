@@ -7,15 +7,14 @@ import { UserService } from '../user.service';
 import { AuthService } from '../auth.service';
 import { Item } from '../item';
 import { FormBuilder } from '@angular/forms';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
-import {Router} from "@angular/router";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
 })
-
 export class CheckoutComponent implements OnInit {
   [x: string]: any;
   cart: CartItem[] = [];
@@ -25,25 +24,39 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService,
     private userService: UserService,
     private authService: AuthService,
-    private itemService: ItemService
+    private itemService: ItemService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {
     this.createForm();
   }
 
-
   createForm() {
     this.checkoutForm = this.formBuilder.group({
-      fname: ['', [Validators.required]], lname: ['', [Validators.required]],
-      phone: ['', [Validators.required, Validators.pattern("[0-9]{3}-[0-9]{3}-[0-9]{4}")]], email: ['', [Validators.required, Validators.email]],
-      country: ['', [Validators.required]], state: ['', [Validators.required]],
-      address: ['', [Validators.required]], line2: [''],
-      city: ['', [Validators.required]], zip: ['', [Validators.required]],
-      name: ['', [Validators.required]], card: ['', [Validators.required, Validators.pattern("[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}")]],
-      exp: ['', [Validators.required]], cvc: ['', [Validators.required, Validators.pattern("[0-9]{3,4}")]]
+      fname: ['', [Validators.required]],
+      lname: ['', [Validators.required]],
+      phone: [
+        '',
+        [Validators.required, Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{4}')],
+      ],
+      email: ['', [Validators.required, Validators.email]],
+      country: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      line2: [''],
+      city: ['', [Validators.required]],
+      zip: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      card: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}'),
+        ],
+      ],
+      exp: ['', [Validators.required]],
+      cvc: ['', [Validators.required, Validators.pattern('[0-9]{3,4}')]],
     });
-
   }
   ngOnInit(): void {
     this.getItems();
@@ -64,12 +77,19 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkout(): void {
-    for (let i=0; i< this.cart.length ;i++){
-      if (this.cart[i].item.stock>= this.cart[i].quantity){ 
+    for (let i = 0; i < this.cart.length; i++) {
+      if (this.cart[i].item.stock >= this.cart[i].quantity) {
         var stock = this.cart[i].item.stock - this.cart[i].quantity;
-      } else{
+      } else {
         var diff = Math.abs(this.cart[i].item.stock - this.cart[i].quantity);
-        alert((this.cart[i].item.name) + " has " + this.cart[i].item.stock + " stock; " + diff + " removed from cart.")
+        alert(
+          this.cart[i].item.name +
+            ' has ' +
+            this.cart[i].item.stock +
+            ' stock; ' +
+            diff +
+            ' removed from cart.'
+        );
         var stock = 0;
       }
       this.cart[i].item.stock = stock;

@@ -27,7 +27,7 @@ public class CartItemTest {
         int expected_x920 = 0;
         int expected_x1930 = 0;
         Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
-                            expected_XL,expected_x920,expected_x1930);
+                            expected_XL,expected_x920,expected_x1930, "");
         int expected_quantity =  2;
         CartItem cartItem = new CartItem(expected_item, expected_quantity);
         assertEquals(expected_item,cartItem.getItem());
@@ -47,7 +47,7 @@ public class CartItemTest {
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
         int quantity = 2;
         CartItem cartItem = new CartItem(item, quantity); 
         int expected_quantity = 5;
@@ -70,11 +70,11 @@ public class CartItemTest {
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
         int quantity = 2;
         CartItem cartItem = new CartItem(item, quantity); 
 
-        Item expected_item = new Item(99, "Bandana", 30, 10,10,15,40,30,0,0);
+        Item expected_item = new Item(99, "Bandana", 30, 10,10,15,40,30,0,0, "");
 
         // Invoke
         cartItem.setItem(expected_item);
@@ -97,7 +97,7 @@ public class CartItemTest {
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
         CartItem cartItem = new CartItem(item, quantity); 
         String expected_string = String.format(CartItem.STRING_FORMAT,item, quantity);
         
@@ -122,7 +122,7 @@ public class CartItemTest {
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
         int quantity = 2;
         CartItem cartItem = new CartItem(item, quantity); 
         int expected_quantity = 3;
@@ -145,8 +145,8 @@ public class CartItemTest {
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930);
-        Item item2 = new Item(55,"Bandaid",5,(float)3.00, 20,25,50,10,0,0);
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        Item item2 = new Item(55,"Bandaid",5,(float)3.00, 20,25,50,10,0,0, "");
         int quantity = 2;
         CartItem cartItem = new CartItem(item, quantity); 
 
