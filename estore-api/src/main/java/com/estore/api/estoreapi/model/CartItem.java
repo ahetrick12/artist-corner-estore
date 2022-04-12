@@ -1,5 +1,4 @@
 package com.estore.api.estoreapi.model;
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
@@ -12,9 +11,9 @@ public class CartItem {
     @JsonProperty("item") private Item item;
     static final String STRING_FORMAT = "CartItem [item=%s, quantity=%s]";
 
-        /**
-     * create an item with the given id, name, and stock.
-     * @param item the item to be added to the cart
+    /**
+     * create a cartitem with the given item and quantity
+     * @param item the item 
      * @param quantity the quantity of the item
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
@@ -33,29 +32,42 @@ public class CartItem {
      */
     public Item getItem() {return item;}
 
+        /**
+     * sets the Item of the cartitem.
+     * @param item The item of the cartitem.
+     */
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
     /**
      * retrieves the quantity of the cartitem
      * @return the quantity of the cartitem
      */
     public int getQuantity() {return quantity;}
 
-        /**
-     * sets the quantity of the item.
-     * @param quantity The quantity of the item.
+    /**
+     * sets the quantity of the cartitem.
+     * @param quantity The quantity of the cartitem.
      */
     public void setQuantity(int quantity) { this.quantity = quantity;}
+
     /**
      * increments the cartitem's quantity by 1.
      */
     public void incrementQuantity(){this.quantity += 1;}
 
+    /**
+     * compares two items to see if they equal eachother
+     * @param item2 the compared item
+     * @return true if same, false if not
+     */
     public boolean compareItem(Item item2){
         if (this.item.equals(item2)){
             return true;
-        } else return false;
-
+        } 
+        else return false;
     }
-
     
       /**
      * {@inheritDoc}
@@ -63,12 +75,5 @@ public class CartItem {
     @Override
     public String toString() {
         return String.format(STRING_FORMAT,item.toString(), quantity);
-    }
-    /**
-     * sets the Item of the cartitem.
-     * @param item The item of the cartitem.
-     */
-    public void setItem(Item item) {
-        this.item = item;
     }
 }
