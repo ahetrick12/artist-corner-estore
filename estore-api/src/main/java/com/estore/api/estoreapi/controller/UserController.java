@@ -160,10 +160,7 @@ public class UserController {
         try {
             User updatedUser = userDAO.updateUser(user);
             LOG.info(updatedUser.getCart()[0].toString());
-            if (updatedUser != null)
-                return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
-            else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());

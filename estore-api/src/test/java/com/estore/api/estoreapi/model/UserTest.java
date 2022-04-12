@@ -19,10 +19,9 @@ public class UserTest {
         String expected_name = "Username";
         String expected_password = "Password";
         CartItem[] expected_cart = new CartItem[1];
-        String expected_link = "dog.jpg";
 
         // Invoke
-        User user = new User(expected_id, expected_name, expected_password, expected_cart,expected_link);
+        User user = new User(expected_id, expected_name, expected_password, expected_cart, "");
 
         // Analyze
         assertEquals(expected_id, user.getId());
@@ -37,8 +36,7 @@ public class UserTest {
         String username = "TestUsername";
         String password = "TestPassword";
         CartItem[] cart = new CartItem[1];
-        String link = "dog.jpg";
-        User user = new User(id, username, password, cart,link);
+        User user = new User(id, username, password, cart, "");
 
         String expected_name = "NewName";
 
@@ -55,8 +53,7 @@ public class UserTest {
         String username = "TestUsername";
         String password = "TestPassword";
         CartItem[] cart = new CartItem[1];
-        String link = "dog.jpg";
-        User user = new User(id, username, password, cart,link);
+        User user = new User(id, username, password, cart, "");
 
         String expected_password = "NewPassword";
 
@@ -74,10 +71,9 @@ public class UserTest {
         String username = "TestUsername";
         String password = "TestPassword";
         CartItem[] cart = new CartItem[1];
-        String link = "dog.jpg";
-        String expected_string = String.format(User.STRING_FORMAT,id, username, password,cart,link);
-        
-        User user = new User(id, username, password, cart, link);
+        String image= "dog";
+        String expected_string = String.format(User.STRING_FORMAT,id, username, password,cart, image);
+        User user = new User(id, username, password, cart, image);
 
         // Invoke
         String actual_string = user.toString();

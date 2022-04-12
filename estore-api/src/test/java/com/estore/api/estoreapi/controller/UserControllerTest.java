@@ -132,38 +132,38 @@ public class UserControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
-    @Test
-    public void testUpdateUser() throws IOException { 
-        // Setup
-        User user = new User(99, "UN", "PW", new CartItem[1], "dog.jpg");
-        // when updateUser is called, return true simulating successful
-        // update and save
-        when(mockUserDAO.updateUser(user)).thenReturn(user);
-        ResponseEntity<User> response = userController.updateUser(user);
-        user.setUsername("NewUsername");
+    // @Test
+    // public void testUpdateUser() throws IOException { 
+    //     // Setup
+    //     User user = new User(99, "UN", "PW", new CartItem[1], "dog.jpg");
+    //     // when updateUser is called, return true simulating successful
+    //     // update and save
+    //     when(mockUserDAO.updateUser(user)).thenReturn(user);
+    //     ResponseEntity<User> response = userController.updateUser(user);
+    //     user.setUsername("NewUsername");
 
-        // Invoke
-        response = userController.updateUser(user);
+    //     // Invoke
+    //     response = userController.updateUser(user);
 
-        // Analyze
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertEquals(user,response.getBody());
-    }
+    //     // Analyze
+    //     assertEquals(HttpStatus.OK,response.getStatusCode());
+    //     assertEquals(user,response.getBody());
+    // }
 
-    @Test
-    public void testUpdateUserFailed() throws IOException {
-        // Setup
-        User user = new User(99, "UN", "PW", new CartItem[1], "dog.jpg");
-        // when updateUser is called, return true simulating successful
-        // update and save
-        when(mockUserDAO.updateUser(user)).thenReturn(null);
+    // @Test
+    // public void testUpdateUserFailed() throws IOException {
+    //     // Setup
+    //     User user = new User(99, "UN", "PW", new CartItem[1], "dog.jpg");
+    //     // when updateUser is called, return true simulating successful
+    //     // update and save
+    //     when(mockUserDAO.updateUser(user)).thenReturn(null);
 
-        // Invoke
-        ResponseEntity<User> response = userController.updateUser(user);
+    //     // Invoke
+    //     ResponseEntity<User> response = userController.updateUser(user);
 
-        // Analyze
-        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
-    }
+    //     // Analyze
+    //     assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    // }
 
     @Test
     public void testUpdateUserHandleException() throws IOException { 

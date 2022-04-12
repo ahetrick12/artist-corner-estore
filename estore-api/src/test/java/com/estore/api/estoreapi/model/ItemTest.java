@@ -19,10 +19,7 @@ public class ItemTest {
         String expected_name = "Hamburger";
         int expected_stock = 30;
         float expected_price = (float) 3.99;
-        String expected_link = "dog.jpg";
-
         // Invoke
-        Item item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_link);
         int expected_S = 15;
         int expected_M = 25;
         int expected_L = 40;
@@ -40,7 +37,7 @@ public class ItemTest {
         assertEquals(expected_name,item.getName());
         assertEquals(expected_stock,item.getStock());
         assertEquals(expected_price,item.getPrice());
-        assertEquals(expected_link,item.getImageLink());
+        assertEquals(expected_image,item.getImageLink());
     }
 
     @Test
@@ -51,14 +48,13 @@ public class ItemTest {
         int stock = 30;
         float price = 10;
         String link = "dog.jpg";
-        Item item = new Item(id,name,stock,price,link);
         int S = 10;
         int M = 15;
         int L = 40;
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
 
         String expected_name = "Socks";
 
@@ -75,14 +71,13 @@ public class ItemTest {
         int stock = 30;
         float price = 10;
         String link = "dog.jpg";
-        Item item = new Item(id,name,stock,price,link);
-        int S = 10;
+        int S = 10; 
         int M = 15;
         int L = 40;
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
 
         int expected_stock = 50;
 
@@ -100,14 +95,13 @@ public class ItemTest {
         int stock = 30;
         float price = 10;
         String link = "dog.jpg";
-        Item item = new Item(id,name,stock,price,link);
         int S = 10;
         int M = 15;
         int L = 40;
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
 
         float expected_price = (float) 99.99;
 
@@ -125,7 +119,13 @@ public class ItemTest {
         int stock = 30;
         float price = 10;
         String link = "dog.jpg";
-        Item item = new Item(id,name,stock,price,link);
+        int S = 10;
+        int M = 15;
+        int L = 40;
+        int XL = 30;
+        int x920 = 0;
+        int x1930 = 0;
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930,link);
 
         String expected_image = "wowo.jpg";
 
@@ -137,6 +137,150 @@ public class ItemTest {
     }
 
     @Test
+    public void testSetSmall(){
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        String link = "dog.jpg";
+        int S = 10;
+        int M = 15;
+        int L = 40;
+        int XL = 30;
+        int x920 = 0;
+        int x1930 = 0;
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
+
+        int expected_small = 500;
+
+        // Invoke
+        item.setS(expected_small);
+
+        // Analyze
+        assertEquals(expected_small,item.getS());
+    }
+
+    @Test
+    public void testSetMed(){
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        String link = "dog.jpg";
+        int S = 10;
+        int M = 15;
+        int L = 40;
+        int XL = 30;
+        int x920 = 0;
+        int x1930 = 0;
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
+
+        int expected_med = 500;
+
+        // Invoke
+        item.setM(expected_med);
+
+        // Analyze
+        assertEquals(expected_med,item.getM());
+    }
+
+    @Test
+    public void testSetLarge(){
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        String link = "dog.jpg";
+        int S = 10;
+        int M = 15;
+        int L = 40;
+        int XL = 30;
+        int x920 = 0;
+        int x1930 = 0;
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
+
+        int expected_large = 500;
+
+        // Invoke
+        item.setL(expected_large);
+
+        // Analyze
+        assertEquals(expected_large,item.getL());
+    }
+
+    @Test
+    public void testSetXL(){
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        String link = "dog.jpg";
+        int S = 10;
+        int M = 15;
+        int L = 40;
+        int XL = 30;
+        int x920 = 0;
+        int x1930 = 0;
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
+
+        int expected_XL = 500;
+
+        // Invoke
+        item.setXL(expected_XL);
+
+        // Analyze
+        assertEquals(expected_XL,item.getXL());
+    }
+
+    @Test
+    public void testSetx920(){
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        String link = "dog.jpg";
+        int S = 10;
+        int M = 15;
+        int L = 40;
+        int XL = 30;
+        int x920 = 0;
+        int x1930 = 0;
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
+
+        int expected_x920 = 500;
+
+        // Invoke
+        item.setx920(expected_x920);
+
+        // Analyze
+        assertEquals(expected_x920,item.getx920());
+    }
+
+    @Test
+    public void testSetX1930(){
+        int id = 99;
+        String name = "Bandana";
+        int stock = 30;
+        float price = 10;
+        String link = "dog.jpg";
+        int S = 10;
+        int M = 15;
+        int L = 40;
+        int XL = 30;
+        int x920 = 0;
+        int x1930 = 0;
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
+
+        int expected_x1930 = 500;
+
+        // Invoke
+        item.setx1930(expected_x1930);
+
+        // Analyze
+        assertEquals(expected_x1930,item.getx1930());
+    }
+
+    @Test
     public void testToString() {
         // Setup
         int id = 99;
@@ -144,16 +288,14 @@ public class ItemTest {
         int stock = 30;
         float price = 10;
         String link = "dog.jpg";
-        String expected_string = String.format(Item.STRING_FORMAT,id,name,stock,price,link);
-        Item item = new Item(id,name,stock,price,link);
         int S = 10;
         int M = 15;
         int L = 40;
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        String expected_string = String.format(Item.STRING_FORMAT,id,name,stock,price,S,M,L,XL,x920,x1930, "");
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
+        String expected_string = String.format(Item.STRING_FORMAT,id,name,stock,price,S,M,L,XL,x920,x1930, link);
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930,link);
 
         // Invoke
         String actual_string = item.toString();
@@ -169,18 +311,15 @@ public class ItemTest {
         int stock = 30;
         float price = 10;
         String link = "dog.jpg";
-        Item item = new Item(id,name,stock,price,link);
-        Item item2 = new Item(id,name,stock,price,link);
-        Item item3 = new Item(2,"shoes",2,(float) 3.99, "shoe.jpg");
         int S = 10;
         int M = 15;
         int L = 40;
         int XL = 30;
         int x920 = 0;
         int x1930 = 0;
-        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
-        Item item2 = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, "");
-        Item item3 = new Item(2,"shoes",2,(float) 3.99, 20,30,40,10,0,0, "");
+        Item item = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
+        Item item2 = new Item(id,name,stock,price,S,M,L,XL,x920,x1930, link);
+        Item item3 = new Item(2,"shoes",2,(float) 3.99, 20,30,40,10,0,0, link);
         int res1 = item.compareTo(item2);
         int res2 = item.compareTo(item3);
 

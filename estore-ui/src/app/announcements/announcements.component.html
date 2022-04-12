@@ -23,7 +23,6 @@
       <button (click)="onSubmit()">Submit</button>
     </form>
   </div>
-  <div *ngIf="!getUserStatus(); else not_logged">
     <ul class="announcements">
       <div *ngIf="announcements.length == 0" style="text-align: center">
         Admin has posted no announcements.
@@ -77,10 +76,4 @@
         </button>
       </li>
     </ul>
-  </div>
-  <ng-template #not_logged
-    ><p style="text-align: center">
-      Please login or create an account to see announcements.
-    </p></ng-template
-  >
 </body>
