@@ -21,11 +21,6 @@ public class CartItemTest {
         int expected_stock = 30;
         float expected_price = (float) 3.99;
         String expected_imagelink = "dog.jpg";
-        Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price, expected_imagelink);
-        int expected_quantity =  2;
-        CartItem cartItem = new CartItem(expected_item, expected_quantity);
-        assertEquals(expected_item,cartItem.getItem());
-        assertEquals(expected_quantity,cartItem.getQuantity());
         int expected_S = 15;
         int expected_M = 25;
         int expected_L = 40;
@@ -33,15 +28,16 @@ public class CartItemTest {
         int expected_x920 = 0;
         int expected_x1930 = 0;
         Item expected_item = new Item(expected_id,expected_name,expected_stock,expected_price,expected_S,expected_M,expected_L,
-                            expected_XL,expected_x920,expected_x1930, "");
+                            expected_XL,expected_x920,expected_x1930, expected_imagelink);
         CartItem cartItem = new CartItem(expected_item, 0, 0, 0, 0, 0, 0); 
         assertEquals(expected_item, cartItem.getItem());
-        assertEquals(0, cartItem.getSmall());
-        assertEquals(0, cartItem.getMedium());
-        assertEquals(0, cartItem.getLarge());
-        assertEquals(0, cartItem.getXLarge());
-        assertEquals(0, cartItem.getx920());
-        assertEquals(0, cartItem.getX1930());
+        assertEquals(expected_S, cartItem.getSmall());
+        assertEquals(expected_M, cartItem.getMedium());
+        assertEquals(expected_L, cartItem.getLarge());
+        assertEquals(expected_XL, cartItem.getXLarge());
+        assertEquals(expected_x920, cartItem.getx920());
+        assertEquals(expected_x1930, cartItem.getX1930());
+
     }
 
     @Test

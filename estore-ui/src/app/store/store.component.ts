@@ -25,7 +25,7 @@ export class StoreComponent implements OnInit {
     xl: 0,
     x920: 0,
     x1930: 0,
-    image: '',
+    imageLink: '',
   };
 
   modal = 0;
@@ -83,7 +83,7 @@ export class StoreComponent implements OnInit {
     this.selectedItem.xl = item.xl;
     this.selectedItem.x920 = item.x920;
     this.selectedItem.x1930 = item.x1930;
-    this.selectedItem.image = item.image;
+    this.selectedItem.imageLink = item.imageLink;
 
     this.displayNone = 'Block';
     if (item.name.includes('Print')) {

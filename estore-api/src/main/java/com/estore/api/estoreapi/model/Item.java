@@ -113,7 +113,6 @@ public class Item implements Comparable<Item>{
      */
     public void setImageLink(String imageLink) {this.imageLink = imageLink;}
 
-    /*
     public int getS(){
         return S;
     }
@@ -156,18 +155,6 @@ public class Item implements Comparable<Item>{
     public void setx1930(int thir){
         this.x1930 = thir;
     }
-
-     /**
-     * retrieves the image of the item
-     * @return the image of the item
-     */
-    public String getImage() {return image;}
-
-    /**
-     * sets the image of the item.
-     * @param image The image of the item.
-     */
-    public void setImage(String image) {this.image = image;}
 
     /**
      * {@inheritDoc}
