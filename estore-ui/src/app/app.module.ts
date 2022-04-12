@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AdminComponent } from './admin/admin.component';
+import { MessageComponent } from './message/message.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AdminComponent } from './admin/admin.component';
     AboutComponent,
     CheckoutComponent,
     AdminComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
