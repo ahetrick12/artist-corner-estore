@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.estore.api.estoreapi.model.Message;
 
+
 /**
  * defines the interface for Item object persistence.
  * 
@@ -41,7 +42,7 @@ public interface MessageDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Message getItem(int id) throws IOException;
+    Message getMessage(int id) throws IOException;
 
     /**
      * creates and saves an {@linkplain Item item}.

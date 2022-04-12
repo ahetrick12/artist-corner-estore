@@ -10,14 +10,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author code heavily based on heroes-api by SWEN Faculty
  */
 public class Message implements Comparable<Message>{
-    //private static final Logger LOG = Logger.getLogger(Item.class.getName());
+    private static final Logger LOG = Logger.getLogger(Message.class.getName());
 
     // Package private for tests
     static final String STRING_FORMAT = "Message [id=%d, name=%s, message=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
-    @JsonProperty("message") private String message;
+    @JsonProperty("message") private String mess;
 
     /**
      * create an item with the given id, name, and stock.
@@ -34,7 +34,7 @@ public class Message implements Comparable<Message>{
     public Message(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("message") String message) {
         this.id = id;
         this.name = name;
-        this.message = message;
+        this.mess = message;
     }
 
     /**
@@ -59,24 +59,24 @@ public class Message implements Comparable<Message>{
      * retrieves the price of the item
      * @return the price of the item
      */
-    public String getMessages() {return message;}
+    public String getMessage() {return mess;}
 
     /**
      * sets the stock of the item.
      * @param stock The stock of the item.
      */
-    public void setMessage(String message) {this.message = message;}
+    public void setMessage(String message) {this.mess = message;}
 
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,name,message);
+        return String.format(STRING_FORMAT,id,name,mess);
     }
     @Override
     public int compareTo(Message obj){
-        return this.message.compareTo(obj.message);
+        return this.mess.compareTo(obj.mess);
   }
     
 }

@@ -33,15 +33,15 @@ import com.estore.api.estoreapi.model.Message;
 @RequestMapping("messages")
 public class MessageController {
     private static final Logger LOG = Logger.getLogger(MessageController.class.getName());
-    private MessageDAO messageDao;
+    private MessageDAO messageDAO;
 
     /**
      * creates a rest api controller to reponds to requests.
      * 
      * @param ItemDao the {@link ItemDAO item data access object} to perform CRUD operations
      */
-    public MessageController(MessageDAO messageDao) {
-        this.messageDao = messageDao;
+    public MessageController(MessageDAO messageDAO) {
+        this.messageDAO = messageDAO;
     }
 
     /**
@@ -59,7 +59,7 @@ public class MessageController {
     public ResponseEntity<Message> getMessage(@PathVariable int id) {
         LOG.info("GET /messages/" + id);
         try {
-            Message message = messageDao.getItem(id);
+            Message message = messageDAO.getMessage(id);
             if (message != null)
                 return new ResponseEntity<Message>(message, HttpStatus.OK);
             else
@@ -81,10 +81,10 @@ public class MessageController {
      * @author Alex Martinez
      */
     @GetMapping("")
-    public ResponseEntity<Message[]> getItems() {
+    public ResponseEntity<Message[]> getMessages() {
         LOG.info("GET /messages");
         try{
-            Message[] messages = messageDao.getMessages();
+            Message[] messages = messageDAO.getMessages();
             if (messages != null)
                 return new ResponseEntity<Message[]>(messages, HttpStatus.OK);
             else
@@ -112,7 +112,7 @@ public class MessageController {
     public ResponseEntity<Message[]> searchMessages(@RequestParam String name) {
         LOG.info("GET /messages/?name= " + name);
         try {
-            Message[] messages = messageDao.findMessages(name);
+            Message[] messages = messageDAO.findMessages(name);
             if (messages != null)
                 return new ResponseEntity<Message[]>(messages, HttpStatus.OK);
             else
@@ -139,7 +139,7 @@ public class MessageController {
     public ResponseEntity<Message> createMessage(@RequestBody Message message) {
         LOG.info("POST /messages/ " + message);
         try {
-            Message created_message = messageDao.createMessage(message);
+            Message created_message = messageDAO.createMessage(message);
             if (created_message != null){
                 return new ResponseEntity<Message>(created_message,HttpStatus.CREATED);
             }
@@ -170,7 +170,7 @@ public class MessageController {
     public ResponseEntity<Message> deleteMessage(@PathVariable int id) {
         LOG.info("DELETE /messages/" + id);
         try {
-            if(messageDao.deleteMessage(id)) {
+            if(messageDAO.deleteMessage(id)) {
                 return new ResponseEntity<Message>(HttpStatus.OK);
             }
             else {
