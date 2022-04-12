@@ -61,7 +61,8 @@ export class StoreComponent implements OnInit {
     this.cartService
       .addCartItem(
         this.authService.getCurrentUser().username,
-        this.selectedItem
+        this.selectedItem,
+        this.selection
       )
       .subscribe();
     this.viewLess();

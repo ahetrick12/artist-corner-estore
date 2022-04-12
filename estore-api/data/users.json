@@ -18,16 +18,41 @@
 					"x1930": 250,
 					"image": null
 				},
-				"s": 1,
-				"m": 2,
-				"l": 3,
-				"xl": 4,
-				"x920": 5,
-				"x1930": 6,
-				"small": 1,
-				"xlarge": 4,
-				"large": 3,
-				"medium": 2
+				"s": 0,
+				"m": 0,
+				"l": 0,
+				"xl": 0,
+				"x920": 2,
+				"x1930": 1,
+				"xlarge": 0,
+				"medium": 0,
+				"large": 0,
+				"small": 0
+			},
+			{
+				"item": {
+					"id": 3,
+					"name": "Sweatshirt",
+					"stock": 100,
+					"price": 50.0,
+					"s": 30,
+					"m": 40,
+					"l": 35,
+					"xl": 25,
+					"x920": 0,
+					"x1930": 0,
+					"image": null
+				},
+				"s": 0,
+				"m": 1,
+				"l": 0,
+				"xl": 0,
+				"x920": 0,
+				"x1930": 0,
+				"xlarge": 0,
+				"medium": 1,
+				"large": 0,
+				"small": 0
 			}
 		],
 		"image": null
