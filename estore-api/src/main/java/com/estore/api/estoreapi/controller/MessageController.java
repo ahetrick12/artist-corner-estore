@@ -5,28 +5,25 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException.Conflict;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.io.Console;
 
 import com.estore.api.estoreapi.persistence.MessageDAO;
 import com.estore.api.estoreapi.model.Message;
 
 /**
- * handles the rest api requests for the item resource.
+ * handles the rest api requests for the message resource.
  * 
  * {@literal @}RestController spring annotation identifies this class as a rest api
  * method handler to the spring framework.
  * 
- * @author team 8
+ * @author alex martinez of team 8
  * @author code heavily based on heroes-api by SWEN Faculty
  */
 
@@ -39,22 +36,22 @@ public class MessageController {
     /**
      * creates a rest api controller to reponds to requests.
      * 
-     * @param ItemDao the {@link ItemDAO item data access object} to perform CRUD operations
+     * @param messageDao the {@link messageDAO message data access object} to perform CRUD operations
      */
     public MessageController(MessageDAO messageDAO) {
         this.messageDAO = messageDAO;
     }
 
     /**
-     * responds to the GET request for a {@linkplain Item item} for the given id.
+     * responds to the GET request for a {@linkplain Message message} for the given id.
      * 
-     * @param id The id used to locate the {@link Item item}
+     * @param id The id used to locate the {@link Message message}
      * 
-     * @return ResponseEntity with {@link Item item} object and HTTP status of OK if found
+     * @return ResponseEntity with {@link Message message} object and HTTP status of OK if found
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * 
-     * @author Jonathan Campbell
+     * @author alex martinez
      */
     @GetMapping("/{id}")
     public ResponseEntity<Message> getMessage(@PathVariable int id) {
@@ -73,9 +70,9 @@ public class MessageController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Item items}
+     * Responds to the GET request for all {@linkplain Message messages}
      * 
-     * @return ResponseEntity with array of {@link Item item} objects (may be empty) and
+     * @return ResponseEntity with array of {@link Message message} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * 
@@ -98,22 +95,22 @@ public class MessageController {
     }
 
     /**
-     * responds to the GET request for all {@linkplain Item items} whose name contains
+     * responds to the GET request for all {@linkplain Message messages} whose name contains
      * the text in name.
      * 
-     * @param name the name parameter which contains the text used to find the {@link Item items}
+     * @param name the name parameter which contains the text used to find the {@link Message messages}
      * 
-     * @return ResponseEntity with array of {@link Item item} objects (may be empty) and
+     * @return ResponseEntity with array of {@link Message message} objects (may be empty) and
      * HTTP status of OK
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * 
-     * @author Daniel Kench
+     * @author alex martinez
      */
     @GetMapping("/")
-    public ResponseEntity<Message[]> searchMessages(@RequestParam String name) {
-        LOG.info("GET /messages/?name= " + name);
+    public ResponseEntity<Message[]> searchMessages(@RequestParam String group) {
+        LOG.info("GET /messages/?group= " + group);
         try {
-            Message[] messages = messageDAO.findMessages(name);
+            Message[] messages = messageDAO.findMessages(group);
             if (messages != null){
                 
                 return new ResponseEntity<Message[]>(messages, HttpStatus.OK);
@@ -140,7 +137,7 @@ public class MessageController {
      */
     @PostMapping("")
     public ResponseEntity<Message> createMessage(@RequestBody Message message) {
-        LOG.info("POST /messages/ "+message);
+        LOG.info("POST /messages/ ");
         try {
             Message created_message = messageDAO.createMessage(message);
             if (created_message != null){

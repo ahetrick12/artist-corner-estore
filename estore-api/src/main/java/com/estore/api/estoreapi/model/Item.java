@@ -1,6 +1,5 @@
 package com.estore.api.estoreapi.model;
 
-//import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
@@ -10,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author code heavily based on heroes-api by SWEN Faculty
  */
 public class Item implements Comparable<Item>{
-    //private static final Logger LOG = Logger.getLogger(Item.class.getName());
 
     // Package private for tests
     static final String STRING_FORMAT = "Item [id=%d, name=%s, stock=%s, price=%s, s=%s, m=%s, l=%s, xl=%s, x920=%s, x1930=%s, imageLink=%s]";

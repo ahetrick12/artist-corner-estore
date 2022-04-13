@@ -16,7 +16,7 @@ import { User } from './user';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Artist E-Store';
+  title = 'Artist Corner';
 
   isLoggedIn: boolean = false;
   accountDropdownToggle: boolean = false;

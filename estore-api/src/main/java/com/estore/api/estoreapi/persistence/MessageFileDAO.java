@@ -1,17 +1,13 @@
 package com.estore.api.estoreapi.persistence;
 
-import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +24,7 @@ import com.estore.api.estoreapi.model.Message;
  */
 @Component
 public class MessageFileDAO implements MessageDAO {
-    private static final Logger LOG = Logger.getLogger(MessageFileDAO.class.getName());
+    //private static final Logger LOG = Logger.getLogger(MessageFileDAO.class.getName());
     Map<Integer,Message> messages;   // Provides a local cache of the item objects
     private ObjectMapper objectMapper;  // Provides conversion between Item
                                         // objects and JSON text format written
@@ -178,15 +174,11 @@ public class MessageFileDAO implements MessageDAO {
         synchronized(messages) {
             // we create a new item object because the id field is immutable
             // and we need to assign the next unique id
-            if (nameExists(message.getName())== false){
                 Message newMessage = new Message(nextId(),message.getName(), message.getMessage());
                 messages.put(newMessage.getId(),newMessage);
                 save(); // may throw an IOException
                 return newMessage;
-            }
-            else {
-                return null;
-            }
+            
             
         }
     }

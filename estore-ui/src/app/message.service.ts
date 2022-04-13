@@ -64,10 +64,9 @@ export class MessageService {
     );
   }
 
-  addMessage(mes: Message): Observable<Message> {
-    return this.http.put<Message>(this.messagesUrl, mes).pipe(
-      tap((x) => {
-        console.log(x);
+  createMessage(mes: Message): Observable<Message> {
+    return this.http.post<Message>(this.messagesUrl, mes).pipe(
+      tap((_) => { 
         this.log('added message');
     }),
       catchError(this.handleError<Message>('addMessage'))

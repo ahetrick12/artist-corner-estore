@@ -343,8 +343,8 @@ public class CartItemTest {
         String name = "Bandana";
         int stock = 30;
         float price = 10;
-        String imagelink = "dog.jpg";
-        int quantity = 2;
+        //String imagelink = "dog.jpg";
+        //int quantity = 2;
         int S = 10;
         int M = 15;
         int L = 40;

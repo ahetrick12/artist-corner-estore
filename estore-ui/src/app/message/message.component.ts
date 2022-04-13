@@ -41,7 +41,7 @@ export class MessageComponent implements OnInit {
         message: this.mess,
       };
       console.log(messag);
-      this.messageService.addMessage(messag).subscribe(() => {
+      this.messageService.createMessage(messag).subscribe(() => {
         this.getMessages();
       });
 
@@ -51,7 +51,7 @@ export class MessageComponent implements OnInit {
     }
   }
   add(message: Message): void {
-    this.messageService.addMessage(message).subscribe();
+    this.messageService.createMessage(message).subscribe();
   }
 
   userLoggedIn(): boolean {
