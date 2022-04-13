@@ -47,7 +47,10 @@ This section describes the features of the application.
 A store where you can view items for sale by the artist, add these items to your cart, and then purchase them. You can also login to an account in order to save your cart, as well as view store-wide announcements that the artist has posted. As the owner of the store, the artist, you can add, delete, or update items in the inventory, as well as post  store-wide annoucements to the site
 
 ### MVP Features
-> _Provide a list of top-level Epics and/or Stories of the MVP._
+- Password Authentication for customer/e-store owner login & logout
+- Customer functionality
+- Inventory Management
+- Data Persistence
 
 ### Roadmap of Enhancements
 > _Provide a list of top-level features in the order you plan to consider them._
@@ -144,6 +147,7 @@ with the e-store application.
 > acceptance testing and if there are any concerns._
 
 ### Unit Testing and Code Coverage
+Our unit testing strategy was to try to efficiently cover as much as possible.
 > _Discuss your unit testing strategy. Report on the code coverage
 > achieved from unit testing of the code base. Discuss the team's
 > coverage targets, why you selected those values, and how well your
