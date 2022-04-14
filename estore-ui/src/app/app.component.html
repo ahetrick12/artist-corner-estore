@@ -8,46 +8,50 @@
 </head>
 <body>
   <div [style.background-image]="'url(/../assets/images/back.jpg'" class="bac">
-<nav>
-  <a id="mentit" routerLink="/homepage">{{ title }}</a>
-  <a *ngIf="!isLoggedIn" class="auth-button green" routerLink="/login">Login</a>
-  <a
-    *ngIf="isLoggedIn"
-    class="avatar"
-    (click)="toggleAccountDropdown()"
-    (clickOutside)="setAccountDropdown(false)"
-  >
-    <img #avatar src={{user.imageLink}}
-  /></a>
-  <ul #dropdown *ngIf="accountDropdownToggle" class="account-dropdown">
-    <a routerLink="/user"><li><button>Account Details</button></li></a>
-    <li><button class="red" (click)="logout()">Logout</button></li>
-  </ul>
-  <ul id="desktop-links">
-    <li><a routerLink="/store">Store</a></li>
-    <li><a routerLink="/cart">Cart</a></li>
-    <li><a routerLink="/about">About</a></li>
-    <li><a routerLink="/message">Messages</a></li>
-    <li><a routerLink="/announcements">Announcements</a></li>
-    <li><a routerLink="/contact">Contact</a></li>
-    <li>
-      <a href="https://www.facebook.com/"
-        ><img src="../../assets/images/facebook.png"
+    <nav>
+      <a id="mentit" routerLink="/homepage">{{ title }}</a>
+      <a *ngIf="!isLoggedIn" class="auth-button green" routerLink="/login"
+        >Login</a
+      >
+      <a
+        *ngIf="isLoggedIn"
+        class="avatar"
+        (click)="toggleAccountDropdown()"
+        (clickOutside)="setAccountDropdown(false)"
+      >
+        <img #avatar src="{{ user.imageLink }}"
       /></a>
-    </li>
-    <li>
-      <a href="https://www.instagram.com/"
-        ><img src="../../assets/images/instagram.png"
-      /></a>
-    </li>
-    <li>
-      <a href="https://twitter.com/"
-        ><img src="../../assets/images/twitter.png"
-      /></a>
-    </li>
-  </ul>
-</nav>
+      <ul #dropdown *ngIf="accountDropdownToggle" class="account-dropdown">
+        <a routerLink="/user"
+          ><li><button>Account Details</button></li></a
+        >
+        <li><button class="red" (click)="logout()">Logout</button></li>
+      </ul>
+      <ul id="desktop-links">
+        <li><a routerLink="/store">Store</a></li>
+        <li><a routerLink="/cart">Cart</a></li>
+        <li><a routerLink="/about">About</a></li>
+        <li><a routerLink="/message">Messages</a></li>
+        <li><a routerLink="/announcements">Announcements</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+        <li class="social">
+          <a href="https://www.facebook.com/"
+            ><img src="../../assets/images/facebook.png"
+          /></a>
+        </li>
+        <li class="social">
+          <a href="https://www.instagram.com/"
+            ><img src="../../assets/images/instagram.png"
+          /></a>
+        </li>
+        <li class="social">
+          <a href="https://twitter.com/"
+            ><img src="../../assets/images/twitter.png"
+          /></a>
+        </li>
+      </ul>
+    </nav>
 
-<router-outlet></router-outlet>
-</div>
+    <router-outlet></router-outlet>
+  </div>
 </body>
