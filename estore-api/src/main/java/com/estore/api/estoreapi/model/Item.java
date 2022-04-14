@@ -110,46 +110,93 @@ public class Item implements Comparable<Item>{
      * @param stock The stock of the item.
      */
     public void setImageLink(String imageLink) {this.imageLink = imageLink;}
-
+     /**
+     * retrieves the small stock of the item
+     * @return the small stock of the item
+     */
     public int getS(){
         return S;
     }
-
+    /**
+     * sets the small stock of the item.
+     * @param small The small stock of the item.
+     */
     public void setS(int small){
         this.S = small;
     }
+    
+    /**
+     * retrieves medium stock of the item
+     * @return the medium stock of the item
+     */
     public int getM(){
         return M;
     }
-
+    /**
+     * sets the medium stock of the item.
+     * @param med The medium stock of the item.
+     */
     public void setM(int med){
         this.M = med;
     }
+
+     /**
+     * retrieves the stock of the item
+     * @return the stock of the item
+     */
     public int getL(){
         return L;
     }
-
+    /**
+     * sets the large stock of the item.
+     * @param large The large stock of the item.
+     */
     public void setL(int larg){
         this.L = larg;
     }
+
+     /**
+     * retrieves the XL stock of the item
+     * @return the XL stock of the item
+     */
     public int getXL(){
         return XL;
     }
 
+    /**
+     * sets the XL stock of the item.
+     * @param extra The XL stock of the item.
+     */
     public void setXL(int extra){
         this.XL = extra;
     }
+
+     /**
+     * retrieves the x920 stock of the item
+     * @return the x920 stock of the item
+     */
     public int getx920(){
         return x920;
     }
 
+    /**
+     * sets the x920 stock of the item.
+     * @param nin The x920 stock of the item.
+     */
     public void setx920(int nin){
         this.x920 = nin;
     }
+     /**
+     * retrieves the x1930 stock of the item
+     * @return the x1930 stock of the item
+     */
     public int getx1930(){
         return x1930;
     }
-
+    /**
+     * sets the x1930 stock of the item.
+     * @param thir The x1930 stock of the item.
+     */
     public void setx1930(int thir){
         this.x1930 = thir;
     }

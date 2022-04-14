@@ -18,10 +18,10 @@ public class Message implements Comparable<Message>{
     @JsonProperty("message") private String mess;
 
     /**
-     * create an item with the given id, name, and stock.
-     * @param id the id of the item
-     * @param name the name of the item
-     * @param message the stock of the item.
+     * create a message with the given id, name, and stock.
+     * @param id the id of the message
+     * @param name the name of the user who wrote the message
+     * @param message the message of the message.
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
