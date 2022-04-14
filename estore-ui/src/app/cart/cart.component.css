@@ -5,7 +5,7 @@
 #title {
   text-align: center;
   margin-block: 1.5%;
-  font-size: x-large;
+  font-size: xx-large;
   font-weight: bold;
 }
 
@@ -70,7 +70,7 @@ td {
   background-color: black;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 5px;
   font-family: "Fredoka", sans-serif;
   transform: translateY(12px);
@@ -109,7 +109,7 @@ h2 {
 #checkout-button {
   font-size: large;
   margin-bottom: 5%;
-  padding: 10px;
+  padding: 10px 15px 10px 15px;
   background-color: rgb(71, 167, 71);
 }
 
