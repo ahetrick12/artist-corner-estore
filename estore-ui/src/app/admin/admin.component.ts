@@ -23,7 +23,7 @@ export class AdminComponent implements OnInit {
 
     // Send back to homepage is user is not admin, like if they try to access it by directly going to "http://localhost:4200/admin"
     if (!this.authService.userIsAdmin()) {
-      this.route.navigate(['']);
+      //this.route.navigate(['']);
     }
   }
 
@@ -32,10 +32,9 @@ export class AdminComponent implements OnInit {
   }
 
   saveItem(item: Item): void {
-    if (item.imageLink == "" || item.price == 0 || item.name == ""){
-      alert("Field cannot be empty/0.");
-    }
-    else{
+    if (item.imageLink == '' || item.price == 0 || item.name == '') {
+      alert('Field cannot be empty/0.');
+    } else {
       this.itemService.updateItem(item).subscribe();
     }
   }
@@ -47,7 +46,7 @@ export class AdminComponent implements OnInit {
 
   addItem(): void {
     // Add
-    let name: string = 'New Item ' + (this.items.length+1);
+    let name: string = 'New Item ' + (this.items.length + 1);
     let newName: string = name;
     for (
       let i = 1;
@@ -62,8 +61,8 @@ export class AdminComponent implements OnInit {
       id: 0,
       name: newName,
       stock: 0,
-      price: .01,
-      imageLink: "../../assets/images/tat.jpg",
+      price: 0.01,
+      imageLink: '../../assets/images/tat.jpg',
       s: 0,
       m: 0,
       l: 0,
