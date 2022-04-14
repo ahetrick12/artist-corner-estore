@@ -61,7 +61,12 @@ nav img {
 }
 
 .green {
-  background-color: rgb(99, 181, 99);
+  background-color: rgb(71, 167, 71);
+}
+
+.auth-button.green:hover {
+  background-color: rgb(53, 106, 53);
+  cursor: pointer;
 }
 
 .avatar img {
