@@ -8,8 +8,8 @@
 </head>
 <body>
   <button id="back" routerLink="/store">Back</button>
-  <h1>Inventory Management</h1>
-  <table>
+  <h1 class="mm">Inventory Management</h1>
+  <table style="background-color: white;">
     <thead>
       <th>Name</th>
       <th>Price</th>
@@ -111,7 +111,7 @@
             type="imageLink"
             value="{{ item.imageLink }}">
         </td>
-        <td id="delete-cell">
+        <td id="delete-cell" >
           <button id="delete" (click)="deleteItem(item)">
             <b>&#10006;</b>
           </button>
@@ -119,5 +119,5 @@
       </tr>
     </tbody>
   </table>
-  <button id="add" (click)="addItem()"><b>&#43;</b></button>
+  <button id="add" (click)="addItem()" style="background-color: wheat;color:black;"><b>&#43;</b></button>
 </body>

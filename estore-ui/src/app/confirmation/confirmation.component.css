@@ -8,3 +8,12 @@ img {
   text-align: center;
   font-family: "Fredoka", sans-serif;
 }
+
+.hh{
+  background-color: white;
+  width: 40%;
+  margin-left:30%;
+  margin-right:30%;
+  border-radius: 20px;
+  padding: 10px;
+}

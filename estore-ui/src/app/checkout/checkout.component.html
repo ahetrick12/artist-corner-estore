@@ -9,7 +9,7 @@
 <body>
   <div id="chk">Checkout</div>
   <div>
-    <div id="rw">Review Items</div>
+    <div id="rw" style="background-color: white;border-radius: 20px;padding: 5px;">Review Items</div>
     <ul class="items">
       <li *ngFor="let cartitem of cart">
         <figure>
@@ -209,6 +209,7 @@
           </td>
         </tr>
       </table>
+      <br>
       <table id="Pay">
         <th>Payment Info</th>
         <tr>

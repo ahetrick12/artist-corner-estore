@@ -74,7 +74,7 @@ input:focus {
 
 #delete-cell {
   border: none;
-  background-color: white !important;
+  background-color: black !important;
   width: 0%;
 }
 
@@ -110,4 +110,13 @@ input:focus {
 #add:hover {
   background-color: rgb(242, 242, 242);
   cursor: pointer;
+}
+
+.mm{
+  
+  background-color: white;
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
+  border-radius: 25px;
 }

@@ -8,7 +8,7 @@
   text-align: center;
 }
 
-#title {
+#titl {
   text-align: center;
   margin-block: 1.5%;
   font-size: xx-large;
@@ -45,4 +45,32 @@ textarea {
   margin: 3px;
   background-color: rgb(231, 231, 231);
   border: none;
+}
+
+#titl{
+  background-color: white;
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
+  border-radius: 25px;
+}
+
+.messages{
+  background-color: white;
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 25px;
+  padding: 20px;
+  max-height: 50%;
+}
+
+.lo{
+  background-color: white;
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 25px;
+  padding: 20px;
+
 }

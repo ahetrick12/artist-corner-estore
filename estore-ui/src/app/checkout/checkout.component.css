@@ -5,7 +5,7 @@ body {
 
 ul {
   position: absolute;
-  padding-right: 40%;
+  
 }
 
 li {
@@ -38,6 +38,11 @@ input.ng-touched.ng-valid {
   margin-block: 20px;
   font-size: xx-large;
   font-weight: bold;
+  background-color: white;
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
+  border-radius: 25px;
 }
 
 #rw {
@@ -79,6 +84,12 @@ input.ng-touched.ng-valid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  background-color: white;
+  width: 50%;
+  margin-left: 5%;
+  margin-top: 30px;
+  border-radius: 25px;
+  margin-bottom: 30px;
 }
 
 #data {
@@ -183,4 +194,11 @@ input[type="month"] {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+#Per, #Pay, #xc, #cards,#sameadr{
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
 }

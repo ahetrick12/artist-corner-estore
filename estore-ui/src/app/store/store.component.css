@@ -6,9 +6,15 @@
   margin-block: 20px;
   font-size: xx-large;
   font-weight: bold;
-  margin-bottom: 5px;
+  background-color: white;
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
+  border-radius: 25px;
+  margin-bottom: 20px;
 }
 #admin_view {
+  background-color: white;
   border-color: black;
   border-width: 2px;
   border-radius: 5px;

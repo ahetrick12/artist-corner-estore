@@ -7,6 +7,7 @@
   />
 </head>
 <body>
+  <div [style.background-image]="'url(/../assets/images/back.jpg'" class="bac">
 <nav>
   <a id="mentit" routerLink="/homepage">{{ title }}</a>
   <a *ngIf="!isLoggedIn" class="auth-button green" routerLink="/login">Login</a>
@@ -48,4 +49,5 @@
 </nav>
 
 <router-outlet></router-outlet>
+</div>
 </body>
