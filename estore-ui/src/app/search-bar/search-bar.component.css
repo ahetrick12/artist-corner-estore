@@ -2,42 +2,48 @@
   font-family: "Fredoka", sans-serif;
 }
 
+.search {
+  background-color: white;
+  border-radius: 20px;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-top: 7px;
+  padding-bottom: 5px;
+}
+
 .search input[type="text"] {
   float: left;
   margin: 0 auto;
   display: block;
   padding: 6px;
-  margin-left: 4%;
+  margin-left: 3%;
   margin-right: 0%;
   font-size: 15px;
   width: 85%;
-  padding: 10px;
-  padding-left: 20px;
+  padding: 14px;
+  padding-left: 25px;
 }
 
 .search input[type="text"]:focus {
   outline: none;
 }
 
-.search button {
-  background-color: #000;
-  color: white;
-  padding: 10px;
-  border-radius: 8px;
-  font-family: "Fredoka", sans-serif;
+.search img {
+  width: 45px;
+  height: auto;
   border: none;
-  margin: 0px;
-  margin-left: 1%;
+  background-color: transparent;
+  margin-left: 5px;
 }
 
-.search button:hover {
-  background: gray;
+.search img:hover {
   cursor: pointer;
 }
 
 input {
   width: 500px;
-  padding: 15px;
+  padding: 20px;
   padding-left: 25px;
   padding-right: 25px;
   border-radius: 25px;

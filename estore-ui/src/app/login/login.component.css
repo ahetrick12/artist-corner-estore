@@ -19,7 +19,7 @@ input {
   padding-left: 25px;
   padding-right: 25px;
   border-radius: 25px;
-  margin: 3px;
+  margin: 5px;
   background-color: rgb(231, 231, 231);
   border: none;
 }
@@ -32,25 +32,48 @@ button {
 }
 
 #login {
-  margin-top: 20px;
+  width: 24%;
+  margin-left: 38%;
+  margin-right: 38%;
+  margin-top: 30px;
   margin-bottom: 5px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 30px;
   border-width: 0px;
   background-color: rgb(99, 181, 99);
   color: white;
+  font-size: large;
 }
 
 #login:hover {
   background-color: rgb(63, 128, 63);
 }
 
-#create-account {
-  border-width: 0px;
-  margin-top: 10px;
-  background-color: white;
-}
-
 #create-account:hover {
   color: rgb(84, 84, 84);
+}
+
+.tit {
+  background-color: white;
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
+  border-radius: 25px;
+}
+
+#blogin {
+  width: 16%;
+  margin-left: 42%;
+  margin-right: 42%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 30px;
+  border-width: 0px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+#blogin:hover {
+  background-color: rgb(161, 161, 161);
 }

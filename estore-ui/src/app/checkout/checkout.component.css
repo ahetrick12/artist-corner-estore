@@ -1,46 +1,62 @@
-body{
-  font-family: 'Fredoka', sans-serif;
-  padding-bottom: 100px;
+* {
+  font-family: "Fredoka", sans-serif;
 }
 
-ul{
+body {
+  height: 760px;
+}
+
+.form-group {
+  text-align: center;
+}
+
+table {
+  margin-bottom: 100px;
+}
+
+ul {
   position: absolute;
-  padding-right: 40%;
 }
 
-li{
+li {
   display: inline-flex;
   padding-right: 100px;
+  border-bottom: 2px black solid;
 }
 
-.iteminfo{
+.iteminfo {
   height: 75%;
   padding-top: 15%;
   font-weight: bold;
   text-align: center;
 }
 
-figcaption{
+figcaption {
   font-weight: bold;
   text-align: center;
 }
 
 input.ng-touched.ng-invalid {
-  border-color:red;
+  border-color: red;
 }
 
 input.ng-touched.ng-valid {
-  border-color:green;
+  border-color: green;
 }
 
-#chk{
+#chk {
   text-align: center;
   margin-block: 20px;
-  font-size: 20px;
+  font-size: xx-large;
   font-weight: bold;
+  background-color: white;
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
+  border-radius: 25px;
 }
 
-#rw{
+#rw {
   position: absolute;
   top: 120px;
   left: 25%;
@@ -49,51 +65,59 @@ input.ng-touched.ng-valid {
   font-weight: bold;
 }
 
-#Per{
+#Per {
   position: absolute;
   top: 100px;
   right: 12%;
 }
 
-#pi{
+#pi {
   text-align: center;
 }
 
-#Pay{
+#Pay {
   position: absolute;
-  top: 470px;
-  right: 12%;
+  top: 480px;
+  right: 10.8%;
 }
 
-#xc{
+#xc {
   position: absolute;
-  top: 625px;
-  right: 12%;
+  top: 655px;
+  right: 11.3%;
 }
 
-.storeimg{
+.storeimg {
   width: 150px;
 }
 
-.items{
+.items {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  background-color: white;
+  width: 50%;
+  margin-left: 5%;
+  margin-top: 30px;
+  border-radius: 25px;
+  margin-bottom: 30px;
 }
 
-#data{
-  right:150px;
+#data {
+  right: 150px;
 }
 
-.button{
-  background-color: black;
-  color:white;
+.button {
+  background-color: rgb(71, 167, 71);
+  color: white;
   padding: 1%;
-  border-radius: 2px;
-  font-family: 'Fredoka', sans-serif;
+  border-radius: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: "Fredoka", sans-serif;
 }
 
-.cards{
+.cards {
   position: absolute;
   width: 110px;
   height: 25px;
@@ -101,7 +125,7 @@ input.ng-touched.ng-valid {
   top: 582px;
 }
 
-input[type=text] {
+input[type="text"] {
   width: 90%;
   margin-bottom: 5px;
   padding: 8px;
@@ -109,7 +133,7 @@ input[type=text] {
   border-radius: 3px;
 }
 
-input[type=number] {
+input[type="number"] {
   width: 90%;
   margin-bottom: 5px;
   padding: 8px;
@@ -117,7 +141,7 @@ input[type=number] {
   border-radius: 3px;
 }
 
-input[type=email] {
+input[type="email"] {
   width: 90%;
   margin-bottom: 5px;
   padding: 8px;
@@ -125,7 +149,7 @@ input[type=email] {
   border-radius: 3px;
 }
 
-input[type=tel] {
+input[type="tel"] {
   width: 90%;
   margin-bottom: 5px;
   padding: 8px;
@@ -133,7 +157,7 @@ input[type=tel] {
   border-radius: 3px;
 }
 
-input[type=month] {
+input[type="month"] {
   width: 90%;
   margin-bottom: 5px;
   padding: 8px;
@@ -141,46 +165,62 @@ input[type=month] {
   border-radius: 3px;
 }
 
-#quantity{
-  width:30px;
+#quantity {
+  width: 30px;
 }
 
-#sameadr{
+#sameadr {
   position: absolute;
-  right: 15%;
-  top: 678px;
+  right: 14%;
+  top: 728px;
 }
 
-#purchase{
+#purchase {
   position: absolute;
-  top: 715px;
-  right: 10%;
+  top: 790px;
+  right: 15.2%;
+  margin-bottom: 200px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: large;
 }
 
-#purchase:hover{
-  color:red;
+#purchase:hover {
+  background-color: rgb(53, 106, 53);
+  cursor: pointer;
 }
 
-#cvc{
-  width:50px;
+#cvc {
+  width: 50px;
 }
 
-#exp{
-  width:155px;
+#exp {
+  width: 155px;
 }
 
-#name{
-  width:350px;
+#name {
+  width: 350px;
 }
 
-#card{
-  width:350px;
+#card {
+  width: 350px;
 }
 
-#state{
+#state {
   width: 100%;
   margin-bottom: 5px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+#Per,
+#Pay,
+#xc,
+#cards,
+#sameadr {
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
 }

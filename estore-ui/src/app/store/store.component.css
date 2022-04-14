@@ -4,11 +4,17 @@
 #titl {
   text-align: center;
   margin-block: 20px;
-  font-size: x-large;
+  font-size: xx-large;
   font-weight: bold;
-  margin-bottom: 5px;
+  background-color: white;
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
+  border-radius: 25px;
+  margin-bottom: 20px;
 }
 #admin_view {
+  background-color: white;
   border-color: black;
   border-width: 2px;
   border-radius: 5px;
@@ -69,10 +75,32 @@ li span {
   width: 80px;
   margin-top: 15px;
   border-radius: 10px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
 }
 .items div {
   text-align: center;
   margin-top: 2%;
+}
+
+.listing_name {
+  font-size: 20px;
+}
+
+.listing_price {
+  transform: translateY(-5px);
+}
+
+#disabled_add {
+  left: 50%;
+  background-color: rgb(128, 128, 128);
+  color: rgb(220, 220, 220);
+  padding: 15px;
+  width: calc(40% - 30px);
+  transform: translateY(5px);
+  border-radius: 25px;
+  border: none;
+  margin-top: 100px;
+  font-size: medium;
 }
 
 #add {
@@ -81,9 +109,10 @@ li span {
   color: rgb(255, 255, 255);
   padding: 20px;
   width: 40%;
-  border-radius: 15px;
+  border-radius: 35px;
   border: none;
-  margin-top: 50px;
+  margin-top: 100px;
+  font-size: large;
 }
 
 #add:hover {
@@ -115,7 +144,6 @@ li span {
   background-color: #fefefe;
   margin: 3% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
   height: 80%;
   border-radius: 15px;
@@ -143,16 +171,29 @@ li span {
   display: block;
   text-align: center;
 }
-.siz span,
-.fram span {
+
+.selection {
   width: 20%;
   margin: 1%;
   padding: 10px;
   display: inline-block;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 10px;
+  border: solid 1px rgb(83, 83, 83);
+  border-radius: 20px;
   text-align: center;
+}
+
+.selection:hover {
+  background-color: rgb(221, 221, 221);
+  cursor: pointer;
+}
+
+.selection.active {
+  background-color: rgb(169, 169, 169) !important;
+  border-color: rgb(169, 169, 169) !important;
+}
+
+.selection.active:hover {
+  cursor: default;
 }
 
 .prodName {
@@ -161,25 +202,30 @@ li span {
   font-weight: bolder;
 }
 
-#viewPic {
-  height: 200px;
-  width: 200px;
+.prodPrice {
+  font-size: 20pt;
+  text-align: center;
+  font-weight: lighter;
+  margin-top: 10px;
 }
 
-.selec:hover {
-  cursor: pointer;
+#viewPic {
+  height: 30%;
+  width: auto;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.6) !important;
+  border-radius: 25px !important;
 }
 
 #more {
-  margin-top: 20px;
+  margin-top: 4px;
   padding: 8px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-radius: 6px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 15px;
   border: none;
 }
 
-#oos{
+#oos {
   margin-top: 20px;
   padding: 8px;
   padding-left: 15px;

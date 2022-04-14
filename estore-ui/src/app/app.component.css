@@ -49,10 +49,10 @@ nav img {
   float: right;
   margin-right: 30px;
   margin-left: 20px;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 10px;
   line-height: 20px;
-  padding: 20px;
+  padding: 15px;
   padding-left: 25px;
   padding-right: 25px;
   text-decoration: none;
@@ -61,7 +61,7 @@ nav img {
 }
 
 .green {
-  background-color: rgb(63, 128, 128);
+  background-color: rgb(99, 181, 99);
 }
 
 .avatar img {
@@ -112,4 +112,13 @@ nav img {
 
 .red {
   background-color: rgb(148, 44, 13) !important;
+}
+
+.bac {
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

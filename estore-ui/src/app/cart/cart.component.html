@@ -8,7 +8,7 @@
 </head>
 <body>
   <div id="title">Cart</div>
-  <div *ngIf="cart.length != 0; else no_items">
+  <div *ngIf="cart.length != 0; else no_items" class="car">
     <table id="center">
       <tr>
         <th>Item</th>
@@ -121,7 +121,7 @@
     </div>
   </div>
   <ng-template #no_items>
-    <p style="text-align: center">
+    <p style="text-align: center" class="lo">
       Your cart is currently empty. Add some items!
     </p></ng-template
   >
