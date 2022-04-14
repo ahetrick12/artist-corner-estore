@@ -1,16 +1,27 @@
-body {
+* {
   font-family: "Fredoka", sans-serif;
-  padding-bottom: 100px;
+}
+
+body {
+  height: 760px;
+}
+
+.form-group {
+  text-align: center;
+}
+
+table {
+  margin-bottom: 100px;
 }
 
 ul {
   position: absolute;
-  
 }
 
 li {
   display: inline-flex;
   padding-right: 100px;
+  border-bottom: 2px black solid;
 }
 
 .iteminfo {
@@ -66,14 +77,14 @@ input.ng-touched.ng-valid {
 
 #Pay {
   position: absolute;
-  top: 470px;
-  right: 12%;
+  top: 480px;
+  right: 10.8%;
 }
 
 #xc {
   position: absolute;
-  top: 625px;
-  right: 12%;
+  top: 655px;
+  right: 11.3%;
 }
 
 .storeimg {
@@ -97,10 +108,12 @@ input.ng-touched.ng-valid {
 }
 
 .button {
-  background-color: black;
+  background-color: rgb(71, 167, 71);
   color: white;
   padding: 1%;
-  border-radius: 2px;
+  border-radius: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-family: "Fredoka", sans-serif;
 }
 
@@ -158,18 +171,23 @@ input[type="month"] {
 
 #sameadr {
   position: absolute;
-  right: 15%;
-  top: 678px;
+  right: 14%;
+  top: 728px;
 }
 
 #purchase {
   position: absolute;
-  top: 715px;
-  right: 10%;
+  top: 790px;
+  right: 15.2%;
+  margin-bottom: 200px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: large;
 }
 
 #purchase:hover {
-  color: red;
+  background-color: rgb(53, 106, 53);
+  cursor: pointer;
 }
 
 #cvc {
@@ -196,7 +214,11 @@ input[type="month"] {
   border-radius: 3px;
 }
 
-#Per, #Pay, #xc, #cards,#sameadr{
+#Per,
+#Pay,
+#xc,
+#cards,
+#sameadr {
   background-color: white;
   border-radius: 20px;
   padding: 10px;

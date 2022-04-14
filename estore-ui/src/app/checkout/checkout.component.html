@@ -9,11 +9,20 @@
 <body>
   <div id="chk">Checkout</div>
   <div>
-    <div id="rw" style="background-color: white;border-radius: 20px;padding: 5px;">Review Items</div>
+    <div
+      id="rw"
+      style="
+        background-color: rgb(255, 255, 255);
+        border-radius: 20px;
+        padding: 10px 20px 10px 20px;
+      "
+    >
+      Review Items
+    </div>
     <ul class="items">
       <li *ngFor="let cartitem of cart">
         <figure>
-          <img src="../../assets/images/placeholder.jpg" class="storeimg" />
+          <img src="{{ cartitem.item.imageLink }}" class="storeimg" />
           <figcaption>{{ cartitem.item.name }}</figcaption>
         </figure>
         <table class="iteminfo">
@@ -209,7 +218,7 @@
           </td>
         </tr>
       </table>
-      <br>
+      <br />
       <table id="Pay">
         <th>Payment Info</th>
         <tr>
@@ -255,7 +264,12 @@
           </td>
         </tr>
       </table>
-      <img src="../../assets/images/cards.png" class="cards" alt="cards" />
+      <img
+        style="margin-top: 10px; margin-right: 10px"
+        src="../../assets/images/cards.png"
+        class="cards"
+        alt="cards"
+      />
       <label id="sameadr">
         <input type="checkbox" checked="checked" name="sameadr" /> Shipping
         address same as billing
