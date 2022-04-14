@@ -30,13 +30,15 @@ export class StoreComponent implements OnInit {
 
   modal = 0;
   displayNone = 'none';
+  defaultClass = 'selection';
+  selectedClass = 'selection active';
 
-  scolor = 'white';
-  mcolor = 'white';
-  lcolor = 'white';
-  xlcolor = 'white';
-  x9color = 'white';
-  x19color = 'white';
+  scolor = this.defaultClass;
+  mcolor = this.defaultClass;
+  lcolor = this.defaultClass;
+  xlcolor = this.defaultClass;
+  x9color = this.defaultClass;
+  x19color = this.defaultClass;
 
   selection = '';
 
@@ -107,22 +109,22 @@ export class StoreComponent implements OnInit {
 
     switch (str) {
       case 'S':
-        this.scolor = 'gray';
+        this.scolor = this.selectedClass;
         break;
       case 'M':
-        this.mcolor = 'gray';
+        this.mcolor = this.selectedClass;
         break;
       case 'L':
-        this.lcolor = 'gray';
+        this.lcolor = this.selectedClass;
         break;
       case 'XL':
-        this.xlcolor = 'gray';
+        this.xlcolor = this.selectedClass;
         break;
       case 'x9':
-        this.x9color = 'gray';
+        this.x9color = this.selectedClass;
         break;
       case 'x19':
-        this.x19color = 'gray';
+        this.x19color = this.selectedClass;
         break;
     }
   }
@@ -131,12 +133,12 @@ export class StoreComponent implements OnInit {
     this.selected = false;
     this.selection = '';
 
-    this.scolor = 'white';
-    this.mcolor = 'white';
-    this.lcolor = 'white';
-    this.xlcolor = 'white';
-    this.x9color = 'white';
-    this.x19color = 'white';
+    this.scolor = this.defaultClass;
+    this.mcolor = this.defaultClass;
+    this.lcolor = this.defaultClass;
+    this.xlcolor = this.defaultClass;
+    this.x9color = this.defaultClass;
+    this.x19color = this.defaultClass;
   }
 
   itemsSize() {
