@@ -91,16 +91,12 @@ with the e-store application.
 
 
 ### View Tier
-> _Provide a summary of the View Tier UI of your architecture.
-> Describe the types of components in the tier and describe their
-> responsibilities.  This should be a narrative description, i.e. it has
-> a flow or "story line" that the reader can follow._
 
-> _You must also provide sequence diagrams as is relevant to a particular aspects 
-> of the design that you are describing.  For example, in e-store you might create a 
-> sequence diagram of a customer searching for an item and adding to their cart. 
-> Be sure to include an relevant HTTP reuqests from the client-side to the server-side 
-> to help illustrate the end-to-end flow._
+Our View Tier UI includes a login page where a user can create an account or login into an account that has already been made. The View Tier also includes a
+homepage and products page (where the user can view products for sale). There is also a cart page (where the user can view items in their cart) and subsequently
+a checkout page (where the user can purchase the items in their cart) and a confirmation page that confirms their purchase. Finally, there are message and
+announcement pages (where the user can view announcements made by the admin and speak to other users). There is also an about page and contanct page (where the 
+user can learn more about the admin)
 ![image](https://user-images.githubusercontent.com/98925856/164358138-7407ac85-5604-47e6-855a-d025cc3fbe66.png)
 
 
