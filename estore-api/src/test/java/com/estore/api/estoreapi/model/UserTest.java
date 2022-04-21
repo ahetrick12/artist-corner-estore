@@ -19,15 +19,18 @@ public class UserTest {
         String expected_name = "Username";
         String expected_password = "Password";
         CartItem[] expected_cart = new CartItem[1];
+        String expected_image = "dog.jpg";
 
         // Invoke
-        User user = new User(expected_id, expected_name, expected_password, expected_cart, "");
+        User user = new User(expected_id, expected_name, expected_password, expected_cart, expected_image);
 
         // Analyze
         assertEquals(expected_id, user.getId());
         assertEquals(expected_name, user.getUsername());
         assertEquals(expected_password, user.getPassword());
+        assertEquals(expected_image, user.getImageLink());
     }
+
 
     @Test
     public void testUsername() {
@@ -62,6 +65,24 @@ public class UserTest {
 
         // Analyze
         assertEquals(expected_password, user.getPassword());
+    }
+
+    @Test
+    public void testCart(){
+        int id = 99;
+        String username = "TestUsername";
+        String password = "TestPassword";
+        CartItem[] cart = new CartItem[1];
+        User user = new User(id, username, password, cart, "");
+        Item item = new Item(1, "name", 1, 2, 2, 2, 2, 2, 2, 2, "ya");
+        CartItem[] expected_cart = new CartItem[1];
+        expected_cart[0] = new CartItem(item, 1, 2, 3, 4, 5, 6);
+
+        // Invoke
+        user.setCart(expected_cart);
+
+        // Analyze
+        assertEquals(expected_cart, user.getCart());
     }
 
     @Test

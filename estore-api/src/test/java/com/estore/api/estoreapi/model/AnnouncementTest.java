@@ -19,6 +19,7 @@ public class AnnouncementTest {
         String expected_title = "Announcement";
         String expected_message = "This is an announcement";
         boolean expected_edited = false;
+        long expected_timestamp = System.currentTimeMillis();
 
         // Invoke
         Announcement announcement = new Announcement(expected_id,expected_title,expected_message,expected_edited);
@@ -28,6 +29,7 @@ public class AnnouncementTest {
         assertEquals(expected_title,announcement.getTitle());
         assertEquals(expected_message,announcement.getMessage());
         assertEquals(expected_edited,announcement.getEdited());
+        assertEquals(expected_timestamp,announcement.getTimestamp());
     }
 
     @Test
@@ -90,7 +92,8 @@ public class AnnouncementTest {
         String title = "Announcement";
         String message = "This is an announcement";
         boolean edited = false;
-        String expected_string = String.format(Announcement.STRING_FORMAT, title, message, edited);
+        long timestamp = System.currentTimeMillis();
+        String expected_string = String.format(Announcement.STRING_FORMAT, title, message, timestamp);
         Announcement announcement = new Announcement(id,title,message,edited);
 
         // Invoke

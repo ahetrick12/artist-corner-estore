@@ -62,6 +62,12 @@ public class Announcement {
      */
     public long getTimestamp() {return timestamp;}
 
+        /**
+     * retrieves the timestamp of the announcement
+     * @return the timestamp of the announcement
+     */
+    public void setTimestamp(long time) {this.timestamp = time;}
+
     /**
      * sets the title of the announcment
      * @param title The title of the announcment
@@ -91,6 +97,6 @@ public class Announcement {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, title, message, edited);
+        return String.format(STRING_FORMAT, title, message, timestamp);
     }
 }
