@@ -1,7 +1,7 @@
 ---
 geometry: margin=1in
 ---
-# PROJECT Design Documentation
+# Artist Corner Design Documentation
 
 ## Team Information
 * Team name: TEAM 8
@@ -84,12 +84,7 @@ Both the ViewModel and Model are built using Java and Spring Framework. Details 
 
 ### Overview of User Interface
 
-This section describes the web interface flow; this is how the user views and interacts
-with the e-store application.
-
-> _Provide a summary of the application's user interface.  Describe, from
-> the user's perspective, the flow of the pages in the web application._
-
+The page loads on a homescreen with nothing but a splash screen, slogan, and a button to lead you to the shop website. The site sports a navigation bar at the top of the screen including links to the store, cart, messages, announcements, login, and contact pages, as well as links to the site owner's social media. Going to the store page will show you a list of products in a grid format with a search bar at the top, and clicking on "view more" will allow you to select the size of the product and add it to your cart. The cart shows the list of items in your cart with a button to proceed to checkout. In the checkout, there are spaces to review your purchase and enter in payment information. Once confirmed and checked out, a confirmation page lets you know your order went through. The messages page allows you to see a messageboard from all users of the site as well as the admin, the announcements page allows you to see all store-wide announcements posted by the site owner, and the contact page allows you to send an email to the site owner. The login page allows you to enter credentials to login or create a new account, and will notify you on success. A dropdown menu with your icon will appear in place of a login button once logged in, where you will be able to either see account details or logout. The "Artist Corner" button in the top left will take you back to the homepage.
 
 ### View Tier
 
