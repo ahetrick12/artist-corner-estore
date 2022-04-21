@@ -132,11 +132,11 @@ Adding attributes such as "alt" tags to images, descriptions to tables, and more
 ## Testing
 
 ### Acceptance Testing
-> _Report on the number of user stories that have passed all their
-> acceptance criteria tests, the number that have some acceptance
-> criteria tests failing, and the number of user stories that
-> have not had any testing yet. Highlight the issues found during
-> acceptance testing and if there are any concerns._
+23 user stories pass all their acceptance criteria tests.
+0 have some acceptance criteria tests failing.
+0 have had no testing yet.
+All of our user stories have passed all their acceptance criteria tests.
+Some major changes were made to past user stories, but currently, we have no issues testing the ones that exist.
 
 ### Unit Testing and Code Coverage
 ![unit testing coverage](unit-testing.PNG)
