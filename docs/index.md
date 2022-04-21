@@ -14,6 +14,6 @@ Welcome to the Artist E-store Project!
 
 Click above for details of the PROJECT design documentation.
 
-## [Setup Guide](README.md)
+## [Setup Guide]
 
-Click above for details about how to setup your development environment to work on this project.
+For setup instructions, please look at README.md.
