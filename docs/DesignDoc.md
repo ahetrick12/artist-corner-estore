@@ -101,6 +101,7 @@ with the e-store application.
 > sequence diagram of a customer searching for an item and adding to their cart. 
 > Be sure to include an relevant HTTP reuqests from the client-side to the server-side 
 > to help illustrate the end-to-end flow._
+![image](https://user-images.githubusercontent.com/98925856/164358138-7407ac85-5604-47e6-855a-d025cc3fbe66.png)
 
 
 ### ViewModel Tier
