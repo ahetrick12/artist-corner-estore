@@ -5,22 +5,23 @@
     href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap"
     rel="stylesheet"
   />
+  <title>Admin</title>
 </head>
 <body>
   <button id="back" routerLink="/store">Back</button>
   <h1 class="mm">Inventory Management</h1>
   <table style="background-color: white">
     <thead>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Small</th>
-      <th>Medium</th>
-      <th>Large</th>
-      <th>Extra Large</th>
-      <th>9"x20"</th>
-      <th>19"x30"</th>
-      <th>Image Link</th>
-      <th>Del</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Small</th>
+      <th scope="col">Medium</th>
+      <th scope="col">Large</th>
+      <th scope="col">Extra Large</th>
+      <th scope="col">9"x20"</th>
+      <th scope="col">19"x30"</th>
+      <th scope="col">Image Link</th>
+      <th scope="col">Del</th>
     </thead>
     <tbody>
       <tr *ngFor="let item of items">

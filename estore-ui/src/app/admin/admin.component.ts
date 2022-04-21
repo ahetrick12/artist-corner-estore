@@ -49,7 +49,7 @@ export class AdminComponent implements OnInit {
     let name: string = 'New Item ' + (this.items.length + 1);
     let newName: string = name;
     for (
-      let i = 1;
+      let i = 0;
       this.items.filter((item) => item.name === newName).length > 0;
       i++
     ) {

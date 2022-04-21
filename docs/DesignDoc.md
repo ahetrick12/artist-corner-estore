@@ -3,11 +3,6 @@ geometry: margin=1in
 ---
 # PROJECT Design Documentation
 
-> _The following template provides the headings for your Design
-> Documentation.  As you edit each section make sure you remove these
-> commentary 'blockquotes'; the lines that start with a > character
-> and appear in the generated PDF in italics._
-
 ## Team Information
 * Team name: TEAM 8
 * Team members
@@ -21,7 +16,7 @@ geometry: margin=1in
 
 ### Purpose
 Our program is an e-store targeted towards fans of a tattoo artist who sells their designs on products. 
-Customers are able to buy those products, learn information via the announcements feature, and chat with the artist in private. 
+Customers are able to buy those products, learn information via the announcements feature, and chat in a chatroom with other users. 
 
 ### Glossary and Acronyms
 
@@ -40,17 +35,20 @@ This section describes the features of the application.
 - Authentication (login/logout)
 - Cart management
 - Checking out
-- Viewing and posting annoucements
+- Viewing and posting announcements
 - Data persistence
+- Chatting with other users
 
 ### Definition of MVP
-A store where you can view items for sale by the artist, add these items to your cart, and then purchase them. You can also login to an account in order to save your cart, as well as view store-wide announcements that the artist has posted. As the owner of the store, the artist, you can add, delete, or update items in the inventory, as well as post  store-wide annoucements to the site
+A store where you can view items for sale by the artist, add these items to your cart, and then purchase them. You can also login to an account in order to save your cart, view store-wide announcements that the artist has posted, and chat with other users. As the owner of the store, the artist, you can add, delete, or update items in the inventory, as well as post store-wide announcements to the site.
 
 ### MVP Features
-- Password Authentication for customer/e-store owner login & logout
-- Customer functionality
-- Inventory Management
-- Data Persistence
+- Inventory management
+- Item browsing
+- Authentication (login/logout)
+- Cart management
+- Checking out
+- Data persistence
 
 ### Roadmap of Enhancements
 > _Provide a list of top-level features in the order you plan to consider them._
@@ -62,8 +60,7 @@ This section describes the application domain.
 
 ![Domain Model](domain-model.png)
 
-The customer can browse an inventory of products on the website, and add the ones they like to the shopping cart. If logged in, this shopping cart will persist between sessions. The user can then checkout and purchase the items in the cart. If the owner is logged in, they are able to update the inventory and also post store-wide annoucenements, which the customers can see. The customers also have the option to contact the owner to request custom paintings, and the  customer and owner will be able to communicate about that though an in-site messaging service.
-
+The customer can browse an inventory of products on the website, and add the ones they like to the shopping cart. If logged in, this shopping cart will persist between sessions. The user can then checkout and purchase the items in the cart. If the owner is logged in, they are able to update the inventory and also post store-wide annoucenements, which the customers can see. The customers also have the option to contact the owner to request custom paintings, and the customers will be able to communicate about that though an in-site messaging service.
 
 ## Architecture and Design
 
@@ -94,16 +91,15 @@ with the e-store application.
 
 
 ### View Tier
-> _Provide a summary of the View Tier UI of your architecture.
-> Describe the types of components in the tier and describe their
-> responsibilities.  This should be a narrative description, i.e. it has
-> a flow or "story line" that the reader can follow._
 
-> _You must also provide sequence diagrams as is relevant to a particular aspects 
-> of the design that you are describing.  For example, in e-store you might create a 
-> sequence diagram of a customer searching for an item and adding to their cart. 
-> Be sure to include an relevant HTTP reuqests from the client-side to the server-side 
-> to help illustrate the end-to-end flow._
+Our View Tier UI includes a login page where a user can create an account or login into an account that has already been made. The View Tier also includes a
+homepage and products page (where the user can view products for sale). There is also a cart page (where the user can view items in their cart) and subsequently
+a checkout page (where the user can purchase the items in their cart) and a confirmation page that confirms their purchase. Finally, there are message and
+announcement pages (where the user can view announcements made by the admin and speak to other users). There is also an about page and contanct page (where the 
+user can learn more about the admin)
+![image](https://user-images.githubusercontent.com/98925856/164358138-7407ac85-5604-47e6-855a-d025cc3fbe66.png)
+![image](https://user-images.githubusercontent.com/98925856/164359270-48cfe486-c200-40a8-94e6-487ba90dca4f.png)
+
 
 
 ### ViewModel Tier
@@ -116,12 +112,9 @@ with the e-store application.
 
 
 ### Model Tier
-> _Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
-
-> _At appropriate places as part of this narrative provide one or more
-> static models (UML class diagrams) with some details such as critical attributes and methods._
+The model tier contains components that are repesentations of objects such as store items, announcements, and messages. Each object has properties that can be set and retrieved individually.
+![Model UML](model.png)
+The ViewModel tier translates file information into these objects that are then sent to the view tier to be sent to the front end.
 
 ### Static Code Analysis/Design Improvements
 > _Discuss design improvements that you would make if the project were

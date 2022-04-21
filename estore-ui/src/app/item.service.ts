@@ -5,8 +5,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Item } from './item';
-import { CartItem } from './cartitem';
-//import { MessageService } from './message.service';
 
 @Injectable({ providedIn: 'root' })
 export class ItemService {
@@ -79,7 +77,7 @@ export class ItemService {
   getItem(id: number): Observable<Item> {
     const url = `${this.itemsUrl}/${id}`;
     return this.http.get<Item>(url).pipe(
-      tap(_ => this.log(`fetched item id=${id}`)),
+      tap((_) => this.log(`fetched item id=${id}`)),
       catchError(this.handleError<Item>(`getItem id=${id}`))
     );
   }
