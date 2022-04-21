@@ -114,7 +114,7 @@ with the e-store application.
 
 ### Model Tier
 The model tier contains components that are repesentations of objects such as store items, announcements, and messages. Each object has properties that can be set and retrieved individually.
-(model.png)
+![Model UML](model.png)
 The ViewModel tier translates file information into these objects that are then sent to the view tier to be sent to the front end.
 
 ### Static Code Analysis/Design Improvements
