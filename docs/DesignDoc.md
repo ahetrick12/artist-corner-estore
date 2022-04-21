@@ -129,8 +129,6 @@ The ViewModel tier translates file information into these objects that are then 
 > screenshots from the tool and/or corresponding source code that was flagged._
 
 ## Testing
-> _This section will provide information about the testing performed
-> and the results of the testing._
 
 ### Acceptance Testing
 > _Report on the number of user stories that have passed all their
@@ -146,3 +144,4 @@ Our unit testing strategy was to try to efficiently cover as much as possible.
 > coverage targets, why you selected those values, and how well your
 > code coverage met your targets. If there are any anomalies, discuss
 > those._
+![image](unit-testing.png)
