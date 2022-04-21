@@ -104,13 +104,8 @@ user can learn more about the admin)
 
 
 ### ViewModel Tier
-> _Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
-
-> _At appropriate places as part of this narrative provide one or more
-> static models (UML class diagrams) with some details such as critical attributes and methods._
-
+The DAO files in the persistence folder make up the ViewModel Tier. These files use the information contained in the Model Tier components to implement functionality that will then be used by the View Tier components. The DAO files are first created as an interface to decide what methods are needed. Then these methods are implemented in the FileDAO files. For instance in the file MessageDAO, I decided what specific methods I would need, such as getMessages(), findMessages(), etc. Then in the file MessageFileDAO, I created the messages structure out of a map, and created the needed functionality, like searching through the map in the findMessages() method. This tier is where most of the logic for the different objects is, whereas the Model has the necessary data, and the View then makes use of this now created logic.
+![Messages component UML](messages-uml.png)
 
 ### Model Tier
 The model tier contains components that are representations of objects such as store items, announcements, and messages. Each object has properties that can be set and retrieved individually.
