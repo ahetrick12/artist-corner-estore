@@ -51,7 +51,8 @@ A store where you can view items for sale by the artist, add these items to your
 - Data persistence
 
 ### Roadmap of Enhancements
-> _Provide a list of top-level features in the order you plan to consider them._
+- Announcements
+- Messaging
 
 
 ## Application Domain
