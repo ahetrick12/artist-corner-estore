@@ -3,11 +3,6 @@ geometry: margin=1in
 ---
 # PROJECT Design Documentation
 
-> _The following template provides the headings for your Design
-> Documentation.  As you edit each section make sure you remove these
-> commentary 'blockquotes'; the lines that start with a > character
-> and appear in the generated PDF in italics._
-
 ## Team Information
 * Team name: TEAM 8
 * Team members
@@ -21,7 +16,7 @@ geometry: margin=1in
 
 ### Purpose
 Our program is an e-store targeted towards fans of a tattoo artist who sells their designs on products. 
-Customers are able to buy those products, learn information via the announcements feature, and chat with the artist in private. 
+Customers are able to buy those products, learn information via the announcements feature, and chat in a chatroom with other users. 
 
 ### Glossary and Acronyms
 
@@ -40,17 +35,20 @@ This section describes the features of the application.
 - Authentication (login/logout)
 - Cart management
 - Checking out
-- Viewing and posting annoucements
+- Viewing and posting announcements
 - Data persistence
+- Chatting with other users
 
 ### Definition of MVP
-A store where you can view items for sale by the artist, add these items to your cart, and then purchase them. You can also login to an account in order to save your cart, as well as view store-wide announcements that the artist has posted. As the owner of the store, the artist, you can add, delete, or update items in the inventory, as well as post  store-wide annoucements to the site
+A store where you can view items for sale by the artist, add these items to your cart, and then purchase them. You can also login to an account in order to save your cart, view store-wide announcements that the artist has posted, and chat with other users. As the owner of the store, the artist, you can add, delete, or update items in the inventory, as well as post store-wide announcements to the site.
 
 ### MVP Features
-- Password Authentication for customer/e-store owner login & logout
-- Customer functionality
-- Inventory Management
-- Data Persistence
+- Inventory management
+- Item browsing
+- Authentication (login/logout)
+- Cart management
+- Checking out
+- Data persistence
 
 ### Roadmap of Enhancements
 > _Provide a list of top-level features in the order you plan to consider them._
@@ -62,8 +60,7 @@ This section describes the application domain.
 
 ![Domain Model](domain-model.png)
 
-The customer can browse an inventory of products on the website, and add the ones they like to the shopping cart. If logged in, this shopping cart will persist between sessions. The user can then checkout and purchase the items in the cart. If the owner is logged in, they are able to update the inventory and also post store-wide annoucenements, which the customers can see. The customers also have the option to contact the owner to request custom paintings, and the  customer and owner will be able to communicate about that though an in-site messaging service.
-
+The customer can browse an inventory of products on the website, and add the ones they like to the shopping cart. If logged in, this shopping cart will persist between sessions. The user can then checkout and purchase the items in the cart. If the owner is logged in, they are able to update the inventory and also post store-wide annoucenements, which the customers can see. The customers also have the option to contact the owner to request custom paintings, and the customers will be able to communicate about that though an in-site messaging service.
 
 ## Architecture and Design
 
