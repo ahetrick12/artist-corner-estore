@@ -113,12 +113,9 @@ with the e-store application.
 
 
 ### Model Tier
-> _Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
-
-> _At appropriate places as part of this narrative provide one or more
-> static models (UML class diagrams) with some details such as critical attributes and methods._
+The model tier contains components that are repesentations of objects such as store items, announcements, and messages. Each object has properties that can be set and retrieved individually.
+(model.png)
+The ViewModel tier translates file information into these objects that are then sent to the view tier to be sent to the front end.
 
 ### Static Code Analysis/Design Improvements
 > _Discuss design improvements that you would make if the project were
