@@ -25,11 +25,11 @@ import com.estore.api.estoreapi.model.Message;
 @Component
 public class MessageFileDAO implements MessageDAO {
     //private static final Logger LOG = Logger.getLogger(MessageFileDAO.class.getName());
-    Map<Integer,Message> messages;   // Provides a local cache of the item objects
+    Map<Integer,Message> messages;   // Provides a local cache of the message objects
     private ObjectMapper objectMapper;  // Provides conversion between Item
                                         // objects and JSON text format written
                                         // to the file
-    private static int nextId;  // The next Id to assign to a new item
+    private static int nextId;  // The next Id to assign to a new message
     private String filename;    // Filename to read from and write to
 
     /**
@@ -43,11 +43,11 @@ public class MessageFileDAO implements MessageDAO {
     public MessageFileDAO(@Value("${messages.file}") String filename,ObjectMapper objectMapper) throws IOException {
         this.filename= filename;
         this.objectMapper = objectMapper;
-        load();  // load the items from the file
+        load();  // load the messages from the file
     }
 
     /**
-     * Generates the next id for a new {@linkplain Item item}
+     * Generates the next id for a new {@linkplain Message message}
      * 
      * @return The next id
      */
@@ -78,7 +78,7 @@ public class MessageFileDAO implements MessageDAO {
         ArrayList<Message> messageArrayList = new ArrayList<>();
 
         for (Message message : messages.values()) {
-            if (containsText == null || message.getName().toLowerCase().contains(containsText.toLowerCase())) {
+            if (containsText == null || message.getMessage().toLowerCase().contains(containsText.toLowerCase())) {
                 messageArrayList.add(message);
             }
         }
@@ -172,7 +172,7 @@ public class MessageFileDAO implements MessageDAO {
     @Override
     public Message createMessage(Message message) throws IOException {
         synchronized(messages) {
-            // we create a new item object because the id field is immutable
+            // we create a new message object because the id field is immutable
             // and we need to assign the next unique id
                 Message newMessage = new Message(nextId(),message.getName(), message.getMessage());
                 messages.put(newMessage.getId(),newMessage);
@@ -198,19 +198,4 @@ public class MessageFileDAO implements MessageDAO {
                 return false;
         }
     }
-
-    /**
-    ** {@inheritDoc}
-     */
-    @Override
-    public boolean nameExists(String name) throws IOException {
-    synchronized(messages) {
-        for (Message message_name: messages.values()){
-            if (message_name.getName().equals(name)){
-                return true;
-            }
-        }
-        return false;
-    }
-}
 }

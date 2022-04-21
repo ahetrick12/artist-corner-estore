@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 //import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 //import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -42,10 +43,11 @@ public class MessageFileDAOTest {
     @BeforeEach
     public void setupMessageFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
-        testMessages = new Message[3];
+        testMessages = new Message[4];
         testMessages[0] = new Message(99,"admin", "you pay me now");
         testMessages[1] = new Message(100,"axm9912", "no thanks");
         testMessages[2] = new Message(101,"tbh7070", "lets run...");
+        testMessages[3] = new Message(102,"axm991", "no way");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the item array above
@@ -78,6 +80,18 @@ public class MessageFileDAOTest {
     }
 
     @Test
+    public void testFindMessage() {
+         // Invoke
+         Message[] messages = messageFileDAO.findMessages("no");
+
+         // Analyze
+         assertEquals(messages.length,3);
+         assertEquals(messages[0],testMessages[0]);
+         assertEquals(messages[1],testMessages[1]);
+         assertEquals(messages[2],testMessages[3]);
+    }
+
+    @Test
     public void testDeleteMessage() {
         // Invoke
         boolean result = assertDoesNotThrow(() -> messageFileDAO.deleteMessage(99),
@@ -95,7 +109,7 @@ public class MessageFileDAOTest {
     @Test
     public void testCreateMessage() {
         // Setup
-        Message mess = new Message(102,"pft3033", "how much is a painting");
+        Message mess = new Message(103,"pft3033", "how much is a painting");
 
         // Invoke
         Message result = assertDoesNotThrow(() -> messageFileDAO.createMessage(mess),
@@ -109,19 +123,18 @@ public class MessageFileDAOTest {
         assertEquals(actual.getMessage(),mess.getMessage());
     }
 
-    // @Test
-    // public void testSaveException() throws IOException{
-    //     doThrow(new IOException())
-    //         .when(mockObjectMapper)
-    //             .writeValue(any(File.class),any(Message[].class));
+    @Test
+    public void testSaveException() throws IOException{
+        doThrow(new IOException())
+            .when(mockObjectMapper)
+                .writeValue(any(File.class),any(Message[].class));
 
-    //     Message message = new Message(90,"admin", "you pay me now");
-    //      NullInsteadOfMockException var;
+        Message message = new Message(102,"pft3033", "how much is a painting");
 
-    //     assertThrows(NullInsteadOfMockException,
-    //                     () -> messageFileDAO.createMessage(message),
-    //                     "IOException not thrown");
-    // }
+        assertThrows(IOException.class,
+                        () -> messageFileDAO.createMessage(message),
+                        "IOException not thrown");
+    }
 
 
     @Test

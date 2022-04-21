@@ -159,7 +159,6 @@ public class UserController {
         LOG.info("PUT /users " + user);
         try {
             User updatedUser = userDAO.updateUser(user);
-            LOG.info(updatedUser.getCart()[0].toString());
             return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
         }
         catch(IOException e) {

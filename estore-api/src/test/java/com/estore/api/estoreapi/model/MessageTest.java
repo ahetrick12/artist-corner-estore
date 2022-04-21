@@ -61,5 +61,37 @@ public class MessageTest {
         assertEquals(expected_mess,message.getMessage());
     }
 
-   
+    @Test
+    public void testToString() {
+        // Setup
+        int id = 99;
+        String name = "admin";
+        String mess = "then you no get tattoo";
+        Message message = new Message(id,name,mess);
+
+
+        // Invoke
+        String actual_string = message.toString();
+        String expected_string = String.format(Message.STRING_FORMAT,id,name,mess);
+
+
+        // Analyze`
+        assertEquals(expected_string,actual_string);
+    }
+
+    @Test
+    public void testCompareTo(){
+        int id = 99;
+        String name = "admin";
+        String mess = "then you no get tattoo";
+        Message mess1 = new Message(id,name,mess);
+        Message mess2 = new Message(id,name,mess);
+        Message mess3 = new Message(2,"shoes","hey");
+        int res1 = mess1.compareTo(mess2);
+        int res2 = mess1.compareTo(mess3);
+
+        assertEquals(res1,0);
+        assertEquals(res2,12);
+
+    }
 }

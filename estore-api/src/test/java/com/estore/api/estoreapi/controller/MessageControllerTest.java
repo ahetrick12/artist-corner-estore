@@ -228,6 +228,37 @@ public class MessageControllerTest {
     }
 
     @Test
+    public void testGetMessagesFail() throws IOException { 
+        // Setup
+        // When getUseres is called return the useres created above
+        when(mockMessageDAO.getMessages()).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Message[]> response = messageController.getMessages();
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(null, response.getBody());
+    }
+
+    @Test
+    public void testFindMessageFailed() throws IOException {
+        // Setup
+        String searchString = "michael";
+
+        // When findUsers is called with the search string, return the last
+        /// of the users above
+        when(mockMessageDAO.findMessages(searchString)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Message[]> response = messageController.searchMessages(searchString);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(null, response.getBody());
+    }
+
+    @Test
     public void testDeleteMessageHandleException() throws IOException { 
         // Setup
         int itemId = 99;
