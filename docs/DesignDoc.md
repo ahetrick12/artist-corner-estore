@@ -119,16 +119,16 @@ The ViewModel tier translates file information into these objects that are then 
 
 ### Static Code Analysis/Design Improvements
 Here are the up-to-date SonarQube and SonarScanner reports for both the Java and TypeScript portions of our project:
-![Static Code Analysis](Static Code Analysis Overview.png)
+![Static Code Analysis](analysis-overview.png)
 There are a number of areas that have been flagged by SonarQube that would be beneficial to give our attention to and fix in the future:
 #### 1: Variable names
-![Naming Conventions](1 - Naming.png)
+![Naming Conventions](1-naming.png)
 #### 2: Modifying static variables from non-static methods
-![Static Contexts](2 - Static Contexts.png)
+![Static Contexts](2-statics.png)
 #### 3: Using default package visibility instead of "public" for methods and classes
-![Code Visibility](3 - Visibility.png)
+![Code Visibility](3-visibility.png)
 #### 4: Adding descriptions and accessibility attributes to HTML
-![Accessibility Attributes](4 - Accessibility.png)
+![Accessibility Attributes](4-accessibility.png)
 
 > _Discuss design improvements that you would make if the project were
 > to continue. These improvement should be based on your direct
