@@ -123,23 +123,16 @@ Here are the up-to-date SonarQube and SonarScanner reports for both the Java and
 There are a number of areas that have been flagged by SonarQube that would be beneficial to give our attention to and fix in the future:
 #### 1: Variable names
 ![Naming Conventions](1-naming.png)
+We seem to have a lack of cohesion and agreement on how to name our variables and classes throughout the project. This is likely due to us not giving it much thought as we work on individual pieces together, and then not reviewing closely enough during code reviews. Claifying this before any code is written and performing more thorough code reviews would most likely solve this issue.
 #### 2: Modifying static variables from non-static methods
 ![Static Contexts](2-statics.png)
+Updating a static field from a non-static method is tricky to get	right and could easily lead to bugs if there are multiple class instances and/or	multiple threads in play. Ideally, static fields are only updated from synchronized static methods. We could create synchronized static accessors for each static field, such as "nextId", and only modify the field's value through those methods.
 #### 3: Using default package visibility instead of "public" for methods and classes
 ![Code Visibility](3-visibility.png)
+In this context, test classes can have any visibility but private, however, it is recommended to use the default package visibility, which improves readability of code. This isn't a pressing issue and only harms the readability of the code, but it is an easy fix for us to make as we can simply remove all of the public keywords from test classes.
 #### 4: Adding descriptions and accessibility attributes to HTML
 ![Accessibility Attributes](4-accessibility.png)
-
-> _Discuss design improvements that you would make if the project were
-> to continue. These improvement should be based on your direct
-> analysis of where there are problems in the code base which could be
-> addressed with design changes, and describe those suggested design
-> improvements._
-
-> _With the results from the Static Code Analysis exercise, 
-> discuss the resulting issues/metrics measurements along with your analysis
-> and recommendations for further improvements. Where relevant, include 
-> screenshots from the tool and/or corresponding source code that was flagged._
+Adding attributes such as "alt" tags to images, descriptions to tables, and more can help with the accessibility and readablility of our website, especially if there is something wrong with how images are loaded. We did not think of this as we were making the site as we had more pressing issues to fix, but adding this functionality into the website as we are implementing everything would reduce a lot of backtracking we would have to do in the future.
 
 ## Testing
 
