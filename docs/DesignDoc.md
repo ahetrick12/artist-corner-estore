@@ -98,7 +98,8 @@ a checkout page (where the user can purchase the items in their cart) and a conf
 announcement pages (where the user can view announcements made by the admin and speak to other users). There is also an about page and contanct page (where the 
 user can learn more about the admin)
 ![image](https://user-images.githubusercontent.com/98925856/164358138-7407ac85-5604-47e6-855a-d025cc3fbe66.png)
-[Team_8_Sequence_diagram.pdf](https://github.com/RIT-SWEN-261-04/team-project-2215-swen-261-04-8/files/8526787/Team_8_Sequence_diagram.pdf)
+![image](https://user-images.githubusercontent.com/98925856/164359270-48cfe486-c200-40a8-94e6-487ba90dca4f.png)
+
 
 
 ### ViewModel Tier
