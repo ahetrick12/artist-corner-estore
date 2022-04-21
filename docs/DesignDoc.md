@@ -117,6 +117,18 @@ The model tier contains components that are representations of objects such as s
 The ViewModel tier translates file information into these objects that are then sent to the view tier to be sent to the front end.
 
 ### Static Code Analysis/Design Improvements
+Here are the up-to-date SonarQube and SonarScanner reports for both the Java and TypeScript portions of our project:
+![Static Code Analysis](Static Code Analysis Overview.png)
+There are a number of areas that have been flagged by SonarQube that would be beneficial to give our attention to and fix in the future:
+#### 1: Variable names
+![Naming Conventions](1 - Naming.png)
+#### 2: Modifying static variables from non-static methods
+![Static Contexts](2 - Static Contexts.png)
+#### 3: Using default package visibility instead of "public" for methods and classes
+![Code Visibility](3 - Visibility.png)
+#### 4: Adding descriptions and accessibility attributes to HTML
+![Accessibility Attributes](4 - Accessibility.png)
+
 > _Discuss design improvements that you would make if the project were
 > to continue. These improvement should be based on your direct
 > analysis of where there are problems in the code base which could be
