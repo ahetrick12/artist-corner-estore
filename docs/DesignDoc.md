@@ -112,7 +112,7 @@ user can learn more about the admin)
 
 
 ### Model Tier
-The model tier contains components that are repesentations of objects such as store items, announcements, and messages. Each object has properties that can be set and retrieved individually.
+The model tier contains components that are representations of objects such as store items, announcements, and messages. Each object has properties that can be set and retrieved individually.
 ![Model UML](model.png)
 The ViewModel tier translates file information into these objects that are then sent to the view tier to be sent to the front end.
 
