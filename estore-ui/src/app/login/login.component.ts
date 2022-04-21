@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { AuthService } from '../auth.service';
-import { ItemService } from '../item.service';
 import { CartService } from '../cart.service';
 
 @Component({
@@ -18,7 +17,7 @@ export class LoginComponent implements OnInit {
     username: '',
     password: '',
     cart: [],
-    imageLink: "../../assets/images/avatar.jpg",
+    imageLink: '../../assets/images/avatar.jpg',
   };
 
   constructor(
@@ -53,7 +52,6 @@ export class LoginComponent implements OnInit {
       // Conditional logic for valid and invalid logins
       if (successful) {
         this.authSuccess('Successfully logged in!');
-        this.AuthenticateCart(expectedUser);
       } else {
         alert('Invalid username or password, please try again.');
       }
@@ -85,15 +83,5 @@ export class LoginComponent implements OnInit {
 
     this.authService.updateLoginState(this.currentUser);
     this.route.navigate(['']);
-  }
-
-  AuthenticateCart(user: User) {
-    for (let i = 0; i < user.cart.length; i++) {
-      // if (user.cart[i].item.stock< user.cart[i].quantity){
-      //   this.cartService
-      // .deleteCartItem(user.username, user.cart[i])
-      // .subscribe();
-      // }
-    }
   }
 }

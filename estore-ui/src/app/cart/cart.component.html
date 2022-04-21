@@ -5,24 +5,25 @@
     href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap"
     rel="stylesheet"
   />
+  <title>Cart</title>
 </head>
 <body>
   <div id="title">Cart</div>
   <div *ngIf="cart.length != 0; else no_items" class="car">
     <table id="center">
       <tr>
-        <th>Item</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-        <th>Remove</th>
+        <th scope="col">Item</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+        <th scope="col">Remove</th>
       </tr>
 
       <tr class="items"></tr>
       <tr *ngFor="let cartitem of cart">
         <th>
           <figure>
-            <img src={{cartitem.item.imageLink}} class="storeimg" />
+            <img src="{{ cartitem.item.imageLink }}" class="storeimg" />
             <figcaption>{{ cartitem.item.name }}</figcaption>
           </figure>
         </th>

@@ -1,15 +1,32 @@
-<div id="center">
-  <div id="titl">Messageboard</div>
-<ul class="messages">
-    <li *ngFor="let message of messages">
+<head>
+  <title>Message</title>
+</head>
+<body>
+  <div id="center">
+    <div id="titl">Messageboard</div>
+    <ul class="messages">
+      <li *ngFor="let message of messages">
         <div>{{ message.name }}: {{ message.message }}</div>
-    </li>
-  </ul>
-  <div>
-    <form *ngIf="userLoggedIn() else not_log;">
-      <textarea id="newmessage" placeholder="Message" name="newmess" rows="5" cols="50" [(ngModel)]="mess"></textarea> <br>
-      <button (click)="onSubmit()">Submit</button>
-    </form>
-    <ng-template #not_log> <p style="text-align: center;" class="lo">Please log in or create an account to participate.</p></ng-template>
+      </li>
+    </ul>
+    <div>
+      <form *ngIf="userLoggedIn(); else not_log">
+        <textarea
+          id="newmessage"
+          placeholder="Message"
+          name="newmess"
+          rows="5"
+          cols="50"
+          [(ngModel)]="mess"
+        ></textarea>
+        <br />
+        <button (click)="onSubmit()">Submit</button>
+      </form>
+      <ng-template #not_log>
+        <p style="text-align: center" class="lo">
+          Please log in or create an account to participate.
+        </p></ng-template
+      >
+    </div>
   </div>
-</div>
+</body>

@@ -6,17 +6,17 @@ import { ItemService } from '../item.service';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+  styleUrls: ['./search-bar.component.css'],
 })
 export class SearchBarComponent implements OnInit {
   @Output() getItems: EventEmitter<any> = new EventEmitter();
   search: string = '';
-  searchArray : Observable<Item[]> | undefined;
+  searchArray: Observable<Item[]> | undefined;
 
-
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService) {}
 
   ngOnInit(): void {
+    // on init
   }
 
   onSubmit() {
@@ -24,6 +24,4 @@ export class SearchBarComponent implements OnInit {
     this.searchArray = this.itemService.getItems();
     this.getItems.emit(); //calls getItems from the store component to refresh the list
   }
-
-
 }

@@ -1,50 +1,57 @@
-<div id="titl">Products</div>
-<app-search-bar (getItems)="getItems()"></app-search-bar>
-<div id="admin_view" *ngIf="adminLoggedIn()">
-  <p id="view_status">
-    <u><b>USER VIEW</b></u>
-  </p>
-  <button id="switch_view" routerLink="/admin">
-    Click to switch to admin inventory management view
-  </button>
-</div>
-<div *ngIf="items.length == 0" style="text-align: center">No items found.</div>
-<ul class="items">
-  <li *ngFor="let item of items">
-    <div class="boxes">
-      <img src="{{ item.imageLink }}" class="storeimg" />
-      <div class="listing_name">{{ item.name }}</div>
-      <div class="listing_price">${{ item.price }}</div>
-      <div *ngIf="item.stock > 0; else oos">
-        <button id="more" (click)="viewMore(item)">View More</button>
+<head>
+  <title>Store</title>
+</head>
+<body>
+  <div id="titl">Products</div>
+  <app-search-bar (getItems)="getItems()"></app-search-bar>
+  <div id="admin_view" *ngIf="adminLoggedIn()">
+    <p id="view_status">
+      <u><b>USER VIEW</b></u>
+    </p>
+    <button id="switch_view" routerLink="/admin">
+      Click to switch to admin inventory management view
+    </button>
+  </div>
+  <div *ngIf="items.length == 0" style="text-align: center">
+    No items found.
+  </div>
+  <ul class="items">
+    <li *ngFor="let item of items">
+      <div class="boxes">
+        <img src="{{ item.imageLink }}" class="storeimg" />
+        <div class="listing_name">{{ item.name }}</div>
+        <div class="listing_price">${{ item.price }}</div>
+        <div *ngIf="item.stock > 0; else oos">
+          <button id="more" (click)="viewMore(item)">View More</button>
+        </div>
+        <ng-template #oos><button id="oos">Out of Stock</button></ng-template>
       </div>
-      <ng-template #oos><button id="oos">Out of Stock</button></ng-template>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
 
-<div id="myModal" class="modal" [style.display]="displayNone">
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close" (click)="viewLess()">&times;</span>
-    <img src="{{ selectedItem.imageLink }}" class="storeimg" id="viewPic" />
-    <div class="prodName">{{ selectedItem.name }}</div>
-    <div class="prodPrice">${{ selectedItem.price }}</div>
-    <div [style.display]="showSizes" class="siz">
-      <span (click)="select('S')" [ngClass]="scolor">Small</span>
-      <span (click)="select('M')" [ngClass]="mcolor">Medium</span>
-      <span (click)="select('L')" [ngClass]="lcolor">Large</span>
-      <span (click)="select('XL')" [ngClass]="xlcolor">Extra Large</span>
-    </div>
-    <div [style.display]="showFrames" class="fram">
-      <span (click)="select('x9')" [ngClass]="x9color">9"x20"</span>
-      <span (click)="select('x19')" [ngClass]="x19color">19"x30"</span>
-    </div>
-    <div style="text-align: center">
-      <button id="disabled_add" *ngIf="!selected" (click)="add()">
-        Add to Cart
-      </button>
-      <button id="add" *ngIf="selected" (click)="add()">Add to Cart</button>
+  <div id="myModal" class="modal" [style.display]="displayNone">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" (click)="viewLess()">&times;</span>
+      <img src="{{ selectedItem.imageLink }}" class="storeimg" id="viewPic" />
+      <div class="prodName">{{ selectedItem.name }}</div>
+      <div class="prodPrice">${{ selectedItem.price }}</div>
+      <div [style.display]="showSizes" class="siz">
+        <span (click)="select('S')" [ngClass]="scolor">Small</span>
+        <span (click)="select('M')" [ngClass]="mcolor">Medium</span>
+        <span (click)="select('L')" [ngClass]="lcolor">Large</span>
+        <span (click)="select('XL')" [ngClass]="xlcolor">Extra Large</span>
+      </div>
+      <div [style.display]="showFrames" class="fram">
+        <span (click)="select('x9')" [ngClass]="x9color">9"x20"</span>
+        <span (click)="select('x19')" [ngClass]="x19color">19"x30"</span>
+      </div>
+      <div style="text-align: center">
+        <button id="disabled_add" *ngIf="!selected" (click)="add()">
+          Add to Cart
+        </button>
+        <button id="add" *ngIf="selected" (click)="add()">Add to Cart</button>
+      </div>
     </div>
   </div>
-</div>
+</body>

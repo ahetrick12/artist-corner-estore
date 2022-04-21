@@ -51,7 +51,8 @@ A store where you can view items for sale by the artist, add these items to your
 - Data persistence
 
 ### Roadmap of Enhancements
-> _Provide a list of top-level features in the order you plan to consider them._
+- Announcements
+- Messaging
 
 
 ## Application Domain
@@ -91,16 +92,15 @@ with the e-store application.
 
 
 ### View Tier
-> _Provide a summary of the View Tier UI of your architecture.
-> Describe the types of components in the tier and describe their
-> responsibilities.  This should be a narrative description, i.e. it has
-> a flow or "story line" that the reader can follow._
 
-> _You must also provide sequence diagrams as is relevant to a particular aspects 
-> of the design that you are describing.  For example, in e-store you might create a 
-> sequence diagram of a customer searching for an item and adding to their cart. 
-> Be sure to include an relevant HTTP reuqests from the client-side to the server-side 
-> to help illustrate the end-to-end flow._
+Our View Tier UI includes a login page where a user can create an account or login into an account that has already been made. The View Tier also includes a
+homepage and products page (where the user can view products for sale). There is also a cart page (where the user can view items in their cart) and subsequently
+a checkout page (where the user can purchase the items in their cart) and a confirmation page that confirms their purchase. Finally, there are message and
+announcement pages (where the user can view announcements made by the admin and speak to other users). There is also an about page and contanct page (where the 
+user can learn more about the admin)
+![image](https://user-images.githubusercontent.com/98925856/164358138-7407ac85-5604-47e6-855a-d025cc3fbe66.png)
+![image](https://user-images.githubusercontent.com/98925856/164359270-48cfe486-c200-40a8-94e6-487ba90dca4f.png)
+
 
 
 ### ViewModel Tier
@@ -113,28 +113,28 @@ with the e-store application.
 
 
 ### Model Tier
-> _Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
-
-> _At appropriate places as part of this narrative provide one or more
-> static models (UML class diagrams) with some details such as critical attributes and methods._
+The model tier contains components that are representations of objects such as store items, announcements, and messages. Each object has properties that can be set and retrieved individually.
+![Model UML](model.png)
+The ViewModel tier translates file information into these objects that are then sent to the view tier to be sent to the front end.
 
 ### Static Code Analysis/Design Improvements
-> _Discuss design improvements that you would make if the project were
-> to continue. These improvement should be based on your direct
-> analysis of where there are problems in the code base which could be
-> addressed with design changes, and describe those suggested design
-> improvements._
-
-> _With the results from the Static Code Analysis exercise, 
-> discuss the resulting issues/metrics measurements along with your analysis
-> and recommendations for further improvements. Where relevant, include 
-> screenshots from the tool and/or corresponding source code that was flagged._
+Here are the up-to-date SonarQube and SonarScanner reports for both the Java and TypeScript portions of our project:
+![Static Code Analysis](analysis-overview.png)
+There are a number of areas that have been flagged by SonarQube that would be beneficial to give our attention to and fix in the future:
+#### 1: Variable names
+![Naming Conventions](1-naming.png)
+We seem to have a lack of cohesion and agreement on how to name our variables and classes throughout the project. This is likely due to us not giving it much thought as we work on individual pieces together, and then not reviewing closely enough during code reviews. Claifying this before any code is written and performing more thorough code reviews would most likely solve this issue.
+#### 2: Modifying static variables from non-static methods
+![Static Contexts](2-statics.png)
+Updating a static field from a non-static method is tricky to get	right and could easily lead to bugs if there are multiple class instances and/or	multiple threads in play. Ideally, static fields are only updated from synchronized static methods. We could create synchronized static accessors for each static field, such as "nextId", and only modify the field's value through those methods.
+#### 3: Using default package visibility instead of "public" for methods and classes
+![Code Visibility](3-visibility.png)
+In this context, test classes can have any visibility but private, however, it is recommended to use the default package visibility, which improves readability of code. This isn't a pressing issue and only harms the readability of the code, but it is an easy fix for us to make as we can simply remove all of the public keywords from test classes.
+#### 4: Adding descriptions and accessibility attributes to HTML
+![Accessibility Attributes](4-accessibility.png)
+Adding attributes such as "alt" tags to images, descriptions to tables, and more can help with the accessibility and readablility of our website, especially if there is something wrong with how images are loaded. We did not think of this as we were making the site as we had more pressing issues to fix, but adding this functionality into the website as we are implementing everything would reduce a lot of backtracking we would have to do in the future.
 
 ## Testing
-> _This section will provide information about the testing performed
-> and the results of the testing._
 
 ### Acceptance Testing
 > _Report on the number of user stories that have passed all their
@@ -150,3 +150,4 @@ Our unit testing strategy was to try to efficiently cover as much as possible.
 > coverage targets, why you selected those values, and how well your
 > code coverage met your targets. If there are any anomalies, discuss
 > those._
+![image](unit-testing.png)
