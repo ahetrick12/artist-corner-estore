@@ -144,10 +144,5 @@ Adding attributes such as "alt" tags to images, descriptions to tables, and more
 > acceptance testing and if there are any concerns._
 
 ### Unit Testing and Code Coverage
-Our unit testing strategy was to try to efficiently cover as much as possible.
-> _Discuss your unit testing strategy. Report on the code coverage
-> achieved from unit testing of the code base. Discuss the team's
-> coverage targets, why you selected those values, and how well your
-> code coverage met your targets. If there are any anomalies, discuss
-> those._
-![image](unit-testing.png)
+![unit testing coverage](unit-testing.PNG)
+  Our unit testing strategy was to try to efficiently cover as much as possible. Near-complete testing was implemented to ensure a quality product. All classes and methods were covered as needed and all tests pass. As you can see by the attached unit testing report, we have achieved this, at 99% and 97% overall for both instruction coverage and branch coverage. Missing tests include testing the SpringApplication.run() in EstoreApiApplication.main; this test would take unneccesary time to implement, as it loads a Spring context and was not worth the coverage it would add to the percentage. Additionally, the method getAnnouncementsArray(String) in estore-api/com.estore.api.estoreapi.persistence/AnnouncementFileDAO is missing 3 of 4 branches on an if statement. Testing all of these was unnecessary, as the statement inside the if statement was covered by the tests currently existing. Overall, our high coverage percentages display a highly functioning back-end present in our product.
