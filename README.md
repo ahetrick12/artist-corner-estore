@@ -1,6 +1,6 @@
-# E-Store: Online Tattoo Store
+# Artist Corner Store
 
-An online E-store system built in Java 8=>11, TypeScript, HTML, CSS, and JavaScript.
+An online E-store system called "Artist Corner" built in Java 8=>11, TypeScript, HTML, CSS, and JavaScript.
 
 ## Team
 
