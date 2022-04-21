@@ -5,6 +5,7 @@
     href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap"
     rel="stylesheet"
   />
+  <title>Announcements</title>
 </head>
 
 <body>
@@ -23,57 +24,58 @@
       <button (click)="onSubmit()">Submit</button>
     </form>
   </div>
-    <ul class="announcements">
-      <div *ngIf="announcements.length == 0" style="text-align: center" class="noo">
-        Admin has posted no announcements.
-      </div>
-      <li *ngFor="let announcement of announcements">
-        <h1 *ngIf="!announcement.editing">{{ announcement.title }}</h1>
-        <input
+  <ul class="announcements">
+    <div
+      *ngIf="announcements.length == 0"
+      style="text-align: center"
+      class="noo"
+    >
+      Admin has posted no announcements.
+    </div>
+    <li *ngFor="let announcement of announcements">
+      <h1 *ngIf="!announcement.editing">{{ announcement.title }}</h1>
+      <input
+        *ngIf="announcement.editing"
+        type="text"
+        name="announcementTitleEdit"
+        [(ngModel)]="announcementTitleEdit"
+      />
+
+      <p *ngIf="!announcement.editing">{{ announcement.message }}</p>
+      <p>
+        <textarea
           *ngIf="announcement.editing"
-          type="text"
-          name="announcementTitleEdit"
-          [(ngModel)]="announcementTitleEdit"
-        />
+          id="announcementMessageEdit"
+          rows="5"
+          cols="50"
+          [(ngModel)]="announcementMessageEdit"
+        ></textarea>
+      </p>
 
-        <p *ngIf="!announcement.editing">{{ announcement.message }}</p>
-        <p>
-          <textarea
-            *ngIf="announcement.editing"
-            id="announcementMessageEdit"
-            rows="5"
-            cols="50"
-            [(ngModel)]="announcementMessageEdit"
-          ></textarea>
-        </p>
+      <p style="font-size: small; display: inline-block; padding-right: 5px">
+        {{ getTime(announcement.timestamp) }}
+      </p>
+      <p
+        *ngIf="announcement.edited"
+        style="font-size: small; display: inline-block"
+      >
+        (edited)
+      </p>
 
-        <p style="font-size: small; display: inline-block; padding-right: 5px">
-          {{ getTime(announcement.timestamp) }}
-        </p>
-        <p
-          *ngIf="announcement.edited"
-          style="font-size: small; display: inline-block"
-        >
-          (edited)
-        </p>
+      <pre></pre>
 
-        <pre></pre>
-
-        <button
-          *ngIf="!announcement.editing && getAdminStatus()"
-          (click)="onEdit(announcement)"
-        >
-          Edit
-        </button>
-        <button
-          *ngIf="announcement.editing"
-          (click)="onEditSubmit(announcement)"
-        >
-          Submit
-        </button>
-        <button (click)="onDelete(announcement)" *ngIf="getAdminStatus()">
-          Delete
-        </button>
-      </li>
-    </ul>
+      <button
+        *ngIf="!announcement.editing && getAdminStatus()"
+        (click)="onEdit(announcement)"
+      >
+        Edit
+      </button>
+      <button *ngIf="announcement.editing" (click)="onEditSubmit(announcement)">
+        Submit
+      </button>
+      <button (click)="onDelete(announcement)" *ngIf="getAdminStatus()">
+        Delete
+      </button>
+    </li>
+  </ul>
 </body>
